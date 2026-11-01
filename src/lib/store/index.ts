@@ -102,6 +102,8 @@ export interface Actions {
   logSet(exerciseId: string, setIndex: number, value: number): boolean;
   rateMove(exerciseId: string, effort: Effort): void;
   tapHurts(exerciseId: string): { setAside: boolean };
+  /** W5 Cancel: takes back the hurt just tapped on this move today (and its set-aside). */
+  cancelHurt(exerciseId: string): void;
   swapToday(fromId: string, toId: string): void;
   finishWorkout(status: "done" | "part", effort?: Effort): void;
   discardWorkout(): void;
@@ -418,6 +420,22 @@ export const useAppStore = create<Store>()(
             setAside: aside ? [...s.setAside, { creatorId: CREATOR_ID, exerciseId, on: d }] : s.setAside,
           });
           return { setAside: aside };
+        },
+        cancelHurt: (exerciseId) => {
+          const s = st();
+          const d = today(s);
+          let i = -1;
+          s.hurts.forEach((h, k) => {
+            if (h.date === d && h.exerciseId === exerciseId) i = k;
+          });
+          if (i < 0) return;
+          const hurts = s.hurts.filter((_, k) => k !== i);
+          const keepAside = E.hurtCount(hurts, exerciseId) >= E.HURTS_TO_SET_ASIDE;
+          set({
+            hurts,
+            setAside: keepAside ? s.setAside : s.setAside.filter((x) => !(x.exerciseId === exerciseId && x.on === d)),
+            ui: { ...get().ui, undo: get().ui.undo?.kind === "hurt" ? null : get().ui.undo },
+          } as Partial<Store>);
         },
         swapToday: (fromId, toId) => {
           const s = st();

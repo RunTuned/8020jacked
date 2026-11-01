@@ -8,7 +8,9 @@ import type { Effort } from "@/lib/types";
 import { EFFORT_OPTIONS, sideWords } from "../common";
 import { TopRow, countBeep, useEachSecond } from "./parts";
 
-export type RestSaved = { workoutId: string; exerciseId: string; label: string; endsAt: number };
+import { addRest, pauseRest, restLeft, resumeRest, type RestSaved } from "./restClock";
+
+export type { RestSaved };
 
 const KEY = "8020jacked:rest";
 /** The rest end time is kept for this tab so a reload resumes the same clock. */
@@ -62,14 +64,21 @@ export function Rest({
   const [undoOn, setUndoOn] = useState(() => undoVisible(s.ui.undo) && s.ui.undo?.kind === "set");
 
   useEffect(() => {
-    const left = saved.endsAt - Date.now();
+    const left = restLeft(restStore.read(saved.workoutId) ?? saved, Date.now());
     if (left <= 0) onEnd();
     else rest.start(left);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // Pausing keeps the time left, resuming moves the saved end time, so a reload is right (QA 12).
   useEffect(() => {
-    if (paused) rest.pause();
-    else rest.resume();
+    const cur = restStore.read(saved.workoutId) ?? saved;
+    if (paused) {
+      rest.pause();
+      restStore.write(pauseRest(cur, Date.now()));
+    } else {
+      rest.resume();
+      restStore.write(resumeRest(cur, Date.now()));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paused]);
   useEffect(() => {
@@ -85,7 +94,7 @@ export function Rest({
 
   const add = () => {
     rest.add(15_000);
-    restStore.write({ ...saved, endsAt: Date.now() + rest.remainingMs + 15_000 });
+    restStore.write(addRest(restStore.read(saved.workoutId) ?? saved, Date.now(), 15_000));
   };
 
   const savedPill = (

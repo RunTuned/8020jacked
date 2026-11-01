@@ -71,16 +71,20 @@ export function HurtSheet({
   slot,
   setAside,
   onUndo,
+  onCancel,
   onClose,
 }: {
   open: boolean;
   a: ActiveWorkout;
-  /** The move she tapped Hurts on. */
+  /** The move she tapped Hurts on (the current move, after any swap). */
   hurtId: string;
   /** Which move in the workout it was. */
   slot: number;
   setAside: boolean;
   onUndo: () => void;
+  /** Cancel (and the close button) change nothing: the hurt is taken back. */
+  onCancel: () => void;
+  /** After a swap is picked. */
   onClose: () => void;
 }) {
   const s = useAppStore();
@@ -100,7 +104,7 @@ export function HurtSheet({
   };
 
   return (
-    <Sheet open={open} onClose={onClose} title="Swap this move" closeLabel="Cancel">
+    <Sheet open={open} onClose={onCancel} title="Swap this move" closeLabel="Cancel">
       <div
         role="status"
         className="on-bar flex min-h-12 flex-wrap items-center justify-between gap-x-2 rounded-full bg-ink py-0 pl-4 pr-1 text-label text-on-ink"
@@ -126,7 +130,7 @@ export function HurtSheet({
           </Button>
         ))}
       </div>
-      <Button variant="text" onClick={onClose} className="self-start">
+      <Button variant="text" onClick={onCancel} className="self-start">
         Cancel
       </Button>
     </Sheet>

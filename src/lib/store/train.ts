@@ -19,13 +19,13 @@ export function lastTime(s: AppState, exerciseId: string, setIndex: number, excl
   return null;
 }
 
-/** Kits a session needs beyond the always-there chair, wall and no kit (W2 line). */
+/** Kits a session needs beyond a wall and no kit (W2 line). A chair is named too (QA A). */
 export function sessionKits(session: PlannedSession): ExerciseKit[] {
   const byId = new Map(getContent().exercises.map((e) => [e.id, e]));
   const kits = new Set<ExerciseKit>();
   for (const m of session.moves) {
     const k = byId.get(m.exerciseId)?.kit;
-    if (k && k !== "none" && k !== "chair" && k !== "wall") kits.add(k);
+    if (k && k !== "none" && k !== "wall") kits.add(k);
   }
   return [...kits];
 }
@@ -81,13 +81,13 @@ export function selectActiveWorkout(s: AppState) {
     cursor,
     doneSets,
     totalSets: session.totalSets,
-    minutesLeft: E.minutesLeft(session.totalSets, doneSets),
+    minutesLeft: E.minutesLeft(session.totalSets, doneSets, session.minutes),
     minutesDone: Math.max(1, Math.round((now() - w.startedAt) / 60_000)),
   };
 }
 export type ActiveWorkout = NonNullable<ReturnType<typeof selectActiveWorkout>>;
 
-/** W5 for the workout in progress: a different body part, never a move already in it. */
+/** W5 for the workout in progress: the same body area, never a move already in it. */
 export function selectActiveHurtOptions(s: AppState, exerciseId: string) {
   const a = selectActiveWorkout(s);
   const ex = getContent().exercises.find((e) => e.id === exerciseId);
@@ -150,7 +150,8 @@ export function selectTrainHome(s: AppState) {
     inProgress: !!inProgress,
     letter,
     name: E.SESSION_NAMES[letter],
-    minutes: s.training.minutes,
+    /** Its real length (an easy week is shorter than her usual minutes). */
+    minutes: sessionFor(s, letter, today).estMinutes,
   };
 }
 

@@ -182,15 +182,15 @@ describe("workouts", () => {
     A().startWorkout();
     const session = selectSession(appState());
     const squat = session.moves[0];
-    expect(squat.exerciseId).toBe("SQ1");
+    expect(squat.exerciseId).toBe("SQ2"); // a floor user starts on the bodyweight squat, not the chair (QA A)
     for (const set of squat.sets) {
-      A().logSet("SQ1", set.setIndex, 8);
+      A().logSet("SQ2", set.setIndex, 10);
       tick(1100);
     }
     expect(A().ui.undo?.kind).toBe("set");
-    A().rateMove("SQ1", "just_right");
+    A().rateMove("SQ2", "just_right");
     A().finishWorkout("done", "just_right");
-    expect(appState().targets.SQ1).toBe(9);
+    expect(appState().targets.SQ2).toBe(11);
   });
 
   it("big screen sets save the planned number", () => {
@@ -203,16 +203,16 @@ describe("workouts", () => {
 
   it("Hurts twice → set aside (W11) → Bring it back", () => {
     onboard();
-    expect(A().tapHurts("SQ1").setAside).toBe(false);
+    expect(A().tapHurts("SQ2").setAside).toBe(false);
     at("2026-11-04");
-    expect(A().tapHurts("SQ1").setAside).toBe(true);
-    expect(selectSetAside(appState()).map((x) => x.exerciseId)).toEqual(["SQ1"]);
+    expect(A().tapHurts("SQ2").setAside).toBe(true);
+    expect(selectSetAside(appState()).map((x) => x.exerciseId)).toEqual(["SQ2"]);
     const legsAndPush = () => selectSession(appState(), { letter: "A" }).moves.map((m) => m.exerciseId);
-    expect(legsAndPush()).not.toContain("SQ1");
-    expect(legsAndPush()).toContain("WS1"); // its swap
-    A().bringBack("SQ1");
+    expect(legsAndPush()).not.toContain("SQ2");
+    expect(legsAndPush()).toContain("WS1"); // the next squat ladder
+    A().bringBack("SQ2");
     expect(selectSetAside(appState())).toEqual([]);
-    expect(legsAndPush()).toContain("SQ1");
+    expect(legsAndPush()).toContain("SQ2");
   });
 
   it("a part workout counts for the week but doesn't move the plan up", () => {

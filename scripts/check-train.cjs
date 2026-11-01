@@ -136,7 +136,7 @@ const tap = (page, name, opts = {}) => page.getByRole("button", { name, exact: o
   await expectText(page, "Before you start");
   await expectText(page, "3 moves × 2 sets = 6 sets · 10 min · no kit needed");
   await check(page, "W2-ready");
-  await tap(page, "Sit-to-stand from a chair");
+  await tap(page, "Bodyweight squat"); // a floor user starts on the bodyweight squat, not the chair (QA A)
   await expectText(page, "How to do it");
   await check(page, "W6-how-in-workout");
   await page.getByRole("button", { name: "Back" }).click();
@@ -151,18 +151,18 @@ const tap = (page, name, opts = {}) => page.getByRole("button", { name, exact: o
   await tap(page, "Done set", { exact: true });
 
   // W3b rest + Undo
-  await expectText(page, "Set 1 saved: 9 reps");
+  await expectText(page, "Set 1 saved: 11 reps");
   await check(page, "W3b-rest");
   await tap(page, "Undo (5 sec)");
   await expectText(page, "Set 1 of 2");
   await page.waitForTimeout(1100);
   await tap(page, "Done set", { exact: true });
-  await expectText(page, "Set 1 saved: 8 reps");
+  await expectText(page, "Set 1 saved: 10 reps");
   await page.getByRole("button", { name: "Just right" }).click();
   // reload resumes the same rest clock
   await page.waitForTimeout(2000);
   await page.reload({ waitUntil: "networkidle" });
-  await expectText(page, "Set 1 saved: 8 reps");
+  await expectText(page, "Set 1 saved: 10 reps");
   const clock = await page.getByRole("timer").textContent();
   if (!/^0:4[0-3]$/.test(clock.trim())) {
     console.log(`FAIL rest clock after reload: ${clock}`);
