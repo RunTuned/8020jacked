@@ -1,0 +1,2288 @@
+[
+  {
+    "id": "EX-001",
+    "name": "Sit-to-stand from a chair",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "chair",
+    "level": "beginner",
+    "ladder": "squat_bw",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "seated",
+    "cues": [
+      "Feet hip-width, sit at the front of the chair.",
+      "Lean forward and stand up without using your hands.",
+      "Sit down slowly."
+    ],
+    "swaps": [
+      "EX-088"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "low_load",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-002",
+    "name": "Bodyweight squat",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "squat_bw",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Feet shoulder-width.",
+      "Sit hips back and down, knees follow your toes, chest up.",
+      "Stand tall."
+    ],
+    "swaps": [
+      "EX-001"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-003",
+    "name": "Pause squat",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "squat_bw",
+    "ladderStep": 3,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Squat down and hold 3 seconds at the bottom without relaxing.",
+      "Then stand."
+    ],
+    "swaps": [
+      "EX-002",
+      "EX-001"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-004",
+    "name": "One-and-a-half squat",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "squat_bw",
+    "ladderStep": 4,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Go all the way down, come halfway up, go back down, then stand fully: that is one rep."
+    ],
+    "swaps": [
+      "EX-002",
+      "EX-001"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-005",
+    "name": "Dumbbell goblet squat",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_goblet_squat",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Hold one dumbbell upright at your chest, elbows down.",
+      "Squat between your knees.",
+      "Stand tall."
+    ],
+    "swaps": [
+      "EX-002"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-007",
+    "name": "Band squat",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_squat",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Stand on the band with the ends at your shoulders.",
+      "Squat down and stand up against the band."
+    ],
+    "swaps": [
+      "EX-002",
+      "EX-001"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-010",
+    "name": "Glute bridge",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "hinge_bw",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "floor",
+    "cues": [
+      "Lie on your back, knees bent, feet flat.",
+      "Squeeze your buttocks and lift hips until knees, hips and shoulders line up.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-018"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-011",
+    "name": "Single-leg glute bridge",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "hinge_bw",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Like a glute bridge with one foot lifted.",
+      "Keep your hips level."
+    ],
+    "swaps": [
+      "EX-010"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-012",
+    "name": "Single-leg Romanian deadlift (bodyweight)",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "hinge_bw",
+    "ladderStep": 3,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "Stand on one leg with a soft knee.",
+      "Push your hips back and reach toward the floor as the back leg rises.",
+      "Keep your back flat. Touch a wall for balance if you need to."
+    ],
+    "swaps": [
+      "EX-011",
+      "EX-010"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-013",
+    "name": "Single-leg hip thrust (shoulders on couch)",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "hinge_bw",
+    "ladderStep": 4,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Upper back on a sturdy couch or bench edge, one foot on the floor.",
+      "Drive hips up and pause at the top."
+    ],
+    "swaps": [
+      "EX-012",
+      "EX-011"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-014",
+    "name": "Sliding hamstring curl",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "advanced",
+    "ladder": "hinge_bw",
+    "ladderStep": 5,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Lie on your back, heels on a towel on a smooth floor.",
+      "Lift hips, pull heels toward you, then slide them out slowly."
+    ],
+    "swaps": [
+      "EX-013",
+      "EX-011"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-015",
+    "name": "Dumbbell Romanian deadlift",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_rdl",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Dumbbells in front of your thighs, soft knees.",
+      "Push hips back with a flat back until the backs of your legs stretch.",
+      "Stand by squeezing your buttocks."
+    ],
+    "swaps": [
+      "EX-010"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-018",
+    "name": "Band pull-through",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_pull_through",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 12,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Band anchored low behind you and held between your legs.",
+      "Push hips back, then stand tall by squeezing your buttocks."
+    ],
+    "swaps": [
+      "EX-010",
+      "EX-011"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-019",
+    "name": "Dumbbell hip thrust",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_hip_thrust",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Upper back on the bench, dumbbell on your hips over a folded towel.",
+      "Drive hips up and pause at the top."
+    ],
+    "swaps": [
+      "EX-010",
+      "EX-011"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-021",
+    "name": "Supported split squat",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "lunge_bw",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "One hand on a wall or chair, feet a long stride apart.",
+      "Lower the back knee toward the floor and push up through the front foot."
+    ],
+    "swaps": [
+      "EX-089"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-022",
+    "name": "Split squat",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "lunge_bw",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "Feet a long stride apart, hands on hips.",
+      "Lower the back knee toward the floor and push up through the front foot."
+    ],
+    "swaps": [
+      "EX-021"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-023",
+    "name": "Reverse lunge",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "lunge_bw",
+    "ladderStep": 3,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "Step back, lower the back knee toward the floor, then push through the front foot to return."
+    ],
+    "swaps": [
+      "EX-022",
+      "EX-021"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-024",
+    "name": "Rear-foot-elevated split squat",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "chair",
+    "level": "intermediate",
+    "ladder": "lunge_bw",
+    "ladderStep": 4,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "Back foot on a chair or couch, front foot well forward.",
+      "Lower straight down and push up through the front foot."
+    ],
+    "swaps": [
+      "EX-023",
+      "EX-022"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-025",
+    "name": "Skater squat",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "advanced",
+    "ladder": "lunge_bw",
+    "ladderStep": 6,
+    "unit": "reps",
+    "repMin": 5,
+    "repMax": 10,
+    "position": "standing",
+    "cues": [
+      "Stand on one leg and bend the other knee behind you.",
+      "Lower until the back knee touches a cushion.",
+      "Stand up."
+    ],
+    "swaps": [
+      "EX-026",
+      "EX-024"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-026",
+    "name": "Box pistol squat",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "chair",
+    "level": "advanced",
+    "ladder": "lunge_bw",
+    "ladderStep": 5,
+    "unit": "reps",
+    "repMin": 5,
+    "repMax": 10,
+    "position": "standing",
+    "cues": [
+      "Stand on one leg in front of a chair, other leg forward.",
+      "Sit down slowly and stand up on one leg."
+    ],
+    "swaps": [
+      "EX-024",
+      "EX-023"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-027",
+    "name": "Dumbbell reverse lunge",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_reverse_lunge",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "A dumbbell in each hand at your sides.",
+      "Step back, lower the back knee, push through the front foot to return."
+    ],
+    "swaps": [
+      "EX-023",
+      "EX-022"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-028",
+    "name": "Dumbbell step-up",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_step_up",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "Put the whole foot on a sturdy bench or step.",
+      "Stand up tall.",
+      "Step down slowly."
+    ],
+    "swaps": [
+      "EX-022",
+      "EX-021"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-031",
+    "name": "Wall push-up",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "wall",
+    "level": "beginner",
+    "ladder": "push_up",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "wall",
+    "cues": [
+      "Hands on the wall at shoulder height, body straight.",
+      "Bend your elbows to bring your chest to the wall.",
+      "Push away."
+    ],
+    "swaps": [
+      "EX-038"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "low_load",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-032",
+    "name": "High incline push-up",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "push_up",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Hands on a kitchen counter, body straight from head to heels.",
+      "Lower your chest to the edge.",
+      "Push away."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-031"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-033",
+    "name": "Knee push-up",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "push_up",
+    "ladderStep": 3,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Knees on a cushion, body straight from head to knees.",
+      "Lower your chest near the floor.",
+      "Push up."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-032"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-034",
+    "name": "Low incline push-up (hands about 30 cm up)",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "push_up",
+    "ladderStep": 4,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Hands on a sturdy step or low box about 30 cm high, body straight.",
+      "Lower your chest to the edge, then push away.",
+      "This is lower than a chair seat, so it is harder than a knee push-up."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-033"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-035",
+    "name": "Push-up",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "push_up",
+    "ladderStep": 5,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Hands a bit wider than shoulders, body straight, elbows at about 45 degrees.",
+      "Chest near the floor.",
+      "Push up."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-034"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-036",
+    "name": "Feet-elevated push-up",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "push_up",
+    "ladderStep": 6,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Feet on a chair or step, body straight.",
+      "Lower your chest near the floor.",
+      "Push up."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-035"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-037",
+    "name": "Archer push-up",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "none",
+    "level": "advanced",
+    "ladder": "push_up",
+    "ladderStep": 7,
+    "unit": "reps",
+    "repMin": 5,
+    "repMax": 10,
+    "position": "floor",
+    "cues": [
+      "Hands wide.",
+      "Lower toward one hand while the other arm stays nearly straight.",
+      "Push up.",
+      "Switch sides."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-036"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-038",
+    "name": "Wall push-up on fists",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "wall",
+    "level": "beginner",
+    "ladder": "wall_push_up_fists",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "wall",
+    "cues": [
+      "Like a wall push-up but on closed fists with straight wrists.",
+      "Kind to sore wrists."
+    ],
+    "swaps": [
+      "EX-031",
+      "EX-039"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "low_load",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-039",
+    "name": "Band chest press",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_chest_press",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Band around your upper back, one end in each hand.",
+      "Press both hands forward to straight arms.",
+      "Return slowly."
+    ],
+    "swaps": [
+      "EX-038",
+      "EX-031"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-040",
+    "name": "Dumbbell floor press",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_floor_press",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Lie on the floor, knees bent.",
+      "Press the dumbbells up from where your upper arms touch the floor."
+    ],
+    "swaps": [
+      "EX-039",
+      "EX-033"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-041",
+    "name": "Dumbbell bench press",
+    "pattern": "horizontal_push",
+    "primaryMuscle": "chest",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_bench_press",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "seated",
+    "cues": [
+      "Lie on the bench, feet on the floor.",
+      "Lower the dumbbells to chest level.",
+      "Press up."
+    ],
+    "swaps": [
+      "EX-040",
+      "EX-039"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-044",
+    "name": "Elevated pike push-up",
+    "pattern": "vertical_push",
+    "primaryMuscle": "shoulders",
+    "kit": "chair",
+    "level": "beginner",
+    "ladder": "pike_push_up",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Hands on a sturdy chair, hips high in an upside-down V.",
+      "Bend your elbows to bring your head toward the seat.",
+      "Push back up."
+    ],
+    "swaps": [
+      "EX-047"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-045",
+    "name": "Pike push-up",
+    "pattern": "vertical_push",
+    "primaryMuscle": "shoulders",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "pike_push_up",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Hands on the floor, hips high in an upside-down V.",
+      "Lower the top of your head toward the floor.",
+      "Push back up."
+    ],
+    "swaps": [
+      "EX-044"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-046",
+    "name": "Feet-elevated pike push-up",
+    "pattern": "vertical_push",
+    "primaryMuscle": "shoulders",
+    "kit": "chair",
+    "level": "advanced",
+    "ladder": "pike_push_up",
+    "ladderStep": 3,
+    "unit": "reps",
+    "repMin": 5,
+    "repMax": 10,
+    "position": "floor",
+    "cues": [
+      "Feet on a chair, hips high, hands on the floor.",
+      "Lower your head toward the floor.",
+      "Push back up."
+    ],
+    "swaps": [
+      "EX-045",
+      "EX-044"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-047",
+    "name": "Band overhead press",
+    "pattern": "vertical_push",
+    "primaryMuscle": "shoulders",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_overhead_press",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Stand on the band, hands at your shoulders.",
+      "Press overhead without leaning back.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-044",
+      "EX-048"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-048",
+    "name": "Dumbbell overhead press",
+    "pattern": "vertical_push",
+    "primaryMuscle": "shoulders",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_overhead_press",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Seated or standing with dumbbells at your shoulders.",
+      "Press up until your arms are straight, ribs down.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-047",
+      "EX-044"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-051",
+    "name": "Prone Y-T raise",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "row_bw",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "floor",
+    "cues": [
+      "Lie face down, forehead on a towel.",
+      "Lift your arms in a Y then a T by squeezing your shoulder blades together.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-060",
+      "EX-057"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-052",
+    "name": "Table row (inverted row), knees bent",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "row_bw",
+    "ladderStep": 3,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Only under a very sturdy table: lie under the edge and grip it, knees bent, heels down.",
+      "Pull your chest to the table, body straight.",
+      "Before every set, lean your full weight on the table edge.",
+      "If it tips, slides or wobbles, stop and do a band row or Y-T raise instead."
+    ],
+    "swaps": [
+      "EX-090",
+      "EX-051"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-053",
+    "name": "Table row (inverted row), legs straight",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "row_bw",
+    "ladderStep": 4,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Like the bent-knee table row, but with legs straight: body in one line.",
+      "Before every set, lean your full weight on the table edge.",
+      "If it tips, slides or wobbles, stop and do a band row or Y-T raise instead."
+    ],
+    "swaps": [
+      "EX-052",
+      "EX-051"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-054",
+    "name": "Table row (inverted row), feet raised",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "none",
+    "level": "advanced",
+    "ladder": "row_bw",
+    "ladderStep": 5,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Like the straight-leg table row, with your heels on a chair.",
+      "Before every set, lean your full weight on the table edge.",
+      "If it tips, slides or wobbles, stop and do a band row or Y-T raise instead."
+    ],
+    "swaps": [
+      "EX-053",
+      "EX-052"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-055",
+    "name": "One-arm dumbbell row",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_row",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "seated",
+    "cues": [
+      "One hand and knee on a bench or chair, back flat.",
+      "Pull the dumbbell toward your hip.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-057",
+      "EX-090"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-056",
+    "name": "Chest-supported dumbbell row",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_chest_supported_row",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "seated",
+    "cues": [
+      "Lie chest-down on an inclined bench.",
+      "Row both dumbbells to your lower ribs.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-055"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-057",
+    "name": "Band row",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_row",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Band anchored in a door at chest height (or sit with legs straight and the band around your feet).",
+      "Pull elbows back and squeeze your shoulder blades."
+    ],
+    "swaps": [
+      "EX-090",
+      "EX-051"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-060",
+    "name": "Band pull-apart",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_pull_apart",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 12,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Hold a band at shoulder height with straight arms.",
+      "Pull it apart until it touches your chest.",
+      "Return slowly."
+    ],
+    "swaps": [
+      "EX-051",
+      "EX-057"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-061",
+    "name": "Dead hang",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "beginner",
+    "ladder": "pull_up",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 60,
+    "position": "standing",
+    "cues": [
+      "Hang from the bar with straight arms and shoulders active, not shrugged to your ears.",
+      "Step down, don't drop."
+    ],
+    "swaps": [
+      "EX-069",
+      "EX-070"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-062",
+    "name": "Scapular pull-up",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "beginner",
+    "ladder": "pull_up",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "standing",
+    "cues": [
+      "From a dead hang, pull your shoulder blades down and back so your body rises a little.",
+      "Arms stay straight."
+    ],
+    "swaps": [
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-063",
+    "name": "Flexed-arm hang",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "beginner",
+    "ladder": "pull_up",
+    "ladderStep": 3,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 30,
+    "position": "standing",
+    "cues": [
+      "Step up so your chin is over the bar and hold there with elbows bent.",
+      "Step down."
+    ],
+    "swaps": [
+      "EX-062",
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-064",
+    "name": "Negative pull-up",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "beginner",
+    "ladder": "pull_up",
+    "ladderStep": 4,
+    "unit": "reps",
+    "repMin": 3,
+    "repMax": 6,
+    "position": "standing",
+    "cues": [
+      "Step up to chin over the bar, then lower yourself slowly over 3-5 seconds to straight arms.",
+      "Step back up for the next rep."
+    ],
+    "swaps": [
+      "EX-062",
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-065",
+    "name": "Band-assisted pull-up",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "intermediate",
+    "ladder": "pull_up",
+    "ladderStep": 5,
+    "unit": "reps",
+    "repMin": 5,
+    "repMax": 10,
+    "position": "standing",
+    "cues": [
+      "Loop a band over the bar and under one knee or foot.",
+      "Pull your chest toward the bar.",
+      "Lower with control.",
+      "Use a lighter band over time."
+    ],
+    "swaps": [
+      "EX-062",
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-066",
+    "name": "Chin-up",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "intermediate",
+    "ladder": "pull_up",
+    "ladderStep": 6,
+    "unit": "reps",
+    "repMin": 3,
+    "repMax": 8,
+    "position": "standing",
+    "cues": [
+      "Palms facing you, shoulder-width.",
+      "Pull until your chin clears the bar.",
+      "Lower all the way."
+    ],
+    "swaps": [
+      "EX-062",
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-067",
+    "name": "Pull-up",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "intermediate",
+    "ladder": "pull_up",
+    "ladderStep": 7,
+    "unit": "reps",
+    "repMin": 3,
+    "repMax": 10,
+    "position": "standing",
+    "cues": [
+      "Palms facing away, a little wider than shoulders.",
+      "Pull until your chin clears the bar.",
+      "Lower all the way."
+    ],
+    "swaps": [
+      "EX-062",
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-068",
+    "name": "Weighted pull-up",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "bar",
+    "level": "advanced",
+    "ladder": "pull_up",
+    "ladderStep": 8,
+    "unit": "reps",
+    "repMin": 3,
+    "repMax": 8,
+    "position": "standing",
+    "cues": [
+      "Wear a dip belt, or a backpack with a dumbbell packed tight.",
+      "Same as a pull-up.",
+      "Add weight in small steps."
+    ],
+    "swaps": [
+      "EX-062",
+      "EX-061"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-069",
+    "name": "Floor lat pull",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "floor_lat_pull",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "floor",
+    "cues": [
+      "Lie face down with arms overhead just off the floor.",
+      "Pull your elbows down to your ribs as if doing a pull-up.",
+      "Squeeze and return."
+    ],
+    "swaps": [
+      "EX-070"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-070",
+    "name": "Band lat pulldown",
+    "pattern": "vertical_pull",
+    "primaryMuscle": "back",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_lat_pulldown",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "seated",
+    "cues": [
+      "Band anchored high in a door or over a pull-up bar.",
+      "Sit on a chair or kneel and pull your hands down to your chest, elbows to your sides."
+    ],
+    "swaps": [
+      "EX-069"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-073",
+    "name": "Dead bug",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "core_front",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Lie on your back, arms up, knees over hips.",
+      "Slowly lower one arm and the opposite leg while your lower back stays on the floor."
+    ],
+    "swaps": [
+      "EX-080"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-074",
+    "name": "Knee plank",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "core_front",
+    "ladderStep": 2,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 45,
+    "position": "floor",
+    "cues": [
+      "Forearms and knees on the floor, body straight from head to knees.",
+      "Breathe normally."
+    ],
+    "swaps": [
+      "EX-073"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-075",
+    "name": "Plank",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "core_front",
+    "ladderStep": 3,
+    "unit": "seconds",
+    "repMin": 15,
+    "repMax": 60,
+    "position": "floor",
+    "cues": [
+      "Forearms and toes on the floor, body straight, buttocks squeezed.",
+      "Breathe normally."
+    ],
+    "swaps": [
+      "EX-074",
+      "EX-073"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-076",
+    "name": "Hollow body hold",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "core_front",
+    "ladderStep": 4,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 45,
+    "position": "floor",
+    "cues": [
+      "Lie on your back, lower back pressed down.",
+      "Lift shoulders and legs a little off the floor.",
+      "Bend knees to make it easier."
+    ],
+    "swaps": [
+      "EX-075",
+      "EX-074"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-077",
+    "name": "Body saw",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "advanced",
+    "ladder": "core_front",
+    "ladderStep": 5,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "Forearm plank with feet on a towel on a smooth floor.",
+      "Slide your body back and forward a little without sagging."
+    ],
+    "swaps": [
+      "EX-075",
+      "EX-074"
+    ],
+    "noFloor": false,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-078",
+    "name": "Side plank on knees",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "core_side",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 45,
+    "position": "floor",
+    "cues": [
+      "On one forearm with knees bent, lift your hips so your body is straight from head to knees."
+    ],
+    "swaps": [
+      "EX-073"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-079",
+    "name": "Side plank",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "core_side",
+    "ladderStep": 2,
+    "unit": "seconds",
+    "repMin": 15,
+    "repMax": 60,
+    "position": "floor",
+    "cues": [
+      "On one forearm with legs straight, lift your hips so your body is straight from head to feet."
+    ],
+    "swaps": [
+      "EX-078",
+      "EX-073"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-080",
+    "name": "Bird dog",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "bird_dog",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 6,
+    "repMax": 12,
+    "position": "floor",
+    "cues": [
+      "On hands and knees, reach one arm and the opposite leg long.",
+      "Hold 2 seconds without twisting.",
+      "Switch."
+    ],
+    "swaps": [
+      "EX-073"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-081",
+    "name": "Band Pallof press",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_pallof_press",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Band anchored at chest height to your side.",
+      "Press your hands straight out and resist the twist.",
+      "Bring them back."
+    ],
+    "swaps": [
+      "EX-080",
+      "EX-078"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-082",
+    "name": "Suitcase carry",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "suitcase_carry",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 20,
+    "repMax": 60,
+    "position": "standing",
+    "cues": [
+      "Hold one heavy dumbbell at your side.",
+      "Walk tall without leaning for the set time.",
+      "Switch hands."
+    ],
+    "swaps": [
+      "EX-078",
+      "EX-081"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-083",
+    "name": "Band biceps curl",
+    "pattern": "arms_curl",
+    "primaryMuscle": "arms",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_curl",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Stand on the band.",
+      "Elbows by your sides.",
+      "Curl your hands to your shoulders.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-084"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-084",
+    "name": "Dumbbell biceps curl",
+    "pattern": "arms_curl",
+    "primaryMuscle": "arms",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_curl",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Elbows by your sides.",
+      "Curl the dumbbells up without swinging.",
+      "Lower slowly."
+    ],
+    "swaps": [
+      "EX-083"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-085",
+    "name": "Band triceps pushdown",
+    "pattern": "arms_extension",
+    "primaryMuscle": "arms",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_pushdown",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Band anchored high.",
+      "Elbows pinned to your sides.",
+      "Push your hands down to straight arms.",
+      "Return slowly."
+    ],
+    "swaps": [
+      "EX-086"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-086",
+    "name": "Dumbbell overhead triceps extension",
+    "pattern": "arms_extension",
+    "primaryMuscle": "arms",
+    "kit": "dumbbell",
+    "level": "beginner",
+    "ladder": "db_triceps_extension",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Hold one dumbbell overhead with both hands.",
+      "Lower it behind your head by bending the elbows.",
+      "Straighten."
+    ],
+    "swaps": [
+      "EX-085"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-087",
+    "name": "Chair dip",
+    "pattern": "arms_extension",
+    "primaryMuscle": "arms",
+    "kit": "chair",
+    "level": "intermediate",
+    "ladder": "chair_dip",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "seated",
+    "cues": [
+      "Hands on the edge of a sturdy chair behind you, knees bent.",
+      "Lower until elbows are about 90 degrees.",
+      "Push up."
+    ],
+    "swaps": [
+      "EX-085"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": 100
+  },
+  {
+    "id": "EX-088",
+    "name": "High wall sit",
+    "pattern": "squat",
+    "primaryMuscle": "quads",
+    "kit": "wall",
+    "level": "beginner",
+    "ladder": "wall_sit",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 15,
+    "repMax": 45,
+    "position": "wall",
+    "cues": [
+      "Back flat against a wall, feet a step forward and hip-width.",
+      "Slide down only a little, to a height that feels easy on your knees.",
+      "Hold and breathe.",
+      "Slide back up."
+    ],
+    "swaps": [
+      "EX-001"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-089",
+    "name": "Supported split-squat hold",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "split_squat_hold",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 30,
+    "position": "standing",
+    "cues": [
+      "One hand on a wall or chair, feet a long stride apart.",
+      "Bend both knees only a little and hold.",
+      "Keep the front foot flat.",
+      "Switch sides."
+    ],
+    "swaps": [
+      "EX-021"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-090",
+    "name": "Door-frame row",
+    "pattern": "horizontal_pull",
+    "primaryMuscle": "back",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "row_bw",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Face an open door frame and hold both sides at chest height.",
+      "Feet just in front of the frame, lean back a little with straight arms.",
+      "Pull your chest to the frame, then lower slowly. Step your feet back to make it easier."
+    ],
+    "swaps": [
+      "EX-051"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-091",
+    "name": "Wall hip hinge",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "wall",
+    "level": "beginner",
+    "ladder": "hinge_standing",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 10,
+    "repMax": 20,
+    "position": "wall",
+    "cues": [
+      "Stand a foot-length in front of a wall, soft knees.",
+      "Push your hips back until your buttocks touch the wall, back flat.",
+      "Stand tall by squeezing your buttocks."
+    ],
+    "swaps": [
+      "EX-010"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "low_load",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-092",
+    "name": "Supported single-leg Romanian deadlift",
+    "pattern": "hinge",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "hinge_standing",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "One hand on a chair back or counter.",
+      "Stand on one leg with a soft knee.",
+      "Push your hips back and lean forward while the other leg rises behind you.",
+      "Flat back.",
+      "Stand tall."
+    ],
+    "swaps": [
+      "EX-091"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-093",
+    "name": "Standing wall plank",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "wall",
+    "level": "beginner",
+    "ladder": "core_standing",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 15,
+    "repMax": 60,
+    "position": "wall",
+    "cues": [
+      "Forearms on a wall at shoulder height, feet stepped back, body straight from head to heels.",
+      "Breathe normally."
+    ],
+    "swaps": [
+      "EX-081"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "low_load",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-094",
+    "name": "Counter plank",
+    "pattern": "core",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "core_standing",
+    "ladderStep": 2,
+    "unit": "seconds",
+    "repMin": 15,
+    "repMax": 60,
+    "position": "standing",
+    "cues": [
+      "Forearms on a sturdy kitchen counter or table edge, feet stepped back, body straight from head to heels.",
+      "Breathe normally."
+    ],
+    "swaps": [
+      "EX-093"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-095",
+    "name": "Tandem stance at a counter",
+    "pattern": "balance",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "balance_static",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 30,
+    "position": "standing",
+    "cues": [
+      "Stand next to a kitchen counter, one foot directly in front of the other (heel to toe).",
+      "Hands hover over the counter.",
+      "Touch it whenever you need.",
+      "Switch feet halfway."
+    ],
+    "swaps": [
+      "EX-098"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-096",
+    "name": "Single-leg stand at a counter",
+    "pattern": "balance",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "balance_static",
+    "ladderStep": 2,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 30,
+    "position": "standing",
+    "cues": [
+      "Stand next to a kitchen counter on one leg, hands hovering over it.",
+      "Touch it whenever you need.",
+      "Switch legs."
+    ],
+    "swaps": [
+      "EX-095"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-097",
+    "name": "Single-leg stand with a slow reach",
+    "pattern": "balance",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "balance_static",
+    "ladderStep": 3,
+    "unit": "seconds",
+    "repMin": 10,
+    "repMax": 30,
+    "position": "standing",
+    "cues": [
+      "Next to a kitchen counter, stand on one leg and slowly reach the free hand forward, then to the side.",
+      "Touch the counter whenever you need.",
+      "Switch legs."
+    ],
+    "swaps": [
+      "EX-096",
+      "EX-095"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-098",
+    "name": "Heel-to-toe walk along a counter",
+    "pattern": "balance",
+    "primaryMuscle": "core",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "balance_walk",
+    "ladderStep": 1,
+    "unit": "seconds",
+    "repMin": 20,
+    "repMax": 60,
+    "position": "standing",
+    "cues": [
+      "Walk slowly along a kitchen counter, putting the heel of one foot right in front of the toes of the other.",
+      "One hand hovers over the counter.",
+      "Turn and walk back."
+    ],
+    "swaps": [
+      "EX-095"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "practice",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-099",
+    "name": "Step-up onto a low step",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "step_up_bw",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Use a stair or sturdy step about shin height, with a wall or rail in reach.",
+      "Put your whole foot on the step and push through that heel to stand tall.",
+      "Step down slowly."
+    ],
+    "swaps": [
+      "EX-021"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-100",
+    "name": "Step-up onto a knee-high step",
+    "pattern": "lunge",
+    "primaryMuscle": "quads",
+    "kit": "none",
+    "level": "intermediate",
+    "ladder": "step_up_bw",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 8,
+    "repMax": 15,
+    "position": "standing",
+    "cues": [
+      "Use a sturdy step or bench about knee height, never a chair that can tip.",
+      "Lean forward a little and drive through the heel on the step to stand tall.",
+      "Lower slowly, without pushing off the back foot."
+    ],
+    "swaps": [
+      "EX-099",
+      "EX-022"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-101",
+    "name": "Standing hip abduction at a counter",
+    "pattern": "hip_abduction",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "hip_abduction_bw",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 12,
+    "repMax": 20,
+    "position": "standing",
+    "cues": [
+      "Stand tall holding a counter.",
+      "Keep your toes pointing forward and lift one leg out to the side without leaning, then lower it slowly."
+    ],
+    "swaps": [
+      "EX-103"
+    ],
+    "noFloor": true,
+    "perSide": true,
+    "effort": "low_load",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-102",
+    "name": "Side-lying hip abduction",
+    "pattern": "hip_abduction",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "none",
+    "level": "beginner",
+    "ladder": "hip_abduction_bw",
+    "ladderStep": 2,
+    "unit": "reps",
+    "repMin": 12,
+    "repMax": 20,
+    "position": "floor",
+    "cues": [
+      "Lie on your side, head on your arm, bottom knee bent.",
+      "Keep the top leg straight and in line with your body, toes forward.",
+      "Lift it to just above hip height, then lower slowly."
+    ],
+    "swaps": [
+      "EX-101",
+      "EX-103"
+    ],
+    "noFloor": false,
+    "perSide": true,
+    "effort": "hard",
+    "maxUserKg": null
+  },
+  {
+    "id": "EX-103",
+    "name": "Band seated hip abduction",
+    "pattern": "hip_abduction",
+    "primaryMuscle": "glutes_hamstrings",
+    "kit": "band",
+    "level": "beginner",
+    "ladder": "band_hip_abduction",
+    "ladderStep": 1,
+    "unit": "reps",
+    "repMin": 12,
+    "repMax": 20,
+    "position": "seated",
+    "cues": [
+      "Sit at the front of a chair with a loop band just above your knees.",
+      "Push your knees out against the band, hold a moment, then let them come back slowly."
+    ],
+    "swaps": [
+      "EX-101"
+    ],
+    "noFloor": true,
+    "perSide": false,
+    "effort": "hard",
+    "maxUserKg": null
+  }
+]
