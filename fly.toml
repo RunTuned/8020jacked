@@ -1,0 +1,26 @@
+# 8020jacked on Fly.io. Deployed only by GitHub Actions (.github/workflows/deploy.yml) on every push to main.
+# No secrets in here: the deploy token lives only in the GitHub repo secret FLY_API_TOKEN.
+app = "app-8020jacked"
+primary_region = "jnb"   # Johannesburg: closest to the first testers; the app is mostly static, so it is fast everywhere
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"   # sleeps when idle, so it costs almost nothing during the test round
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/manifest.webmanifest"
+    timeout = "5s"
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
