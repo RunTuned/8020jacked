@@ -65,3 +65,15 @@ The build decided each item below and wrote it down here. Jennifer can change an
 39. **Words-only weight** (numbers off): under 0.5 kg reads "About the same as when you started", a loss reads "Going down, slowly" and a gain reads "A little higher than when you started". With numbers off, the chart has no dots.
 40. **C6 "Decide later"** leaves the plan as it is. No store action yet puts "Keep steady" in place without starting a new 12 weeks. Today (T8/C6 on open) owns that.
 41. **P3 copy** says "on this phone only", not "on this account only", because v0.1 has no accounts.
+## Today and Food screens (builder 2, 1 Nov 2026)
+
+36. **Banner order follows the T1 wireframe:** new-allergy warning, then speed brake, then payment (T1b), then check-in. In v0.1, test billing never fails or locks, so T1b and T8 only appear as previews (`/today?preview=payment`, `/today?preview=locked`).
+37. **Big screen mode is cut from v0.1** (owner's scope cut), so the Today workout card has no switch.
+38. **"Tick a 15-minute walk" (T5, T7)** ticks the walk and then opens T2, as the `.to` says.
+39. **"Not today"** moves the workout and opens T2 with "Moved to Friday. Undo". When no free day is left, it says "No free day left, so it's off this week."
+40. **On T2, only today's workout links to the workout (W2).** A future day can't be started today; it has "Move to another day" instead.
+41. **T3 Weigh in** is at `/today/weigh-in?from=<opener>`. Save and Cancel go back to the opener (default `/progress`).
+42. **F5 timers** come from the minutes a step names ("Bake for 15 minutes"). A step that names no time has no timer.
+43. **F1 "Eating out tips"** copy isn't in the wireframes. Four plain lines were written; Jennifer may want to change them.
+44. **Food library fields** (sauces, topping, carry, pack, fridgeDays, washUp) show on F2 as plain lines when present: "Sauce: …", "On top: …", "Fine to eat cold · Pack: …", "Keeps 3 days in the fridge", "Washing up: …". `format` is read but not shown yet.
+45. **Shared UI bug:** `UndoToast floating` puts both `relative` and `fixed` on the toast. `relative` wins, so the toast shifts 16px and the page scrolls sideways. Today and Food wrap the toast in their own fixed box. The UI lead may want to fix it at the source.
