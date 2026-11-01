@@ -83,7 +83,7 @@ More check-in rules:
 - Walks are part of the base plan (three 15-minute walks a week) and are never a check-in lever.
 
 ### 3.4 Workouts
-- **Exercise data:** `docs/content/exercises.csv` (copied from Jennifer's library), with ladders, units (reps or seconds), kit, position and swaps.
+- **Exercise data:** `src/content/exercises.json`, built from `docs/content/exercises.csv` (copied from Jennifer's library), with ladders, units (reps or seconds), kit, position and swaps.
 - **Equipment** maps to the kit field: floor, no floor (chair and wall moves only: position seated or standing, no floor moves), bands, dumbbells.
 - **Sessions are full body, named by body area:**
   - A: "Legs and push"
@@ -105,8 +105,8 @@ More check-in rules:
 - **A goal change** starts a new 12 weeks, with Undo on A9.
 
 ### 3.5 Food content
-- **Recipes:** `docs/content/recipes.json`, a curated subset of Jennifer's library. Each recipe has meal type, allergens (mapped to our 9: Nuts (tree), Peanuts, Egg, Shellfish, Fish, Soy, Sesame, Gluten, Dairy), ingredients, method, minutes, kcal and protein per serving.
-- **Ready meals and grab-and-go:** `docs/content/bought.json`, written generic (no brands, shops or prices).
+- **Recipes:** `src/content/recipes.json`, a curated subset of Jennifer's library. Each recipe has meal type, allergens (mapped to our 9: Nuts (tree), Peanuts, Egg, Shellfish, Fish, Soy, Sesame, Gluten, Dairy), ingredients, method, minutes, kcal and protein per serving.
+- **Ready meals and grab-and-go:** `src/content/bought.json`, written generic (no brands, shops or prices).
 - **Allergies:** an allergen is never served. A new allergy replaces today's unlogged meals at once, adds the new ingredients to this week's list, and shows "Already cooked or bought something with [nuts]? Don't eat it." Anything bought shows "Check the label".
 - **Week plan:**
   - Cooks get 2–3 dinners/lunches batch-cooked twice a week, with simple breakfasts.
