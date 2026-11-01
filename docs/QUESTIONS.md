@@ -91,3 +91,14 @@ The build decided each item below and wrote it down here. Jennifer can change an
 46. **"Floor space" and "No floor".** On A6 and S4, ticking one unticks the other.
 47. **Install fallback on Android.** iPhone shows "Don't see Add to Home Screen? Open this page in Safari." Android shows "Don't see Install app? Open this page in Chrome." The Android line isn't in the wireframes.
 48. **Units** start from the phone's region (US: lb and ft/in, everyone else: kg and cm). Weights are stored in kg to 1 decimal and heights in whole cm.
+## Train screens (Train builder, 1 Nov 2026)
+
+36. **Scope cut for v0.1 (owner, 1 Nov).** Not built: big screen mode (W3c), voice cues, Skills (W8), Past workouts (W9/W10). W1 doesn't link to them. The `settings.bigScreen` value is kept in the store but the workout ignores it.
+37. **"no kit needed" (W2).** SPEC's copy rules ban the word "kit", but the W2 wireframe uses it. The wireframe wins (SPEC §1), so W2 says "no kit needed", or "you need a band" / "you need dumbbells". Jennifer may want other words.
+38. **The reps box starts at the planned number** (the engine's target), with "Last time N" shown beside it. W3 says "last time filled in"; the planned number is used so progression comes from the engine.
+39. **Effort is asked on the rest screen** while the move has no rating, and stays on the rest where she picks one. After that, later rests of the same move don't ask again. The last move falls back to W7's "How was it?".
+40. **The taster shows W2 first.** Phones only allow sound and keep-screen-on after a tap, so the taster starts from W2's Start tap.
+41. **Held moves:** a 10-second "Get into position" countdown (shown, not spoken) with 3-2-1 beeps, then the hold, beeping 3-2-1 at the end. "Stop" saves the seconds held.
+42. **Undo** after a set sits on the rest screen ("Undo (5 sec)") and goes back to the same set. Hurts' Undo sits on the W5 sheet.
+43. **Reload resumes:** the step is in `?step=` (ready, lift, hold, rest, pause, hurts, how, done). The rest clock's end time is kept in sessionStorage, so it resumes after a reload.
+44. **`?minutes=10`** opens the 10-minute version of today's workout (`startWorkout({ minutes })`). **`?next=/path`** (same-site paths only) is where the workout goes when finished or stopped.

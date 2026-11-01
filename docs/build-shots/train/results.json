@@ -1,0 +1,100 @@
+{
+  "today": "2026-11-01",
+  "results": [
+    {
+      "name": "W1-train",
+      "step": null,
+      "problems": []
+    },
+    {
+      "name": "W1-pick-another",
+      "step": null,
+      "problems": []
+    },
+    {
+      "name": "W2-ready",
+      "step": "ready",
+      "problems": []
+    },
+    {
+      "name": "W6-how-in-workout",
+      "step": "how",
+      "problems": []
+    },
+    {
+      "name": "W3-lift-first-with-tip",
+      "step": "lift",
+      "problems": []
+    },
+    {
+      "name": "W3b-rest",
+      "step": "rest",
+      "problems": []
+    },
+    {
+      "name": "W3b-rest-after-reload",
+      "step": "rest",
+      "problems": []
+    },
+    {
+      "name": "W5-hurts",
+      "step": "hurts",
+      "problems": []
+    },
+    {
+      "name": "W3-lift-after-swap",
+      "step": "lift",
+      "problems": []
+    },
+    {
+      "name": "W4-pause",
+      "step": "pause",
+      "problems": []
+    },
+    {
+      "name": "W3d-hold",
+      "step": "hold",
+      "problems": []
+    },
+    {
+      "name": "W3d-hold-position",
+      "step": "hold",
+      "problems": []
+    },
+    {
+      "name": "W3d-hold-running",
+      "step": "hold",
+      "problems": []
+    },
+    {
+      "name": "W3b-rest-after-hold",
+      "step": "rest",
+      "problems": []
+    },
+    {
+      "name": "W7-done",
+      "step": "done",
+      "problems": []
+    },
+    {
+      "name": "W7-fix",
+      "step": "done",
+      "problems": []
+    },
+    {
+      "name": "W1-train-done",
+      "step": null,
+      "problems": []
+    },
+    {
+      "name": "W11-set-aside",
+      "step": null,
+      "problems": []
+    },
+    {
+      "name": "W6-how",
+      "step": null,
+      "problems": []
+    }
+  ]
+}
