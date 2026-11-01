@@ -80,6 +80,7 @@ export function initialState(): AppState {
     cookProgress: [],
     easyWeek: null,
     lastOpened: null,
+    setupStep: null,
   };
 }
 

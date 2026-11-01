@@ -57,3 +57,18 @@ The build decided each item below and wrote it down here. Jennifer can change an
 33. **Repeat taps.** A repeat within 1 s of the last *accepted* tap of the same action is ignored.
 34. **"Download my data"** is one JSON file without photos. Photos stay in IndexedDB on the phone.
 35. **Walk ticks.** At most 3 a week, home days only.
+
+## Start, setup and You screens (start builder, 1 Nov 2026)
+36. **Routes.** Setup A2–A8 is one route, `/start/setup?step=…`. `/start/about` and the other step paths in ROUTES.md redirect to it. Edit mode (from S2 "Redo my setup answers") is `&edit=1`.
+37. **Resume point.** The store keeps `setupStep`, saved on every setup screen. `/` opens the step she left. Once the plan exists it opens any later setup screen still due (A10–A15), and after A15 it opens Today.
+38. **Taster.** "Try a free workout now" goes to `/train/workout?taster=1&next=/start/save?from=taster`. The Train screen should start the taster with `startWorkout({ taster: true })` and, when it ends, go to `next`.
+39. **Account screens in v0.1.** A10 becomes "Save your progress / Save your plan" with the test notice and First name. A10b, A10c, A11b, A11c and A14c aren't built. A11 becomes "Welcome back" with "Bring back my progress" (import the file) and "Start new".
+40. **iPhone install.** On iPhone, the home-screen app has its own storage, and with no account it starts empty. So A14b (not on Android) adds "On iPhone, the home-screen app starts empty", with a "Download my progress" button. In the app she taps "I've used it before" and picks the file. This replaces A14c until accounts exist.
+41. **Free week (A15) and S8.** These are previews marked "Test version, free" with the real prices, and they have no pick or pay buttons. A15's last button is "Go to Today". A15b, A15c, S8a, S8b and S8d aren't built, and A15's "Not now → S9" is left out.
+42. **S9.** Log out is left out because there's no account. "Delete my account" is "Delete everything on this phone" (type DELETE). "Bring back my progress" is added. Privacy and terms open sheets with short, true test-version wording. **Jennifer to write the real terms and privacy note.**
+43. **Scope cut (1 Nov).** Away days (T6) is cut, so the "Away days" buttons on S1 and S4 and the "Quiet on away days" switch on S6 are left out.
+44. **S7 theme.** S7 saves Light, Dark or Follow phone, but `globals.css` only follows the phone. Applying the saved choice needs a `data-theme` rule in `globals.css` and a small script in the root layout, both outside this builder's folders.
+45. **S1 tab bar.** S1 has the tab bar and no Back circle, as on the wireframe. ROUTES.md lists tabs only on the four main screens.
+46. **"Floor space" and "No floor".** On A6 and S4, ticking one unticks the other.
+47. **Install fallback on Android.** iPhone shows "Don't see Add to Home Screen? Open this page in Safari." Android shows "Don't see Install app? Open this page in Chrome." The Android line isn't in the wireframes.
+48. **Units** start from the phone's region (US: lb and ft/in, everyone else: kg and cm). Weights are stored in kg to 1 decimal and heights in whole cm.

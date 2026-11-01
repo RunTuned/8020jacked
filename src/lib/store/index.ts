@@ -23,6 +23,7 @@ import {
   type ReminderSlot,
   type SessionLetter,
   type SessionMinutes,
+  type SetupStep,
   type Theme,
   type Units,
   type Weekday,
@@ -37,6 +38,7 @@ import { safeStorage } from "./storage";
 
 export * from "./selectors";
 export { exportFileName } from "./io";
+export * from "./units";
 export { setContent, getContent } from "./content";
 export { setClock, resetClock } from "./clock";
 export { SCHEMA_VERSION, STORAGE_KEY, initialState, migrate } from "./initial";
@@ -79,6 +81,8 @@ export interface Actions {
   saveReminders(r: { dayStart: string; reminder: ReminderSlot }): void;
   markInstallShown(): void;
   markOpened(): void;
+  /** Setup resume point, saved after every setup screen (null = finished). */
+  saveSetupStep(step: SetupStep | null): void;
 
   // Today
   logMeal(slot: number, kind: MealLogKind, extra?: { where?: "home" | "bought"; size?: MealSize; date?: ISODate }): boolean;
@@ -276,6 +280,7 @@ export const useAppStore = create<Store>()(
         saveReminders: (r) => patch({ settings: { ...get().settings, dayStart: r.dayStart, reminder: r.reminder } }),
         markInstallShown: () => patch({ settings: { ...get().settings, installShown: true } }),
         markOpened: () => patch({ lastOpened: now() }),
+        saveSetupStep: (step) => patch({ setupStep: step }),
 
         // ----- Today -----
         logMeal: (slot, kind, extra) => {

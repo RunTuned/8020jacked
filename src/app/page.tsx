@@ -1,13 +1,18 @@
-import { Button, Hero, Screen } from "@/components/ui";
+import { Suspense } from "react";
+import { Hydrated } from "@/components/start/Page";
+import { RootRedirect } from "@/components/start/Screens";
+import { Skeleton } from "@/components/start/Skeleton";
 
-/** Placeholder until the Today screen is built from the engine and store. */
+/** `/`: Today when set up, else the setup screen she left, else Start. */
 export default function Home() {
   return (
-    <Screen>
-      <Hero title="8020jacked" subline="Test version. The app is being built." />
-      <Button href="/dev" variant="secondary">
-        See the parts
-      </Button>
-    </Screen>
+    <>
+      <Skeleton />
+      <Suspense>
+        <Hydrated>
+          <RootRedirect />
+        </Hydrated>
+      </Suspense>
+    </>
   );
 }
