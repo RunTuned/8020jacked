@@ -37,3 +37,8 @@ export function monthTitle(d: ISODate): string {
 export function dayOfMonth(d: ISODate): string {
   return String(parse(d).getDate());
 }
+
+/** "Thu 5 Nov to Sun 8 Nov", or one day. */
+export function rangeText(from: ISODate, to: ISODate): string {
+  return from === to ? shortDate(from) : `${shortDate(from)} to ${shortDate(to)}`;
+}

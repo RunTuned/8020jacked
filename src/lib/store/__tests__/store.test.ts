@@ -286,7 +286,11 @@ describe("food", () => {
 
   it("shopping list scales with Cooking for N and leaves out away days", () => {
     onboard();
-    const qty = () => selectShoppingList(appState()).sections.flatMap((s) => s.items).reduce((a, i) => a + i.qty, 0);
+    // In grams/ml/units: kg and l lines count ×1000 (the list shows big amounts in kg and l).
+    const qty = () =>
+      selectShoppingList(appState())
+        .sections.flatMap((s) => s.items)
+        .reduce((a, i) => a + i.qty * (i.unit === "kg" || i.unit === "l" ? 1000 : 1), 0);
     const one = qty();
     A().setCookingFor(2);
     expect(qty()).toBeGreaterThan(one);

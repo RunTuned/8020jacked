@@ -138,7 +138,8 @@ export interface Actions {
   // You (S3–S9)
   saveBodyStats(b: { age?: number; heightCm?: number | null; setupWeightKg?: number; noWeigh?: boolean }): void;
   saveUnits(u: Units): void;
-  saveFoodPrefs(f: { mealsPerDay?: MealsPerDay; cookOrBuy?: CookOrBuy; fasting?: boolean; allergies?: Allergen[] }): void;
+  /** Returns the confirmation line ("Saved. From tomorrow …"), or null when nothing changed. */
+  saveFoodPrefs(f: { mealsPerDay?: MealsPerDay; cookOrBuy?: CookOrBuy; fasting?: boolean; allergies?: Allergen[] }): string | null;
   saveReminderSettings(r: {
     dayStart?: string;
     reminder?: ReminderSlot;
@@ -210,10 +211,10 @@ export const useAppStore = create<Store>()(
         if (raised <= t.daily) return null;
         const buyer = S.prefsFor(s, date).cookOrBuy === "buy";
         return {
-          adjustments: E.applyChange(
-            s.adjustments,
-            { kind: "speed_brake", kcalDelta: E.SPEED_BRAKE_KCAL, sideDelta: buyer ? 1 : 0 },
-            date,
+          // Days already gone keep the food they had (history).
+          adjustments: S.withAdjustmentHistory(
+            s,
+            E.applyChange(s.adjustments, { kind: "speed_brake", kcalDelta: E.SPEED_BRAKE_KCAL, sideDelta: buyer ? 1 : 0 }, date),
           ),
         };
       };
@@ -301,6 +302,7 @@ export const useAppStore = create<Store>()(
             where: extra?.where,
             size: extra?.size,
             itemId: m ? E.servedId(m) : undefined,
+            ...(m?.servings !== undefined ? { servings: m.servings } : {}),
             at: now(),
           };
           withUndo("meal", "Saved. Undo", ["mealLogs"], { mealLogs: E.upsertMealLog(s.mealLogs, log) });
@@ -526,36 +528,39 @@ export const useAppStore = create<Store>()(
         setCookingFor: (n) => patch({ food: { ...get().food, cookingFor: Math.max(1, Math.min(8, Math.round(n))) } }),
         tickShopping: (key) => {
           const s = st();
-          const ws = E.weekStart(today(s));
+          // Ticks belong to the next cook batch, kept under its cook date.
+          const ws = S.selectShoppingList(s).weekStart;
           const cur = s.shoppingTicks.find((t) => t.weekStart === ws)?.ticked ?? [];
           const ticked = cur.includes(key) ? cur.filter((k) => k !== key) : [...cur, key];
           patch({ shoppingTicks: [...s.shoppingTicks.filter((t) => t.weekStart !== ws), { creatorId: CREATOR_ID, weekStart: ws, ticked }] });
         },
         tickPickup: (key) => {
           const s = st();
-          const ws = E.weekStart(today(s));
+          const ws = S.selectPickupList(s).weekStart;
           const cur = s.pickupTicks.find((t) => t.weekStart === ws)?.ticked ?? [];
           const ticked = cur.includes(key) ? cur.filter((k) => k !== key) : [...cur, key];
           patch({ pickupTicks: [...s.pickupTicks.filter((t) => t.weekStart !== ws), { creatorId: CREATOR_ID, weekStart: ws, ticked }] });
         },
         saveCookStep: (step) => {
           const s = st();
-          const { weekStart: ws, block: cookDay } = E.cookSessionFor(today(s));
+          const { cookOn, weekStart: ws } = S.selectCookDay(s);
+          const cookDay = E.weekday(cookOn) === 6 ? 0 : 1;
           patch({
             cookProgress: [
-              ...s.cookProgress.filter((p) => !(p.weekStart === ws && p.cookDay === cookDay)),
-              { creatorId: CREATOR_ID, weekStart: ws, cookDay, step, done: false },
+              ...s.cookProgress.filter((p) => p.cookOn !== cookOn),
+              { creatorId: CREATOR_ID, weekStart: ws, cookDay, cookOn, step, done: false },
             ],
           });
         },
         cookDayDone: () => {
           const s = st();
-          const { weekStart: ws, block: cookDay } = E.cookSessionFor(today(s));
-          const cur = s.cookProgress.find((p) => p.weekStart === ws && p.cookDay === cookDay);
+          const { cookOn, weekStart: ws } = S.selectCookDay(s);
+          const cookDay = E.weekday(cookOn) === 6 ? 0 : 1;
+          const cur = s.cookProgress.find((p) => p.cookOn === cookOn);
           patch({
             cookProgress: [
-              ...s.cookProgress.filter((p) => !(p.weekStart === ws && p.cookDay === cookDay)),
-              { creatorId: CREATOR_ID, weekStart: ws, cookDay, step: cur?.step ?? 0, done: true },
+              ...s.cookProgress.filter((p) => p.cookOn !== cookOn),
+              { creatorId: CREATOR_ID, weekStart: ws, cookDay, cookOn, step: cur?.step ?? 0, done: true },
             ],
           });
         },
@@ -619,7 +624,7 @@ export const useAppStore = create<Store>()(
           let pendingGoal: PendingGoal | null = null;
           if (accepted) {
             const c = result.change;
-            p.adjustments = E.applyChange(s.adjustments, c, date);
+            p.adjustments = S.withAdjustmentHistory(s, E.applyChange(s.adjustments, c, date));
             if (c.minutes) p.training = { ...s.training, minutes: c.minutes };
             if (c.fasting) {
               p.food = { ...s.food, fasting: true };
@@ -669,9 +674,10 @@ export const useAppStore = create<Store>()(
           const p: Partial<AppState> = {};
           const routine = f.mealsPerDay !== undefined || f.cookOrBuy !== undefined || f.fasting !== undefined;
           if (routine) {
-            // Other changes start tomorrow; the list rebuilds next week.
+            // Other changes start tomorrow, lists included.
             p.foodChanges = foodChangeFrom(s, E.addDays(d, 1), f);
           }
+          const message = S.foodPrefsSavedMessage(s.food, f);
           const newAllergens = (f.allergies ?? []).filter((a) => !s.food.allergies.includes(a));
           p.food = {
             ...s.food,
@@ -696,6 +702,7 @@ export const useAppStore = create<Store>()(
             });
           }
           patch(p);
+          return message;
         },
         saveReminderSettings: (r) => patch({ settings: { ...get().settings, ...r } }),
         saveDisplay: (d) => patch({ settings: { ...get().settings, ...d } }),

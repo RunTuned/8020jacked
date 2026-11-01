@@ -279,6 +279,8 @@ export interface DayPlan {
   away: boolean;
   workout: SessionLetter | null;
   meals: MealSlot[];
+  /** A day before her plan started: no meals, never shown. */
+  beforeStart?: boolean;
 }
 
 export interface PlannedSet {
@@ -377,6 +379,8 @@ export interface MealLog {
   where?: "home" | "bought";
   size?: MealSize;
   itemId?: string; // recipe or bought item served at log time
+  /** Servings served at log time: a later plan change never rewrites what she ate. */
+  servings?: number;
   at: number;
 }
 
@@ -480,6 +484,15 @@ export interface Adjustments {
   sideDelta: number;
   extraSets: Record<TrainingArea, number>;
   speedBrakeOn: ISODate | null;
+  /** Earlier food values, so a plan change never rewrites days already gone. */
+  history?: AdjustmentStep[];
+}
+
+/** The food values in effect before `before` (a plan change on that day replaced them). */
+export interface AdjustmentStep {
+  before: ISODate;
+  kcalDelta: number;
+  sideDelta: number;
 }
 
 export interface Block {
@@ -525,6 +538,8 @@ export interface CookProgress {
   creatorId: CreatorId;
   weekStart: ISODate;
   cookDay: number; // 0 or 1 (two batch cooks a week)
+  /** The batch's cook date (cook batches can start on her sign-up day). */
+  cookOn?: ISODate;
   step: number;
   done: boolean;
 }
