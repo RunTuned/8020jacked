@@ -1,26 +1,309 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------
+   8020jacked — Soft Pastel Bento tokens (docs/design/DesignSystem-PastelBento.md §1)
+   Light by default; dark follows the phone (prefers-color-scheme).
+   ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/PlusJakartaSans-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  color-scheme: light dark;
+
+  /* colour */
+  --canvas: #ffffff;
+  --ink: #111111;
+  --ink-muted: #555555;
+  --on-ink: #ffffff;
+  --fill-neutral: #f1f1f1;
+  --pastel-lime: #e8f8c4;
+  --pastel-butter: #fbf4c2;
+  --pastel-blue: #bfd5fb;
+  --pastel-aqua: #c0f6f4;
+  --pastel-pink: #f6c3df;
+  --accent-lavender: #b8a7f4;
+  --on-accent: #111111;
+  --bar: #111111;
+  --bar-item: #ffffff;
+  --on-bar-item: #111111;
+  --on-bar: #f5f5f5;
+  --bar-item-active: #ffffff;
+  --on-bar-item-active: #111111;
+  --circle-button: #ffffff;
+  --on-circle-button: #111111;
+  --sheet: #ffffff;
+  --scrim: rgba(17, 17, 17, 0.4);
+  --focus: #111111;
+  --focus-on-bar: #ffffff;
+  --error: #b42318;
+  --done: #111111;
+
+  /* type scale (rem, so the phone's text size scales it) */
+  --fs-display-xl: 2.25rem;
+  --fs-display-l: 2rem;
+  --fs-title: 1.25rem;
+  --fs-body: 1.0625rem;
+  --fs-label: 0.9375rem;
+  --fs-numeral: 1.75rem;
+  --fs-timer: 4.5rem;
+  --fs-big: 9rem;
+
+  /* shape and space */
+  --r-card: 30px;
+  --r-field: 20px;
+  --gutter-x: 20px;
+  --gutter-y: 24px;
+  --gap: 12px;
+  --focus-width: 3px;
+  --focus-offset: 2px;
+
+  /* safe-area aware page edges */
+  --page-left: max(var(--gutter-x), env(safe-area-inset-left));
+  --page-right: max(var(--gutter-x), env(safe-area-inset-right));
+  --page-top: max(var(--gutter-y), env(safe-area-inset-top));
+  --page-bottom: max(var(--gutter-y), env(safe-area-inset-bottom));
+
+  /* the floating bar sets --bar-h from its measured height (TabBar) */
+  --bar-h: 72px;
+  --bar-space: calc(var(--bar-h) + 16px + 24px + env(safe-area-inset-bottom));
+
+  --font-jakarta: "Plus Jakarta Sans", ui-rounded, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --canvas: #111111;
+    --ink: #f5f5f5;
+    --ink-muted: #b3b3b3;
+    --on-ink: #111111;
+    --fill-neutral: #262626;
+    --pastel-lime: #2e3b17;
+    --pastel-butter: #3d3814;
+    --pastel-blue: #1e2f4f;
+    --pastel-aqua: #163e3d;
+    --pastel-pink: #4a2238;
+    --accent-lavender: #b8a7f4;
+    --on-accent: #111111;
+    --bar: #262626;
+    --bar-item: #3a3a3a;
+    --on-bar-item: #f5f5f5;
+    --on-bar: #f5f5f5;
+    --bar-item-active: #f5f5f5;
+    --on-bar-item-active: #111111;
+    --circle-button: #3a3a3a;
+    --on-circle-button: #f5f5f5;
+    --sheet: #1c1c1c;
+    --scrim: rgba(0, 0, 0, 0.6);
+    --focus: #f5f5f5;
+    --focus-on-bar: #f5f5f5;
+    --error: #f97066;
+    --done: #f5f5f5;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (min-width: 600px) {
+  :root {
+    --gutter-x: 24px;
+    --gap: 16px;
+  }
+}
+
+/* Tailwind 4 theme: utilities such as bg-pastel-blue, text-ink, text-body, rounded-card */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-on-ink: var(--on-ink);
+  --color-neutral: var(--fill-neutral);
+  --color-lime: var(--pastel-lime);
+  --color-butter: var(--pastel-butter);
+  --color-blue: var(--pastel-blue);
+  --color-aqua: var(--pastel-aqua);
+  --color-pink: var(--pastel-pink);
+  --color-lavender: var(--accent-lavender);
+  --color-bar: var(--bar);
+  --color-bar-item-active: var(--bar-item-active);
+  --color-on-bar-item-active: var(--on-bar-item-active);
+  --color-on-bar: var(--on-bar);
+  --color-circle: var(--circle-button);
+  --color-on-circle: var(--on-circle-button);
+  --color-sheet: var(--sheet);
+  --color-error: var(--error);
+
+  --font-sans: var(--font-jakarta);
+
+  --text-display-xl: var(--fs-display-xl);
+  --text-display-xl--line-height: 1.08;
+  --text-display-l: var(--fs-display-l);
+  --text-display-l--line-height: 1.1;
+  --text-title: var(--fs-title);
+  --text-title--line-height: 1.2;
+  --text-body: var(--fs-body);
+  --text-body--line-height: 1.5;
+  --text-label: var(--fs-label);
+  --text-label--line-height: 1.45;
+  --text-numeral: var(--fs-numeral);
+  --text-numeral--line-height: 1.15;
+  --text-timer: var(--fs-timer);
+  --text-timer--line-height: 1;
+  --text-big: var(--fs-big);
+  --text-big--line-height: 1;
+
+  --radius-card: var(--r-card);
+  --radius-field: var(--r-field);
+}
+
+/* ------------------------------------------------------------------ base */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-bottom: var(--bar-space);
+    background: var(--canvas);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-jakarta);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  span,
+  a,
+  button,
+  label {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-size: max(16px, var(--fs-body));
+  }
+
+  :focus-visible {
+    outline: var(--focus-width) solid var(--focus);
+    outline-offset: var(--focus-offset);
+  }
+
+  .on-bar :focus-visible {
+    outline-color: var(--focus-on-bar);
+  }
+  .on-bar [aria-current="page"]:focus-visible {
+    outline-color: var(--focus-on-bar);
+  }
+}
+
+/* ------------------------------------------------------------------ helpers */
+@layer components {
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* bottom sheet: native <dialog> */
+  dialog.sheet {
+    margin: auto 0 0 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: 92dvh;
+    padding: 0;
+    border: 0;
+    border-radius: var(--r-card) var(--r-card) 0 0;
+    background: var(--sheet);
+    color: var(--ink);
+  }
+  dialog.sheet::backdrop {
+    background: var(--scrim);
+  }
+  @media (min-width: 600px) {
+    dialog.sheet {
+      margin: auto;
+      max-width: 36rem;
+      border-radius: var(--r-card);
+    }
+  }
+
+  @keyframes sheet-in {
+    from {
+      transform: translateY(24px);
+      opacity: 0;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  dialog.sheet[open] {
+    animation: sheet-in 200ms ease-out;
+  }
+
+  @keyframes undo-shrink {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+  .undo-bar {
+    transform-origin: left center;
+    animation-name: undo-shrink;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+}
+
+/* ------------------------------------------------------------------ reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* the undo bar is information, not decoration: show it static instead */
+  .undo-bar {
+    animation: none !important;
+    opacity: 0.6;
+  }
 }
