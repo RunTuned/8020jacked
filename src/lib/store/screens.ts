@@ -64,7 +64,8 @@ export function selectWalksToday(s: AppState): number {
 
 // ---------- weigh-in (T3) ----------
 
-export const KG_PER_LB = 0.45359237;
+import { KG_PER_LB } from "./units";
+export { KG_PER_LB };
 
 /** The number she typed, in kg, rounded to 0.1. Null when it isn't a sensible weight. */
 export function weightInputToKg(text: string, unit: "kg" | "lb"): number | null {
