@@ -156,7 +156,8 @@ describe("meal detail", () => {
 });
 
 describe("recipe extras", () => {
-  const base = CONTENT.recipes[0];
+  // A plain recipe with none of the food-library extras (the real library now has them all).
+  const base = { id: "plain", name: "Plain recipe", mealTypes: ["main"], minutes: 20, servings: 2, kcal: 400, protein: 30, allergens: [], ingredients: [], method: [] } as unknown as (typeof CONTENT.recipes)[number];
   it("absent fields are skipped", () => {
     const x = recipeExtras(base);
     expect(x).toEqual({ format: null, carry: null, pack: null, fridgeDays: null, sauces: [], topping: null, washUp: null });
