@@ -36,6 +36,7 @@ import * as S from "./selectors";
 import { safeStorage } from "./storage";
 
 export * from "./selectors";
+export * from "./progress";
 export { exportFileName } from "./io";
 export { setContent, getContent } from "./content";
 export { setClock, resetClock } from "./clock";
