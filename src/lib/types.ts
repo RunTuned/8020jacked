@@ -521,4 +521,21 @@ export interface AppState {
   cookProgress: CookProgress[];
   easyWeek: EasyWeek | null;
   lastOpened: number | null;
+  /** Where setup (A2–A15) was left, so the app resumes there. null = not started or finished. */
+  setupStep?: SetupStep | null;
 }
+
+/** Setup screens that save a resume point (A2–A8 steps, then A10–A15). */
+export type SetupStep =
+  | "about"
+  | "goal"
+  | "ready"
+  | "time"
+  | "home"
+  | "food"
+  | "plan"
+  | "save"
+  | "install"
+  | "shared-phone"
+  | "reminders"
+  | "free-week";

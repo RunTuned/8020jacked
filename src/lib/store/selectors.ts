@@ -659,3 +659,25 @@ export function selectBanner(s: AppState): "speed_brake" | "check_in" | null {
 export function selectSetupDone(s: AppState): boolean {
   return !!s.planStart;
 }
+
+// ---------- start and setup (A1–A15, A9) ----------
+
+const SETUP_FLOW_STEPS = ["about", "goal", "ready", "time", "home", "food", "plan"] as const;
+
+/** Where the app opens: Today when set up, else the setup screen she left, else Start (A1). */
+export function selectResumeRoute(s: AppState): string {
+  const step = s.setupStep ?? null;
+  if (!s.planStart) {
+    if (step && (SETUP_FLOW_STEPS as readonly string[]).includes(step)) return `/start/setup?step=${step}`;
+    return "/start";
+  }
+  if (step && !(SETUP_FLOW_STEPS as readonly string[]).includes(step)) return `/start/${step}`;
+  return "/today";
+}
+
+/** A8 / A9: one sentence from her answers, no numbers beyond counts. Fasting means 2 bigger meals. */
+export function selectPlanSentence(s: AppState): string {
+  const days = s.training.daysPerWeek;
+  const meals = E.effectiveMealsPerDay(s.food.mealsPerDay, s.food.fasting);
+  return `${days} short workouts a week and ${meals} easy meals a day.`;
+}
