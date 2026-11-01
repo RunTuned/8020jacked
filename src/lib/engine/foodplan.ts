@@ -169,7 +169,9 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
       3,
       safe,
     );
-  const ready = boughtPool("ready", "main", `${seed}:ready`);
+  // Allergies can rule out every ready meal: fall back to grab-and-go mains.
+  const readyOnly = boughtPool("ready", "main", `${seed}:ready`);
+  const ready = readyOnly.length ? readyOnly : boughtPool("grab", "main", `${seed}:grab:m`);
   const sides = boughtPool("side", null, `${seed}:side`);
   const grabBreakfast = boughtPool("grab", "breakfast", `${seed}:grab:b`);
   const grabSnack = boughtPool("grab", "snack", `${seed}:grab:s`);
@@ -227,7 +229,7 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
       base.checkLabel = i.allergies.length > 0;
       const sw = swap ? boughtById.get(swap.itemId) : undefined;
       const wantKind = type === "main" ? "ready" : "grab";
-      if (sw && safe(sw) && sw.kind === wantKind && sw.mealTypes.includes(type)) {
+      if (sw && safe(sw) && (sw.kind === wantKind || (type === "main" && sw.kind === "grab")) && sw.mealTypes.includes(type)) {
         base.boughtId = sw.id;
         base.swapped = true;
       } else if (type === "main") {
@@ -241,6 +243,11 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
       base.sideIds = Array.from({ length: sidesPerSlot[index] }, () =>
         sides.length ? sides[counters.side++ % sides.length].id : "",
       ).filter(Boolean);
+      if (!base.boughtId) {
+        // Nothing safe to buy for this meal: show her size in hands instead.
+        base.hands = handPortions(kcal);
+        base.handLine = handLine(base.hands);
+      }
       return base;
     });
     return { date, away, workout: i.workouts?.[date] ?? null, meals };
@@ -364,6 +371,8 @@ export interface ShoppingItem {
   area: ShopArea;
   checkLabel: boolean;
   flagged: boolean;
+  /** "to taste" items (salt, pepper): no amount shown. */
+  toTaste: boolean;
 }
 
 export interface ShoppingSection {
@@ -373,6 +382,7 @@ export interface ShoppingSection {
 }
 
 export function roundQty(qty: number, unit: string): number {
+  if (!(qty > 0)) return 0;
   const u = unit.toLowerCase();
   if (u === "g" || u === "ml") return Math.ceil(qty / 10 - 1e-9) * 10;
   if (u === "tsp" || u === "tbsp" || u === "cup" || u === "cups") return Math.ceil(qty * 2 - 1e-9) / 2;
@@ -402,19 +412,21 @@ export function shoppingList(
       if (!r) continue;
       const servings = (m.servings ?? 1) + others;
       for (const g of r.ingredients) {
-        const key = `${g.name.toLowerCase()}|${g.unit}`;
+        const toTaste = !(g.qty > 0);
+        const key = toTaste ? `${g.name.toLowerCase()}|to-taste` : `${g.name.toLowerCase()}|${g.unit}`;
         const cur = acc.get(key);
-        const add = (g.qty / r.servings) * servings;
+        const add = toTaste ? 0 : (g.qty / r.servings) * servings;
         if (cur) cur.qty += add;
         else
           acc.set(key, {
             key,
             name: g.name,
             qty: add,
-            unit: g.unit,
+            unit: toTaste ? "" : g.unit,
             area: g.area,
             checkLabel: allergies.length > 0,
             flagged: flaggedNames.includes(g.name),
+            toTaste,
           });
       }
     }
@@ -479,7 +491,7 @@ export function pickupList(
 /** Plain text for Share list (Web Share API or copy). */
 export function shoppingText(sections: ShoppingSection[]): string {
   return sections
-    .map((s) => [s.title, ...s.items.map((i) => `- ${i.name}: ${i.qty}${i.unit ? " " + i.unit : ""}`)].join("\n"))
+    .map((s) => [s.title, ...s.items.map((i) => (i.toTaste ? `- ${i.name}` : `- ${i.name}: ${i.qty}${i.unit ? " " + i.unit : ""}`))].join("\n"))
     .join("\n\n");
 }
 

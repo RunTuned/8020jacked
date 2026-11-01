@@ -212,7 +212,7 @@ describe("3.5 shopping list (F4)", () => {
   });
 
   it("grams round up to 10; with allergies every item says Check the label; flagged items marked", () => {
-    const list = shoppingList(buildWeekMeals(input({ allergies: ["fish"] })), RECIPES, 1, ["onion"], ["onion"]);
+    const list = shoppingList(buildWeekMeals(input({ allergies: ["fish"] })), RECIPES, 1, ["fish"], ["onion"]);
     for (const s of list)
       for (const i of s.items) {
         expect(i.checkLabel).toBe(true);
@@ -233,5 +233,32 @@ describe("3.5 pick up this week (F8)", () => {
     expect(items[0].kind).toBe("ready");
     const away = buildWeekMeals(input({ cook: "buy", awayDates: new Set([MON]) }));
     expect(pickupList(away, BOUGHT, []).reduce((a, i) => a + i.count, 0)).toBe(30);
+  });
+});
+
+describe("gaps in what's safe to buy", () => {
+  const onlyGluten = BOUGHT.map((b) => (b.kind === "ready" ? { ...b, allergens: ["gluten" as const] } : b));
+
+  it("no safe ready meal → a grab-and-go main, still allergen-free", () => {
+    const bought = [...onlyGluten, { ...BOUGHT[0], id: "grab-chicken-pieces", kind: "grab" as const, mealTypes: ["main" as const], allergens: [] }];
+    const w = buildWeekMeals(input({ cook: "buy", bought, allergies: ["gluten"] }));
+    expect(w[0].meals[1].boughtId).toBe("grab-chicken-pieces");
+  });
+
+  it("nothing safe at all → her size in hands, never an allergen", () => {
+    const w = buildWeekMeals(input({ cook: "buy", bought: onlyGluten, allergies: ["gluten"] }));
+    expect(w[0].meals[1].boughtId).toBeUndefined();
+    expect(w[0].meals[1].handLine).toMatch(/palm/);
+  });
+});
+
+describe("to-taste ingredients", () => {
+  it("are listed without an amount", () => {
+    const recipes = RECIPES.map((r) =>
+      r.mealTypes.includes("main") ? { ...r, ingredients: [...r.ingredients, { name: "black pepper", qty: 0, unit: "to taste", area: "tins-dry" as const }] } : r,
+    );
+    const list = shoppingList(buildWeekMeals(input({ recipes })), recipes, 1, []);
+    const pepper = list.flatMap((s) => s.items).find((i) => i.name === "black pepper")!;
+    expect(pepper).toMatchObject({ toTaste: true, qty: 0, unit: "" });
   });
 });
