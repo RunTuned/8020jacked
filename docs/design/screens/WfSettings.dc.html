@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes S: settings and account</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.tabs{margin-top:auto;display:flex;justify-content:space-between;border-top:1px solid #E3DAD8;padding-top:6px;font-size:11px;font-weight:600}
+.tabs a{text-decoration:none;color:#66585C}
+.tabs a[aria-current="page"]{color:#9C1F4F;text-decoration:underline}
+</style>
+</helmet>
+<div style="width: 3688px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">S: You (settings and account)</h1>
+    <div style="font-size: 15px; color: #66585C;">Every settings page: Save → S1, Back → S1. Leaving with unsaved changes asks "Keep or discard?". Plan changes show the updated plan (A9).</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="S1">
+      <div class="id">S1 · from the person circle, top right</div><div class="nm">You</div>
+      <a class="b" href="#S2">Goal and plan <span class="to">→ S2</span></a>
+      <a class="b" href="#S3">Body and units <span class="to">→ S3</span></a>
+      <a class="b" href="#S4">At home <span class="to">→ S4</span></a>
+      <a class="b" href="#S5">Food <span class="to">→ S5</span></a>
+      <a class="b" href="#S6">Reminders <span class="to">→ S6</span></a>
+      <a class="b" href="#S7">Display <span class="to">→ S7</span></a>
+      <a class="b" href="#S8">Subscription <span class="to">→ S8 state that applies</span></a>
+      <a class="b" href="#S9">My data and account <span class="to">→ S9</span></a>
+      <a class="b" href="WfToday.dc.html#T2">Away days <span class="to">→ T2</span></a>
+      <div class="nt">Subscription opens whichever state applies: S8 active, S8a free week, S8b payment failed or S8d plan ended.</div>
+      <div class="tabs"><a href="WfToday.dc.html#T1">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="S2">
+      <div class="id">S2</div><div class="nm">Goal and plan</div>
+      <div class="bx">Now: Get stronger · week 9 of your 12 weeks</div>
+      <div class="b">Goal: Get stronger · Lose some weight · Keep steady</div>
+            <div class="b">Days a week: 2 · 3 · 4</div>
+      <div class="b">Usual time: 10 · 20 · 35 min</div>
+      <a class="b" href="WfStart.dc.html#A2">Redo my setup answers <span class="to">→ A2 (edit mode)</span></a>
+      <div class="nt">"Lose some weight" is hidden if it wouldn't suit her, no message. Picked with no weigh-ins: a fresh rough weight first (as C7). The line above Save shows once a new goal is picked.</div>
+      <div class="sv">saves: goal, days, time (history after A9)</div>
+      <div class="end">
+        <div style="font-weight: 600;">This starts a new 12 weeks (you're in week 9).</div>
+        <a class="b p" href="WfStart.dc.html#A9">Save <span class="to">→ A9 updated plan → T1</span></a>
+        <a class="b" href="#S1">Back <span class="to">→ S1 (or T4)</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S3">
+      <div class="id">S3</div><div class="nm">Body and units</div>
+      <div class="bx">Age · height (or "Not sure": we use an average) · rough weight</div>
+      <div class="b">I'd rather not weigh myself <span class="to">on · off</span></div>
+      <div class="nt">On: no weigh-ins asked, weight never shown. The rough weight stays, to size meals.</div>
+      <div class="b">Weight: kg · lb</div>
+      <div class="b">Height: cm · ft and in</div>
+      <div class="nt">Both switches start from the phone's region. Change them here any time.</div>
+      <div class="sv">saves: body stats, units</div>
+      <div class="nt">Units change every screen at once. Stored in metric underneath.</div>
+      <div class="end">
+        <a class="b p" href="#S1">Save <span class="to">→ S1</span></a>
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S4">
+      <div class="id">S4</div><div class="nm">At home</div>
+      <div class="nt">What you have at home:</div>
+      <div class="bx">Floor space · No floor (chair and wall) · Bands · Dumbbells</div>
+      <div class="nt">Something hurts in a workout? Tap "Hurts? Swap this move".</div>
+      <a class="b" href="WfToday.dc.html#T2">Away days <span class="to">→ T2</span></a>
+      <div class="sv">saves: what you have at home</div>
+      <div class="end">
+        <a class="b p" href="#S1">Save <span class="to">→ S1, workouts update</span></a>
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S5">
+      <div class="id">S5</div><div class="nm">Food</div>
+      <div style="display: flex; gap: 6px;"><div class="b" style="flex: 1;">Meals a day: 2 · 3 · 4</div><div class="b" style="flex: 1;">I cook · I buy</div></div>
+      <div class="b">Allergies <span class="to">tap to open, stays</span></div>
+      <div class="b">Fasting mode (e.g. Ramadan) <span class="to">on · off</span></div>
+      <div class="nt">Allergies: never in a meal or swap; bought items say "Check the label". Fasting: same daily food in 2 bigger meals.</div>
+      <div class="nt">New allergy, at once: today's unlogged meals replaced, new ingredients on this week's list now, then:</div>
+      <div class="bx" style="color: #231A1D;">"Already cooked or bought something with nuts? Don't eat it."</div>
+      <div class="sv">saves: meals a day, cook or buy, allergies, fasting</div>
+      <div class="nt">Other changes start tomorrow; the list rebuilds next week.</div>
+      <div class="end">
+        <a class="b p" href="#S1">Save <span class="to">→ S1, meals and list update</span></a>
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S6">
+      <div class="id">S6</div><div class="nm">Reminders</div>
+      <div class="nt">One a day at most. Browser: "Reminders need the home-screen app" + <a href="WfStart.dc.html#A14">Add to home screen</a> (→ A14). Prototype: none sent.</div>
+      <div class="b">When my day starts <span class="to">time picker</span></div>
+      <div class="b">Reminder: Morning · Lunch · Evening · Never</div>
+      <div class="b">Check-in day <span class="to">M T W T F S [S]</span></div>
+      <div class="nt">Sunday preset. First one 7+ days after the start.</div>
+      <div class="b">Quiet on away days <span class="to">on · off</span></div>
+      <div class="b">Email reminders too <span class="to">off until you turn it on</span></div>
+      <div class="nt">Not opened? Weekly, then a short note from Jen every 2 weeks. Only Never stops them.</div>
+      <div class="sv">saves: reminder settings, check-in day</div>
+      <div class="end">
+        <a class="b p" href="#S1">Save <span class="to">→ S1</span></a>
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S7">
+      <div class="id">S7</div><div class="nm">Display</div>
+      <div class="b">Light · dark · follow phone</div>
+      <div class="b">Show my weight numbers <span class="to">on · off</span></div>
+      <div class="nt">Off: weight shows as words only.</div>
+      <div class="b"><span>Big screen mode for workouts<br><span class="nt">Big text you can see from across the room</span></span><span class="to">on · off</span></div>
+      <div class="b">Still pictures (uses less data) <span class="to">on · off</span></div>
+      <div class="b">Do others use this phone? <span class="to">yes · no</span></div>
+      <div class="nt">Yes = weight numbers hidden + plain reminder text.</div>
+      <div class="sv">saves: display settings</div>
+      <div class="end">
+        <a class="b p" href="#S1">Save <span class="to">→ S1</span></a>
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S8">
+      <div class="id">S8 · state: active</div><div class="nm">Subscription</div>
+      <div class="bx">Monthly · $10 a month · next payment 4 Dec · tax incl.</div>
+      <a class="b" href="WfStart.dc.html#A15c"><span>Change plan: $10 monthly · $70 yearly<br><span class="nt">New price from your next payment date</span></span><span class="to">→ A15c</span></a>
+      <a class="b" href="#S8">Cancel subscription <span class="to">one confirm, stays</span></a>
+      <div class="nt">Confirm: "Cancel? You keep it until 4 Dec." Yes, cancel · Keep it. Then: "Cancelled. Your plan runs until 4 Dec." On 4 Dec → <a href="#S8d">S8d</a>.</div>
+      <a class="b" href="#S8">Keep my plan <span class="to">undo, stays</span></a>
+      <div class="sv">saves: cancel date (data kept)</div>
+      <div class="nt">Refunds: [PLACEHOLDER: wording from the payment provider]</div>
+      <div class="nt">Other states: <a href="#S8a">S8a free week</a> · <a href="#S8b">S8b payment failed</a> · <a href="#S8d">S8d plan ended</a>. One currency. Prototype: "Test version".</div>
+      <div class="end">
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S8a">
+      <div class="id">S8a · state: free week</div><div class="nm">Subscription</div>
+      <div style="font-weight: 600;">Free until 4 Nov. Cancel now and you pay nothing.</div>
+      <div class="bx">Yearly · first charge $70 on 4 Nov · tax included</div>
+      <a class="b" href="#S8a">Change to monthly $10 <span class="to">stays</span></a>
+      <a class="b" href="#S8a">Cancel, don't charge me <span class="to">one confirm, stays</span></a>
+      <div class="bx">Then: "Cancelled. You won't be charged. Your free week runs until 4 Nov."</div>
+      <a class="b" href="#S8a">Keep my plan <span class="to">undo, stays</span></a>
+      <div class="nt">We email before the first charge. Card taken at the start: a failed first charge → <a href="#S8b">S8b</a>; cancelled, on 4 Nov → <a href="#S8d">S8d</a>.</div>
+      <div class="sv">saves: cancel date (data kept)</div>
+      <div class="end">
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S8b">
+      <div class="id">S8b · state: payment failed</div><div class="nm">Subscription</div>
+      <div style="font-weight: 600;">Your payment didn't go through.</div>
+      <div>Update your card to keep your plan going.</div>
+      <div class="bx">Monthly · $10 a month · tried on 4 Dec</div>
+      <div>We'll try your card again over 7 days. After that your plan stops.</div>
+      <a class="b p" href="WfStart.dc.html#A15c">Update card <span class="to">pay page → A15c → S8</span></a>
+      <div class="nt">Nothing is locked. For the 7 retry days the app stays fully open. Today shows one banner, "Payment didn't go through. Update card" (<a href="WfToday.dc.html#T1b">T1b</a>), linking here.</div>
+      <div class="nt">Still failing after 7 days → <a href="#S8d">S8d</a> plan ended. Only then the locked card (T8).</div>
+      <div class="nt">Email when a payment fails: "Your card didn't go through. Update it here." (links here).</div>
+      <div class="sv">saves: new card (at Dodo)</div>
+      <div class="end">
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S8d">
+      <div class="id">S8d · state: plan ended</div><div class="nm">Your plan has ended</div>
+      <div style="font-weight: 600;">"Your card didn't go through on 4 Dec" or "You cancelled on 20 Nov"</div>
+      <div>Start again any time. Everything you did is kept.</div>
+      <div class="bx">Monthly · $10 a month &nbsp;|&nbsp; Yearly · $70 a year <span class="to">none picked</span></div>
+      <div style="font-weight: 600;">Charge today: $10, then every month on the same day.</div>
+      <div class="nt">Never "First charge" here. Short months: the last day of the month.</div>
+      <a class="b p" href="WfStart.dc.html#A15c">Pay <span class="to">needs a pick → A15c → T1</span></a>
+      <a class="b" href="WfProgress.dc.html#P1">Progress <span class="to">→ P1</span></a>
+      <a class="b" href="#S9">Download my data <span class="to">→ S9</span></a>
+      <div class="nt">After cancelling (S8, S8a), a free week ended unpaid, or a card failing 7 days (S8b). Sign-in lands here first (A11b; new phone: A14c → here, then A12 → A13 → T1 after paying). Only now: locked card (T8).</div>
+      <div class="end">
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="S9">
+      <div class="id">S9</div><div class="nm">My data and account</div>
+      <a class="b" href="#S9">Download my data <span class="to">file to phone, stays</span></a>
+      <a class="b" href="WfStart.dc.html#A11">Log out <span class="to">→ A11</span></a>
+      <div class="nt">Photos: switch them off in <a href="WfProgress.dc.html#P3">Progress</a></div>
+      <a class="b" href="WfStart.dc.html#A1">Delete my account <span class="to">type DELETE → A1</span></a>
+      <div class="nt">Cancels the subscription first, keeps only a trial-used marker, then deletes.</div>
+      <div class="sv">saves: removes every row except trial-used marker</div>
+      <a class="b" href="#S9">Privacy and terms <span class="to">opens page, back here</span></a>
+      <div class="end">
+        <a class="b" href="#S1">Back <span class="to">→ S1</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3688,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

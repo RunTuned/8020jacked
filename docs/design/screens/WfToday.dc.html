@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes T: Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.hf{font-size:11px;color:#56626B;font-style:italic}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.tabs{margin-top:auto;display:flex;justify-content:space-between;border-top:1px solid #E3DAD8;padding-top:6px;font-size:11px;font-weight:600}
+.tabs a{text-decoration:none;color:#66585C}
+.tabs a[aria-current="page"]{color:#9C1F4F;text-decoration:underline}
+</style>
+</helmet>
+<div style="width: 2788px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">T: Today</h1>
+    <div style="font-size: 15px; color: #66585C;">Tab bar on every main screen: Today T1 · Train W1 · Food F1 · Progress P1. You: person circle, top right → S1. Current tab marked (aria-current). Today has at most 3 cards, one per job: Do this now, Next meal, This week. No "Yesterday" card. At most one banner. Banner priority: safety warning &gt; meals a little bigger (speed brake) &gt; payment didn't go through (T1b, app stays open) &gt; check-in due (→ C1, stays up for 3 days after the check-in day) &gt; trial &gt; offline. Plan ended (S8d): one locked card instead (T8). After Welcome back (T4), at most one other interrupt. Meals are logged with 3 buttons everywhere: Ate the plan · Something like it · Something else, plus Undo. Weigh-in lives in Progress and the check-in. Next meal = the next unlogged meal of today; a small "Meal 3 instead" link lets a non-logger jump ahead.</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="T1">
+      <div class="id">T1 · home · hi-fi "2 Today"</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 6px;">
+        <div><div class="nm">Training day.</div><div class="nt">Legs and core · 20 minutes</div></div>
+        <a class="b" href="WfSettings.dc.html#S1">You <span class="to">→ S1</span></a>
+      </div>
+      <div class="bx" style="font-size: 11px; line-height: 15px; padding: 4px 8px;">One banner: <a href="WfCheckIn.dc.html#C1">Check-in ready → C1</a> · others <a href="#T1b">T1b</a></div>
+      <div style="display: flex; gap: 6px;"><a class="b p" style="flex: 1;" href="WfTrain.dc.html#W3">Start <span class="to">→ W3</span></a><a class="b" style="flex: 1;" href="WfTrain.dc.html#W3">10 min <span class="to">→ W3</span></a></div>
+      <div style="display: flex; gap: 6px;"><div class="b" style="flex: 1; white-space: nowrap; padding: 6px 8px; font-size: 12px;" title="Big text you can see from across the room">Big screen mode: off</div><a class="b" style="flex: none; white-space: nowrap; padding: 6px 8px; font-size: 12px;" href="#T2">Not today</a></div>
+      <div class="bx">Next: Meal 2 · Chicken bowl · <a href="#T1">Meal 3 instead</a></div>
+      <div class="b">Ate the plan <span class="to">saves log · Undo 5 s</span></div>
+      <div style="display: flex; gap: 6px;"><div class="b" style="flex: 1;">Something like it</div><a class="b" style="flex: 1;" href="WfFood.dc.html#F6">Something else <span class="to">→ F6</span></a></div>
+      <div class="nt">Big screen remembered (→ W3c). Not today: next free home day or dropped, 5-sec Undo. Logged meal: card stays 5 s for Undo, then the next meal. New allergy: unlogged meals swap at once.</div>
+      <a class="b" href="#T2">This week: 2 of 3 · 3 walks left <span class="to">→ T2</span></a>
+      <div class="tabs"><a href="#T1" aria-current="page">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="T1b">
+      <div class="id">T1b · home, payment didn't go through</div><div class="nm">Training day.</div>
+      <a class="b" href="WfSettings.dc.html#S8b" style="background: #FBE9EE; color: #7A1238;">Payment didn't go through. Update card <span class="to">→ S8b</span></a>
+      <div class="nt">The one banner. For the 7 retry days the app stays fully open: same cards and buttons as <a href="#T1">T1</a>, Train and Food too. Nothing is locked.</div>
+      <div class="nt">Card fixed (S8b → A15c): banner goes. Still failing after 7 days: plan ended (S8d), then the locked card <a href="#T8">T8</a>.</div>
+      <div class="nt">Speed brake banner: "You're losing faster than planned, so your meals are a little bigger this week." Priority: top note.</div>
+      <div class="nt">Every Today button: repeat taps within 1 second are ignored. "Not today" shows "Moved. Undo" for 5 seconds. After "Ate the plan" the logged card stays for the 5-second Undo, then moves to the next meal.</div>
+      <div class="nt">Ringer and screen tip shows once, on her first workout (W3): "iPhone: turn your ringer on to hear the beeps. To keep the screen on: Settings › Display &amp; Brightness › Auto-Lock."</div>
+      <div class="sv">saves: nothing</div>
+      <div class="tabs"><a href="#T1b" aria-current="page">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="T7">
+      <div class="id">T7 · home, rest day or away day</div><div class="nm">Rest day.</div>
+      <div class="nt">Same layout as T1, no workout card. No Start, no "Not today".</div>
+      <div class="bx">Rest day. A walk counts.</div>
+      <a class="b" href="#T2">Tick a 15-minute walk <span class="to">→ T2</span></a>
+      <div class="nt">Away day version: hero "Away today." · "Nothing to do. Meals stay simple." Set in T6.</div>
+      <div class="bx">Next meal: Meal 1 · Overnight oats with berries</div>
+      <div class="b">Ate the plan <span class="to">stays</span></div>
+      <div style="display: flex; gap: 6px;"><div class="b" style="flex: 1;">Something like it</div><a class="b" style="flex: 1;" href="WfFood.dc.html#F6">Something else <span class="to">→ F6</span></a></div>
+      <div class="sv">saves: meal log · Undo shows for 5 s</div>
+      <a class="b" href="#T2">This week: 2 of 3 workouts · 2 walks to go <span class="to">→ T2</span></a>
+      <div class="nt">The weekly count only counts home days. Away days are never counted against her.</div>
+      <div class="tabs"><a href="#T1" aria-current="page">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="T5">
+      <div class="id">T5 · home, after a workout</div><div class="nm">Hi, Lee-Ann.</div>
+      <div class="bx">Done for today. Legs and core, 20 minutes. Well done.</div>
+      <div class="nt">No second workout offered. Next one shows tomorrow.</div>
+      <a class="b" href="#T2">Tick a 15-minute walk <span class="to">→ T2</span></a>
+      <div class="bx">Next meal: Meal 3 · Bean and veg chilli</div>
+      <div class="b">Ate the plan <span class="to">stays</span></div>
+      <div class="b">Something like it <span class="to">stays</span></div>
+      <a class="b" href="WfFood.dc.html#F6">Something else <span class="to">→ F6</span></a>
+      <div class="sv">saves: meal log · Undo for 5 s</div>
+      <a class="b" href="#T2">This week: 3 of 3 workouts · 3 walks to go <span class="to">→ T2</span></a>
+      <div class="tabs"><a href="#T1" aria-current="page">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="T2">
+      <div class="id">T2</div><div class="nm">This week</div>
+      <div class="bx">One row per day, Mon to Sun: workout (done · planned · rest · away), meals (logged, or "not logged" in plain grey, never red)</div>
+      <a class="b" href="WfTrain.dc.html#W2">Tap a workout <span class="to">→ W2</span></a>
+      <div class="b">Move to another day <span class="to">stays</span></div>
+      <div class="nt">Never two workouts on one day. "Not today" (T1) lands here: moved to the next free home day, not an away day, with a 5-sec Undo. None left: dropped, no mark.</div>
+      <div class="b">15-minute walks: tick 1 · 2 · 3 <span class="to">stays</span></div>
+      <div class="sv">saves: schedule, walk ticks</div>
+      <div class="nt">3 walks a week, home days only. No steps.</div>
+      <a class="b" href="#T6">I'm away: away days <span class="to">→ T6</span></a>
+      <div class="end">
+        <a class="b" href="#T1">Back <span class="to">→ T1</span></a>
+      </div>
+      <div class="tabs"><a href="#T1" aria-current="page">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="T6">
+      <div class="id">T6 · sheet</div><div class="nm">Away days</div>
+      <div class="nt">Tap the days you're away.</div>
+      <div class="bx" style="height: 110px;">Small calendar, this month. Swipe to next month. Tap a day to mark it away, tap again to undo.</div>
+      <div class="b">Repeat every week: off · on <span class="to">stays</span></div>
+      <div class="nt">Away days have no workout planned and Today shows the away version (T7). Meals stay simple. The shopping list leaves them out. Nothing counts against you.</div>
+      <div class="sv">saves: away days, repeat weekly</div>
+      <div class="end">
+        <a class="b p" href="#T2">Save <span class="to">→ T2</span></a>
+        <a class="b" href="#T2">Cancel <span class="to">→ T2</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="T3">
+      <div class="id">T3 · sheet</div><div class="nm">Weigh in</div>
+      <div class="nt">Opened from P1, P2 or C2 (not from Today). Never offered if she chose "I'd rather not weigh myself".</div>
+      <div class="bx">Number pad · kg or lb, change in You</div>
+      <div class="nt">Morning is best. 3 a week is plenty. Only one weigh-in a day counts.</div>
+      <div class="nt">The setup weight (A2) is not a weigh-in: it only sizes meals and runs the safety checks.</div>
+      <div class="nt">Speed brake (engine): any 2 real weigh-ins on different days, within 14 days, showing too-fast loss = eat more, at once. Runs without a check-in and ignores the 3-day minimum. Today then shows the speed brake banner (T1).</div>
+      <div class="nt">Weight numbers hidden (shared phone): saved, number not shown back.</div>
+      <div class="sv">saves: weigh-in</div>
+      <div class="end">
+        <a class="b p" href="WfProgress.dc.html#P1">Save <span class="to">→ back to opener (P1, P2 or C2)</span></a>
+        <a class="b" href="WfProgress.dc.html#P1">Cancel <span class="to">→ back to opener</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="T4">
+      <div class="id">T4 · hi-fi "6 Welcome back"</div><div class="nm">You're back.</div>
+      <div class="nt">After 5+ days away, before any paywall or recap. New phone: A14 → A14b → A14c → A12 → A13 → T4 → S8d if the plan ended → T1. Then at most one other interrupt. Never shows what was missed.</div>
+      <div class="bx">Your plan and your wins are all here.</div>
+      <div class="bx">Note from Jen: "Life gets busy for me too. Let's start again, gently." — Jen</div>
+      <div class="nt">How do you want to start?</div>
+      <a class="b p" href="#T1">Start with an easy week <span class="to">→ T1</span></a>
+      <div class="nt">7 easy days, then back to normal.</div>
+      <div class="sv">saves: easy week (7 days), end date</div>
+      <a class="b" href="#T1">Carry on where I was <span class="to">→ T1</span></a>
+      <div class="nt">Legs and core is next.</div>
+      <a class="b" href="WfSettings.dc.html#S2">Something's changed <span class="to">→ S2</span></a>
+      <div class="nt">New times, new goal or new things at home.</div>
+    </div>
+
+    <div class="ph" id="T8">
+      <div class="id">T8 · home, plan ended (S8d)</div><div class="nm">Today</div>
+      <div class="nt">Replaces all 3 Today cards. No banner, no workout, no meals.</div>
+      <div class="bx">Your plan has ended. Your progress is kept.</div>
+      <a class="b p" href="WfSettings.dc.html#S8d">Pay <span class="to">→ S8d</span></a>
+      <div class="nt">Only once the plan has ended (S8d). A payment that didn't go through (S8b) never locks the app: Today shows the banner instead (<a href="#T1b">T1b</a>).</div>
+      <div class="nt">Train (W1) and Food (F1) show this same locked card. Progress and You stay open.</div>
+      <div class="sv">saves: nothing (her data is kept)</div>
+      <a class="b" href="WfSettings.dc.html#S1">You <span class="to">→ S1</span></a>
+      <div class="tabs"><a href="#T8" aria-current="page">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2788,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

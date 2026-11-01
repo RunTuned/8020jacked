@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes A: start and onboarding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.hf{font-size:11px;color:#56626B;font-style:italic}
+.ck{display:inline-block;width:11px;height:11px;border:1.5px solid #8C7E82;border-radius:3px;margin-right:5px;vertical-align:-2px}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+</style>
+</helmet>
+<div style="width: 7588px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; align-items: baseline; gap: 24px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">A: Start and onboarding</h1>
+    <div style="font-size: 15px; color: #66585C;">Pink = screen ID · → = where the button goes · green = what gets saved · every screen has a way back · progress saves on every screen</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="A1">
+      <div class="id">A1</div><div class="nm">Start</div>
+      <div class="bx" style="height: 64px; display: flex; align-items: center; justify-content: center; text-align: center;">8020jacked logo + photo of Jen</div>
+      <div style="font-weight: 600;">Simple workouts and easy meals, made for your week.</div>
+      <div>Free workout, then 7 days free (card needed, cancel any time), then $10 a month or $70 a year.</div>
+      <div>About 2 minutes. You can stop and come back.</div>
+      <div class="end">
+        <a class="b p" href="#A2">New here <span class="to">→ A2</span></a>
+        <a class="b p" href="#A11">I've used it before <span class="to">→ A11</span></a>
+      </div>
+      <div class="nt">Two equal buttons. Local price, one currency. In WhatsApp, Facebook or Instagram: <a href="#A14w">A14w</a> first. Returning: T1, or T4 after a gap. No plan yet: A15 before T1.</div>
+      <div class="nt"><b>A1 is the fallback.</b> iPhone: the first open from the home screen with no account on this phone goes to <a href="#A14c">A14c</a> (sign in, email pre-filled from the install link), not A1. Android: A14c skipped (storage shared, already signed in).</div>
+    </div>
+
+    <div class="ph" id="A14w">
+      <div class="id">A14w · in-app browser, before setup</div><div class="nm">Open this in your phone's browser</div>
+      <div>WhatsApp, Facebook and Instagram can't add apps to your home screen.</div>
+      <div class="bx" style="height: 80px; display: flex; align-items: center; justify-content: center; text-align: center;">Simple picture: Tap ⋯ (or the share icon), then Open in Safari / Open in browser</div>
+      <div style="font-weight: 600;">iPhone: open it in Safari. Android: open it in Chrome.</div>
+      <a class="b" href="#A14w">Copy link <span class="to">backup · "Copied" · stays</span></a>
+      <div class="nt">Shown instead of A1 when an in-app browser is detected. Only this phone's wording is shown. Setup then runs in the real browser: one email code there (A10b), one sign-in in the home-screen app (A14c).</div>
+      <div class="sv">saves: nothing</div>
+      <div class="end">
+        <a class="b p" href="#A1">I'm in Safari / my browser now <span class="to">→ A1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A2">
+      <div class="id">A2 · step 1 of 6</div><div class="nm">About you</div>
+      <div class="hf">Hi-fi: board <a href="OnboardingYou.dc.html">"OnboardingYou"</a></div>
+      <div class="bx">Progress bar · Saved as you go</div>
+      <div class="bx">Age</div>
+      <div class="bx" style="display: flex; justify-content: space-between; align-items: center;">Height <span class="to">Not sure (average)</span></div>
+      <div class="bx" style="display: flex; justify-content: space-between; align-items: center;">Weight, roughly is fine <span class="to">kg · lb</span></div>
+      <div class="b"><span>I'd rather not weigh myself</span><span class="to">switch: off</span></div>
+      <div class="nt">Weight is asked once, to size meals and run the safety checks. It is not a weigh-in. Switch on: still one rough weight, then no weigh-ins asked and weight never shown. Age under 18: Next → <a href="#A3b">A3b</a> straight away. Edit mode: Back → <a href="WfSettings.dc.html#S2">S2</a>.</div>
+      <div class="sv">saves: age, height (or average), rough weight, switch</div>
+      <div class="end">
+        <a class="b p" href="#A3">Next <span class="to">→ A3</span></a>
+        <a class="b" href="#A1">Back <span class="to">→ A1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A3">
+      <div class="id">A3 · step 2 of 6</div><div class="nm">Your goal</div>
+      <div class="hf">Hi-fi: board <a href="Onboarding.dc.html">"Onboarding"</a></div>
+      <div class="b">Get stronger</div>
+      <div class="b">Lose some weight</div>
+      <div class="b">Keep steady</div>
+      <div class="nt">"Lose some weight" is not shown if it wouldn't suit you. No message.</div>
+      <div class="b" style="justify-content: flex-start; min-height: 40px;"><span style="flex: none; width: 14px; height: 14px; border: 1.5px solid #8C7E82; border-radius: 3px;"></span><span>I agree to the terms and privacy note</span></div>
+      <div style="display: flex; gap: 12px;"><a href="#A3">Read the terms</a><a href="#A3">Read the privacy note</a></div>
+      <div class="nt">No goal picked and unticked at start; Next waits for both. Age was asked on A2. Links open the page, then back here. Edit mode (S2): terms block hidden, Next → A5 (A4 skipped).</div>
+      <div class="sv">saves: goal, terms + date</div>
+      <div class="end">
+        <a class="b p" href="#A4">Next <span class="to">waits for the tick → A4</span></a>
+        <a class="b" href="#A2">Back <span class="to">→ A2</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A3b">
+      <div class="id">A3b · under 18</div><div class="nm">Thanks for stopping by</div>
+      <div class="bx" style="height: 90px; display: flex; align-items: center; justify-content: center; text-align: center;">Friendly picture</div>
+      <div>8020jacked is for adults 18 and over. We'd love to see you then.</div>
+      <div class="nt">Reached from A2 when the age is under 18. Nothing is saved; answers so far are cleared.</div>
+      <div class="sv">saves: nothing</div>
+      <div class="end">
+        <a class="b p" href="#A1">Close <span class="to">→ A1</span></a>
+        <a class="b" href="#A2">I made a mistake <span class="to">→ A2</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A4">
+      <div class="id">A4 · step 3 of 6</div><div class="nm">Before you start</div>
+      <div style="font-weight: 600;">This is a general fitness and eating plan for healthy adults. If you're pregnant, injured, or have a health condition, check with your doctor first.</div>
+      <div class="nt">Nothing else on this screen. No questions. Edit mode (S2): not shown.</div>
+      <div class="sv">saves: seen + date</div>
+      <div class="end">
+        <a class="b p" href="#A5">I'm good to go <span class="to">→ A5</span></a>
+        <a class="b" href="#A3">Back <span class="to">→ A3</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A5">
+      <div class="id">A5 · step 4 of 6</div><div class="nm">Time</div>
+      <div>How long do you usually get?</div>
+      <div class="bx">10 · 20 · 35 min</div>
+      <div>Days a week</div>
+      <div class="bx">2 · 3 · 4</div>
+      <div class="nt">When your day starts is asked later, with reminders (A13). Edit mode (S2): Back → A3.</div>
+      <div class="sv">saves: session length, days</div>
+      <div class="end">
+        <a class="b p" href="#A6">Next <span class="to">→ A6</span></a>
+        <a class="b" href="#A4">Back <span class="to">→ A4</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A6">
+      <div class="id">A6 · step 5 of 6</div><div class="nm">At home</div>
+      <div>What you have (pick all):</div>
+      <div class="bx">Floor space · No floor (chair and wall) · Bands · Dumbbells</div>
+      <div class="nt">Something hurts in a workout? "Hurts? Swap this move" swaps it. No questions here.</div>
+      <div class="sv">saves: what you have at home</div>
+      <div class="end">
+        <a class="b p" href="#A7">Next <span class="to">→ A7</span></a>
+        <a class="b" href="#A5">Back <span class="to">→ A5</span></a>
+      </div>
+      <div class="nt">Same choices in You to change later. Edit mode (S2): same screen.</div>
+    </div>
+
+    <div class="ph" id="A7">
+      <div class="id">A7 · step 6 of 6</div><div class="nm">Food</div>
+      <div class="bx">Meals a day: 2 · 3 · 4 (3 preset)</div>
+      <div class="bx">I cook · I buy most food</div>
+      <div style="font-weight: 600;">Allergies (tick any)</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px;">
+        <span><i class="ck"></i>Nuts (all tree nuts)</span><span><i class="ck"></i>Peanuts</span>
+        <span><i class="ck"></i>Egg</span><span><i class="ck"></i>Shellfish</span>
+        <span><i class="ck"></i>Fish</span><span><i class="ck"></i>Soy</span>
+        <span><i class="ck"></i>Sesame</span><span><i class="ck"></i>Gluten</span>
+        <span><i class="ck"></i>Dairy</span>
+      </div>
+      <div class="nt">"We never put these in your meals. Check labels on anything you buy." List shown open, none ticked.</div>
+      <div class="sv">saves: meals a day, cook/buy, allergies</div>
+      <div class="end">
+        <a class="b p" href="#A8">Next <span class="to">→ A8</span></a>
+        <a class="b" href="#A9">Next (edit mode, from S2) <span class="to">saves → A9</span></a>
+        <a class="b" href="#A6">Back <span class="to">→ A6</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A8">
+      <div class="id">A8 · after setup</div><div class="nm">Your plan</div>
+      <div class="bx" style="height: 70px; display: flex; align-items: center; justify-content: center; text-align: center;">Photo of Jen</div>
+      <div style="font-weight: 600;">3 short workouts a week and 3 easy meals a day.</div>
+      <div class="nt">One sentence, built from the answers. No numbers, no graph.</div>
+      <div class="sv">saves: plan</div>
+      <div class="end">
+        <a class="b p" href="WfTrain.dc.html#W3">Try a free workout now <span class="to">→ W3</span></a>
+        <a class="b" href="#A10">Do it later <span class="to">→ A10</span></a>
+        <a class="b" href="#A7">Back <span class="to">→ A7</span></a>
+      </div>
+      <div class="nt">The taster is free and is not the trial. Finish or quit → A10.</div>
+    </div>
+
+    <div class="ph" id="A10">
+      <div class="id">A10 · after taster (or Do it later)</div><div class="nm">Save your progress</div>
+      <div>Nice work. Save it so nothing gets lost.</div>
+      <div class="bx">First name</div>
+      <div class="bx">Email</div>
+      <div class="nt">We email you a 6-digit code. No passwords. Saved before installing, so the home-screen app can sign straight in.</div>
+      <div class="nt">No "Later". Data stays on the phone until saved.</div>
+      <div class="nt">Version 2, from "Do it later" on A8: heading "Save your plan", no "Nice work".</div>
+      <div class="sv">saves: first name, email</div>
+      <div class="end">
+        <a class="b p" href="#A10b">Send my code <span class="to">→ A10b</span></a>
+        <a class="b" href="#A8">Back <span class="to">→ A8</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A10b">
+      <div class="id">A10b</div><div class="nm">Type your code</div>
+      <div>We sent it to l•••@gmail.com</div>
+      <div class="bx" style="text-align: center; letter-spacing: .3em;">_ _ _ _ _ _</div>
+      <div class="bx" style="background: #FBE9EE; color: #7A1238;">Wrong code: "That code didn't work. Send a new one."</div>
+      <div class="nt">Can't see it? Search your inbox for 8020jacked.</div>
+      <a class="b" href="#A10b">Send again <span class="to">stays</span></a>
+      <a class="b" href="#A10">Use a different email <span class="to">→ A10</span></a>
+      <a class="b" href="#A10c">No signal, or email has a live account <span class="to">→ A10c</span></a>
+      <div class="nt">Email of a deleted account (trial-used marker only) is not an account: it carries on here like a new one, then A15b at the end.</div>
+      <div class="sv">saves: account</div>
+      <div class="end">
+        <a class="b p" href="#A14">Done <span class="to">→ A14</span></a>
+        <a class="b" href="#A10">Back <span class="to">→ A10</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A10c">
+      <div class="id">A10c · code problems</div><div class="nm">Two other states</div>
+      <div class="bx">No signal: "Needs signal. Your workout is saved on the phone."</div>
+      <a class="b" href="#A10b">Try again <span class="to">→ A10b</span></a>
+      <div class="bx">Email has a live account: "You already have an account. Sign in instead. Your new answers weren't kept."</div>
+      <a class="b" href="#A11b">Sign in instead <span class="to">code sent → A11b</span></a>
+      <div class="nt">Live accounts only. Her new answers and taster are dropped; her account stays as it was. A deleted account's email (trial-used marker only) is not an account: it never comes here. A10b carries on as new, and payment ends on <a href="#A15b">A15b</a>.</div>
+      <div class="sv">saves: nothing</div>
+      <div class="end">
+        <a class="b" href="#A10b">Back <span class="to">→ A10b</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A14">
+      <div class="id">A14</div><div class="nm">Add to your home screen</div>
+      <div>So reminders reach you, and it opens like an app.</div>
+      <div class="bx">iPhone (Safari): 1. Tap Share. 2. Tap Add to Home Screen. 3. Tap Add.</div>
+      <div class="bx">Android (Chrome): 1. Tap the ⋮ menu. 2. Tap Install app.</div>
+      <div>Don't see Add to Home Screen? Open this page in Safari.</div>
+      <div class="nt">Only this phone's steps are shown. Already added: skipped. First sign-in on a new phone: A14 → A14b → A14c → A12 → A13 once, then T4 (5+ days away), else T1. Plan unpaid or ended: A14c → <a href="WfSettings.dc.html#S8d">S8d</a> first; A12, A13 wait until she pays.</div>
+      <div class="sv">saves: install shown</div>
+      <div class="end">
+        <a class="b p" href="#A14b">Done, it's added <span class="to">→ A14b</span></a>
+        <a class="b" href="#A12">Not now <span class="to">stay in browser → A12</span></a>
+        <a class="b" href="#A10b">Back <span class="to">→ A10b</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A14b">
+      <div class="id">A14b · still in the browser</div><div class="nm">Now open the app</div>
+      <div class="bx" style="height: 90px; display: flex; align-items: center; justify-content: center; text-align: center;">Picture: the 8020jacked icon on a home screen</div>
+      <div style="font-weight: 600;">Open the app from your home screen.</div>
+      <div>You can close this page.</div>
+      <div class="nt">iPhone: the home-screen app starts fresh, so its first open with no account on this phone goes to A14c (email pre-filled from the install link), not A1. Nothing is lost: it is saved to her account.</div>
+      <div class="nt">Android: storage is shared and she's already signed in, so A14c is skipped: → <a href="#A12">A12</a> (unpaid or ended plan: S8d).</div>
+      <div class="sv">saves: nothing</div>
+      <div class="end">
+        <a class="b p" href="#A14c">Opened from the home screen <span class="to">→ A14c</span></a>
+        <a class="b" href="#A14">Back <span class="to">→ A14</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A14c">
+      <div class="id">A14c · home-screen app</div><div class="nm">Welcome. Sign in</div>
+      <div class="bx">l•••@gmail.com <span class="to">pre-filled</span></div>
+      <a class="b" href="#A14c">Send my code <span class="to">stays, code box opens</span></a>
+      <div class="bx" style="text-align: center; letter-spacing: .3em;">_ _ _ _ _ _</div>
+      <div class="nt">iPhone only: shown on the first home-screen open with no account on this phone, instead of A1 (A1 is the fallback). Android skips it. Same wrong-code, Send again and no-signal lines as A10b / A10c. No plan chosen yet: always A15 before T1. Plan unpaid or ended: Sign in → <a href="WfSettings.dc.html#S8d">S8d</a>, A12 and A13 after paying.</div>
+      <div class="sv">saves: signed in on this phone</div>
+      <div class="end">
+        <a class="b p" href="#A12">Sign in <span class="to">→ A12</span></a>
+        <a class="b" href="#A14b">Back <span class="to">→ A14b</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A12">
+      <div class="id">A12</div><div class="nm">Do others use this phone?</div>
+      <div class="b">Yes</div>
+      <div class="b">No, just me</div>
+      <div class="bx">Yes: weight numbers hidden · plain reminder text</div>
+      <div class="nt">Change any time in You.</div>
+      <div class="sv">saves: shared phone setting</div>
+      <div class="end">
+        <a class="b p" href="#A13">Next <span class="to">→ A13</span></a>
+        <a class="b" href="#A14c">Back <span class="to">→ previous screen</span></a>
+      </div>
+      <div class="nt">Back goes to the screen before: A14c (default), or A14 after "Not now".</div>
+    </div>
+
+    <div class="ph" id="A13">
+      <div class="id">A13</div><div class="nm">Reminders</div>
+      <div>When does your day start?</div>
+      <div class="bx">Time picker, e.g. 6:30 (sets reminder time)</div>
+      <div class="b">Morning · Lunch · Evening · No reminders</div>
+      <div class="nt">One a day at most. The phone asks permission on the tap, inside the home-screen app. In the browser: "Reminders need the home-screen app" + <a href="#A14">Add to home screen</a> (→ A14). If ignored: weekly, then a short note from Jen every 2 weeks.</div>
+      <div class="nt">No plan chosen yet: always A15 before T1, whatever the route.</div>
+      <div class="sv">saves: day start, reminder time</div>
+      <div class="end">
+        <a class="b p" href="#A15">Next <span class="to">no plan yet → A15</span></a>
+        <a class="b" href="WfToday.dc.html#T1">Next, sign-in with a plan <span class="to">T4 / S8 first if due → T1</span></a>
+        <a class="b" href="#A12">Back <span class="to">→ A12</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A15">
+      <div class="id">A15</div><div class="nm">Your free week</div>
+      <div>Pick one first:</div>
+      <div style="display: flex; gap: 6px;">
+        <div class="bx" style="flex: 1; background: #FFFFFF; border: 1px solid #8C7E82;"><b>Monthly</b><br>$10 a month</div>
+        <div class="bx" style="flex: 1; background: #FFFFFF; border: 1px solid #8C7E82;"><b>Yearly</b><br>$70 a year</div>
+      </div>
+      <div class="nt">Nothing pre-selected. After a pick (example: Yearly):</div>
+      <div style="font-weight: 600;">Free until Wed 4 Nov. First charge: $70 on 4 Nov, tax included. Cancel before then and pay nothing. Card needed now.</div>
+      <div class="nt">One currency, local. The taster was not the trial. Reminder email before 4 Nov. Email with the trial-used marker (deleted account, signed up again as new): <a href="#A15b">A15b</a> instead.</div>
+      <div class="sv">saves: plan choice, trial start date</div>
+      <div class="end">
+        <a class="b p" href="#A15c">Add card <span class="to">needs a pick → pay page → A15c</span></a>
+        <a class="b" href="#A13">Back <span class="to">→ A13</span></a>
+        <a href="WfSettings.dc.html#S9" style="font-size: 11px; text-align: center;">Not now (log out or delete) → S9</a>
+      </div>
+    </div>
+
+    <div class="ph" id="A15b">
+      <div class="id">A15b · version 2: no free week left</div><div class="nm">Pick your plan</div>
+      <div>Pick one first:</div>
+      <div style="display: flex; gap: 6px;">
+        <div class="bx" style="flex: 1; background: #FFFFFF; border: 1px solid #8C7E82;"><b>Monthly</b><br>$10 a month</div>
+        <div class="bx" style="flex: 1; background: #FFFFFF; border: 1px solid #8C7E82;"><b>Yearly</b><br>$70 a year</div>
+      </div>
+      <div class="nt">Nothing pre-selected.</div>
+      <div style="font-weight: 600;">No free week left on this email. Charge today: $10 (or $70), tax included, then every month (or year) on the same day.</div>
+      <div class="nt">Shown instead of A15 when the email has only the trial-used marker (a deleted account; she came through A10b as new). One currency, local.</div>
+      <div class="sv">saves: plan choice, paid start date</div>
+      <div class="end">
+        <a class="b p" href="#A15c">Pay <span class="to">needs a pick → pay page → A15c</span></a>
+        <a class="b" href="#A13">Back <span class="to">→ A13</span></a>
+        <a href="WfSettings.dc.html#S9" style="font-size: 11px; text-align: center;">Not now (log out or delete) → S9</a>
+      </div>
+    </div>
+
+    <div class="ph" id="A15c">
+      <div class="id">A15c · back from the pay page</div><div class="nm">Payment</div>
+      <div class="nt">Every "pay page" button goes through here: <a href="#A15">A15</a>, <a href="#A15b">A15b</a>, <a href="WfSettings.dc.html#S8">S8</a>, <a href="WfSettings.dc.html#S8b">S8b</a>, <a href="WfSettings.dc.html#S8d">S8d</a>. The pay page (Dodo) is outside the app.</div>
+      <div class="bx" style="text-align: center;">"Finishing payment…"</div>
+      <div class="nt">On iPhone, the pay page opens over the app. When she comes back, the app checks with the server before it says anything.</div>
+      <div class="bx" style="background: #FBE9EE; color: #7A1238;">Not paid: "That didn't go through. Try again"</div>
+      <a class="b" href="#A15c">Try again <span class="to">pay page again → A15c</span></a>
+      <div class="sv">saves: nothing (the server confirms the payment)</div>
+      <div class="end">
+        <a class="b p" href="WfToday.dc.html#T1">Paid <span class="to">→ T1 (S8, S8b: → S8)</span></a>
+        <div class="nt">From S8d on a phone not set up yet: Paid → <a href="#A12">A12</a> → A13 → T1.</div>
+        <a class="b" href="#A15">Back <span class="to">→ the screen she came from</span></a>
+      </div>
+      <div class="nt">Back returns to the screen she came from: A15 (default), A15b, S8, S8b or S8d.</div>
+    </div>
+
+    <div class="ph" id="A11">
+      <div class="id">A11</div><div class="nm">Sign in</div>
+      <div>Welcome back. Type your email and we'll send a 6-digit code.</div>
+      <div class="bx">Email</div>
+      <div class="nt">No passwords. Also shown after Log out (S9).</div>
+      <div class="sv">saves: nothing</div>
+      <div class="end">
+        <a class="b p" href="#A11b">Send my code <span class="to">→ A11b</span></a>
+        <a class="b" href="#A1">Back <span class="to">→ A1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A11b">
+      <div class="id">A11b</div><div class="nm">Type your code</div>
+      <div>We sent it to l•••@gmail.com</div>
+      <div class="bx" style="text-align: center; letter-spacing: .3em;">_ _ _ _ _ _</div>
+      <div class="bx" style="background: #FBE9EE; color: #7A1238;">Wrong code: "That code didn't work. Send a new one."</div>
+      <a class="b" href="#A11b">Send again <span class="to">stays</span></a>
+      <a class="b" href="#A11c">No signal, or no account <span class="to">→ A11c</span></a>
+      <div class="bx">Sign in lands on: plan unpaid or ended: <a href="WfSettings.dc.html#S8d">S8d</a> first (new phone: <a href="#A14">A14</a> → A14b → A14c → S8d; A12, A13 only after paying, then → T1). Else new phone A14 → A14b → A14c → A12 → A13 once; <a href="WfToday.dc.html#T4">T4</a> if 5+ days away; else T1 (card retrying: Update card banner).</div>
+      <div class="nt">No plan chosen yet: <a href="#A15">A15</a> before T1.</div>
+      <div class="end">
+        <a class="b p" href="WfToday.dc.html#T1">Sign in <span class="to">→ T1</span></a>
+        <a class="b" href="#A11">Back <span class="to">→ A11</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A11c">
+      <div class="id">A11c · code problems</div><div class="nm">Two other states</div>
+      <div class="bx">No signal: "Needs signal. Try again when you're connected."</div>
+      <a class="b" href="#A11b">Try again <span class="to">→ A11b</span></a>
+      <div class="bx">"No account with this email."</div>
+      <div class="nt">Also for a deleted account's email (trial-used marker only). Start new runs setup as new and ends on A15b, not A15.</div>
+      <a class="b" href="#A11">Try another email <span class="to">→ A11</span></a>
+      <a class="b" href="#A2">Start new <span class="to">→ A2</span></a>
+      <div class="sv">saves: nothing</div>
+      <div class="end">
+        <a class="b" href="#A11b">Back <span class="to">→ A11b</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="A9">
+      <div class="id">A9 · from S2 or C7</div><div class="nm">Your plan updated</div>
+      <div style="font-weight: 600;">Now: 4 short workouts a week and 3 easy meals a day.</div>
+      <a class="b" href="#A9">Why this change <span class="to">opens, stays</span></a>
+      <div class="nt">One sentence. No numbers, no graph. A goal change starts a new 12 weeks. Undo shows after a goal change. Nothing is written to history until she leaves A9 forwards (Sounds good).</div>
+      <div class="nt">From C7, if her average weight reaches BMI 20 on "Lose some weight": "Switch to Keep steady". Before C7 offers "Lose some weight" again with no weigh-ins, it asks for a fresh rough weight (never shown).</div>
+      <div class="sv">saves: new plan (goal change: new 12 weeks)</div>
+      <div class="end">
+        <a class="b p" href="WfToday.dc.html#T1">Sounds good <span class="to">writes history → T1</span></a>
+        <a class="b" href="WfSettings.dc.html#S2">Undo, keep my old goal <span class="to">→ S2, old goal back</span></a>
+        <a class="b" href="WfSettings.dc.html#S2">Back <span class="to">→ S2</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":7588,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes W: training</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.hf{font-size:11px;color:#56626B;font-style:italic}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.tabs{margin-top:auto;display:flex;justify-content:space-between;border-top:1px solid #E3DAD8;padding-top:6px;font-size:11px;font-weight:600}
+.tabs a{text-decoration:none;color:#66585C}
+</style>
+</helmet>
+<div style="width: 4288px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">W: Training</h1>
+    <div style="font-size: 15px; color: #66585C;">Sessions are 10, 20 or 35 min (set in A5). Workouts are named by body area (e.g. "Legs and core"), never by letter. A session picks up where it stopped, even if the phone dies. Works with no signal.</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="W1">
+      <div class="id">W1 · tab</div><div class="nm">Train</div>
+      <a class="b p" href="#W2">Next: Legs and core · 20 min <span class="to">→ W2</span></a>
+      <div class="bx">This week: 1 of 3 done.</div>
+      <div class="nt">After today's workout the top card says "Done for today" and "Pick another workout" is hidden. Never two workouts on one day.</div>
+      <a class="b" href="#W2">Pick another workout <span class="to">→ W2</span></a>
+      <a class="b" href="#W8">Skills <span class="to">→ W8</span></a>
+      <a class="b" href="#W9">Past workouts <span class="to">→ W9</span></a>
+      <a class="b" href="#W11">Moves I've set aside <span class="to">→ W11</span></a>
+      <div class="nt">Plan ended (<a href="WfSettings.dc.html#S8d">S8d</a>): Train shows only the locked card, same as Today's T8, with Pay. Payment didn't go through (S8b): Train stays fully open.</div>
+      <div class="tabs"><a href="WfToday.dc.html#T1">Today</a><a href="#W1" aria-current="page" style="color: #9C1F4F;">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="W2">
+      <div class="id">W2</div><div class="nm">Before you start</div>
+      <div class="bx">Legs and core · 5 moves × 3 sets = 15 sets · 20 min · no kit needed</div>
+      <div class="nt">Moves: squat, calf raise, split squat, dead bug, plank (held, W3d). Starter and no-floor versions per A6.</div>
+      <a class="b" href="#W6">Tap a move <span class="to">→ W6</span></a>
+      <a class="b" href="#W2"><span>Big screen mode: on · off<br><span class="nt">Big text you can see from across the room</span></span></a>
+      <div class="sv">saves: big screen mode (remembered)</div>
+      <div class="bx" style="color: #231A1D; font-size: 11px; line-height: 15px;">Tip, first workout only (on W3): iPhone: turn your ringer on to hear the beeps. To keep the screen on: Settings › Display &amp; Brightness › Auto-Lock.</div>
+      <div class="nt">Build: Start turns on sound and keep-screen-on; timers use timestamps; else "Keep your screen on". Pictures on wifi.</div>
+      <div class="end">
+        <a class="b p" href="#W3">Start <span class="to">→ W3 (W3c if big screen on)</span></a>
+        <a class="b" href="#W1">Back <span class="to">→ W1 or T1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W3">
+      <div class="id">W3 · lift</div><div class="nm">Workout</div>
+      <div class="hf">Hi-fi: "3 Workout" and "3b Workout rest"</div>
+      <div style="display: flex; gap: 6px;"><a class="b" style="flex: 1;" href="#W4">‖ Pause <span class="to">→ W4</span></a><a class="b" style="flex: 1;" href="#W3c" title="Big text you can see from across the room">Big screen mode <span class="to">→ W3c</span></a></div>
+      <a class="b" href="#W5">Hurts? Swap this move <span class="to">→ W5</span></a>
+      <div class="nt">Hurts sits up here, far from Done set. Held moves (plank and similar) use <a href="#W3d">W3d</a>.</div>
+      <div class="bx">Move 3 of 5 · set 2 of 3. 7 of 15 sets done, about 11 min left. Picture (still on low data). Reps, last time filled in, − / +.</div>
+      <a class="b" href="#W6">Tap picture or name <span class="to">→ W6</span></a>
+      <div class="end">
+        <div class="bx" style="color: #231A1D; font-weight: 600;">Stop if you get chest pain, feel dizzy, or a joint hurts sharply.</div>
+        <a class="b p" href="#W3b">Done set <span class="to">→ W3b</span></a>
+        <div class="sv">saves: reps for that set</div>
+        <div class="nt">Last set of last move → W7. Taster (from A8): same screen, 10 min. Ringer tip (W2): first workout only.</div>
+      </div>
+    </div>
+
+    <div class="ph" id="W3c">
+      <div class="id">W3c · big screen · hi-fi: BigScreen</div><div class="nm">Big screen mode</div>
+      <div style="display: flex; gap: 6px;"><a class="b" style="flex: 1;" href="#W5">Hurts? Swap this move <span class="to">→ W5</span></a><a class="b" href="#W4">‖ Pause <span class="to">→ W4</span></a></div>
+      <div class="bx" style="font-size: 22px; line-height: 28px; color: #231A1D;">Split squat<br><span style="font-size: 34px; line-height: 40px;">8 reps</span><br><span style="font-size: 13px; line-height: 17px;">Set 2 of 3 · each leg</span></div>
+      <div class="nt">Voice says each move; 3-2-1 beeps. Held moves: W3d. Rest is big too and comes back here; its Skip sits at the top, never where Done set was. Effort asked once per move. Stays on.</div>
+      <div class="end">
+        <a class="b p" href="#W3b" style="min-height: 88px; font-size: 20px;">Done set <span class="to">→ rest</span></a>
+        <div class="sv">saves: planned reps or seconds (fix at W7); steps up only if rated Just right or Too easy</div>
+        <a class="b" href="#W3">Turn off big screen mode <span class="to">→ W3</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W3d">
+      <div class="id">W3d · held move</div><div class="nm">Held move</div>
+      <div class="nt">Plank and similar holds.</div>
+      <div style="display: flex; gap: 6px;"><a class="b" style="flex: 1;" href="#W4">‖ Pause <span class="to">→ W4</span></a><a class="b" style="flex: 1;" href="#W5">Hurts? Swap <span class="to">→ W5</span></a></div>
+      <a class="b" href="#W6">Plank · tap for how <span class="to">→ W6</span></a>
+      <div class="bx" style="color: #231A1D;">Set 1 of 3 · hold <b>30 sec</b> (seconds instead of reps). Last time 25 sec. − / + 5 sec.</div>
+      <div class="bx" style="font-size: 34px; line-height: 40px; color: #231A1D; text-align: center;">0:30</div>
+      <div class="nt">After Start: a 10-second spoken "Get into position", then 3-2-1 beeps, then the hold. Voice: "10 seconds left", then "Rest". Ends by itself. Tap to stop early.</div>
+      <div class="sv">saves: seconds held for that set</div>
+      <div class="nt">Big screen version: same layout as <a href="BigScreen.dc.html">BigScreen.dc.html</a>, with giant seconds and a giant Start.</div>
+      <div class="end">
+        <a class="b p" href="#W3b">Start <span class="to">→ ready, 3-2-1, hold → W3b</span></a>
+        <div class="nt">Rest after a held move returns here (W3d).</div>
+      </div>
+    </div>
+
+    <div class="ph" id="W3b">
+      <div class="id">W3b · rest</div><div class="nm">Rest</div>
+      <div class="hf">Hi-fi: "3b Workout rest". 3 blocks only.</div>
+      <div class="bx">Set 2 saved: 8 reps · <a href="#W3">Undo (5 sec)</a><br><span style="font-size: 22px; line-height: 28px; color: #231A1D;">0:45</span> · +15 sec · Skip</div>
+      <div class="bx">That set was: Too easy · Just right · Too hard</div>
+      <div class="sv">saves: set effort if tapped (none picked to start)</div>
+      <div class="bx">Next: set 3 of 3, split squat</div>
+      <div class="nt">Undo → same set. Big screen: Skip at the top, not where Done set was.</div>
+      <div class="end">
+        <a class="b p" href="#W3">Timer ends or Skip <span class="to">→ W3 next set</span></a>
+        <a class="b" href="#W3c">Big screen mode on <span class="to">→ W3c next set</span></a>
+        <a class="b" href="#W3d">After a held move <span class="to">→ W3d next set</span></a>
+        <a class="b" href="#W4">‖ Pause <span class="to">→ W4</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W4">
+      <div class="id">W4 · sheet</div><div class="nm">Paused</div>
+      <div class="bx">9 min done · 7 of 15 sets</div>
+      <div class="end">
+        <a class="b p" href="#W3">Keep going <span class="to">→ W3 (W3c if on)</span></a>
+        <a class="b" href="#W7">Stop here, keep what I did <span class="to">→ W7</span></a>
+        <div class="sv">saves: part workout</div>
+        <div class="nt">A part workout counts as done for the week. It doesn't move the plan up.</div>
+        <a class="b" href="WfToday.dc.html#T1">Stop, don't save <span class="to">→ confirm → T1</span></a>
+        <a class="b" href="WfStart.dc.html#A10">Taster: either stop button <span class="to">→ A10</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W5">
+      <div class="id">W5 · sheet</div><div class="nm">Swap this move</div>
+      <a class="b" href="#W3">Hurts saved · Undo (5 sec) <span class="to">→ W3</span></a>
+      <div class="nt">No questions. Only moves for a different body part, and never one already in today's workout.</div>
+      <a class="b" href="#W3">Option 1: glute bridge <span class="to">→ W3</span></a>
+      <a class="b" href="#W3">Option 2: bird dog <span class="to">→ W3</span></a>
+      <div class="sv">saves: hurts tap + body part (left out for the rest of today)</div>
+      <div class="nt">Hurts twice on the same move: it's set aside. Bring it back in W11.</div>
+      <div class="end">
+        <a class="b" href="#W3">Cancel <span class="to">→ W3 (W3c if on)</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W6">
+      <div class="id">W6</div><div class="nm">How to do it</div>
+      <div class="bx" style="height: 90px;">Moving picture with Pause. Still picture on low data or "stop moving pictures".</div>
+      <div class="bx">3 tips · common mistakes</div>
+      <a class="b" href="#W6">Starter version <span class="to">→ W6</span></a>
+      <a class="b" href="#W6">No-floor version (chair or wall) <span class="to">→ W6</span></a>
+      <a class="b" href="#W6">Harder version <span class="to">→ W6</span></a>
+      <div class="nt">Opened mid-workout: the rest timer pauses.</div>
+      <div class="end">
+        <a class="b p" href="#W3">Use this version <span class="to">→ W3</span></a>
+        <div class="sv">saves: swap for today</div>
+        <a class="b" href="#W3">Back <span class="to">→ W3, W2 or W8</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W7">
+      <div class="id">W7</div><div class="nm">Well done</div>
+      <div class="bx">20 min · 15 sets · new best: split squat 10</div>
+      <a class="b" href="#W7">Fix a set's reps or seconds <span class="to">stays</span></a>
+      <div class="nt">For sets done in big screen mode, which saves the planned number. A move only steps up if she rated it Just right or Too easy.</div>
+      <div class="b">How was it? Too easy · Just right · Too hard <span class="to">stays</span></div>
+      <div class="sv">saves: workout effort, workout done (or part)</div>
+      <div class="nt">No signal: "Saved on phone, sends later."</div>
+      <div class="end">
+        <a class="b p" href="WfToday.dc.html#T5">Done for today <span class="to">→ T5</span></a>
+        <a class="b p" href="WfStart.dc.html#A10">Taster: Save your progress <span class="to">→ A10</span></a>
+        <div class="nt">Taster shows only the A10 button.</div>
+        <a class="b" href="#W7">Copy result to share <span class="to">stays</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W8">
+      <div class="id">W8</div><div class="nm">Skills</div>
+      <div class="bx">Push-up · squat · pull-up · core, each with levels</div>
+      <a class="b" href="#W6">Tap a skill <span class="to">→ W6 (your level)</span></a>
+      <div class="nt">Levels move up from sets you log. Nothing to set by hand.</div>
+      <div class="nt">10 and 20 minute workouts count too.</div>
+      <div class="nt">Starts at the starter level (wall push-up, sit-to-stand) if that's where you are.</div>
+      <div class="end">
+        <a class="b" href="#W1">Back <span class="to">→ W1 or P1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W11">
+      <div class="id">W11 · new</div><div class="nm">Moves I've set aside</div>
+      <div class="nt">Moves you tapped Hurts on twice.</div>
+      <div class="bx">Split squat · set aside 12 Oct</div>
+      <a class="b p" href="#W11">Bring it back <span class="to">stays</span></a>
+      <div class="sv">saves: move back in your workouts</div>
+      <div class="bx">Jump squat · set aside 3 Oct</div>
+      <a class="b" href="#W11">Bring it back <span class="to">stays</span></a>
+      <div class="nt">Empty list: "Nothing set aside."</div>
+      <div class="end">
+        <a class="b" href="#W1">Back <span class="to">→ W1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W9">
+      <div class="id">W9</div><div class="nm">Past workouts</div>
+      <div class="bx">Every workout, newest first. Best lifts at the top.</div>
+      <a class="b" href="#W10">Tap a workout <span class="to">→ W10</span></a>
+      <div class="end">
+        <a class="b" href="#W1">Back <span class="to">→ W1</span></a>
+        <a class="b" href="WfProgress.dc.html#P1">Opened from Progress <span class="to">→ P1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="W10">
+      <div class="id">W10</div><div class="nm">One past workout</div>
+      <div class="bx">Each move: sets × reps, effort</div>
+      <div class="nt">Read-only.</div>
+      <div class="end">
+        <a class="b" href="#W9">Back <span class="to">→ W9</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":4288,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes C: check-in and your 12 weeks</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.hf{font-size:11px;color:#56626B;font-style:italic}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+</style>
+</helmet>
+<div style="width: 3088px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">C: Weekly check-in and your 12 weeks</h1>
+    <div style="font-size: 15px; color: #66585C;">About a minute, once a week. A half-done check-in is kept and offered again until the next check-in day, then the draft expires. Skipping it means "keep things the same". The check-in banner on Today stays up for 3 days after the check-in day. Changes are food size or workout steps only; the 3 walks a week are the base plan, never a check-in change. No goal weight anywhere. No health or medical questions anywhere.</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="C1">
+      <div class="id">C1 · step 1 of 3</div><div class="nm">Your week</div>
+      <div class="bx">Workouts 3 of 3 · meals 18 of 21 logged (3 not logged, that's fine) · walks ticked 2. Filled in from what you logged.</div>
+      <div class="nt">Meals not logged are shown plainly, never as "missed". No steps anywhere.</div>
+      <div class="b">Something wrong? Edit a number <span class="to">stays</span></div>
+      <div class="sv">saves: check-in draft (expires next check-in day)</div>
+      <a class="b" href="#C1b">Nothing logged all week <span class="to">→ C1b instead</span></a>
+      <div class="end">
+        <a class="b p" href="#C2">Next <span class="to">weighs in → C2</span></a>
+        <a class="b p" href="#C2b">Next <span class="to">no weigh-ins → C2b</span></a>
+        <a class="b" href="WfToday.dc.html#T1">Later <span class="to">→ T1, draft kept</span></a>
+      </div>
+      <div class="nt">Opened from the check-in banner on T1 (check-in day and the 3 days after).</div>
+    </div>
+
+    <div class="ph" id="C1b">
+      <div class="id">C1b · week with nothing logged</div><div class="nm">Your week</div>
+      <div class="bx">Nothing logged this week. Same plan, fresh start.</div>
+      <div class="nt">The only line shown. No questions, no change, no "missed".</div>
+      <div class="nt">A week with no activity doesn't count toward her 12 weeks.</div>
+      <div class="sv">saves: check-in done, plan unchanged, week not counted</div>
+      <div class="end">
+        <a class="b p" href="WfToday.dc.html#T1">Sounds good <span class="to">→ T1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="C2">
+      <a class="b" href="WfToday.dc.html#T1" style="align-self: flex-start;">X Later, kept for you <span class="to">→ T1</span></a>
+      <div class="id">C2 · step 2 of 3 · she weighs in</div><div class="nm">Weight this week</div>
+      <div class="bx">Weighed on 4 days · average weight 72.4 kg</div>
+      <a class="b" href="WfToday.dc.html#T3">Weigh in on 3 different days for a food change <span class="to">→ T3</span></a>
+      <div class="nt">One a day counts. Change since start = since the first real weigh-in; the setup weight isn't one. Numbers hidden: words only.</div>
+      <div class="nt">Fewer than 3 weigh-ins this week: the clothes question shows too, with the <a href="#C2b">C2b</a> rules. No food change from weight; speed brake still runs.</div>
+      <div class="b">Clothes feel: looser · same · tighter <span class="to">only under 3</span></div>
+      <div class="sv">saves: weigh-ins, clothes answer if asked</div>
+      <div class="end">
+        <a class="b p" href="#C3">Next <span class="to">→ C3</span></a>
+        <a class="b" href="#C1">Back <span class="to">→ C1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="C2b">
+      <a class="b" href="WfToday.dc.html#T1" style="align-self: flex-start;">X Later, kept for you <span class="to">→ T1</span></a>
+      <div class="id">C2b · step 2 of 3 · no weigh-ins</div><div class="nm">How do your clothes feel?</div>
+      <div class="b">Looser <span class="to">tap = choose</span></div>
+      <div class="b">Same <span class="to">tap = choose</span></div>
+      <div class="b">Tighter <span class="to">tap = choose</span></div>
+      <div class="nt">For "I'd rather not weigh myself". The clothes question only: no weigh-in link, no weight shown.</div>
+      <div class="nt">Lose some weight: looser = same plan. Same 3 weeks running = one small food change. Tighter 2 weeks running = no cuts, same plan, kind words ("Your plan stays the same."). Max 3 food changes per 12 weeks.</div>
+      <div class="sv">saves: clothes answer</div>
+      <div class="end">
+        <a class="b p" href="#C3">Next <span class="to">→ C3</span></a>
+        <a class="b" href="#C1">Back <span class="to">→ C1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="C3">
+      <a class="b" href="WfToday.dc.html#T1" style="align-self: flex-start;">X Later, kept for you <span class="to">→ T1</span></a>
+      <div class="id">C3 · step 3 of 3</div><div class="nm">Anything get in the way?</div>
+      <div class="b">Sore <span class="to">stays</span></div>
+      <div class="b">Bad sleep <span class="to">stays</span></div>
+      <div class="b">Busy week <span class="to">stays</span></div>
+      <div class="b">Fasting <span class="to">stays</span></div>
+      <div class="b">Nothing <span class="to">stays</span></div>
+      <div class="nt">Pick any. Sore, bad sleep, busy or fasting: no food change this week, said plainly on C4.</div>
+      <div class="sv">saves: check-in answers</div>
+      <div class="end">
+        <a class="b p" href="#C4">See my result <span class="to">→ C4</span></a>
+        <a class="b" href="#C8">Same answer 3 weeks running <span class="to">→ C8 instead</span></a>
+        <a class="b" href="#C2">Back <span class="to">→ C2 (or C2b)</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="C8">
+      <div class="id">C8 · only if same answer 3 weeks running</div><div class="nm">Is this your normal now?</div>
+      <div class="bx">"Busy week" three weeks in a row. Is this your normal now?</div>
+      <a class="b p" href="#C4">Yes, plan around it <span class="to">→ C4</span></a>
+      <div class="sv">saves: plan adjusts (e.g. shorter workouts, simpler meals)</div>
+      <a class="b" href="#C4">No, it will pass <span class="to">→ C4</span></a>
+      <div class="sv">saves: plan unchanged</div>
+      <div class="end">
+        <a class="b" href="#C3">Back <span class="to">→ C3</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="C4">
+      <div class="id">C4 · result</div><div class="nm">Result: one change</div>
+      <div class="nt">Hi-fi: "4 Weekly check-in". Copy: 25 words or fewer, e.g. "Meals stay the same. Legs get one extra set." Sounds good is always the first button.</div>
+      <div class="end" style="margin-top: 0;">
+        <a class="b p" href="WfToday.dc.html#T1">Sounds good <span class="to">→ T1</span></a>
+        <div class="sv">saves: check-in accepted, new targets, why this change</div>
+        <a class="b" href="WfToday.dc.html#T1">Not this week <span class="to">→ T1</span></a>
+        <div class="sv">saves: check-in declined, targets unchanged</div>
+      </div>
+      <a class="b" href="#C5">Why this change? <span class="to">→ C5</span></a>
+      <div class="nt">Rules (hidden, rest on C5): one change a week, food size or one workout step, walks never. No weigh-ins, or under 3: the C2b clothes rules. Max 3 food changes per 12 weeks.</div>
+      <div class="nt">"I buy most food": a food size change adds or removes a side (e.g. "+ 1 fruit"), never "make it smaller".</div>
+      <div class="nt">At the end of her 12 weeks, Sounds good goes to C6.</div>
+    </div>
+
+    <div class="ph" id="C5">
+      <div class="id">C5 · sheet</div><div class="nm">Why this change</div>
+      <div class="bx">What was saved that week: average weight and change since the first weigh-in · how often you did it · the rule used</div>
+      <div class="nt">Read from what was saved that week, never recalculated. Plain sentences, no formulas, no calorie numbers, no goal weight. Weight numbers hidden: words only.</div>
+      <div class="nt">More rules (hidden): Lose some weight runs at a steady weekly rate set in the engine. Too fast: eat more (speed brake, T3: 2 real weigh-ins on different days). Food changes after 3 weeks off that rate; under 0.5 kg ignored. Never below the floor. Average at BMI 20 on Lose some weight: "Switch to Keep steady" (A9). Little logging, away week or a C3 answer = no change.</div>
+      <div class="end">
+        <a class="b" href="#C4">Close <span class="to">→ back (C4 or P4)</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="C6">
+      <div class="id">C6</div><div class="nm">Your 12 weeks: done</div>
+      <div class="bx" style="height: 90px;">Your 12 weeks: good weeks, strength up, average weight change, new skills</div>
+      <div class="nt">"12 weeks done. Stronger than in September." No before and after photos unless she turns them on. Weeks with no activity don't count toward the 12.</div>
+      <div class="end">
+        <a class="b p" href="#C7">What's next <span class="to">→ C7</span></a>
+        <a class="b" href="WfToday.dc.html#T1">Decide later <span class="to">→ T1, Keep steady runs</span></a>
+        <a class="b" href="#C6">Copy to share <span class="to">stays</span></a>
+      </div>
+      <div class="nt">Also shown on opening the app when her 12 weeks end (the one interrupt allowed after T4). Keep steady runs until she chooses.</div>
+    </div>
+
+    <div class="ph" id="C7">
+      <div class="id">C7</div><div class="nm">Your next 12 weeks</div>
+      <div class="b">Keep steady (suggested) <span class="to">stays</span></div>
+      <div class="b">Get stronger <span class="to">stays</span></div>
+      <div class="b">Lose some weight <span class="to">stays</span></div>
+      <div class="nt">Pick one. "Lose some weight" is quietly hidden when it doesn't fit (low BMI, or 2 already this year). No explanation shown.</div>
+      <div class="nt">A goal change at any time (here or S2) starts a new 12 weeks and is written to history.</div>
+      <div class="nt">No weigh-ins: before "Lose some weight" is offered again, she gives a fresh rough weight ("roughly is fine"). Used for meal size and safety checks, never shown.</div>
+      <div class="sv">saves: new 12 weeks, written to history</div>
+      <div class="end">
+        <a class="b p" href="WfStart.dc.html#A9">Start it <span class="to">→ A9 plan updated → T1</span></a>
+        <a class="b" href="WfToday.dc.html#T1">Decide later <span class="to">→ T1, Keep steady runs</span></a>
+        <a class="b" href="#C6">Back <span class="to">→ C6</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3088,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes P: progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.hf{font-size:11px;color:#56626B;font-style:italic}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.tabs{margin-top:auto;display:flex;justify-content:space-between;border-top:1px solid #E3DAD8;padding-top:6px;font-size:11px;font-weight:600}
+.tabs a{text-decoration:none;color:#66585C}
+</style>
+</helmet>
+<div style="width: 1588px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">P: Progress</h1>
+    <div style="font-size: 15px; color: #66585C;">Average weight and the change since her first real weigh-in. The setup weight (A2) is not a weigh-in: it only sizes meals and runs the safety checks, and is never shown here. Only one weigh-in a day counts. No goal weight, no forecast. Progress stays open when the plan has ended (T8). Other wins count just as much. One switch: Show my weight numbers.</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="P1">
+      <div class="id">P1 · tab</div><div class="nm">Progress</div>
+      <a class="b" href="WfSettings.dc.html#S1">You: person circle, top right <span class="to">→ S1</span></a>
+      <div class="b">Wins · Weight · Strength · Photos <span class="to">in place</span></div>
+      <div class="nt">Opens on Weight once she has a weigh-in, else Wins. Doesn't weigh herself: heading "Your wins and strength", no Weight view. Numbers off (S7): words only.</div>
+      <a class="b" href="#P5">Wins <span class="to">→ P5</span></a>
+      <a class="b" href="#P2">Weight: tap the chart <span class="to">→ P2</span></a>
+      <a class="b" href="WfTrain.dc.html#W9">Strength: tap a move <span class="to">→ W9, Back → P1</span></a>
+      <a class="b" href="#P3">Photos: add or compare <span class="to">→ P3</span></a>
+      <a class="b" href="#P4">Check-in history <span class="to">→ P4</span></a>
+      <a class="b" href="WfToday.dc.html#T3">Weight: Weigh in <span class="to">→ T3, back here</span></a>
+      <div class="tabs"><a href="WfToday.dc.html#T1">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="WfFood.dc.html#F1">Food</a><a href="#P1" aria-current="page" style="color: #9C1F4F;">Progress</a></div>
+    </div>
+
+    <div class="ph" id="P2">
+      <div class="id">P2</div><div class="nm">Weight history</div>
+      <div class="bx" style="height: 100px;">Big chart: pale dots for each weigh-in, bold average weight. No goal line, no forecast. 1 month · 3 months · all</div>
+      <div class="nt">Key under the chart: Average weight · Weigh-ins. Above it: change since the first weigh-in only.</div>
+      <div class="bx">List of weigh-ins, newest first, one a day. Starts at the first real weigh-in; the setup weight is not listed.</div>
+      <a class="b p" href="WfToday.dc.html#T3">Add weigh-in <span class="to">→ T3, back here</span></a>
+      <div class="b">Tap a weigh-in: Edit · Delete <span class="to">stays</span></div>
+      <div class="sv">saves: weigh-ins</div>
+      <div class="end">
+        <a class="b" href="#P1">Back <span class="to">→ P1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="P3">
+      <div class="id">P3</div><div class="nm">Photos</div>
+      <div class="b">Progress photos: off <span class="to">on · off</span></div>
+      <div class="nt">Private, on this account only. Off until you turn it on. Turning it off asks first, then deletes your photos.</div>
+      <div class="b">Take or choose a photo <span class="to">when on: camera, back here</span></div>
+      <div class="nt">Never saved to the phone gallery.</div>
+      <div class="sv">saves: photos on/off, photo + date</div>
+      <div class="bx" style="height: 90px;">Compare: pick two dates side by side</div>
+      <div class="b">Tap a photo: View · Delete <span class="to">stays</span></div>
+      <div class="nt">Opened very often: one gentle line, "Photos change slowly. Once a month is plenty."</div>
+      <div class="end">
+        <a class="b" href="#P1">Back <span class="to">→ P1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="P4">
+      <div class="id">P4</div><div class="nm">Check-in history</div>
+      <div class="bx">Every week: the one change and whether you took it. Month summary at the top.</div>
+      <a class="b" href="WfCheckIn.dc.html#C5">Tap a week <span class="to">→ C5 for that week</span></a>
+      <div class="nt">Read-only.</div>
+      <div class="end">
+        <a class="b" href="#P1">Back <span class="to">→ P1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="P5">
+      <div class="id">P5 · view</div><div class="nm">Wins</div>
+      <div class="nt">The first view when there are no weigh-ins or the scale is hidden.</div>
+      <div class="bx">"9 workouts done. 6 good weeks of the last 8."</div>
+      <a class="b" href="WfTrain.dc.html#W8">First full push-up · 12 Oct <span class="to">→ W8</span></a>
+      <a class="b" href="WfTrain.dc.html#W8">Next skill: 3 pull-ups with a band · 2 workouts away <span class="to">→ W8</span></a>
+      <a class="b" href="WfTrain.dc.html#W9">Stronger: sit-to-stand 8 → 12 <span class="to">→ W9</span></a>
+      <div class="b">Clothes looser · 2 check-ins <span class="to">stays</span></div>
+      <div class="nt">No weight shown here, ever. Wins come from workouts, skills and check-in answers.</div>
+      <div class="end">
+        <a class="b" href="#P1">Back <span class="to">→ P1</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1588,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

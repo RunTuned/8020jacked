@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wireframes F: food</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#231A1D}a:hover{color:#9C1F4F}
+.ph{width:260px;height:560px;flex:none;box-sizing:border-box;background:#FFFFFF;border:1.5px solid #8C7E82;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:17px;color:#231A1D}
+.id{font-size:12px;font-weight:600;color:#9C1F4F;letter-spacing:.04em}
+.nm{font-family:'Familjen Grotesk',sans-serif;font-size:17px;line-height:21px;font-weight:600}
+.bx{background:#EFEAE8;border-radius:8px;padding:8px;color:#66585C}
+.b{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:34px;box-sizing:border-box;padding:6px 10px;border:1px solid #8C7E82;border-radius:8px;color:#231A1D;text-decoration:none;background:#FFFFFF}
+.b.p{background:#9C1F4F;color:#FFFFFF;border-color:#9C1F4F}
+.to{font-size:11px;font-weight:600;white-space:nowrap}
+.sv{align-self:flex-start;font-size:11px;line-height:15px;background:#E4EFE1;color:#2F5A2C;border-radius:4px;padding:1px 5px}
+.nt{font-size:11px;line-height:15px;color:#66585C}
+.end{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.tabs{margin-top:auto;display:flex;justify-content:space-between;border-top:1px solid #E3DAD8;padding-top:6px;font-size:11px;font-weight:600}
+.tabs a{text-decoration:none;color:#66585C}
+.tabs a[aria-current="page"]{color:#9C1F4F;text-decoration:underline}
+</style>
+</helmet>
+<div style="width: 2788px; height: 780px; box-sizing: border-box; padding: 48px 64px; background: #F7F4F2; color: #231A1D; font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif; display: flex; flex-direction: column; gap: 16px;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h1 style="margin: 0; font-family: 'Familjen Grotesk', sans-serif; font-size: 28px; font-weight: 600;">F: Food</h1>
+    <div style="font-size: 15px; color: #66585C;">Meals eaten whenever: Meal 1–4 (2, 3 or 4 a day). Every meal is cheap and easy by default. Any meal swaps for any other. Hand-size portions; grams one tap away. Log a meal with one tap: Ate the plan · Something like it · Something else. Every log has a 5-second Undo. Fasting mode (You → Food): the same food for the day in 2 bigger meals; the daily total never drops. "I buy most food": main meals are 1 ready meal + 1 side; the other meals (breakfast, 4th meal) are grab-and-go items such as "Yoghurt + fruit" or "a sandwich". Each has a size line, no calories. Check-in size changes add or remove a side. A new allergy (S5) takes effect at once: today's unlogged meals are replaced and the new ingredients go on this week's list now.</div>
+  </div>
+  <div style="display: flex; gap: 40px;">
+
+    <div class="ph" id="F1">
+      <div class="id">F1 · tab</div><div class="nm">Food</div>
+      <div class="bx">Only on away days: Away until Sun 9 Nov</div>
+      <a class="b p" href="#F2">Meal 1 · Meal 2 · … <span class="to">tap one → F2</span></a>
+      <div class="nt">Only her meals a day (2–4) show. Fasting mode: same food in 2 bigger meals.</div>
+      <a class="b" href="#F6">Something else <span class="to">→ F6</span></a>
+      <a class="b" href="#F4">Shopping list <span class="to">→ F4</span></a>
+      <a class="b" href="#F5">Cook day <span class="to">→ F5</span></a>
+      <a class="b" href="#F8">Pick up this week <span class="to">→ F8</span></a>
+      <div class="nt">I buy: main meals "1 ready meal + 1 side", others grab-and-go (<a href="#F2b">F2b</a>). F8 replaces list and cook day.</div>
+      <a class="b" href="#F1">Eating out tips <span class="to">opens, back here</span></a>
+      <div class="nt">Plan ended: same locked card as <a href="WfToday.dc.html#T8">T8</a>. Payment didn't go through: stays open.</div>
+      <div class="tabs"><a href="WfToday.dc.html#T1">Today</a><a href="WfTrain.dc.html#W1">Train</a><a href="#F1" aria-current="page">Food</a><a href="WfProgress.dc.html#P1">Progress</a></div>
+    </div>
+
+    <div class="ph" id="F2">
+      <div class="id">F2</div><div class="nm">Meal 2: chicken rice</div>
+      <div class="bx">Your size: 1 palm chicken · 1 fist rice · 1 thumb oil · veg as much as you like</div>
+      <a class="b" href="#F2">Show grams <span class="to">stays, toggles</span></a>
+      <div class="b">Cooking for 2 <span class="to">− + remembered</span></div>
+      <div class="nt">Recipe below. "I buy most food": <a href="#F2b">F2b</a> instead. New allergy: if not logged yet, this meal is replaced at once.</div>
+      <div class="end">
+        <a class="b p" href="#F1">Ate the plan <span class="to">→ back</span></a>
+        <a class="b" href="#F1">Something like it <span class="to">→ back</span></a>
+        <a class="b" href="#F6">Something else <span class="to">→ F6</span></a>
+        <div class="sv">saves: meal log · then "Saved. Undo" 5 sec</div>
+        <a class="b" href="#F3">Swap <span class="to">→ F3</span></a>
+        <a class="b" href="#F1">Back <span class="to">→ F1 or T1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F2b">
+      <div class="id">F2b · "I buy most food" version</div><div class="nm">Meal 2: chicken and rice</div>
+      <div class="bx" style="color: #231A1D;">Chicken and rice ready meal + 1 fruit</div>
+      <div class="bx">Regular pack (about 350–400 g), not large</div>
+      <div class="nt">Main meals: 1 ready meal + 1 side. Breakfast and 4th meal: grab-and-go, e.g. "Yoghurt + fruit" or "a sandwich". Every item has a size line, never calories. No "Cooking for". Allergies: "Check the label".</div>
+      <div class="end">
+        <a class="b p" href="#F1">Ate the plan <span class="to">→ back</span></a>
+        <a class="b" href="#F1">Something like it <span class="to">→ back</span></a>
+        <a class="b" href="#F6">Something else <span class="to">→ F6</span></a>
+        <div class="sv">saves: meal log · then "Saved. Undo" 5 sec</div>
+        <a class="b" href="#F3">Swap <span class="to">same kind → F3</span></a>
+        <a class="b" href="#F1">Back <span class="to">→ F1 or T1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F3">
+      <div class="id">F3 · sheet</div><div class="nm">Swap this meal</div>
+      <div class="b">Tuna pasta <span class="to">tap = choose</span></div>
+      <div class="b">Egg and bean wrap <span class="to">tap = choose</span></div>
+      <div class="b">Lentil soup <span class="to">tap = choose</span></div>
+      <div class="b">Heart = favourite <span class="to">stays</span></div>
+      <div class="nt">Never shows meals with your allergies. "I buy most food": main meals swap for ready meals, breakfast and 4th meal for grab-and-go items, each with its size line.</div>
+      <div class="sv">saves: swap, favourites</div>
+      <div class="nt">Shopping list updates by itself.</div>
+      <div class="end">
+        <a class="b p" href="#F2">Pick this one <span class="to">→ back (T1, F1 or F2)</span></a>
+        <a class="b" href="#F2">Cancel <span class="to">→ back (F2 or F2b)</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F4">
+      <div class="id">F4</div><div class="nm">Shopping list</div>
+      <div class="bx">This week's home days only. Away days are left out.</div>
+      <div class="b">Cooking for 2 <span class="to">− + remembered</span></div>
+      <div class="b">Fruit and veg · Fridge · Tins and dry · Freezer <span class="to">tick</span></div>
+      <div class="nt">Sorted by shop area only. Cheap and easy by default, e.g. tinned fish for fresh.</div>
+      <div class="sv">saves: ticks, cooking for</div>
+      <div class="nt">Rebuilds at the start of each week. Meals a day or cook/buy changes show in next week's list. New allergy: affected items flagged and the new meals' ingredients added at once. With allergies, items say "Check the label".</div>
+      <div class="nt">Hidden if "I buy most food" (F8 instead).</div>
+      <div class="end">
+        <a class="b p" href="#F4">Share list <span class="to">phone share sheet</span></a>
+        <a class="b" href="#F1">Back <span class="to">→ F1</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F5">
+      <div class="id">F5</div><div class="nm">Cook day</div>
+      <div class="bx">Cook this week's meals for 2. One step at a time, each with a big timer.</div>
+      <div class="b">Start timer · Done step <span class="to">next step</span></div>
+      <div class="sv">saves: where you are (picks up here)</div>
+      <div class="nt">Hidden if "I buy most food".</div>
+      <div class="nt">New allergy: today's steps update at once. Then: "Already cooked or bought something with nuts? Don't eat it."</div>
+      <div class="end">
+        <a class="b p" href="#F1">All done <span class="to">→ F1</span></a>
+        <div class="sv">saves: cook day done</div>
+        <a class="b" href="#F1">Pause <span class="to">→ F1, picks up here</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F6">
+      <div class="id">F6 · sheet</div><div class="nm">Something else</div>
+      <div class="nt">Opened from T1, F1 or F2.</div>
+      <div class="bx">Home or bought?</div>
+      <a class="b p" href="#F7">Made at home <span class="to">→ F7</span></a>
+      <a class="b" href="#F7">Bought or eaten out <span class="to">→ F7</span></a>
+      <div class="sv">saves: home or bought</div>
+      <div class="end">
+        <a class="b" href="#F1">Cancel <span class="to">→ back to opener</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F7">
+      <div class="id">F7 · sheet</div><div class="nm">How big was it?</div>
+      <div class="b">Small <span class="to">tap = choose</span></div>
+      <div class="b">Same as my meal <span class="to">tap = choose</span></div>
+      <div class="b">Big <span class="to">tap = choose</span></div>
+      <div class="nt">Chosen one gets a check. No numbers to type.</div>
+      <div class="bx">Counts as logged. Your plan stays the same.</div>
+      <div class="end">
+        <a class="b p" href="#F1">Done <span class="to">→ back to opener</span></a>
+        <div class="sv">saves: meal log = something else, size</div>
+        <div class="nt">Then "Saved. Undo" for 5 seconds.</div>
+        <a class="b" href="#F6">Back <span class="to">→ F6</span></a>
+      </div>
+    </div>
+
+    <div class="ph" id="F8">
+      <div class="id">F8 · "I buy most food"</div><div class="nm">Pick up this week</div>
+      <div class="bx">Home days only. Main meals: 1 ready meal + 1 side. Breakfast, 4th meal: grab-and-go.</div>
+      <div class="b"><span>Chicken rice ready meal · 2<br><span class="nt">Regular pack (350–400 g)</span></span><span class="to">tick</span></div>
+      <div class="b"><span>Yoghurt + fruit · 3<br><span class="nt">1 small pot (about 150 g) + 1 piece</span></span><span class="to">tick</span></div>
+      <div class="b">Sides: fruit · 2, bread roll · 2 <span class="to">tick</span></div>
+      <div class="nt">Size line on every item, no calories. Check-in changes add or remove a side. Built at once on switching to "I buy". No shop names, prices or cook day.</div>
+      <div class="nt">Allergies: every item says "Check the label". New allergy: replacements added and items flagged at once.</div>
+      <div class="sv">saves: ticks</div>
+      <div class="end">
+        <a class="b p" href="#F8">Share list <span class="to">phone share sheet</span></a>
+        <a class="b" href="#F1">Back <span class="to">→ F1</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2788,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
