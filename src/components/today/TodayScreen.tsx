@@ -140,12 +140,12 @@ export function TodayScreen() {
     const moves = selectSession(st).moves.length;
     doNow = (
       <Card tone="blue" icon="train" title={`${moves} moves`} label="Workout">
-        <Button href="/train/workout" block>
+        <Button href="/train/workout?from=today" block>
           Start
         </Button>
         <CardActions>
           {tw.minutes !== 10 ? (
-            <Button variant="text" href="/train/workout?minutes=10">
+            <Button variant="text" href="/train/workout?minutes=10&from=today">
               10-minute version
             </Button>
           ) : null}

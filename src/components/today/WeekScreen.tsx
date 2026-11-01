@@ -76,7 +76,7 @@ export function WeekScreen() {
                   {r.workout === "done" ? <Icon name="check" size={22} label="Done" /> : null}
                 </div>
                 {r.workout === "planned" && r.isToday ? (
-                  <Link href="/train/workout" className="inline-flex min-h-12 items-center text-body font-semibold underline underline-offset-[3px]">
+                  <Link href="/train/workout?from=today" className="inline-flex min-h-12 items-center text-body font-semibold underline underline-offset-[3px]">
                     {workout}
                   </Link>
                 ) : (
