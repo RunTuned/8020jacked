@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
-import { Button, Card, Hero, Icon, Screen, Stepper, Subline, Switch, TopRow } from "@/components/ui";
+import { Button, Card, Hero, Icon, Screen, Stepper, Subline, TopRow } from "@/components/ui";
 import { selectMealDetail, useAppStore } from "@/lib/store";
 import { safeBack, useHydrated } from "@/components/today/hooks";
 import { BentoSkeleton } from "@/components/today/Skeleton";
@@ -22,7 +21,6 @@ export function MealScreen({ date, slot }: { date: string; slot: number }) {
   const st = useAppStore();
   const router = useRouter();
   const back = safeBack(useSearchParams().get("from"), "/food");
-  const [grams, setGrams] = useState(false);
 
   if (!hydrated) return <BentoSkeleton cards={2} />;
 
@@ -94,14 +92,13 @@ export function MealScreen({ date, slot }: { date: string; slot: number }) {
               onChange={(n) => st.setCookingFor(n)}
             />
           </div>
-          <Switch label="Show grams" checked={grams} onChange={setGrams} showState />
           <div className="flex flex-col gap-1">
             <h2 className="m-0 text-title font-bold">You need</h2>
             <ul className="m-0 flex flex-col gap-1 pl-5 text-body">
               {m.ingredients.map((g, i) => (
                 <li key={i}>
                   {g.name}
-                  {grams ? <span className="text-ink-muted">{g.amount ? ` · ${g.amount}` : " · to taste"}</span> : null}
+                  <span className="text-ink-muted">{g.amount ? ` · ${g.amount}` : " · to taste"}</span>
                 </li>
               ))}
             </ul>

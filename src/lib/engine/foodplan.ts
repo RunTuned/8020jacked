@@ -16,6 +16,7 @@ import type {
 } from "../types";
 import { addDays, diffDays, weekday, weekDates, weekStart as weekStartOf } from "./dates";
 import {
+  fractionText,
   buyerSidesPerSlot,
   effectiveMealsPerDay,
   handLine,
@@ -126,6 +127,28 @@ export interface WeekMealsInput {
   seed?: string;
   /** Quick sauces (src/content/sauces.json). Optional: no sauces = no sauce lines. */
   sauces?: Sauce[];
+  /** Her sign-up day. Days before it have no meals; her first cook batch starts here. */
+  planStart?: ISODate;
+  /** Daily food on a date (days already gone keep the plan they had). Default: `daily`. */
+  dailyFor?: (date: ISODate) => number;
+  /** Buyer extra sides on a date. Default: `sideDelta`. */
+  sideDeltaFor?: (date: ISODate) => number;
+}
+
+// ---------- What counts as veg, and which sides go with a main ----------
+
+const NOT_VEG = /berr|banana|apple|mango|lemon|lime|orange|pear|grape|kiwi|peach|pineapple|melon|\bdates?\b|raisin|sultana|fruit|parsley|chive|coriander|basil|mint|dill|thyme|rosemary|herb|ginger|garlic|chill?i/i;
+
+/** A recipe has veg when it lists a vegetable (fruit and herbs don't count). */
+export function recipeHasVeg(r: { ingredients: Recipe["ingredients"] }): boolean {
+  return r.ingredients.some(
+    (g) => (g.area === "fruit-veg" && !NOT_VEG.test(g.name)) || (g.area === "freezer" && /veg|spinach|peas\b|broccoli/i.test(g.name)),
+  );
+}
+
+/** Sides for a ready meal: fruit, salad or veg. Never a carb side (bread, rice, beans) next to a carb ready meal. */
+export function isMainSide(b: BoughtItem): boolean {
+  return b.kind === "side" && b.mealTypes.includes("main") && /fruit|salad|veg/i.test(`${b.id} ${b.name}`);
 }
 
 // ---------- Cook days (prep and carry) ----------
@@ -156,6 +179,68 @@ export function cookSessionFor(date: ISODate): { weekStart: ISODate; block: 0 | 
   if (wd === 6) return { weekStart: addDays(ws, 7), block: 0, cookOn: date };
   const block = wd <= 1 ? 0 : 1;
   return { weekStart: ws, block, cookOn: cookDate(ws, block) };
+}
+
+/** One batch cook: the day she cooks and the days it feeds (her shopping list covers the same days). */
+export interface CookBatch {
+  cookOn: ISODate;
+  from: ISODate;
+  to: ISODate;
+}
+
+/**
+ * Her first batch, from her sign-up day. Mon–Tue: cook today for up to Wednesday. Wed–Fri: cook today
+ * for up to Sunday. Saturday: cook tomorrow (Sunday) for Saturday to Wednesday, Saturday made fresh.
+ * Sunday: cook today for Sunday to Wednesday.
+ */
+export function firstBatch(planStart: ISODate): CookBatch {
+  const wd = weekday(planStart);
+  const ws = weekStartOf(planStart);
+  if (wd <= 1) return { cookOn: planStart, from: planStart, to: addDays(ws, 2) };
+  if (wd <= 4) return { cookOn: planStart, from: planStart, to: addDays(ws, 6) };
+  if (wd === 5) return { cookOn: addDays(planStart, 1), from: planStart, to: addDays(ws, 9) };
+  return { cookOn: planStart, from: planStart, to: addDays(planStart, 3) };
+}
+
+/** The batch a date eats from. Normal weeks: Sunday cooks Mon–Wed; Wednesday cooks Thu–Sun (Sunday from the freezer). */
+export function batchFor(date: ISODate, planStart?: ISODate): CookBatch {
+  if (planStart && date >= planStart) {
+    const first = firstBatch(planStart);
+    if (date <= first.to) return first;
+  }
+  const ws = weekStartOf(date);
+  return weekday(date) <= 2
+    ? { cookOn: addDays(ws, -1), from: ws, to: addDays(ws, 2) }
+    : { cookOn: addDays(ws, 2), from: addDays(ws, 3), to: addDays(ws, 6) };
+}
+
+/** The next cook batch from today: the one whose cook day is today or later. List and cook day both use it. */
+export function nextCookBatch(today: ISODate, planStart?: ISODate): CookBatch {
+  const b = batchFor(today, planStart);
+  return b.cookOn >= today ? b : batchFor(addDays(b.to, 1), planStart);
+}
+
+/**
+ * The slots a batch's shopping list and pick-up list cover: every meal on its days from today on
+ * (never a day gone), less mains cooked in another batch, plus frozen portions of this batch eaten later.
+ */
+export function batchDays(days: DayPlan[], batch: CookBatch, today: ISODate): DayPlan[] {
+  const start = batch.from > today ? batch.from : today;
+  return days
+    .filter((d) => !d.away && !d.beforeStart && d.date >= start)
+    .map((d) => ({
+      ...d,
+      meals: d.meals.filter((m) => {
+        const inRange = d.date <= batch.to;
+        if (m.source === "cook" && m.mealType === "main" && m.cookedOn) {
+          if (m.cookedOn === batch.cookOn) return true;
+          // Made fresh that day (in range); else it belongs to another batch's list.
+          return inRange && m.cookedOn === d.date;
+        }
+        return inRange;
+      }),
+    }))
+    .filter((d) => d.meals.length > 0);
 }
 
 /** A recipe may be eaten up to fridgeDays after it was cooked. */
@@ -191,8 +276,24 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
     const hotPick = stablePick(hot, k - coldPick.length, safe);
     return { cold: coldPick, hot: hotPick.length ? hotPick : coldPick, all: [...coldPick, ...hotPick] };
   });
+  // When each batch is cooked. Before her sign-up a batch was never cooked; the batch her first day
+  // falls in is cooked on that day (a Saturday start cooks on Sunday and makes Saturday fresh).
+  const P = i.planStart;
+  const blockLast = [addDays(i.weekStart, 2), addDays(i.weekStart, 5)];
+  const blockCookOn = (b: 0 | 1): ISODate | null => {
+    const cd = cookDate(i.weekStart, b);
+    if (!P || cd >= P) return cd;
+    if (blockLast[b] < P || weekday(P) === 5) return null;
+    return P;
+  };
   // Sunday: portions from this week's freezer-friendly batch mains, else a fresh quick main.
-  const freezerMains = [...new Map(batches.flatMap((b, bi) => b.all.filter((r) => r.freezer).map((r) => [r.id, { r, block: bi as 0 | 1 }]))).values()];
+  const freezerMains = [
+    ...new Map(
+      batches.flatMap((b, bi) =>
+        blockCookOn(bi as 0 | 1) ? b.all.filter((r) => r.freezer).map((r) => [r.id, { r, block: bi as 0 | 1 }] as const) : [],
+      ),
+    ).values(),
+  ];
   const freshSunday = stablePick(
     recipePool(i.recipes, "main", kcal0, `${seed}:main:2`, false).sort((a, b) => Number(a.minutes > 20) - Number(b.minutes > 20)),
     2,
@@ -221,11 +322,11 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
   // Allergies can rule out every ready meal: fall back to grab-and-go mains.
   const readyOnly = boughtPool("ready", "main", `${seed}:ready`);
   const ready = readyOnly.length ? readyOnly : boughtPool("grab", "main", `${seed}:grab:m`);
-  const sides = boughtPool("side", null, `${seed}:side`);
+  const sides = stablePick(rank(i.bought.filter(isMainSide), `${seed}:side`), 3, safe);
   const grabBreakfast = boughtPool("grab", "breakfast", `${seed}:grab:b`);
   const grabSnack = boughtPool("grab", "snack", `${seed}:grab:s`);
 
-  const counters = { hot: [0, 0], lunch: [0, 0], sunday: 0, breakfast: 0, snack: 0, ready: 0, side: 0, grabB: 0, grabS: 0 };
+  const counters = { hot: [0, 0], lunch: [0, 0], sunday: 0, fresh: 0, breakfast: 0, snack: 0, ready: 0, side: 0, grabB: 0, grabS: 0 };
   // Extra fresh-enough mains a batch needs when nothing picked keeps long enough (by block and age).
   const extras = new Map<string, Recipe | null>();
   const extraFor = (b: 0 | 1, age: number, used: Recipe[]): Recipe | null => {
@@ -237,12 +338,14 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
 
   // Two sauces per main per batch, taking turns across the batch's days.
   const sauceTurns = new Map<string, number>();
-  const sauceFor = (r: Recipe, key: string): Sauce | undefined => {
+  const sauceFor = (r: Recipe, key: string, advance = true): Sauce | undefined => {
     const options = rank(
       r.sauces.map((id) => sauceById.get(id)).filter((x): x is Sauce => !!x && safe(x)),
       `${seed}:sauce:${key}:${r.id}`,
     ).slice(0, 2);
     if (!options.length) return undefined;
+    // Her own swap takes the first sauce and leaves the turns of the plan's meals alone.
+    if (!advance) return options[0];
     const t = `${key}:${r.id}`;
     const n = sauceTurns.get(t) ?? 0;
     sauceTurns.set(t, n + 1);
@@ -265,12 +368,14 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
   };
 
   return dates.map((date, dayIdx) => {
+    const away = i.awayDates.has(date);
+    const workout = i.workouts?.[date] ?? null;
+    if (P && date < P) return { date, away, workout, meals: [], beforeStart: true };
     const prefs = i.prefsFor(date);
     const n = effectiveMealsPerDay(prefs.mealsPerDay, prefs.fasting);
     const types = slotMealTypes(n);
-    const kcal = mealKcal(i.daily, n);
-    const away = i.awayDates.has(date);
-    const sidesPerSlot = buyerSidesPerSlot(types, i.sideDelta);
+    const kcal = mealKcal(i.dailyFor ? i.dailyFor(date) : i.daily, n);
+    const sidesPerSlot = buyerSidesPerSlot(types, i.sideDeltaFor ? i.sideDeltaFor(date) : i.sideDelta);
     const block = cookBlock(dayIdx);
     const lunchIndex = types.indexOf("main");
 
@@ -286,32 +391,30 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
         swapped: false,
       };
       if (prefs.cookOrBuy === "cook") {
+        if (type === "main" && index === lunchIndex) base.lunch = true;
+        // The plan's own pick is always made first, so a swap in one slot never moves another.
         let r: Recipe | undefined;
         let fromFreezer = false;
         let cookedOn: ISODate | undefined;
-        const sw = swap ? recipeById.get(swap.itemId) : undefined;
-        if (type === "main" && index === lunchIndex) base.lunch = true;
-        if (sw && safe(sw) && sw.mealTypes.includes(type)) {
-          r = sw;
-          base.swapped = true;
-          cookedOn = type === "main" ? cookDate(i.weekStart, block) : date;
-          // Her own pick that wouldn't keep this long: from the freezer if it freezes, else made fresh that day.
-          if (!withinFridgeDays(sw, diffDays(cookedOn, date))) {
-            if (sw.freezer) fromFreezer = true;
-            else cookedOn = date;
-          }
-        } else if (!away) {
+        if (!away) {
           if (type === "main" && block !== 2) {
-            cookedOn = cookDate(i.weekStart, block);
-            const pick = batchMain(block, index === lunchIndex, diffDays(cookedOn, date));
-            r = pick.r;
-            fromFreezer = pick.fromFreezer;
+            const on = blockCookOn(block);
+            if (on) {
+              cookedOn = on;
+              const pick = batchMain(block, index === lunchIndex, diffDays(on, date));
+              r = pick.r;
+              fromFreezer = pick.fromFreezer;
+            } else if (freshSunday.length) {
+              // No batch cooked for this day yet (a Saturday start): a quick main made fresh.
+              r = freshSunday[counters.fresh++ % freshSunday.length];
+              cookedOn = date;
+            }
           } else if (type === "main") {
             if (freezerMains.length) {
               const f = freezerMains[counters.sunday++ % freezerMains.length];
               r = f.r;
               fromFreezer = true;
-              cookedOn = cookDate(i.weekStart, f.block);
+              cookedOn = blockCookOn(f.block)!;
             } else if (freshSunday.length) {
               r = freshSunday[counters.sunday++ % freshSunday.length];
               cookedOn = date;
@@ -322,11 +425,25 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
             r = snacks.length ? snacks[counters.snack++ % snacks.length] : undefined;
           }
         }
-        const hands = handPortions(kcal);
+        const sauceKey = type === "main" ? `b${block}` : type;
+        let sauce = r ? sauceFor(r, sauceKey) : undefined;
+        const sw = swap ? recipeById.get(swap.itemId) : undefined;
+        if (sw && safe(sw) && sw.mealTypes.includes(type)) {
+          r = sw;
+          base.swapped = true;
+          fromFreezer = false;
+          cookedOn = type === "main" && block !== 2 ? (blockCookOn(block) ?? date) : date;
+          // Her own pick that wouldn't keep this long: from the freezer if it freezes, else made fresh that day.
+          if (!withinFridgeDays(sw, diffDays(cookedOn, date))) {
+            if (sw.freezer) fromFreezer = true;
+            else cookedOn = date;
+          }
+          sauce = sauceFor(sw, sauceKey, false);
+        }
+        const hands = handPortions(kcal, type === "main" || (!!r && recipeHasVeg(r)));
         base.hands = hands;
         base.handLine = handLine(hands);
         if (r) {
-          const sauce = sauceFor(r, type === "main" ? `b${block}` : type);
           const m = servingMultiplier(kcal - (sauce?.kcal ?? 0), r.kcal);
           base.recipeId = r.id;
           base.servings = m;
@@ -346,32 +463,32 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
         }
         return base;
       }
-      // I buy most food
+      // I buy most food. The plan's pick first (so a swap never moves another slot), then her swap.
       base.checkLabel = i.allergies.length > 0;
+      let planned: string | undefined;
+      if (type === "main") planned = ready.length ? ready[counters.ready++ % ready.length].id : undefined;
+      else if (type === "breakfast") planned = grabBreakfast.length ? grabBreakfast[counters.grabB++ % grabBreakfast.length].id : undefined;
+      else {
+        const pool = grabSnack.length ? grabSnack : grabBreakfast;
+        planned = pool.length ? pool[counters.grabS++ % pool.length].id : undefined;
+      }
       const sw = swap ? boughtById.get(swap.itemId) : undefined;
       const wantKind = type === "main" ? "ready" : "grab";
       if (sw && safe(sw) && (sw.kind === wantKind || (type === "main" && sw.kind === "grab")) && sw.mealTypes.includes(type)) {
         base.boughtId = sw.id;
         base.swapped = true;
-      } else if (type === "main") {
-        base.boughtId = ready.length ? ready[counters.ready++ % ready.length].id : undefined;
-      } else if (type === "breakfast") {
-        base.boughtId = grabBreakfast.length ? grabBreakfast[counters.grabB++ % grabBreakfast.length].id : undefined;
-      } else {
-        const pool = grabSnack.length ? grabSnack : grabBreakfast;
-        base.boughtId = pool.length ? pool[counters.grabS++ % pool.length].id : undefined;
-      }
+      } else base.boughtId = planned;
       base.sideIds = Array.from({ length: sidesPerSlot[index] }, () =>
         sides.length ? sides[counters.side++ % sides.length].id : "",
       ).filter(Boolean);
       if (!base.boughtId) {
         // Nothing safe to buy for this meal: show her size in hands instead.
-        base.hands = handPortions(kcal);
+        base.hands = handPortions(kcal, type === "main");
         base.handLine = handLine(base.hands);
       }
       return base;
     });
-    return { date, away, workout: i.workouts?.[date] ?? null, meals };
+    return { date, away, workout, meals };
   });
 }
 
@@ -497,12 +614,15 @@ export const AREA_NAMES: Record<ShopArea, string> = {
 export interface ShoppingItem {
   key: string;
   name: string;
+  /** The first amount's number and unit (e.g. 13 and "tins"); see `amount` for the whole line. */
   qty: number;
   unit: string;
+  /** What the list shows: "200 g + 3", "13 tins", "1 head", "5½ tbsp". Empty when to taste. */
+  amount: string;
   area: ShopArea;
   checkLabel: boolean;
   flagged: boolean;
-  /** "to taste" items (salt, pepper): no amount shown. */
+  /** "to taste" items (salt, pepper, a pinch of spice): no amount shown. */
   toTaste: boolean;
 }
 
@@ -521,8 +641,58 @@ export function roundQty(qty: number, unit: string): number {
   return Math.ceil(qty - 1e-9);
 }
 
+/** A tin is 400 g (or 400 ml). */
+export const TIN_SIZE = 400;
+/** Lettuce leaves come as heads: about this many leaves to a head. */
+export const LEAVES_PER_HEAD = 20;
+/** Spices under this many teaspoons in total are "to taste". */
+export const TO_TASTE_TSP = 1;
+
+const TIN = /\b(tinned|canned|tin of)\b/i;
+const LEAVES = /lettuce.*leaves|leaves.*lettuce/i;
+
+/** Unit families that merge: tsp↔tbsp, g↔kg, ml↔l. Everything else merges only with itself. */
+function family(unit: string): { fam: string; factor: number; tin?: boolean } {
+  const u = unit.trim().toLowerCase();
+  // "tin (400 g)", "tins (400 ml)": the tin's size in grams or ml.
+  const tin = /^tins? \((\d+(?:\.\d+)?)\s*(g|ml)\)$/.exec(u);
+  if (tin) return { fam: tin[2] === "g" ? "mass" : "volume", factor: Number(tin[1]), tin: true };
+  if (u === "tsp") return { fam: "spoon", factor: 1 };
+  if (u === "tbsp") return { fam: "spoon", factor: 3 };
+  if (u === "g") return { fam: "mass", factor: 1 };
+  if (u === "kg") return { fam: "mass", factor: 1000 };
+  if (u === "ml") return { fam: "volume", factor: 1 };
+  if (u === "l") return { fam: "volume", factor: 1000 };
+  return { fam: `unit:${u}`, factor: 1 };
+}
+
+function numText(n: number, spoon = false): string {
+  if (Number.isInteger(n)) return String(n);
+  return spoon ? fractionText(n) : String(Math.round(n * 10) / 10);
+}
+
+/** One part of a line, in the unit people shop in. */
+function part(name: string, fam: string, base: number, tinned = false): { qty: number; unit: string } {
+  if (fam === "mass" || fam === "volume") {
+    if (tinned || TIN.test(name)) {
+      const tins = Math.max(1, Math.ceil(base / TIN_SIZE - 1e-9));
+      return { qty: tins, unit: tins === 1 ? "tin" : "tins" };
+    }
+    const small = fam === "mass" ? "g" : "ml";
+    const big = fam === "mass" ? "kg" : "l";
+    return base >= 1000 ? { qty: roundQty(base / 1000, big), unit: big } : { qty: roundQty(base, small), unit: small };
+  }
+  if (fam === "spoon") return base >= 3 ? { qty: roundQty(base / 3, "tbsp"), unit: "tbsp" } : { qty: roundQty(base, "tsp"), unit: "tsp" };
+  const unit = fam.slice("unit:".length);
+  if (!unit && LEAVES.test(name)) {
+    const heads = Math.max(1, Math.ceil(base / LEAVES_PER_HEAD - 1e-9));
+    return { qty: heads, unit: heads === 1 ? "head" : "heads" };
+  }
+  return { qty: roundQty(base, unit), unit };
+}
+
 /**
- * The week's home days only (away days left out), sorted by shop area.
+ * The batch's days (see batchDays; away days left out), sorted by shop area, one line per item.
  * "Cooking for N": her portion (the serving multiplier) plus one serving for each other person.
  */
 export function shoppingList(
@@ -535,7 +705,7 @@ export function shoppingList(
 ): ShoppingSection[] {
   const byId = new Map(recipes.map((r) => [r.id, r]));
   const sauceById = new Map(sauces.map((x) => [x.id, x]));
-  const acc = new Map<string, ShoppingItem>();
+  const acc = new Map<string, { name: string; area: ShopArea; parts: Map<string, number>; anyToTaste: boolean; tinned: boolean }>();
   const others = Math.max(0, Math.round(cookingFor) - 1);
   for (const day of week) {
     if (day.away) continue;
@@ -550,33 +720,42 @@ export function shoppingList(
         ...(sauce ? [{ item: sauce, servings: 1 + others }] : []),
       ];
       for (const { item, servings } of parts)
-      for (const g of item.ingredients) {
-        const toTaste = !(g.qty > 0);
-        const key = toTaste ? `${g.name.toLowerCase()}|to-taste` : `${g.name.toLowerCase()}|${g.unit}`;
-        const cur = acc.get(key);
-        const add = toTaste ? 0 : (g.qty / item.servings) * servings;
-        if (cur) cur.qty += add;
-        else
-          acc.set(key, {
-            key,
-            name: g.name,
-            qty: add,
-            unit: toTaste ? "" : g.unit,
-            area: g.area,
-            checkLabel: allergies.length > 0,
-            flagged: flaggedNames.includes(g.name),
-            toTaste,
-          });
-      }
+        for (const g of item.ingredients) {
+          const key = g.name.trim().toLowerCase();
+          let cur = acc.get(key);
+          if (!cur) acc.set(key, (cur = { name: g.name, area: g.area, parts: new Map(), anyToTaste: false, tinned: false }));
+          if (!(g.qty > 0)) {
+            cur.anyToTaste = true;
+            continue;
+          }
+          const f = family(g.unit);
+          if (f.tin) cur.tinned = true;
+          cur.parts.set(f.fam, (cur.parts.get(f.fam) ?? 0) + (g.qty / item.servings) * servings * f.factor);
+        }
     }
   }
+  const items: ShoppingItem[] = [...acc.entries()].map(([key, x]) => {
+    const fams = [...x.parts.entries()];
+    // A pinch of a spice (under 1 tsp in all) is "to taste".
+    const pinch = x.area === "tins-dry" && fams.length === 1 && fams[0][0] === "spoon" && fams[0][1] < TO_TASTE_TSP;
+    const shown = pinch ? [] : fams.map(([fam, base]) => part(x.name, fam, base, x.tinned));
+    const amount = shown.map((p) => (p.unit ? `${numText(p.qty, p.unit === "tsp" || p.unit === "tbsp")} ${p.unit}` : numText(p.qty))).join(" + ");
+    return {
+      key,
+      name: x.name,
+      qty: shown[0]?.qty ?? 0,
+      unit: shown[0]?.unit ?? "",
+      amount,
+      area: x.area,
+      checkLabel: allergies.length > 0,
+      flagged: flaggedNames.includes(x.name),
+      toTaste: shown.length === 0,
+    };
+  });
   return SHOP_AREA_ORDER.map((area) => ({
     area,
     title: AREA_NAMES[area],
-    items: [...acc.values()]
-      .filter((x) => x.area === area)
-      .map((x) => ({ ...x, qty: roundQty(x.qty, x.unit) }))
-      .sort((a, b) => a.name.localeCompare(b.name)),
+    items: items.filter((x) => x.area === area).sort((a, b) => a.name.localeCompare(b.name)),
   })).filter((s) => s.items.length > 0);
 }
 
@@ -630,7 +809,7 @@ export function pickupList(
 /** Plain text for Share list (Web Share API or copy). */
 export function shoppingText(sections: ShoppingSection[]): string {
   return sections
-    .map((s) => [s.title, ...s.items.map((i) => (i.toTaste ? `- ${i.name}` : `- ${i.name}: ${i.qty}${i.unit ? " " + i.unit : ""}`))].join("\n"))
+    .map((s) => [s.title, ...s.items.map((i) => (i.toTaste ? `- ${i.name}` : `- ${i.name}: ${i.amount}`))].join("\n"))
     .join("\n\n");
 }
 

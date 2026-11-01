@@ -149,10 +149,13 @@ export function servingsLabel(x: number): string {
   return `${fractionText(x)} ${x === 1 || x < 1 ? "serving" : "servings"}`;
 }
 
-/** Hand portions: a 300 kcal meal = 1 palm, 1 cupped hand, 1 fist, 1 thumb; rounded to ½. */
-export function handPortions(mealKcalValue: number): HandPortions {
+/**
+ * Hand portions: a 300 kcal meal = 1 palm, 1 cupped hand, 1 fist, 1 thumb; rounded to ½.
+ * `veg` false (a breakfast or snack whose recipe has no veg): no fists of veg.
+ */
+export function handPortions(mealKcalValue: number, veg = true): HandPortions {
   const n = Math.max(0.5, roundTo(mealKcalValue / HAND_BASE_KCAL, 0.5));
-  return { palm: n, cuppedHand: n, fist: n, thumb: n };
+  return { palm: n, cuppedHand: n, fist: veg ? n : 0, thumb: n };
 }
 
 function plural(n: number, one: string, many: string): string {
@@ -161,11 +164,13 @@ function plural(n: number, one: string, many: string): string {
 
 export function handLine(h: HandPortions): string {
   return [
-    `${plural(h.palm, "palm", "palms")} protein`,
-    `${plural(h.cuppedHand, "cupped hand", "cupped hands")} carbs`,
-    `${plural(h.fist, "fist", "fists")} veg`,
-    `${plural(h.thumb, "thumb", "thumbs")} fat`,
-  ].join(" · ");
+    h.palm > 0 ? `${plural(h.palm, "palm", "palms")} protein` : null,
+    h.cuppedHand > 0 ? `${plural(h.cuppedHand, "cupped hand", "cupped hands")} carbs` : null,
+    h.fist > 0 ? `${plural(h.fist, "fist", "fists")} veg` : null,
+    h.thumb > 0 ? `${plural(h.thumb, "thumb", "thumbs")} fat` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 }
 
 /**

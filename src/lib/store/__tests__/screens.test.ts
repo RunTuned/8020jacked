@@ -167,7 +167,7 @@ describe("recipe extras", () => {
   it("present fields give a sauce line, a carry/pack line and a keeps line", () => {
     const r = {
       ...base,
-      format: "bowl",
+      format: "tray",
       carry: "cold",
       pack: "lidded box",
       fridgeDays: 3,
@@ -183,6 +183,9 @@ describe("recipe extras", () => {
       "Keeps 3 days in the fridge",
       "Washing up: 1 pan",
     ]);
+    // QA #14: washing up only for tray or pot mains.
+    expect(extrasLines(recipeExtras({ ...r, format: "bowl" } as unknown as Recipe)).some((l) => l.key === "wash")).toBe(false);
+    expect(extrasLines(recipeExtras(r), "breakfast").some((l) => l.key === "wash")).toBe(false);
   });
 
   it("odd values are ignored", () => {

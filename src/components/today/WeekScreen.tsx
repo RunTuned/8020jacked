@@ -85,7 +85,13 @@ export function WeekScreen() {
                   </span>
                 )}
                 <span className="text-label text-ink-muted">{meals}</span>
-                {r.workout === "planned" && selectMoveDays(st, r.date).length > 0 ? (
+                {/* Today's workout starts from here; other workout days can move. */}
+                {r.workout === "planned" && r.isToday ? (
+                  <Button className="self-start" icon="train" href="/train/workout?from=today">
+                    Start workout
+                  </Button>
+                ) : null}
+                {r.workout === "planned" && !r.isToday && selectMoveDays(st, r.date).length > 0 ? (
                   <Button variant="secondary" className="self-start" onClick={() => setMoving(r.date)}>
                     Move to another day
                   </Button>

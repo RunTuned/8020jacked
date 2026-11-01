@@ -233,18 +233,31 @@ function FoodSection() {
   const [allergies, setAllergies] = useState<Allergen[]>(food.allergies);
   const [fasting, setFasting] = useState(food.fasting);
   const [open, setOpen] = useState(false);
+  // QA #7: say what changes and when ("Saved. From tomorrow …"), then Done goes back.
+  const [saved, setSaved] = useState<string | null>(null);
   return (
     <SectionPage
       title="Food"
+      saveLabel={saved ? "Done" : "Save"}
+      extra={
+        <p role="status" className="m-0 text-body font-semibold">
+          {saved ?? ""}
+        </p>
+      }
       onSave={() => {
+        if (saved) {
+          router.push("/you");
+          return;
+        }
         const m = Number(meals) as MealsPerDay;
-        saveFoodPrefs({
+        const msg = saveFoodPrefs({
           ...(m !== food.mealsPerDay ? { mealsPerDay: m } : {}),
           ...(cook !== food.cookOrBuy ? { cookOrBuy: cook } : {}),
           ...(fasting !== food.fasting ? { fasting } : {}),
           allergies,
         });
-        router.push("/you");
+        if (msg) setSaved(msg);
+        else router.push("/you");
       }}
     >
       <Field label="Meals a day">
@@ -274,7 +287,7 @@ function FoodSection() {
         onChange={setFasting}
       />
       <p className="m-0 text-label text-ink-muted">
-        Allergies change your meals at once. Other changes start tomorrow; the shopping list rebuilds next week.
+        Allergies change your meals at once. Other changes start tomorrow, shopping list included.
       </p>
     </SectionPage>
   );

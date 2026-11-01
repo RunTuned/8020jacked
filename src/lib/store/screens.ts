@@ -2,7 +2,8 @@
 // Screens never calculate: every number they show comes from here or from ./selectors.
 import recipesRaw from "@/content/recipes.json";
 import * as E from "../engine";
-import type { AppState, ISODate, MealLog, Recipe } from "../types";
+import type { AppState, ISODate, MealLog, MealType, Recipe } from "../types";
+import { getContent } from "./content";
 import { awaySet, isAway, mealView, selectDayPlan, selectSchedule, selectToday, selectWeight, selectCheckIn, selectAllergyNotice } from "./selectors";
 
 // ---------- meal logging ----------
@@ -126,14 +127,21 @@ export function recipeExtras(recipe: Recipe | undefined): RecipeExtras {
     carry: carry === "hot" || carry === "cold" ? carry : null,
     pack: text(get("pack")),
     fridgeDays: Number.isFinite(days) && days > 0 ? Math.floor(days) : null,
-    sauces: texts(get("sauces")),
+    // Sauces by name (sauces.json), never by id; an unknown id is left out.
+    sauces: texts(get("sauces")).flatMap((id) => {
+      const sauce = (getContent().sauces ?? []).find((x) => x.id === id);
+      return sauce ? [sauce.name] : /^sauce-/.test(id) ? [] : [id];
+    }),
     topping: texts(get("topping")).join(", ") || null,
     washUp: typeof wash === "number" ? (wash > 0 ? `${wash} ${wash === 1 ? "pan" : "pans"}` : null) : text(wash),
   };
 }
 
-/** Plain lines for the extras, in the order the meal view shows them. Empty fields are skipped. */
-export function extrasLines(x: RecipeExtras): { key: string; text: string }[] {
+/**
+ * Plain lines for the extras, in the order the meal view shows them. Empty fields are skipped.
+ * "Washing up" shows only for tray or pot mains.
+ */
+export function extrasLines(x: RecipeExtras, mealType: MealType = "main"): { key: string; text: string }[] {
   const out: { key: string; text: string }[] = [];
   if (x.sauces.length) out.push({ key: "sauce", text: `Sauce: ${x.sauces.join(", ")}` });
   if (x.topping) out.push({ key: "topping", text: `On top: ${x.topping}` });
@@ -141,7 +149,8 @@ export function extrasLines(x: RecipeExtras): { key: string; text: string }[] {
   const carryLine = [carry, x.pack ? `Pack: ${x.pack}` : null].filter(Boolean).join(" · ");
   if (carryLine) out.push({ key: "carry", text: carryLine });
   if (x.fridgeDays) out.push({ key: "keeps", text: `Keeps ${x.fridgeDays} ${x.fridgeDays === 1 ? "day" : "days"} in the fridge` });
-  if (x.washUp) out.push({ key: "wash", text: `Washing up: ${x.washUp}` });
+  if (x.washUp && mealType === "main" && (x.format === "tray" || x.format === "pot"))
+    out.push({ key: "wash", text: `Washing up: ${x.washUp}` });
   return out;
 }
 
@@ -176,6 +185,8 @@ export function selectMealDetail(s: AppState, date: ISODate, slot: number) {
       })
     : [];
   const extras = recipeExtras(recipe);
+  // The sauce the plan picked for this meal, by name.
+  if (view.sauce) extras.sauces = [`${view.sauce.name} (in its own pot)`];
   return {
     date,
     slot,
@@ -190,7 +201,7 @@ export function selectMealDetail(s: AppState, date: ISODate, slot: number) {
     method: recipe?.method ?? [],
     minutes: recipe?.minutes ?? null,
     extras,
-    extrasLines: extrasLines(extras),
+    extrasLines: extrasLines(extras, m.mealType),
     sizeLines: m.source === "buy" ? [view.bought?.sizeLine, ...view.sides.map((x) => x.sizeLine)].filter((x): x is string => !!x) : [],
     checkLabel: view.checkLabel,
     logged: view.logged,

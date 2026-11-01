@@ -6,6 +6,7 @@ import { useCountdown } from "@/lib/device";
 import { cookStepSeconds, selectAllergyNotice, selectCookDay, selectShoppingList, useAppStore } from "@/lib/store";
 import { useHydrated } from "@/components/today/hooks";
 import { BentoSkeleton } from "@/components/today/Skeleton";
+import { rangeText, shortDate } from "@/components/today/format";
 
 function StepTimer({ seconds }: { seconds: number }) {
   const t = useCountdown(seconds * 1000);
@@ -66,10 +67,8 @@ export function CookScreen() {
   const step = cook.steps[i];
   const last = i >= n - 1;
   const secs = step ? cookStepSeconds(step.text) : null;
-  const intro =
-    cook.cookingFor > 1
-      ? `Cook this week's meals for ${cook.cookingFor}. One step at a time.`
-      : "Cook this week's meals. One step at a time.";
+  const when = cook.isToday ? "Today" : shortDate(cook.cookOn);
+  const intro = `${when}: cook for ${rangeText(cook.from, cook.to)}${cook.cookingFor > 1 ? `, for ${cook.cookingFor}` : ""}. Same days as your shopping list.`;
 
   return (
     <Screen>

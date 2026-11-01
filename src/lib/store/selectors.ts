@@ -135,7 +135,8 @@ export const selectWeekRows = memo((s: AppState) => {
   const sched = selectSchedule(s, ws);
   const away = awaySet(s, ws);
   const week = selectWeekMeals(s, ws);
-  return E.weekDates(ws).map((d) => {
+  // No day before she joined appears.
+  return E.weekDates(ws).filter((d) => !s.planStart || d >= s.planStart).map((d) => {
     const done = E.doneOn(s.workouts, d);
     const planned = sched[d];
     const day = week.find((x) => x.date === d)!;
@@ -323,13 +324,54 @@ export function selectPastWorkout(s: AppState, id: string) {
 
 // ---------- food plan ----------
 
+/** Food values (kcal and buyer sides changes) in effect on a date: days gone keep what they had. */
+export function adjustmentsOn(s: AppState, date: ISODate): { kcalDelta: number; sideDelta: number } {
+  const steps = [...(s.adjustments.history ?? [])].sort((a, b) => (a.before < b.before ? -1 : a.before > b.before ? 1 : 0));
+  const step = steps.find((x) => date < x.before);
+  return step
+    ? { kcalDelta: step.kcalDelta, sideDelta: step.sideDelta }
+    : { kcalDelta: s.adjustments.kcalDelta, sideDelta: s.adjustments.sideDelta };
+}
+
+/** Record a plan change made today: the old food values still hold for days already gone. */
+export function withAdjustmentHistory(s: AppState, next: AppState["adjustments"]): AppState["adjustments"] {
+  const old = s.adjustments;
+  if (next.kcalDelta === old.kcalDelta && next.sideDelta === old.sideDelta) return next;
+  return {
+    ...next,
+    history: [...(old.history ?? []), { before: selectToday(s), kcalDelta: old.kcalDelta, sideDelta: old.sideDelta }],
+  };
+}
+
+/** Daily food on a date. Today and later: today's plan. Days gone: the plan as it was that day. */
+function dailyOn(s: AppState, date: ISODate): number {
+  const today = selectToday(s);
+  const todays = selectTargets(s)?.daily ?? E.KCAL_FLOOR;
+  if (date >= today) return todays;
+  const kg = currentKg(s, date);
+  if (!kg || !s.profile.age) return todays;
+  const p = prefsFor(s, date);
+  return E.foodTargets({
+    age: s.profile.age,
+    heightCm: s.profile.heightCm,
+    kg,
+    goal: s.profile.goal,
+    kcalDelta: adjustmentsOn(s, date).kcalDelta,
+    mealsPerDay: p.mealsPerDay,
+    fasting: p.fasting,
+  }).daily;
+}
+
 function mealsInput(s: AppState, ws: ISODate, prefs: (d: ISODate) => DayFoodPrefs) {
   const targets = selectTargets(s);
+  const today = selectToday(s);
   return {
     weekStart: ws,
     awayDates: awaySet(s, ws),
     prefsFor: prefs,
     daily: targets?.daily ?? E.KCAL_FLOOR,
+    dailyFor: (d: ISODate) => dailyOn(s, d),
+    sideDeltaFor: (d: ISODate) => (d >= today ? s.adjustments.sideDelta : adjustmentsOn(s, d).sideDelta),
     allergies: s.food.allergies,
     recipes: C().recipes,
     bought: C().bought,
@@ -337,18 +379,61 @@ function mealsInput(s: AppState, ws: ISODate, prefs: (d: ISODate) => DayFoodPref
     sideDelta: s.adjustments.sideDelta,
     swaps: s.mealSwaps,
     workouts: selectSchedule(s, ws),
+    ...(s.planStart ? { planStart: s.planStart } : {}),
   };
+}
+
+/** A logged meal keeps the servings she was served when she logged it. */
+function withLoggedServings(s: AppState, week: DayPlan[]): DayPlan[] {
+  if (!s.mealLogs.some((l) => l.servings !== undefined)) return week;
+  return week.map((d) => ({
+    ...d,
+    meals: d.meals.map((m) => {
+      const log = s.mealLogs.find((l) => l.date === m.date && l.slot === m.index);
+      if (!log || log.servings === undefined || log.itemId !== E.servedId(m) || log.servings === m.servings) return m;
+      return { ...m, servings: log.servings, servingsLabel: E.servingsLabel(log.servings) };
+    }),
+  }));
 }
 
 /** The week's meals (F1), with prefs as they apply each day. */
 export const selectWeekMeals = memo((s: AppState, weekStartDate?: ISODate): DayPlan[] => {
   const ws = weekStartDate ?? E.weekStart(selectToday(s));
-  return E.buildWeekMeals(mealsInput(s, ws, (d) => prefsFor(s, d)));
+  return withLoggedServings(s, E.buildWeekMeals(mealsInput(s, ws, (d) => prefsFor(s, d))));
 });
 
 export const selectDayPlan = memo((s: AppState, date?: ISODate): DayPlan => {
   const d = date ?? selectToday(s);
   return selectWeekMeals(s, E.weekStart(d)).find((x) => x.date === d)!;
+});
+
+/** Days from `from` to `to`, across weeks. */
+function daysBetween(s: AppState, from: ISODate, to: ISODate): DayPlan[] {
+  const out: DayPlan[] = [];
+  for (let ws = E.weekStart(from); ws <= to; ws = E.addDays(ws, 7))
+    out.push(...selectWeekMeals(s, ws).filter((d) => d.date >= from && d.date <= to));
+  return out;
+}
+
+/** F1 day strip: this week from her first day, running on to the end of her next cook batch. Never a day before she joined. */
+export const selectFoodDays = memo((s: AppState): DayPlan[] => {
+  const today = selectToday(s);
+  const ws = E.weekStart(today);
+  const from = s.planStart && s.planStart > ws ? s.planStart : ws;
+  const batchTo = E.nextCookBatch(today, s.planStart ?? undefined).to;
+  const weekEnd = E.addDays(ws, 6);
+  return daysBetween(s, from, batchTo > weekEnd ? batchTo : weekEnd).filter((d) => !d.beforeStart);
+});
+
+/** The next cook batch from today. The shopping list, pick-up list and cook day all cover it. */
+export const selectCookBatch = memo((s: AppState) => {
+  const today = selectToday(s);
+  const batch = E.nextCookBatch(today, s.planStart ?? undefined);
+  const days = daysBetween(s, batch.from < today ? today : batch.from, batch.to);
+  // Frozen portions from this batch can be eaten a few days after it ends.
+  const later = daysBetween(s, E.addDays(batch.to, 1), E.addDays(batch.to, 7));
+  const covered = E.batchDays([...days, ...later], batch, today);
+  return { ...batch, from: batch.from < today ? today : batch.from, days: covered };
 });
 
 export interface MealView {
@@ -448,65 +533,61 @@ export function selectSwapOptions(s: AppState, date: ISODate, slot: number) {
   return E.swapOptions(m, C().recipes, C().bought, s.food.allergies, s.favourites);
 }
 
-function weekFlags(s: AppState, ws: ISODate): string[] {
-  return s.allergyNotices.filter((n) => n.date >= ws && n.date <= E.addDays(ws, 6)).flatMap((n) => n.flagged);
+function flagsFor(s: AppState, from: ISODate, to: ISODate): string[] {
+  return s.allergyNotices.filter((n) => n.date >= E.addDays(from, -7) && n.date <= to).flatMap((n) => n.flagged);
 }
 
-/** Shopping list and pick-up list use the prefs in effect at the start of the week. */
-function listWeek(s: AppState, ws: ISODate): DayPlan[] {
-  const p = prefsFor(s, ws);
-  return E.buildWeekMeals(mealsInput(s, ws, () => p));
-}
+const hasSource = (days: DayPlan[], src: "cook" | "buy") => days.some((d) => d.meals.some((m) => m.source === src));
 
-/** F4: this week's home days, by shop area, scaled by "Cooking for N". Hidden for buyers. */
+/** F4: the next cook batch's days (from today, home days only), by shop area, scaled by "Cooking for N". */
 export const selectShoppingList = memo((s: AppState) => {
-  const ws = E.weekStart(selectToday(s));
-  const sections = E.shoppingList(
-    listWeek(s, ws),
-    C().recipes,
-    s.food.cookingFor,
-    s.food.allergies,
-    weekFlags(s, ws),
-    C().sauces ?? [],
-  );
-  const ticked = new Set(s.shoppingTicks.find((t) => t.weekStart === ws)?.ticked ?? []);
+  const b = selectCookBatch(s);
+  const sections = E.shoppingList(b.days, C().recipes, s.food.cookingFor, s.food.allergies, flagsFor(s, b.from, b.to), C().sauces ?? []);
+  // Ticks belong to this batch (kept under its cook date).
+  const ticked = new Set(s.shoppingTicks.find((t) => t.weekStart === b.cookOn)?.ticked ?? []);
   return {
-    weekStart: ws,
-    hidden: prefsFor(s, ws).cookOrBuy === "buy",
+    weekStart: b.cookOn,
+    cookOn: b.cookOn,
+    from: b.from,
+    to: b.to,
+    hidden: !hasSource(b.days, "cook"),
     cookingFor: s.food.cookingFor,
     sections: sections.map((sec) => ({ ...sec, items: sec.items.map((i) => ({ ...i, ticked: ticked.has(i.key) })) })),
     shareText: E.shoppingText(sections),
   };
 });
 
-/** F8: Pick up this week (buyers). */
+/** F8: Pick up (buyers), for the same days as the shopping list. */
 export const selectPickupList = memo((s: AppState) => {
-  const ws = E.weekStart(selectToday(s));
-  const items = E.pickupList(listWeek(s, ws), C().bought, s.food.allergies, weekFlags(s, ws));
-  const ticked = new Set(s.pickupTicks.find((t) => t.weekStart === ws)?.ticked ?? []);
+  const b = selectCookBatch(s);
+  const items = E.pickupList(b.days, C().bought, s.food.allergies, flagsFor(s, b.from, b.to));
+  const ticked = new Set(s.pickupTicks.find((t) => t.weekStart === b.cookOn)?.ticked ?? []);
   return {
-    weekStart: ws,
+    weekStart: b.cookOn,
+    from: b.from,
+    to: b.to,
+    hidden: !hasSource(b.days, "buy"),
     items: items.map((i) => ({ ...i, ticked: ticked.has(i.key) })),
     shareText: E.pickupText(items),
   };
 });
 
-/** F5: cook day steps for the batch this cook day makes (Sunday: Mon–Wed; Wednesday: Thu–Sat), then its sauces. */
+/** F5: cook day steps for the next cook batch (the same days as the shopping list), then its sauces. */
 export const selectCookDay = memo((s: AppState) => {
-  const today = selectToday(s);
-  const { weekStart: ws, block, cookOn } = E.cookSessionFor(today);
-  const week = listWeek(s, ws);
-  const slots = week.flatMap((d) => (d.away ? [] : d.meals)).filter((m) => m.mealType === "main" && m.recipeId && m.cookedOn === cookOn);
+  const b = selectCookBatch(s);
+  const slots = b.days.flatMap((d) => d.meals).filter((m) => m.source === "cook" && m.mealType === "main" && m.recipeId && m.cookedOn === b.cookOn);
   const ids = [...new Set(slots.map((m) => m.recipeId!))];
   const sauceIds = [...new Set(slots.flatMap((m) => (m.sauceId ? [m.sauceId] : [])))];
   const recipes = ids.map((id) => C().recipes.find((r) => r.id === id)!).filter(Boolean);
   const sauces = sauceIds.map((id) => (C().sauces ?? []).find((x) => x.id === id)!).filter(Boolean);
   const steps = [...recipes, ...sauces].flatMap((r) => r.method.map((text, i) => ({ recipeId: r.id, recipe: r.name, index: i, text })));
-  const prog = s.cookProgress.find((p) => p.weekStart === ws && p.cookDay === block);
+  const prog = s.cookProgress.find((p) => p.cookOn === b.cookOn);
   return {
-    weekStart: ws,
-    cookDay: block,
-    cookOn,
+    weekStart: E.weekStart(b.cookOn),
+    cookOn: b.cookOn,
+    from: b.from,
+    to: b.to,
+    isToday: b.cookOn === selectToday(s),
     cookingFor: s.food.cookingFor,
     steps,
     sauces: sauces.map((x) => ({ id: x.id, name: x.name })),
@@ -514,6 +595,22 @@ export const selectCookDay = memo((s: AppState) => {
     done: prog?.done ?? false,
   };
 });
+
+/** After You → Food is saved: what changes and when. */
+export function foodPrefsSavedMessage(
+  before: { mealsPerDay: number; cookOrBuy: string; fasting: boolean; allergies: string[] },
+  f: { mealsPerDay?: number; cookOrBuy?: string; fasting?: boolean; allergies?: string[] },
+): string | null {
+  if (f.cookOrBuy && f.cookOrBuy !== before.cookOrBuy)
+    return f.cookOrBuy === "buy"
+      ? "Saved. From tomorrow your meals are ready-meal versions."
+      : "Saved. From tomorrow you cook your meals. Your shopping list has them.";
+  if (f.fasting !== undefined && f.fasting !== before.fasting)
+    return f.fasting ? "Saved. From tomorrow you have 2 bigger meals a day." : "Saved. From tomorrow your meals go back to normal.";
+  if (f.mealsPerDay !== undefined && f.mealsPerDay !== before.mealsPerDay) return `Saved. From tomorrow you have ${f.mealsPerDay} meals a day.`;
+  if (f.allergies && f.allergies.some((a) => !before.allergies.includes(a))) return "Saved. Your meals changed today.";
+  return f.allergies ? "Saved." : null;
+}
 
 /** The new-allergy line for today, if any. */
 export function selectAllergyNotice(s: AppState) {

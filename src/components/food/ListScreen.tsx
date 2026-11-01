@@ -4,6 +4,7 @@ import { Button, Hero, Screen, Stepper, Subline, TopRow } from "@/components/ui"
 import { selectShoppingList, useAppStore } from "@/lib/store";
 import { useHydrated } from "@/components/today/hooks";
 import { BentoSkeleton } from "@/components/today/Skeleton";
+import { rangeText, shortDate } from "@/components/today/format";
 import { ShareButton, TickRow } from "./TickRow";
 
 /** F4: Shopping list. This week's home days, by shop area, scaled by "Cooking for". */
@@ -30,7 +31,10 @@ export function ListScreen() {
   return (
     <Screen>
       <TopRow back={{ href: "/food" }}>
-        <Hero title="Shopping list" subline="This week's home days only. Away days are left out." />
+        <Hero
+          title="Shopping list"
+          subline={`For ${rangeText(list.from, list.to)}, home days only. Cook day: ${shortDate(list.cookOn)}.`}
+        />
       </TopRow>
 
       <div className="flex flex-col gap-2 rounded-card bg-neutral p-5">
@@ -59,7 +63,7 @@ export function ListScreen() {
                 ticked={i.ticked}
                 onTick={() => st.tickShopping(i.key)}
                 name={i.name}
-                amount={i.toTaste ? null : `${i.qty}${i.unit ? ` ${i.unit}` : ""}`}
+                amount={i.toTaste ? "to taste" : i.amount}
                 lines={[
                   i.flagged ? "New allergy: don't use this" : null,
                   i.checkLabel ? "Check the label" : null,

@@ -7,10 +7,11 @@ import {
   mealView,
   selectAllergyNotice,
   selectAwayUntil,
+  selectFoodDays,
   selectNextMeal,
+  selectPickupList,
   selectShoppingList,
   selectToday,
-  selectWeekMeals,
   useAppStore,
 } from "@/lib/store";
 import type { ISODate } from "@/lib/types";
@@ -63,11 +64,13 @@ export function FoodScreen() {
     );
   }
 
-  const week = selectWeekMeals(st);
+  // From her first day (never a day before she joined) to the end of her next cook batch.
+  const week = selectFoodDays(st);
   const day = week.find((d) => d.date === (picked ?? today)) ?? week.find((d) => d.date === today)!;
   const awayUntil = selectAwayUntil(st);
   const allergy = selectAllergyNotice(st);
   const list = selectShoppingList(st);
+  const pickup = selectPickupList(st);
   const next = selectNextMeal(st);
   const isToday = day.date === today;
 
@@ -137,9 +140,9 @@ export function FoodScreen() {
               href={`/food/other?date=${today}&slot=${next.meal.slot.index}&back=/food`}
             />
           ) : null}
-          {list.hidden ? (
-            <Card tone="neutral" icon="list" title="Pick up this week" href="/food/pickup" />
-          ) : (
+          {/* A cook ↔ buy switch starts tomorrow, so a shop can have both. */}
+          {!pickup.hidden || list.hidden ? <Card tone="neutral" icon="list" title="Pick up this week" href="/food/pickup" /> : null}
+          {list.hidden ? null : (
             <>
               <Card tone="neutral" icon="list" title="Shopping list" href="/food/list" />
               <Card tone="neutral" icon="calendar" title="Cook day" href="/food/cook" />

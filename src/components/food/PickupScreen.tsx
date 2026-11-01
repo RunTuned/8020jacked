@@ -4,6 +4,7 @@ import { Button, Hero, Screen, Subline, TopRow } from "@/components/ui";
 import { selectPickupList, selectShoppingList, useAppStore } from "@/lib/store";
 import { useHydrated } from "@/components/today/hooks";
 import { BentoSkeleton } from "@/components/today/Skeleton";
+import { rangeText } from "@/components/today/format";
 import { ShareButton, TickRow } from "./TickRow";
 
 /** F8: Pick up this week ("I buy most food"). Size line on every item, no calories. */
@@ -17,10 +18,13 @@ export function PickupScreen() {
   return (
     <Screen>
       <TopRow back={{ href: "/food" }}>
-        <Hero title="Pick up this week" subline="Home days only. Main meals: 1 ready meal + 1 side. Breakfast and 4th meal: grab-and-go." />
+        <Hero
+          title="Pick up this week"
+          subline={`For ${rangeText(list.from, list.to)}, home days only. Main meals: 1 ready meal + 1 side. Breakfast and 4th meal: grab-and-go.`}
+        />
       </TopRow>
 
-      {cooks && list.items.length === 0 ? (
+      {cooks && list.hidden ? (
         <>
           <Subline>You cook most food, so your list is the shopping list.</Subline>
           <Button href="/food/list" block>
