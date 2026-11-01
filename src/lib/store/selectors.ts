@@ -14,6 +14,7 @@ import type {
   MealSlot,
   PlannedSession,
   SessionLetter,
+  SessionMinutes,
 } from "../types";
 import { getContent } from "./content";
 import { now } from "./clock";
@@ -186,11 +187,12 @@ export function sessionFor(s: AppState, letter: SessionLetter, date: ISODate, mi
 }
 
 /** Today's (or the next) workout. Taster: session A, 10 minutes. */
-export const selectSession = memo((s: AppState, opts?: { taster?: boolean; letter?: SessionLetter }) => {
+/** `minutes` picks a shorter (or longer) version of today's workout, e.g. T1's "10 min". */
+export const selectSession = memo((s: AppState, opts?: { taster?: boolean; letter?: SessionLetter; minutes?: SessionMinutes }) => {
   const today = selectToday(s);
   if (opts?.taster) return sessionFor(s, "A", today, 10);
   const letter = opts?.letter ?? selectSchedule(s)[today] ?? selectNextWorkout(s)?.letter ?? "A";
-  return sessionFor(s, letter, today);
+  return sessionFor(s, letter, today, opts?.minutes);
 });
 
 export const selectNextWorkout = memo((s: AppState) => {

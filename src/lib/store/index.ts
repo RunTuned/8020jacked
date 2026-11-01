@@ -36,6 +36,7 @@ import * as S from "./selectors";
 import { safeStorage } from "./storage";
 
 export * from "./selectors";
+export * from "./train";
 export { exportFileName } from "./io";
 export { setContent, getContent } from "./content";
 export { setClock, resetClock } from "./clock";
@@ -91,7 +92,7 @@ export interface Actions {
 
   // Train
   setBigScreen(on: boolean): void;
-  startWorkout(opts?: { taster?: boolean; letter?: SessionLetter }): string | null;
+  startWorkout(opts?: { taster?: boolean; letter?: SessionLetter; minutes?: SessionMinutes }): string | null;
   logSet(exerciseId: string, setIndex: number, value: number): boolean;
   rateMove(exerciseId: string, effort: Effort): void;
   tapHurts(exerciseId: string): { setAside: boolean };
