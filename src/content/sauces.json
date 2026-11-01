@@ -1,0 +1,441 @@
+[
+  {
+    "id": "sauce-lemon-herb-yoghurt",
+    "name": "Lemon, herb and yoghurt sauce",
+    "minutes": 5,
+    "servings": 4,
+    "kcal": 30,
+    "protein": 5,
+    "allergens": [
+      "dairy"
+    ],
+    "fridgeDays": 3,
+    "freezer": false,
+    "ingredients": [
+      {
+        "name": "plain Greek yoghurt (fat-free)",
+        "qty": 200,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "lemon",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh parsley or dill",
+        "qty": 1,
+        "unit": "handful",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Grate the lemon zest into a small jar and squeeze in the juice.",
+      "Chop the herbs and grate in the garlic.",
+      "Stir in the yoghurt with a pinch of salt and pepper. Put the lid on and keep in the fridge for up to 3 days."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-peri-peri",
+    "name": "Peri-peri-style sauce (mild)",
+    "minutes": 5,
+    "servings": 6,
+    "kcal": 62,
+    "protein": 0,
+    "allergens": [],
+    "fridgeDays": 3,
+    "freezer": true,
+    "ingredients": [
+      {
+        "name": "olive oil",
+        "qty": 3,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "lemon",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "smoked paprika",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "dried oregano",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "vinegar (white or cider)",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mild chilli powder (optional)",
+        "qty": 1,
+        "unit": "pinch",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Squeeze the lemon into a small jar and grate in the garlic.",
+      "Add the oil, paprika, oregano, vinegar, a pinch of mild chilli powder if you like, and salt.",
+      "Put the lid on and shake. Keep in the fridge for up to 3 days, or freeze in an ice-cube tray."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-soy-garlic",
+    "name": "Sweet soy and garlic sauce",
+    "minutes": 8,
+    "servings": 6,
+    "kcal": 30,
+    "protein": 1,
+    "allergens": [
+      "soy",
+      "gluten"
+    ],
+    "fridgeDays": 3,
+    "freezer": true,
+    "ingredients": [
+      {
+        "name": "soy sauce",
+        "qty": 4,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "honey",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh ginger",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "vinegar (white or cider)",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "cornflour",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Grate the garlic and ginger into a small pot.",
+      "Add the soy sauce, honey, vinegar and 4 tbsp water. Stir the cornflour into 1 tbsp cold water and add it.",
+      "Bring to the boil, stirring, and bubble for 1 minute until glossy. Cool, then keep in a jar in the fridge for up to 3 days, or freeze."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-salsa-verde",
+    "name": "Salsa verde",
+    "minutes": 8,
+    "servings": 6,
+    "kcal": 82,
+    "protein": 0,
+    "allergens": [],
+    "fridgeDays": 3,
+    "freezer": true,
+    "ingredients": [
+      {
+        "name": "fresh parsley",
+        "qty": 1,
+        "unit": "bunch",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "capers",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lemon juice",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "olive oil",
+        "qty": 4,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the parsley, capers and garlic very small on one board.",
+      "Scrape into a jar and stir in the lemon juice, oil, salt and pepper.",
+      "Keep in the fridge for up to 3 days, or freeze in an ice-cube tray."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-tahini-lemon",
+    "name": "Tahini and lemon sauce",
+    "minutes": 5,
+    "servings": 6,
+    "kcal": 62,
+    "protein": 2,
+    "allergens": [
+      "sesame"
+    ],
+    "fridgeDays": 3,
+    "freezer": false,
+    "ingredients": [
+      {
+        "name": "tahini",
+        "qty": 4,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "lemon juice",
+        "qty": 3,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "salt",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Put the tahini in a jar and grate in the garlic.",
+      "Stir in the lemon juice, then 4 tbsp water a spoon at a time until smooth and pourable. Add salt.",
+      "Keep in the fridge for up to 3 days. Stir in a splash of water if it thickens."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-tomato-jam",
+    "name": "Sweet tomato jam",
+    "minutes": 10,
+    "servings": 6,
+    "kcal": 37,
+    "protein": 1,
+    "allergens": [],
+    "fridgeDays": 3,
+    "freezer": true,
+    "ingredients": [
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 200,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tomato purée",
+        "qty": 4,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "honey",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "vinegar (white or cider)",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "smoked paprika",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Grate the garlic into a small pot. Add everything else.",
+      "Bring to the boil, then bubble for 8 minutes, stirring often, until thick and jammy.",
+      "Cool, then keep in a jar in the fridge for up to 3 days, or freeze."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-peanut-lime",
+    "name": "Peanut and lime sauce",
+    "minutes": 5,
+    "servings": 6,
+    "kcal": 70,
+    "protein": 3,
+    "allergens": [
+      "peanuts",
+      "soy",
+      "gluten"
+    ],
+    "fridgeDays": 3,
+    "freezer": false,
+    "ingredients": [
+      {
+        "name": "smooth peanut butter",
+        "qty": 4,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "lime",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "soy sauce",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "honey",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      }
+    ],
+    "method": [
+      "Put the peanut butter in a jar, squeeze in the lime and grate in the garlic.",
+      "Add the soy sauce and honey, then stir in 4 tbsp warm water until smooth.",
+      "Keep in the fridge for up to 3 days. Stir in a splash of water if it thickens."
+    ],
+    "kind": "sauce"
+  },
+  {
+    "id": "sauce-garlic-chive",
+    "name": "Garlic and chive dressing",
+    "minutes": 5,
+    "servings": 6,
+    "kcal": 85,
+    "protein": 0,
+    "allergens": [],
+    "fridgeDays": 3,
+    "freezer": false,
+    "ingredients": [
+      {
+        "name": "olive oil",
+        "qty": 4,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "lemon juice",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "Dijon mustard",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "fresh chives",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "honey",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Snip the chives into a jar and grate in the garlic.",
+      "Add the oil, lemon juice, mustard, honey and a pinch of salt.",
+      "Put the lid on and shake. Keep in the fridge for up to 3 days."
+    ],
+    "kind": "sauce"
+  }
+]

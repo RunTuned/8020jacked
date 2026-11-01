@@ -10,10 +10,11 @@ import type {
   MealSwap,
   MealType,
   Recipe,
+  Sauce,
   SessionLetter,
   ShopArea,
 } from "../types";
-import { weekDates } from "./dates";
+import { addDays, diffDays, weekday, weekDates, weekStart as weekStartOf } from "./dates";
 import {
   buyerSidesPerSlot,
   effectiveMealsPerDay,
@@ -123,11 +124,43 @@ export interface WeekMealsInput {
   swaps: MealSwap[];
   workouts?: Record<ISODate, SessionLetter | null>;
   seed?: string;
+  /** Quick sauces (src/content/sauces.json). Optional: no sauces = no sauce lines. */
+  sauces?: Sauce[];
 }
 
-/** Two batch cooks a week: Mon–Thu and Fri–Sun. */
-export function cookBlock(dayIndex: number): 0 | 1 {
-  return dayIndex < 4 ? 0 : 1;
+// ---------- Cook days (prep and carry) ----------
+
+/**
+ * Two cook days a week: Sunday cooks for Mon–Wed (block 0), Wednesday cooks for Thu–Sat (block 1).
+ * Sunday itself (block 2) eats from the freezer, or a fresh quick meal. Everything stays within 3 fridge days.
+ */
+export type CookBlock = 0 | 1 | 2;
+export function cookBlock(dayIndex: number): CookBlock {
+  return dayIndex <= 2 ? 0 : dayIndex <= 5 ? 1 : 2;
+}
+
+/** Cook day of each block, in days from Monday: the Sunday before (−1), Wednesday (2), Sunday (6). */
+export const COOK_DAY_OFFSET: Record<CookBlock, number> = { 0: -1, 1: 2, 2: 6 };
+
+export function cookDate(weekStartDate: ISODate, block: CookBlock): ISODate {
+  return addDays(weekStartDate, COOK_DAY_OFFSET[block]);
+}
+
+/**
+ * The batch cook a date belongs to, for the cook day screen. Sunday cooks next week's Mon–Wed;
+ * Mon–Tue still show that Sunday batch; Wednesday to Saturday show the Wednesday batch.
+ */
+export function cookSessionFor(date: ISODate): { weekStart: ISODate; block: 0 | 1; cookOn: ISODate } {
+  const wd = weekday(date);
+  const ws = weekStartOf(date);
+  if (wd === 6) return { weekStart: addDays(ws, 7), block: 0, cookOn: date };
+  const block = wd <= 1 ? 0 : 1;
+  return { weekStart: ws, block, cookOn: cookDate(ws, block) };
+}
+
+/** A recipe may be eaten up to fridgeDays after it was cooked. */
+export function withinFridgeDays(r: { fridgeDays: number }, ageDays: number): boolean {
+  return ageDays <= r.fridgeDays;
 }
 
 export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
@@ -136,20 +169,36 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
   const safe = (x: { allergens: Allergen[] }) => isSafe(x, i.allergies);
   const recipeById = new Map(i.recipes.map((r) => [r.id, r]));
   const boughtById = new Map(i.bought.map((b) => [b.id, b]));
+  const sauceById = new Map((i.sauces ?? []).map((x) => [x.id, x]));
 
   // Typical meal size, for choosing recipes that scale well.
   const p0 = i.prefsFor(dates[0]);
   const kcal0 = mealKcal(i.daily, effectiveMealsPerDay(p0.mealsPerDay, p0.fasting));
+  const mainsOn = (d: ISODate) => {
+    const p = i.prefsFor(d);
+    return slotMealTypes(effectiveMealsPerDay(p.mealsPerDay, p.fasting)).filter((t) => t === "main").length;
+  };
 
-  const mainsByBlock = [0, 1].map((b) => {
-    const days = dates.filter((_, idx) => cookBlock(idx) === b);
-    const count = days.reduce((a, d) => {
-      const p = i.prefsFor(d);
-      return a + slotMealTypes(effectiveMealsPerDay(p.mealsPerDay, p.fasting)).filter((t) => t === "main").length;
-    }, 0);
+  // Batch mains for the two cook days. At least one good-cold main per batch goes to lunches.
+  const mainPools = ([0, 1] as const).map((b) => recipePool(i.recipes, "main", kcal0, `${seed}:main:${b}`, true));
+  const batches = ([0, 1] as const).map((b) => {
+    const count = dates.filter((_, idx) => cookBlock(idx) === b).reduce((a, d) => a + mainsOn(d), 0);
     const k = count >= 6 ? 3 : 2;
-    return stablePick(recipePool(i.recipes, "main", kcal0, `${seed}:main:${b}`, true), k, safe);
+    const pool = mainPools[b];
+    const cold = pool.filter((r) => r.carry === "cold");
+    const coldPick = cold.length ? stablePick(cold, 1, safe) : [];
+    const hot = coldPick.length ? pool.filter((r) => r.carry !== "cold") : pool;
+    const hotPick = stablePick(hot, k - coldPick.length, safe);
+    return { cold: coldPick, hot: hotPick.length ? hotPick : coldPick, all: [...coldPick, ...hotPick] };
   });
+  // Sunday: portions from this week's freezer-friendly batch mains, else a fresh quick main.
+  const freezerMains = [...new Map(batches.flatMap((b, bi) => b.all.filter((r) => r.freezer).map((r) => [r.id, { r, block: bi as 0 | 1 }]))).values()];
+  const freshSunday = stablePick(
+    recipePool(i.recipes, "main", kcal0, `${seed}:main:2`, false).sort((a, b) => Number(a.minutes > 20) - Number(b.minutes > 20)),
+    2,
+    safe,
+  );
+
   const pickTwo = (type: MealType) =>
     stablePick(
       recipePool(i.recipes, type, kcal0, `${seed}:${type}`, false).sort(
@@ -176,7 +225,44 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
   const grabBreakfast = boughtPool("grab", "breakfast", `${seed}:grab:b`);
   const grabSnack = boughtPool("grab", "snack", `${seed}:grab:s`);
 
-  const counters = { main: [0, 0], breakfast: 0, snack: 0, ready: 0, side: 0, grabB: 0, grabS: 0 };
+  const counters = { hot: [0, 0], lunch: [0, 0], sunday: 0, breakfast: 0, snack: 0, ready: 0, side: 0, grabB: 0, grabS: 0 };
+  // Extra fresh-enough mains a batch needs when nothing picked keeps long enough (by block and age).
+  const extras = new Map<string, Recipe | null>();
+  const extraFor = (b: 0 | 1, age: number, used: Recipe[]): Recipe | null => {
+    const key = `${b}:${age}`;
+    if (!extras.has(key))
+      extras.set(key, mainPools[b].find((r) => safe(r) && withinFridgeDays(r, age) && !used.includes(r)) ?? null);
+    return extras.get(key)!;
+  };
+
+  // Two sauces per main per batch, taking turns across the batch's days.
+  const sauceTurns = new Map<string, number>();
+  const sauceFor = (r: Recipe, key: string): Sauce | undefined => {
+    const options = rank(
+      r.sauces.map((id) => sauceById.get(id)).filter((x): x is Sauce => !!x && safe(x)),
+      `${seed}:sauce:${key}:${r.id}`,
+    ).slice(0, 2);
+    if (!options.length) return undefined;
+    const t = `${key}:${r.id}`;
+    const n = sauceTurns.get(t) ?? 0;
+    sauceTurns.set(t, n + 1);
+    return options[n % options.length];
+  };
+
+  /** A batch main for a slot: lunches alternate cold and hot, and nothing is served past its fridge days. */
+  const batchMain = (b: 0 | 1, isLunch: boolean, age: number): { r?: Recipe; fromFreezer: boolean } => {
+    const batch = batches[b];
+    let wanted: Recipe | undefined;
+    if (isLunch && batch.cold.length && counters.lunch[b]++ % 2 === 0) wanted = batch.cold[0];
+    else if (batch.hot.length) wanted = batch.hot[counters.hot[b]++ % batch.hot.length];
+    const order = [...(wanted ? [wanted] : []), ...batch.hot, ...batch.cold];
+    const fresh = order.find((r) => withinFridgeDays(r, age));
+    if (fresh) return { r: fresh, fromFreezer: false };
+    const frozen = order.find((r) => r.freezer);
+    if (frozen) return { r: frozen, fromFreezer: true };
+    const extra = extraFor(b, age, batch.all);
+    return extra ? { r: extra, fromFreezer: false } : { fromFreezer: false };
+  };
 
   return dates.map((date, dayIdx) => {
     const prefs = i.prefsFor(date);
@@ -186,6 +272,7 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
     const away = i.awayDates.has(date);
     const sidesPerSlot = buyerSidesPerSlot(types, i.sideDelta);
     const block = cookBlock(dayIdx);
+    const lunchIndex = types.indexOf("main");
 
     const meals: MealSlot[] = types.map((type, index) => {
       const swap = i.swaps.find((s) => s.date === date && s.slot === index);
@@ -200,14 +287,35 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
       };
       if (prefs.cookOrBuy === "cook") {
         let r: Recipe | undefined;
+        let fromFreezer = false;
+        let cookedOn: ISODate | undefined;
         const sw = swap ? recipeById.get(swap.itemId) : undefined;
+        if (type === "main" && index === lunchIndex) base.lunch = true;
         if (sw && safe(sw) && sw.mealTypes.includes(type)) {
           r = sw;
           base.swapped = true;
+          cookedOn = type === "main" ? cookDate(i.weekStart, block) : date;
+          // Her own pick that wouldn't keep this long: from the freezer if it freezes, else made fresh that day.
+          if (!withinFridgeDays(sw, diffDays(cookedOn, date))) {
+            if (sw.freezer) fromFreezer = true;
+            else cookedOn = date;
+          }
         } else if (!away) {
-          if (type === "main") {
-            const list = mainsByBlock[block];
-            r = list.length ? list[counters.main[block]++ % list.length] : undefined;
+          if (type === "main" && block !== 2) {
+            cookedOn = cookDate(i.weekStart, block);
+            const pick = batchMain(block, index === lunchIndex, diffDays(cookedOn, date));
+            r = pick.r;
+            fromFreezer = pick.fromFreezer;
+          } else if (type === "main") {
+            if (freezerMains.length) {
+              const f = freezerMains[counters.sunday++ % freezerMains.length];
+              r = f.r;
+              fromFreezer = true;
+              cookedOn = cookDate(i.weekStart, f.block);
+            } else if (freshSunday.length) {
+              r = freshSunday[counters.sunday++ % freshSunday.length];
+              cookedOn = date;
+            }
           } else if (type === "breakfast") {
             r = breakfasts.length ? breakfasts[counters.breakfast++ % breakfasts.length] : undefined;
           } else {
@@ -218,10 +326,23 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
         base.hands = hands;
         base.handLine = handLine(hands);
         if (r) {
-          const m = servingMultiplier(kcal, r.kcal);
+          const sauce = sauceFor(r, type === "main" ? `b${block}` : type);
+          const m = servingMultiplier(kcal - (sauce?.kcal ?? 0), r.kcal);
           base.recipeId = r.id;
           base.servings = m;
           base.servingsLabel = servingsLabel(m);
+          if (sauce) base.sauceId = sauce.id;
+          if (r.topping) base.topping = r.topping;
+          if (r.carry) base.carry = r.carry;
+          if (r.pack) base.pack = r.pack;
+          base.fridgeDays = r.fridgeDays;
+          base.freezer = r.freezer;
+          base.carbsFrozen = r.carbsFrozen;
+          if (cookedOn) {
+            base.cookedOn = cookedOn;
+            base.ageDays = diffDays(cookedOn, date);
+          }
+          if (fromFreezer) base.fromFreezer = true;
         }
         return base;
       }
@@ -252,6 +373,12 @@ export function buildWeekMeals(i: WeekMealsInput): DayPlan[] {
     });
     return { date, away, workout: i.workouts?.[date] ?? null, meals };
   });
+}
+
+/** Lunches she carries that are good cold, this week. */
+export function coldLunchCount(week: DayPlan[], recipes: Recipe[]): number {
+  const byId = new Map(recipes.map((r) => [r.id, r]));
+  return week.flatMap((d) => d.meals).filter((m) => m.lunch && m.recipeId && byId.get(m.recipeId)?.carry === "cold").length;
 }
 
 /** Item id currently served in a slot. */
@@ -320,19 +447,23 @@ export function allergyChange(
   recipes: Recipe[],
   bought: BoughtItem[],
   newAllergens: Allergen[],
+  sauces: Sauce[] = [],
 ): AllergyChange {
-  const ids = (w: DayPlan[]) => new Set(w.flatMap((d) => d.meals.flatMap((m) => [servedId(m), ...(m.sideIds ?? [])])));
+  const ids = (w: DayPlan[]) =>
+    new Set(w.flatMap((d) => d.meals.flatMap((m) => [servedId(m), m.sauceId, ...(m.sideIds ?? [])])));
   const beforeIds = ids(before);
   const afterIds = ids(after);
   const removed = [...beforeIds].filter((x): x is string => !!x && !afterIds.has(x));
   const recipeById = new Map(recipes.map((r) => [r.id, r]));
   const boughtById = new Map(bought.map((b) => [b.id, b]));
+  const sauceById = new Map(sauces.map((x) => [x.id, x]));
+  const cooked = (id: string) => recipeById.get(id) ?? sauceById.get(id);
   const keptIngredients = new Set(
-    [...afterIds].flatMap((id) => (id && recipeById.get(id)?.ingredients.map((g) => g.name)) || []),
+    [...afterIds].flatMap((id) => (id && cooked(id)?.ingredients.map((g) => g.name)) || []),
   );
   const flagged = new Set<string>();
   for (const id of removed) {
-    const r = recipeById.get(id);
+    const r = cooked(id);
     if (r) r.ingredients.filter((g) => !keptIngredients.has(g.name)).forEach((g) => flagged.add(g.name));
     const b = boughtById.get(id);
     if (b) flagged.add(b.name);
@@ -400,8 +531,10 @@ export function shoppingList(
   cookingFor: number,
   allergies: Allergen[],
   flaggedNames: string[] = [],
+  sauces: Sauce[] = [],
 ): ShoppingSection[] {
   const byId = new Map(recipes.map((r) => [r.id, r]));
+  const sauceById = new Map(sauces.map((x) => [x.id, x]));
   const acc = new Map<string, ShoppingItem>();
   const others = Math.max(0, Math.round(cookingFor) - 1);
   for (const day of week) {
@@ -410,12 +543,18 @@ export function shoppingList(
       if (m.source !== "cook" || !m.recipeId) continue;
       const r = byId.get(m.recipeId);
       if (!r) continue;
-      const servings = (m.servings ?? 1) + others;
-      for (const g of r.ingredients) {
+      // The meal at her serving size, plus one sauce pot per person.
+      const sauce = m.sauceId ? sauceById.get(m.sauceId) : undefined;
+      const parts: { item: { servings: number; ingredients: Recipe["ingredients"] }; servings: number }[] = [
+        { item: r, servings: (m.servings ?? 1) + others },
+        ...(sauce ? [{ item: sauce, servings: 1 + others }] : []),
+      ];
+      for (const { item, servings } of parts)
+      for (const g of item.ingredients) {
         const toTaste = !(g.qty > 0);
         const key = toTaste ? `${g.name.toLowerCase()}|to-taste` : `${g.name.toLowerCase()}|${g.unit}`;
         const cur = acc.get(key);
-        const add = toTaste ? 0 : (g.qty / r.servings) * servings;
+        const add = toTaste ? 0 : (g.qty / item.servings) * servings;
         if (cur) cur.qty += add;
         else
           acc.set(key, {

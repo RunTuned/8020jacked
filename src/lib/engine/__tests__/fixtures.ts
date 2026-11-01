@@ -62,6 +62,10 @@ const rec = (
     { name: "onion", qty: 2, unit: "", area: "fruit-veg" },
   ],
   method: [`Cook ${id}.`, "Serve."],
+  fridgeDays: 3,
+  freezer: false,
+  carbsFrozen: false,
+  sauces: [],
   ...extra,
 });
 

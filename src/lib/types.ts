@@ -66,6 +66,11 @@ export interface Ingredient {
   area: ShopArea;
 }
 
+/** Prep-and-carry: the two cooking formats (one oven tray, or one pot on the hob). */
+export type CookFormat = "tray" | "pot";
+/** "hot" needs a microwave (heat until steaming); "cold" is good cold. */
+export type Carry = "hot" | "cold";
+
 export interface Recipe {
   id: string;
   name: string;
@@ -77,6 +82,37 @@ export interface Recipe {
   allergens: Allergen[];
   batch: boolean;
   ingredients: Ingredient[]; // quantities for `servings` servings
+  method: string[];
+  /** Mains: tray or pot. */
+  format?: CookFormat;
+  /** Things to wash: tray or pot + board + knife = 3 at most for mains. */
+  washUp?: number;
+  /** Days it keeps in the fridge after cooking (3 at most). */
+  fridgeDays: number;
+  freezer: boolean;
+  /** Rice or pasta in it is frozen in single portions on cook day. */
+  carbsFrozen: boolean;
+  carry?: Carry;
+  /** One plain packing line. */
+  pack?: string;
+  /** Sauce ids (src/content/sauces.json) that suit it. */
+  sauces: string[];
+  /** A crunchy topping suggestion (free of all 9 allergens). */
+  topping?: string;
+}
+
+/** A quick sauce, kept in its own pot so lunch doesn't go soggy. */
+export interface Sauce {
+  id: string;
+  name: string;
+  minutes: number;
+  servings: number;
+  kcal: number; // per serving
+  protein: number;
+  allergens: Allergen[];
+  fridgeDays: number;
+  freezer: boolean;
+  ingredients: Ingredient[]; // for `servings` servings
   method: string[];
 }
 
@@ -97,6 +133,8 @@ export interface Content {
   exercises: Exercise[];
   recipes: Recipe[];
   bought: BoughtItem[];
+  /** Optional so older content (and test fixtures) still load. */
+  sauces?: Sauce[];
 }
 
 // ---------- Profile and settings ----------
@@ -219,6 +257,21 @@ export interface MealSlot {
   sideIds?: string[];
   checkLabel: boolean;
   swapped: boolean;
+  /** cook: prep-and-carry details (absent when the content has none). */
+  lunch?: boolean; // the first main of the day, the one she carries
+  sauceId?: string;
+  topping?: string;
+  carry?: Carry;
+  pack?: string;
+  /** The day it was cooked (a cook day), or undefined for away days. */
+  cookedOn?: ISODate;
+  /** Days since cooking when it is eaten. */
+  ageDays?: number;
+  fridgeDays?: number;
+  freezer?: boolean;
+  carbsFrozen?: boolean;
+  /** Eaten from a frozen portion (thawed in the fridge the night before). */
+  fromFreezer?: boolean;
 }
 
 export interface DayPlan {

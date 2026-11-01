@@ -11,7 +11,8 @@
   {"id": "buy-ready-roast-chicken-veg", "name": "Roast chicken with vegetables ready meal", "kind": "ready", "mealTypes": ["main"], "sizeLine": "Regular pack (about 350–400 g), not large", "kcal": 380, "protein": 32, "allergens": ["gluten", "dairy"]},
   {"id": "buy-ready-chilli-con-carne", "name": "Mild beef chilli with rice", "kind": "ready", "mealTypes": ["main"], "sizeLine": "Regular pack (about 350–400 g), not large", "kcal": 460, "protein": 26, "allergens": ["gluten"]},
   {"id": "buy-ready-chicken-salad-box", "name": "Chicken salad bowl (with grains)", "kind": "ready", "mealTypes": ["main"], "sizeLine": "Regular bowl (about 300–350 g), not large", "kcal": 400, "protein": 28, "allergens": ["gluten", "egg", "dairy", "sesame"]},
-
+  {"id": "buy-ready-roast-chicken-potatoes-plain", "name": "Roast chicken with potatoes and veg ready meal (no gravy)", "kind": "ready", "mealTypes": ["main"], "sizeLine": "Regular pack (about 350–400 g), not large", "kcal": 400, "protein": 32, "allergens": []},
+  {"id": "buy-ready-chicken-rice-veg-plain", "name": "Plain chicken, rice and vegetable ready meal (no sauce)", "kind": "ready", "mealTypes": ["main"], "sizeLine": "Regular pack (about 350–400 g), not large", "kcal": 420, "protein": 30, "allergens": []},
   {"id": "buy-grab-yoghurt-fruit", "name": "Yoghurt + fruit", "kind": "grab", "mealTypes": ["breakfast", "snack"], "sizeLine": "1 small pot (about 150 g) + 1 piece of fruit", "kcal": 220, "protein": 10, "allergens": ["dairy"]},
   {"id": "buy-grab-greek-yoghurt-pot", "name": "Greek yoghurt or skyr pot", "kind": "grab", "mealTypes": ["breakfast", "snack"], "sizeLine": "1 regular pot (about 150–175 g), plain or lightly sweetened", "kcal": 150, "protein": 15, "allergens": ["dairy"]},
   {"id": "buy-grab-sandwich", "name": "Wholegrain sandwich, chicken or egg", "kind": "grab", "mealTypes": ["main", "snack"], "sizeLine": "1 regular sandwich (2 slices), not a sub or a large roll", "kcal": 380, "protein": 22, "allergens": ["gluten", "egg", "dairy", "soy", "sesame"]},
@@ -22,7 +23,6 @@
   {"id": "buy-grab-chicken-pieces", "name": "Cooked chicken pieces", "kind": "grab", "mealTypes": ["snack", "main"], "sizeLine": "1 small pack (about 100–150 g)", "kcal": 180, "protein": 32, "allergens": ["gluten", "soy"]},
   {"id": "buy-grab-overnight-oats", "name": "Overnight oats or porridge pot", "kind": "grab", "mealTypes": ["breakfast"], "sizeLine": "1 regular pot (about 200–250 g)", "kcal": 280, "protein": 10, "allergens": ["gluten", "dairy", "nuts"]},
   {"id": "buy-grab-dried-meat", "name": "Dried meat snack (biltong or jerky)", "kind": "grab", "mealTypes": ["snack"], "sizeLine": "1 small bag (about 30–40 g)", "kcal": 110, "protein": 18, "allergens": ["soy", "gluten"]},
-
   {"id": "buy-side-fruit", "name": "1 piece of fruit", "kind": "side", "mealTypes": ["breakfast", "main", "snack"], "sizeLine": "1 apple, banana, orange or pear", "kcal": 80, "protein": 1, "allergens": []},
   {"id": "buy-side-salad-bag", "name": "Bag of salad", "kind": "side", "mealTypes": ["main"], "sizeLine": "Half a bag (about 60–80 g), dressing on the side", "kcal": 25, "protein": 1, "allergens": []},
   {"id": "buy-side-bread-roll", "name": "Bread roll", "kind": "side", "mealTypes": ["main", "breakfast"], "sizeLine": "1 regular roll, wholegrain if you can", "kcal": 160, "protein": 6, "allergens": ["gluten", "soy", "sesame"]},

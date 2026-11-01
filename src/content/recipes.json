@@ -1,1542 +1,41 @@
 [
   {
-    "id": "rec-salmon-egg-cups",
-    "name": "Baked smoked salmon and egg cups",
-    "mealTypes": [
-      "breakfast"
-    ],
-    "minutes": 20,
-    "servings": 2,
-    "kcal": 277,
-    "protein": 30,
-    "allergens": [
-      "egg",
-      "fish",
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "smoked salmon",
-        "qty": 150,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "baby spinach",
-        "qty": 1,
-        "unit": "handful",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "eggs",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "fresh chives",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "Parmesan, grated",
-        "qty": 20,
-        "unit": "g",
-        "area": "fridge"
-      }
-    ],
-    "method": [
-      "Heat the oven to 200°C (180°C fan). Lightly grease 4 holes of a muffin tray, or 4 small ovenproof dishes.",
-      "Line each hole with smoked salmon.",
-      "Chop the spinach. In a bowl, beat the eggs with a fork, then stir in the spinach, chives and some black pepper.",
-      "Share the mix between the 4 holes, top with the Parmesan and a little more pepper. Bake for 15 minutes, until the eggs are just set."
-    ]
-  },
-  {
-    "id": "rec-cheesy-scrambled-eggs",
-    "name": "Cheesy scrambled eggs",
-    "mealTypes": [
-      "breakfast"
-    ],
-    "minutes": 10,
-    "servings": 1,
-    "kcal": 306,
-    "protein": 28,
-    "allergens": [
-      "egg",
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 3,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "cottage cheese (low-fat)",
-        "qty": 40,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "cheddar (reduced-fat), grated",
-        "qty": 15,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "Parmesan, grated",
-        "qty": 3,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "fresh chives, chopped",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Blend the cottage cheese until smooth with a stick blender or blender.",
-      "Beat the eggs in a bowl, then whisk in the blended cottage cheese until no lumps are left.",
-      "Warm a pan over medium-low heat with a little oil spray.",
-      "Pour in the eggs and keep stirring through the middle of the pan, so they stay soft.",
-      "When the eggs are mostly set but still a little runny, take the pan off the heat and stir in the cheddar, Parmesan, salt and pepper.",
-      "Put the pan back on the heat and cook until no runny egg is left. Top with the chives."
-    ]
-  },
-  {
-    "id": "rec-full-english",
-    "name": "Full English breakfast",
-    "mealTypes": [
-      "breakfast"
-    ],
-    "minutes": 15,
-    "servings": 1,
-    "kcal": 357,
-    "protein": 35,
-    "allergens": [
-      "egg",
-      "soy",
-      "sesame",
-      "gluten",
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 2,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "lean back bacon",
-        "qty": 50,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "bread, thin slices",
-        "qty": 2,
-        "unit": "slices",
-        "area": "tins-dry"
-      },
-      {
-        "name": "mushrooms",
-        "qty": 100,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "baby spinach",
-        "qty": 30,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Warm a non-stick pan and give it a light coat of cooking spray.",
-      "Slice the mushrooms. Fry them with the spinach and a little salt and pepper until soft, then lift them onto a plate.",
-      "Fry the bacon in the same pan until crisp.",
-      "Spray the pan again, crack in the eggs and cook them the way you like.",
-      "Toast the bread and serve with the eggs, bacon, mushrooms and spinach."
-    ]
-  },
-  {
-    "id": "rec-tuna-egg-muffins",
-    "name": "Tuna, cheese and egg muffins",
-    "mealTypes": [
-      "breakfast",
-      "snack"
-    ],
-    "minutes": 30,
-    "servings": 4,
-    "kcal": 222,
-    "protein": 22,
-    "allergens": [
-      "egg",
-      "fish",
-      "soy",
-      "gluten",
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 8,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "spring onions",
-        "qty": 50,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "broccoli",
-        "qty": 100,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "red pepper",
-        "qty": 70,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "Parmesan, grated",
-        "qty": 30,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "tinned tuna in brine",
-        "qty": 145,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "cooking spray",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "cheddar (reduced-fat), grated",
-        "qty": 10,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Heat the oven to 180°C. Crack the eggs into a large jug, season and whisk.",
-      "Finely dice the red pepper, broccoli and spring onions and stir them into the eggs with the Parmesan. Flake in the tuna and stir again.",
-      "Spray 8 holes of a muffin tray (or 8 paper cases) with cooking spray. Share the egg mix between them and scatter the cheddar on top.",
-      "Bake on the middle shelf for 18–20 minutes, until set all the way through and golden. Eat warm, or cool on a rack and keep in the fridge."
-    ]
-  },
-  {
-    "id": "rec-eggs-asparagus",
-    "name": "Boiled eggs with asparagus soldiers",
-    "mealTypes": [
-      "breakfast"
-    ],
-    "minutes": 15,
-    "servings": 2,
-    "kcal": 200,
-    "protein": 15,
-    "allergens": [
-      "egg"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "asparagus",
-        "qty": 250,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "eggs",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "olive oil",
-        "qty": 0.5,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "ground cumin or smoked paprika",
-        "qty": 1,
-        "unit": "pinch",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Snap the tough ends off the asparagus. Cook the spears in boiling water for 3 minutes, then drain.",
-      "Bring a fresh pan of water to the boil, lower in the eggs and cook for 6–7 minutes for a runny yolk.",
-      "Meanwhile heat a griddle or frying pan. Coat the asparagus in the oil, season with the cumin or paprika, salt and pepper, and cook for 3–4 minutes, turning, until tender.",
-      "Put the eggs in egg cups and dip the asparagus into the yolks."
-    ]
-  },
-  {
-    "id": "rec-spinach-mushroom-shakshuka",
-    "name": "Spinach and mushroom shakshuka",
-    "mealTypes": [
-      "breakfast",
-      "main"
-    ],
-    "minutes": 25,
-    "servings": 2,
-    "kcal": 328,
-    "protein": 25,
-    "allergens": [
-      "egg"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "oil (olive or coconut)",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "onion",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "mushrooms",
-        "qty": 300,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "spinach",
-        "qty": 450,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "eggs",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "fresh parsley",
-        "qty": 30,
-        "unit": "g",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Warm the oil in a large pan over medium heat. Soften the onion and garlic for 2–3 minutes.",
-      "Add the mushrooms, cook for 3–4 minutes more and season with salt and pepper.",
-      "Add the spinach a handful at a time, with the lid on, so each batch wilts before the next. Stir and check the seasoning.",
-      "Make 4 hollows in the spinach and crack an egg into each. Cover and cook for 5–6 minutes, until the whites are set.",
-      "Scatter with the parsley."
-    ]
-  },
-  {
-    "id": "rec-sweet-potato-egg-hash",
-    "name": "Sweet potato and egg hash",
-    "mealTypes": [
-      "breakfast"
-    ],
-    "minutes": 20,
-    "servings": 1,
-    "kcal": 391,
-    "protein": 29,
-    "allergens": [
-      "egg"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "sweet potato",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "eggs",
-        "qty": 2,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "egg whites",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "onion",
-        "qty": 0.5,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "red pepper",
-        "qty": 0.5,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "olive oil",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "garlic powder",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "paprika",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "salt and pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Peel the sweet potato and cut it into small cubes (about 2 cm). Boil with the lid on for 6 minutes, then drain well.",
-      "Heat the oil in a hot pan. Add the sweet potato, onion, red pepper, paprika, garlic powder, salt and pepper and stir-fry for 2 minutes.",
-      "Push the vegetables apart to make two gaps and crack a whole egg into each, then pour the egg whites over. Cover and cook for 1–2 minutes, until the eggs are set."
-    ]
-  },
-  {
-    "id": "rec-pepper-goats-cheese-frittata",
-    "name": "Red pepper and goat's cheese frittata",
-    "mealTypes": [
-      "breakfast",
-      "main"
-    ],
-    "minutes": 15,
-    "servings": 4,
-    "kcal": 256,
-    "protein": 16,
-    "allergens": [
-      "egg",
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 8,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "fresh oregano, chopped (or 2 tsp dried)",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "salt",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0.25,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "olive oil",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "red pepper",
-        "qty": 150,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "spring onions",
-        "qty": 100,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "goat's cheese, crumbled",
-        "qty": 72,
-        "unit": "g",
-        "area": "fridge"
-      }
-    ],
-    "method": [
-      "Heat the grill, with a shelf in the top third of the oven.",
-      "Beat the eggs in a bowl with the oregano, salt and pepper.",
-      "Warm the oil over medium heat in a large non-stick frying pan that can go under the grill. Add the pepper and spring onions and stir for about 1 minute, until the onions just soften.",
-      "Pour in the eggs. As they set, lift the edges so raw egg runs underneath. Cook for 2–3 minutes, until the base is lightly golden.",
-      "Scatter the goat's cheese on top and put the pan under the grill for 2–3 minutes, until puffed and golden.",
-      "Rest for 3 minutes. Eat hot or cold."
-    ]
-  },
-  {
-    "id": "rec-mango-cottage-cheese-bowl",
-    "name": "Mango, cottage cheese and yoghurt bowl",
-    "mealTypes": [
-      "breakfast",
-      "snack"
-    ],
-    "minutes": 5,
-    "servings": 1,
-    "kcal": 309,
-    "protein": 31,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "cottage cheese",
-        "qty": 210,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "plain Greek yoghurt (fat-free)",
-        "qty": 80,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "mango",
-        "qty": 41,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "honey",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "vanilla extract",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Stir the yoghurt and cottage cheese together in a bowl.",
-      "Spoon the mango on top.",
-      "Drizzle over the honey and the vanilla."
-    ]
-  },
-  {
-    "id": "rec-berry-walnut-yoghurt",
-    "name": "Berry and walnut yoghurt bowl",
-    "mealTypes": [
-      "breakfast",
-      "snack"
-    ],
-    "minutes": 5,
-    "servings": 1,
-    "kcal": 366,
-    "protein": 34,
-    "allergens": [
-      "nuts",
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "plain Greek yoghurt (fat-free) or skyr",
-        "qty": 300,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "blueberries",
-        "qty": 50,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "strawberries",
-        "qty": 100,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "honey",
-        "qty": 10,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "walnuts",
-        "qty": 15,
-        "unit": "g",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Cut the strawberries into bite-sized pieces.",
-      "Put the yoghurt in a bowl, add the berries and honey and stir.",
-      "Break up the walnuts and scatter them on top."
-    ]
-  },
-  {
-    "id": "rec-banana-yoghurt-bowl",
-    "name": "Banana and vanilla yoghurt bowl",
-    "mealTypes": [
-      "breakfast",
-      "snack"
-    ],
-    "minutes": 5,
-    "servings": 1,
-    "kcal": 158,
-    "protein": 14,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "plain Greek yoghurt (fat-free)",
-        "qty": 120,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "banana, ripe",
-        "qty": 0.5,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "vanilla extract",
-        "qty": 0.25,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "honey",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Slice the banana. Mix the yoghurt, banana and vanilla in a small bowl.",
-      "Drizzle the honey on top."
-    ]
-  },
-  {
-    "id": "rec-tomato-basil-omelette",
-    "name": "Tomato and basil omelette",
-    "mealTypes": [
-      "breakfast",
-      "main"
-    ],
-    "minutes": 10,
-    "servings": 1,
-    "kcal": 237,
-    "protein": 15,
-    "allergens": [
-      "egg"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 2,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "olive oil",
-        "qty": 0.5,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "cherry tomatoes",
-        "qty": 3,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fresh basil leaves",
-        "qty": 4,
-        "unit": "",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Beat the eggs with a fork and season lightly.",
-      "Warm the oil in a small pan and fry the halved tomatoes for 2 minutes.",
-      "Add the shredded basil for 20 seconds, then pour in the eggs and swirl them around with a spatula.",
-      "When the omelette starts to set, loosen the edges and fold it in half. Slide onto a plate once lightly golden."
-    ]
-  },
-  {
-    "id": "rec-bacon-egg-lettuce-cups",
-    "name": "Bacon, egg and tomato lettuce cups",
-    "mealTypes": [
-      "snack",
-      "main"
-    ],
-    "minutes": 20,
-    "servings": 1,
-    "kcal": 329,
-    "protein": 35,
-    "allergens": [
-      "egg"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 2,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "lean back bacon",
-        "qty": 4,
-        "unit": "slices",
-        "area": "fridge"
-      },
-      {
-        "name": "tomatoes",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "mayonnaise",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "large lettuce leaves",
-        "qty": 4,
-        "unit": "",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Boil the eggs for 10 minutes, then cool them in cold water. Meanwhile fry the bacon in a dry non-stick pan until crisp, then let it cool.",
-      "Peel the eggs and chop the eggs and bacon. Stir the diced tomato into the mayonnaise and season with salt and pepper.",
-      "Lay the lettuce leaves on a plate, pile on the tomato, bacon and egg, and add a grind of black pepper."
-    ]
-  },
-  {
-    "id": "rec-trout-mango-wraps",
-    "name": "Smoked trout and mango lettuce wraps",
-    "mealTypes": [
-      "snack",
-      "main"
-    ],
-    "minutes": 10,
-    "servings": 4,
-    "kcal": 72,
-    "protein": 7,
-    "allergens": [
-      "fish"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "large lettuce leaves",
-        "qty": 4,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "smoked trout",
-        "qty": 115,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "mango",
-        "qty": 165,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "spring onions",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "lemon juice (about 1 lemon)",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Lay the lettuce leaves flat and share the trout and mango between them.",
-      "Scatter over the spring onion and spoon over the lemon juice.",
-      "Roll each leaf up, tucking in the sides, and put them seam side down on a plate."
-    ]
-  },
-  {
-    "id": "rec-tuna-avocado-mix",
-    "name": "Tuna and avocado mix",
-    "mealTypes": [
-      "snack",
-      "main"
-    ],
-    "minutes": 10,
-    "servings": 2,
-    "kcal": 235,
-    "protein": 18,
-    "allergens": [
-      "egg",
-      "fish",
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "tinned tuna in brine",
-        "qty": 110,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "avocado",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "red onion, small",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "carrots",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "egg",
-        "qty": 1,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "plain Greek yoghurt (fat-free)",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "fridge"
-      },
-      {
-        "name": "Dijon or wholegrain mustard",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "lemon juice",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Boil the egg for 10 minutes, cool it in cold water, then peel and dice it.",
-      "Put the drained tuna in a bowl with the diced avocado, onion, grated carrot, egg, yoghurt, mustard and lemon juice.",
-      "Season with salt and pepper and stir together. Eat on its own or with salad leaves."
-    ]
-  },
-  {
-    "id": "rec-chicken-courgette-bites",
-    "name": "Chicken and courgette bites",
-    "mealTypes": [
-      "snack",
-      "main"
-    ],
-    "minutes": 25,
-    "servings": 6,
-    "kcal": 141,
-    "protein": 16,
-    "allergens": [
-      "egg",
-      "fish",
-      "soy",
-      "gluten"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "chicken mince",
-        "qty": 500,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "eggs",
-        "qty": 1,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "courgettes, grated",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "onion",
-        "qty": 0.5,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fresh chives",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic powder",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "paprika",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "soy sauce",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Heat the oven or air fryer to 180°C.",
-      "Put all the ingredients in a large bowl and mix well with your hands.",
-      "Wet your hands so the mix doesn't stick and roll it into 18 balls, about the size of a golf ball.",
-      "Put them on a tray lined with baking paper.",
-      "Bake for 12–15 minutes, until golden and cooked through with no pink inside."
-    ]
-  },
-  {
-    "id": "rec-tzatziki",
-    "name": "Tzatziki dip",
-    "mealTypes": [
-      "snack"
-    ],
-    "minutes": 5,
-    "servings": 1,
-    "kcal": 103,
-    "protein": 11,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "plain Greek yoghurt (fat-free)",
-        "qty": 100,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "lemon",
-        "qty": 0.25,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fresh dill",
-        "qty": 5,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "olive oil",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Peel and grate the garlic into a bowl.",
-      "Add the yoghurt, chopped dill and oil, and squeeze in the lemon juice.",
-      "Season with salt and pepper and stir until smooth."
-    ]
-  },
-  {
-    "id": "rec-boiled-eggs",
-    "name": "Hard-boiled eggs (air fryer)",
-    "mealTypes": [
-      "snack",
-      "breakfast"
-    ],
-    "minutes": 20,
-    "servings": 2,
-    "kcal": 144,
-    "protein": 13,
-    "allergens": [
-      "egg"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "eggs",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      }
-    ],
-    "method": [
-      "Put the eggs in a small ovenproof dish that fits your air fryer, pour over 250 ml water and put the dish in the basket.",
-      "Cook at 150°C for 18 minutes.",
-      "Peel and eat warm, or keep in the fridge."
-    ]
-  },
-  {
-    "id": "rec-berry-spinach-smoothie",
-    "name": "Berry and spinach smoothie",
-    "mealTypes": [
-      "snack",
-      "breakfast"
-    ],
-    "minutes": 5,
-    "servings": 1,
-    "kcal": 222,
-    "protein": 13,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "baby spinach",
-        "qty": 30,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "frozen strawberries",
-        "qty": 75,
-        "unit": "g",
-        "area": "freezer"
-      },
-      {
-        "name": "frozen raspberries",
-        "qty": 60,
-        "unit": "g",
-        "area": "freezer"
-      },
-      {
-        "name": "vanilla Greek yoghurt (fat-free)",
-        "qty": 120,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "orange juice",
-        "qty": 125,
-        "unit": "ml",
-        "area": "fridge"
-      }
-    ],
-    "method": [
-      "Put the spinach, berries, yoghurt and orange juice in a blender.",
-      "Blend until smooth."
-    ]
-  },
-  {
-    "id": "rec-berry-banana-smoothie",
-    "name": "Berry and banana yoghurt smoothie",
-    "mealTypes": [
-      "snack",
-      "breakfast"
-    ],
-    "minutes": 5,
-    "servings": 1,
-    "kcal": 248,
-    "protein": 13,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "plain Greek yoghurt (fat-free)",
-        "qty": 90,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "banana",
-        "qty": 120,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "mixed berries (frozen is fine)",
-        "qty": 220,
-        "unit": "g",
-        "area": "freezer"
-      }
-    ],
-    "method": [
-      "Put the yoghurt, banana, berries and 180 ml water in a blender.",
-      "Blend until smooth and pour into a glass."
-    ]
-  },
-  {
-    "id": "rec-beef-veg-soup",
-    "name": "Chunky beef and vegetable soup",
+    "id": "rec-tray-chicken-thighs-veg",
+    "name": "Roast chicken thighs and vegetables",
     "mealTypes": [
       "main"
     ],
-    "minutes": 60,
-    "servings": 3,
-    "kcal": 366,
-    "protein": 44,
+    "minutes": 35,
+    "servings": 1,
+    "kcal": 474,
+    "protein": 48,
     "allergens": [],
     "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-lemon-herb-yoghurt",
+      "sauce-peri-peri"
+    ],
+    "topping": "Toasted sunflower seeds",
     "ingredients": [
       {
-        "name": "lean beef mince",
-        "qty": 500,
+        "name": "chicken thigh fillets, skinless",
+        "qty": 200,
         "unit": "g",
         "area": "fridge"
-      },
-      {
-        "name": "salt",
-        "qty": 1.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "onion",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "celery sticks",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "carrots",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "tinned chopped tomatoes",
-        "qty": 4,
-        "unit": "tins (400 g)",
-        "area": "tins-dry"
-      },
-      {
-        "name": "green cabbage",
-        "qty": 0.5,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "beef stock",
-        "qty": 960,
-        "unit": "ml",
-        "area": "tins-dry"
-      },
-      {
-        "name": "bay leaves",
-        "qty": 2,
-        "unit": "",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Heat a large pot over medium heat and fry the mince, stirring, for 5–7 minutes until browned. Add the salt.",
-      "Add the carrots, celery and onion and cook for 5 minutes more.",
-      "Pour in the stock and tomatoes, add the cabbage and bay leaves, cover and simmer for 30–40 minutes, until the vegetables are tender.",
-      "Take out the bay leaves before serving."
-    ]
-  },
-  {
-    "id": "rec-chicken-tomato-curry",
-    "name": "Mild chicken and tomato curry",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 25,
-    "servings": 4,
-    "kcal": 288,
-    "protein": 30,
-    "allergens": [
-      "shellfish",
-      "fish",
-      "soy",
-      "gluten",
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "ghee",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "fridge"
-      },
-      {
-        "name": "fish sauce",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "mild curry powder",
-        "qty": 1.5,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "tomatoes",
-        "qty": 150,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "chicken mince",
-        "qty": 680,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Melt the ghee in a frying pan over medium heat.",
-      "Add the chicken mince and fry, breaking it up, until browned.",
-      "Stir in the fish sauce, curry powder and pepper and cook for 2 minutes.",
-      "Add the tomatoes and simmer for about 10 minutes, until the tomatoes are soft and the chicken is cooked through with no pink left."
-    ]
-  },
-  {
-    "id": "rec-butternut-cottage-pie",
-    "name": "Butternut cottage pie",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 45,
-    "servings": 1,
-    "kcal": 478,
-    "protein": 46,
-    "allergens": [],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "butternut",
-        "qty": 250,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "lean beef mince",
-        "qty": 160,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "tinned chopped tomatoes with onion",
-        "qty": 150,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "mushrooms",
-        "qty": 100,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "frozen peas",
-        "qty": 80,
-        "unit": "g",
-        "area": "freezer"
-      },
-      {
-        "name": "ground cinnamon",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Heat the oven to 180°C.",
-      "Boil or steam the butternut until soft. Season with salt, pepper and a little cinnamon, then mash or blend with a splash of water.",
-      "Spray a non-stick pan with cooking spray and brown the mince.",
-      "Add the mushrooms, season, and cook until the mince is cooked through and the mushrooms are soft.",
-      "Stir in the tomato and onion mix and the peas.",
-      "Spoon the mince into a sprayed ovenproof dish and spread the butternut mash on top.",
-      "Bake for 10–15 minutes, until the top is golden."
-    ]
-  },
-  {
-    "id": "rec-beef-stuffed-peppers",
-    "name": "Beef-stuffed peppers",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 40,
-    "servings": 1,
-    "kcal": 514,
-    "protein": 50,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "lean beef mince",
-        "qty": 160,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "onion",
-        "qty": 0.5,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "tinned chopped tomatoes with onion",
-        "qty": 150,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "large peppers (any colour)",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
       },
       {
         "name": "cauliflower",
-        "qty": 200,
+        "qty": 250,
         "unit": "g",
         "area": "fruit-veg"
-      },
-      {
-        "name": "grated cheese (reduced-fat)",
-        "qty": 20,
-        "unit": "g",
-        "area": "fridge"
-      }
-    ],
-    "method": [
-      "Heat the oven (or air fryer) to 180°C.",
-      "Cut a lid off the top of each pepper and pull out the seeds.",
-      "Cook the peppers in boiling water for 5–7 minutes to soften a little, then lift out.",
-      "Spray a non-stick pan with cooking spray. Fry the onion, garlic and mince, seasoned, until the mince is browned.",
-      "Stir in the tomato and onion mix and let it simmer.",
-      "Blend or grate the cauliflower until it looks like rice. Stir it into the mince and cook for a few minutes, then take off the heat.",
-      "Stand the peppers on a baking tray, fill them to the top with the mince and scatter over the cheese.",
-      "Bake for 12–15 minutes."
-    ]
-  },
-  {
-    "id": "rec-honey-soy-chicken-rice",
-    "name": "Honey soy chicken with rice",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 50,
-    "servings": 4,
-    "kcal": 432,
-    "protein": 38,
-    "allergens": [
-      "soy",
-      "sesame",
-      "gluten"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "olive oil",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "soy sauce",
-        "qty": 3,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "honey",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "fresh ginger",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves, chopped",
-        "qty": 3,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "chicken thighs, skinless (bone in)",
-        "qty": 8,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "sesame seeds",
-        "qty": 2,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "white rice",
-        "qty": 160,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Heat the oven to 180°C (fan).",
-      "Whisk the soy sauce, honey, oil, garlic and ginger in a bowl and season with salt and pepper.",
-      "Put the chicken in an ovenproof dish, pour over the sauce and turn to coat. Lay them smooth side down, cover with foil and roast for 20 minutes.",
-      "Turn the chicken over, scatter with the sesame seeds and roast uncovered for 25 minutes more, until browned and cooked through.",
-      "Cook the rice as the packet says while the chicken roasts. Serve with the pan juices spooned over."
-    ]
-  },
-  {
-    "id": "rec-beef-tomato-macaroni",
-    "name": "Beef and tomato macaroni",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 35,
-    "servings": 2,
-    "kcal": 386,
-    "protein": 33,
-    "allergens": [
-      "egg",
-      "soy",
-      "gluten"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "lean beef mince",
-        "qty": 225,
-        "unit": "g",
-        "area": "fridge"
       },
       {
         "name": "onion",
@@ -1545,86 +44,40 @@
         "area": "fruit-veg"
       },
       {
-        "name": "olive oil",
+        "name": "carrot",
         "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "tinned chopped tomatoes",
-        "qty": 240,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "macaroni (dry)",
-        "qty": 85,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "garlic powder",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "paprika",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "salt and pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Warm the oil in a hot pan and soften the onion for 2–3 minutes.",
-      "Add the mince with the salt, pepper, garlic powder and paprika and fry for 6–8 minutes, until browned.",
-      "Pour in the tomatoes and 250 ml water and add the macaroni. Stir and bring to the boil, then cover, turn the heat to low and simmer for 20 minutes, until the pasta is soft."
-    ]
-  },
-  {
-    "id": "rec-turkey-stuffed-peppers",
-    "name": "Turkey-stuffed peppers",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 35,
-    "servings": 2,
-    "kcal": 455,
-    "protein": 38,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "peppers, halved and seeded",
-        "qty": 3,
         "unit": "",
         "area": "fruit-veg"
       },
       {
-        "name": "mushrooms",
-        "qty": 35,
-        "unit": "g",
+        "name": "red pepper",
+        "qty": 1,
+        "unit": "",
         "area": "fruit-veg"
       },
       {
-        "name": "cheddar, grated",
-        "qty": 130,
+        "name": "garlic powder",
+        "qty": 2,
         "unit": "g",
-        "area": "fridge"
+        "area": "tins-dry"
       },
       {
-        "name": "turkey mince (or chicken mince)",
-        "qty": 225,
+        "name": "dried rosemary",
+        "qty": 2,
         "unit": "g",
-        "area": "fridge"
+        "area": "tins-dry"
+      },
+      {
+        "name": "dried basil",
+        "qty": 2,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "oil",
+        "qty": 5,
+        "unit": "g",
+        "area": "tins-dry"
       },
       {
         "name": "salt and pepper",
@@ -1634,14 +87,17 @@
       }
     ],
     "method": [
-      "Heat the oven to 180°C. Brown the mince in a frying pan over low heat, then add the mushrooms and cook until soft. Season with salt and pepper.",
-      "Fill the pepper halves with the mince and scatter the cheddar on top.",
-      "Cover with foil and bake for 15 minutes, until the peppers are tender but still hold their shape."
+      "Heat the oven to 200°C (180°C fan).",
+      "Cut the chicken thighs, cauliflower, onion, carrot and pepper into bite-size pieces on one board.",
+      "Tip everything onto one large tray. Add the oil, garlic powder, rosemary, basil, salt and pepper and toss with your hands.",
+      "Roast for 25–30 minutes, turning once, until the chicken is cooked through with no pink inside.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
     ]
   },
   {
-    "id": "rec-chicken-veg-traybake",
-    "name": "Chicken and vegetable traybake",
+    "id": "rec-tray-chicken-sweet-potato",
+    "name": "Chicken, sweet potato and broccoli traybake",
     "mealTypes": [
       "main"
     ],
@@ -1651,6 +107,19 @@
     "protein": 30,
     "allergens": [],
     "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-garlic-chive",
+      "sauce-tahini-lemon",
+      "sauce-peri-peri"
+    ],
+    "topping": "Toasted pumpkin seeds",
     "ingredients": [
       {
         "name": "sweet potato",
@@ -1701,358 +170,608 @@
         "area": "fruit-veg"
       },
       {
-        "name": "black pepper",
+        "name": "salt and pepper",
         "qty": 0,
         "unit": "to taste",
         "area": "tins-dry"
       }
     ],
     "method": [
-      "Heat the oven to 200°C. Cut the sweet potato into 3 cm cubes, break the broccoli into florets, cut the onion into 4 wedges and chop the courgette into bite-sized pieces. Put it all in a large baking tray with the whole garlic cloves.",
-      "Tuck the chicken among the vegetables. Drizzle with the oil, add the thyme and season with salt and pepper.",
-      "Roast for 40–45 minutes, turning the vegetables halfway, until the chicken is cooked through and the vegetables are soft."
+      "Heat the oven to 200°C (180°C fan).",
+      "Cut the sweet potato into 3 cm cubes, the broccoli into florets, the onion into wedges and the courgette into chunks. Tip them onto one large tray with the whole garlic cloves.",
+      "Tuck the chicken thighs in between the vegetables. Drizzle with the oil, add the thyme and season with salt and pepper.",
+      "Roast for 40–45 minutes, turning the vegetables halfway, until the chicken is cooked through with no pink inside and the vegetables are soft.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
     ]
   },
   {
-    "id": "rec-chicken-fried-rice",
-    "name": "Chicken fried rice",
+    "id": "rec-tray-lime-chicken",
+    "name": "Lime and coriander chicken",
     "mealTypes": [
       "main"
     ],
-    "minutes": 30,
-    "servings": 2,
-    "kcal": 452,
-    "protein": 30,
-    "allergens": [
-      "egg",
-      "soy",
-      "gluten"
-    ],
+    "minutes": 40,
+    "servings": 4,
+    "kcal": 336,
+    "protein": 52,
+    "allergens": [],
     "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-peri-peri",
+      "sauce-lemon-herb-yoghurt",
+      "sauce-tomato-jam"
+    ],
+    "topping": "Quick pickled red onion",
     "ingredients": [
       {
-        "name": "rice (dry)",
-        "qty": 100,
+        "name": "chicken breast fillets, thinly sliced",
+        "qty": 905,
         "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "fresh coriander",
+        "qty": 0.5,
+        "unit": "bunch",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lime",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cooking oil",
+        "qty": 1,
+        "unit": "tbsp",
         "area": "tins-dry"
       },
       {
-        "name": "oil (coconut or sunflower)",
+        "name": "honey",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mild chilli powder (or more paprika)",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "paprika",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground cumin",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 220°C (200°C fan).",
+      "Chop the coriander. On a large tray, mix the coriander, lime juice, oil, honey, garlic powder, chilli powder, paprika, cumin, salt and a little pepper.",
+      "Add the sliced chicken and turn it until coated. Leave for 15 minutes if you have time.",
+      "Spread the chicken out in one layer and roast for 12–15 minutes, until cooked through with no pink inside.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-tray-pepper-chicken-rolls",
+    "name": "Pepper-stuffed chicken rolls",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 40,
+    "servings": 2,
+    "kcal": 296,
+    "protein": 40,
+    "allergens": [],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-tomato-jam",
+      "sauce-salsa-verde"
+    ],
+    "topping": "Quick slaw: shredded cabbage and carrot with a squeeze of lemon",
+    "ingredients": [
+      {
+        "name": "chicken breast fillets",
+        "qty": 2,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "onion",
+        "qty": 0.25,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "green pepper",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cooking oil",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mild chilli powder (or more paprika)",
         "qty": 2,
         "unit": "tsp",
         "area": "tins-dry"
       },
       {
-        "name": "onion",
+        "name": "ground cumin",
         "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "red pepper",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "chicken breast fillets",
-        "qty": 1,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "frozen peas",
-        "qty": 100,
-        "unit": "g",
-        "area": "freezer"
-      },
-      {
-        "name": "eggs",
-        "qty": 1,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "spring onions",
-        "qty": 3,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "soy sauce",
-        "qty": 3,
-        "unit": "tbsp",
+        "unit": "tsp",
         "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Cook the rice as the packet says, or use 200 g ready-cooked rice.",
-      "Heat 1 tsp of the oil in a large pan or wok and soften the pepper and onion for 8–10 minutes.",
-      "Cut the chicken into small pieces and add with the peas; cook for 2–3 minutes. Crack in the egg and stir all the time for 30 seconds to 1 minute, until scrambled.",
-      "Add the spring onions, the rest of the oil, the soy sauce, salt, pepper and the rice. Mix well, cover and cook for 5 minutes more, until the chicken is cooked through.",
-      "To keep, cool quickly and split between 2 airtight containers in the fridge."
-    ]
-  },
-  {
-    "id": "rec-roast-chicken-thighs-veg",
-    "name": "Roast chicken thighs and vegetables",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 35,
-    "servings": 1,
-    "kcal": 474,
-    "protein": 48,
-    "allergens": [],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "chicken thigh fillets, skinless",
-        "qty": 200,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "cauliflower",
-        "qty": 250,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "onion",
-        "qty": 50,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "carrot",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "red pepper",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
       },
       {
         "name": "garlic powder",
         "qty": 0.5,
         "unit": "tsp",
         "area": "tins-dry"
-      },
-      {
-        "name": "dried rosemary",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "dried basil",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "oil",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
       }
     ],
     "method": [
-      "Heat the oven to 200°C.",
-      "Cut the chicken and all the vegetables into bite-sized pieces.",
-      "Put them in a baking dish, drizzle with the oil, add the garlic powder, rosemary, basil, salt and pepper and toss well.",
-      "Roast for 25–30 minutes, until the chicken is cooked through."
+      "Heat the oven to 200°C (180°C fan).",
+      "Slice the onion and pepper. Cut each chicken breast in half through the side to make 2 thin pieces, then flatten them with the heel of your hand.",
+      "Lay 3 onion slices and 4 pepper strips at one end of each piece and roll it up tightly. Put the rolls seam side down on one tray.",
+      "Rub with the oil and sprinkle with the chilli powder, cumin and garlic powder.",
+      "Roast for 25 minutes, until cooked through with no pink inside.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
     ]
   },
   {
-    "id": "rec-turkey-broccoli-quinoa",
-    "name": "Turkey and broccoli stir-fry with quinoa",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 25,
-    "servings": 2,
-    "kcal": 493,
-    "protein": 49,
-    "allergens": [
-      "soy",
-      "gluten",
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "olive oil",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "turkey mince (or chicken mince)",
-        "qty": 400,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "broccoli",
-        "qty": 1,
-        "unit": "head",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fresh ginger",
-        "qty": 20,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "stock powder (or ½ stock cube)",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "soy sauce",
-        "qty": 2,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "cooked quinoa",
-        "qty": 180,
-        "unit": "g",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Cook the mince in the oil in a wok or non-stick pan over medium heat until no pink is left. Pour off any fat.",
-      "Add the broccoli florets and cook for 5 minutes.",
-      "Stir in the garlic and ginger for 30 seconds.",
-      "Add 200 ml water, the stock powder and soy sauce and simmer for 10 minutes.",
-      "Add the quinoa, turn the heat up and stir for about 2 minutes, until hot all the way through."
-    ]
-  },
-  {
-    "id": "rec-turkey-steaks-mustard",
-    "name": "Turkey steaks with potatoes, leeks and mustard sauce",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 30,
-    "servings": 2,
-    "kcal": 369,
-    "protein": 35,
-    "allergens": [
-      "soy",
-      "gluten",
-      "dairy"
-    ],
-    "batch": true,
-    "ingredients": [
-      {
-        "name": "baby potatoes",
-        "qty": 200,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "leeks",
-        "qty": 100,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "olive oil",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "turkey breast steaks (or chicken breast fillets)",
-        "qty": 2,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "margarine",
-        "qty": 10,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "plain flour",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "skimmed milk",
-        "qty": 150,
-        "unit": "ml",
-        "area": "fridge"
-      },
-      {
-        "name": "Dijon or wholegrain mustard",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Halve the potatoes and thinly slice the leeks. Boil the potatoes for 15 minutes, until tender, adding the leeks for the last 3–5 minutes (or steam them on top).",
-      "Meanwhile heat the oil in a frying pan over medium heat and fry the turkey for 3–4 minutes, turning once, until golden and cooked through.",
-      "Melt the margarine in a small pan over medium-low heat. Whisk in the flour for 1–2 minutes, then slowly whisk in the milk until smooth. Simmer gently for 5 minutes until thick, then stir in the mustard and season.",
-      "Serve the vegetables and turkey with the sauce spooned over. To prep ahead, pack the vegetables and turkey in 2 containers and the sauce in 2 small pots."
-    ]
-  },
-  {
-    "id": "rec-lemon-herb-fish",
-    "name": "Lemon and herb baked fish",
+    "id": "rec-tray-smoky-chicken-thighs",
+    "name": "Smoky paprika chicken thighs",
     "mealTypes": [
       "main"
     ],
     "minutes": 25,
     "servings": 4,
-    "kcal": 122,
-    "protein": 26,
+    "kcal": 274,
+    "protein": 45,
+    "allergens": [],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-peri-peri",
+      "sauce-garlic-chive",
+      "sauce-lemon-herb-yoghurt"
+    ],
+    "topping": "Chopped cucumber and radish",
+    "ingredients": [
+      {
+        "name": "chicken thigh fillets, skinless",
+        "qty": 900,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt, garlic powder, onion powder, smoked paprika and mild chilli powder",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 230°C (210°C fan) with one tray inside. Take the hot tray out and give it a light spray of oil.",
+      "Mix equal amounts of salt, garlic powder, onion powder, smoked paprika and mild chilli powder. Dust both sides of each thigh with a light, even coat.",
+      "Lay the thighs on the hot tray. Roast for 12–15 minutes, until cooked through with no pink inside.",
+      "Rest for 5 minutes, then slice.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-tray-salmon-potatoes",
+    "name": "Salmon and potato traybake",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 45,
+    "servings": 4,
+    "kcal": 541,
+    "protein": 33,
+    "allergens": [
+      "fish"
+    ],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-lemon-herb-yoghurt",
+      "sauce-garlic-chive"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
+    "ingredients": [
+      {
+        "name": "baby potatoes",
+        "qty": 800,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "olive oil",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tenderstem broccoli or green beans",
+        "qty": 200,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "red onions",
+        "qty": 3,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cherry tomatoes",
+        "qty": 250,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh rosemary",
+        "qty": 2,
+        "unit": "sprigs",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "balsamic vinegar",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salmon fillets",
+        "qty": 520,
+        "unit": "g",
+        "area": "fridge"
+      }
+    ],
+    "method": [
+      "Heat the oven to 200°C (180°C fan).",
+      "Halve any big potatoes. Spread them on one large tray, rub with the oil, salt and pepper and roast for 15 minutes.",
+      "Cut the onions into wedges. Add them, the tomatoes and the rosemary to the tray, splash over the balsamic vinegar and roast for 10 minutes.",
+      "Season the salmon and tuck it in with the broccoli. Roast for 12–15 minutes more, until the salmon flakes easily in the middle.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-tray-cod-leek-mushroom",
+    "name": "Roast cod with leeks and mushrooms",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 30,
+    "servings": 4,
+    "kcal": 209,
+    "protein": 32,
+    "allergens": [
+      "fish",
+      "soy",
+      "gluten"
+    ],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-soy-garlic",
+      "sauce-garlic-chive"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
+    "ingredients": [
+      {
+        "name": "cod or hake fillets",
+        "qty": 680,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "olive oil",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "leeks",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "mushrooms (brown or shiitake), sliced",
+        "qty": 225,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "soy sauce",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "paprika",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "chicken or vegetable stock",
+        "qty": 120,
+        "unit": "ml",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 190°C (170°C fan).",
+      "Slice the leek and mushrooms. Tip them into one roasting tin with the oil, soy sauce, paprika, salt and some pepper and toss.",
+      "Roast for 10 minutes.",
+      "Stir, lay the seasoned cod on top in one layer and pour in the stock. Roast for 12–15 minutes more, until the fish is white and flakes all the way through.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-tray-spiced-white-fish",
+    "name": "Spice-rubbed white fish",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 20,
+    "servings": 4,
+    "kcal": 290,
+    "protein": 33,
+    "allergens": [
+      "fish",
+      "dairy"
+    ],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-tahini-lemon",
+      "sauce-tomato-jam"
+    ],
+    "topping": "Quick slaw: shredded cabbage and carrot with a squeeze of lemon",
+    "ingredients": [
+      {
+        "name": "ghee or butter, melted",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "hake or other white fish fillets (about 170 g each)",
+        "qty": 4,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "paprika",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground cumin",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "onion powder",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground turmeric",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "black pepper",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 200°C (180°C fan).",
+      "Grease one roasting tin with half the melted ghee. Lay the fish in it and brush the tops with the rest.",
+      "Mix the paprika, cumin, onion powder, turmeric, salt and pepper. Sprinkle about 1 tablespoon over the fish so the tops are covered. Keep the rest of the mix in a jar for next time.",
+      "Bake for 12–15 minutes, until the fish is firm and flakes all the way through.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-tray-cheesy-chicken-wings",
+    "name": "Cheesy paprika chicken wings",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 30,
+    "servings": 4,
+    "kcal": 488,
+    "protein": 31,
+    "allergens": [
+      "dairy"
+    ],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-tomato-jam",
+      "sauce-garlic-chive"
+    ],
+    "topping": "Chopped cucumber and radish",
+    "ingredients": [
+      {
+        "name": "chicken wings",
+        "qty": 420,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "olive oil",
+        "qty": 60,
+        "unit": "ml",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mozzarella cheese",
+        "qty": 200,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "onion powder",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "paprika",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 230°C (210°C fan).",
+      "Toss the wings with the oil on one large tray and spread them out.",
+      "Sprinkle the onion powder, paprika and salt over the wings, then scatter the mozzarella on top.",
+      "Roast for 20–25 minutes, until the juices run clear and there is no pink by the bone.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-tray-lemon-herb-fish",
+    "name": "Lemon and herb baked fish",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 25,
+    "servings": 2,
+    "kcal": 244,
+    "protein": 51,
     "allergens": [
       "fish",
       "soy",
       "gluten",
       "dairy"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-tahini-lemon"
+    ],
+    "topping": "Thin-sliced raw pepper",
     "ingredients": [
       {
-        "name": "white fish fillets, hake or cod (about 140 g each)",
+        "name": "white fish fillets, such as hake or cod (about 140 g each)",
         "qty": 4,
         "unit": "",
         "area": "fridge"
@@ -2076,7 +795,7 @@
         "area": "tins-dry"
       },
       {
-        "name": "all-purpose seasoning (salt-free)",
+        "name": "mixed dried herbs",
         "qty": 1,
         "unit": "tsp",
         "area": "tins-dry"
@@ -2089,248 +808,16 @@
       }
     ],
     "method": [
-      "Heat the oven to 180°C and lightly spray a baking dish.",
-      "Lay the fish in the dish in one layer and squeeze over the juice of half the lemon.",
-      "Scatter over the parsley, dill, basil and seasoning. Cut the other lemon half into 4 thin slices and put one on each fillet.",
-      "Cover with foil and bake for 10–15 minutes, until the fish flakes easily with a fork. Check thin fillets early so they don't dry out."
+      "Heat the oven to 180°C (160°C fan) and lightly oil one roasting tin.",
+      "Lay the fish in the tin in one layer and squeeze half the lemon over it.",
+      "Scatter over the parsley, dill, basil and mixed herbs. Slice the other half of the lemon thinly and lay a slice on each fillet.",
+      "Cover with foil and bake for 12–15 minutes, until the fish flakes all the way through. Thin fillets cook faster, so check early.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
     ]
   },
   {
-    "id": "rec-balsamic-chicken",
-    "name": "Balsamic chicken",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 20,
-    "servings": 4,
-    "kcal": 284,
-    "protein": 40,
-    "allergens": [
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "chicken breast fillets",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "lemon pepper seasoning",
-        "qty": 2,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "olive oil",
-        "qty": 1.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "balsamic vinegar",
-        "qty": 85,
-        "unit": "ml",
-        "area": "tins-dry"
-      },
-      {
-        "name": "chicken stock",
-        "qty": 62,
-        "unit": "ml",
-        "area": "tins-dry"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 2,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "butter",
-        "qty": 4,
-        "unit": "tsp",
-        "area": "fridge"
-      }
-    ],
-    "method": [
-      "Put the chicken in a plastic bag and flatten it to about 5 mm with a rolling pin.",
-      "Season both sides with the lemon pepper and press it in.",
-      "Heat the oil in a large frying pan over medium heat. Cook the chicken for about 7 minutes, turning once, until cooked through.",
-      "Move the chicken to a warm plate. Mix the vinegar, stock and garlic and pour into the pan. Let it bubble over medium-high heat for 2–4 minutes, scraping up the browned bits, until thick and syrupy.",
-      "Stir in the butter until melted and spoon the sauce over the chicken."
-    ]
-  },
-  {
-    "id": "rec-chicken-fennel-courgette",
-    "name": "Chicken with fennel and courgette",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 20,
-    "servings": 4,
-    "kcal": 353,
-    "protein": 43,
-    "allergens": [],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "olive oil",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "chicken breast fillets",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "leek (white part)",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fennel bulb",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "courgettes",
-        "qty": 3,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "chicken stock",
-        "qty": 125,
-        "unit": "ml",
-        "area": "tins-dry"
-      },
-      {
-        "name": "salt",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "olives",
-        "qty": 72,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "fresh dill",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Heat the oil in a large pan over high heat.",
-      "Add the chicken strips and stir for 1–2 minutes until browned. Lift the chicken and juices into a bowl.",
-      "Fry the fennel, leek and courgette in the same pan for 5 minutes.",
-      "Put the chicken back, add the stock, salt and pepper, cover and simmer for 5 minutes, until the chicken is cooked through.",
-      "Take off the heat and stir in the olives and dill."
-    ]
-  },
-  {
-    "id": "rec-fish-tomato-olives",
-    "name": "Baked white fish with tomatoes, olives and capers",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 25,
-    "servings": 4,
-    "kcal": 240,
-    "protein": 28,
-    "allergens": [
-      "fish",
-      "soy",
-      "gluten",
-      "dairy"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "olive oil",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "white fish fillets, hake or cod (about 140 g each)",
-        "qty": 4,
-        "unit": "",
-        "area": "fridge"
-      },
-      {
-        "name": "onion",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "vegetable or chicken stock",
-        "qty": 120,
-        "unit": "ml",
-        "area": "tins-dry"
-      },
-      {
-        "name": "tinned chopped tomatoes",
-        "qty": 240,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "olives, pitted and chopped",
-        "qty": 70,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "capers",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "baby spinach",
-        "qty": 60,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "salt",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "black pepper",
-        "qty": 0.25,
-        "unit": "tsp",
-        "area": "tins-dry"
-      }
-    ],
-    "method": [
-      "Heat the oven to 190°C.",
-      "Pour the oil into a baking dish and turn the fish in it to coat both sides.",
-      "Scatter the onion, tomatoes, olives, capers and spinach over the fish, pour in the stock and season with the salt and pepper.",
-      "Cover with foil and bake for 15 minutes, until the fish is white all the way through."
-    ]
-  },
-  {
-    "id": "rec-lemon-dill-salmon",
+    "id": "rec-tray-lemon-dill-salmon",
     "name": "Lemon and dill salmon",
     "mealTypes": [
       "main"
@@ -2342,7 +829,20 @@
     "allergens": [
       "fish"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-garlic-chive",
+      "sauce-soy-garlic"
+    ],
+    "topping": "Chopped cucumber and radish",
     "ingredients": [
       {
         "name": "salmon fillets (about 170 g each)",
@@ -2376,52 +876,642 @@
       }
     ],
     "method": [
-      "Heat the oven to 220°C. Line a baking tray with foil.",
-      "Put the salmon on the tray, season with the salt and pepper, and top each fillet with 2 dill sprigs and 2 half slices of lemon.",
-      "Roast for 15–20 minutes, until the salmon flakes easily with a fork."
+      "Heat the oven to 220°C (200°C fan). Line one tray with foil and oil it lightly.",
+      "Lay the salmon on the tray and season with the salt and pepper. Top each fillet with 2 dill sprigs and 2 half lemon slices.",
+      "Roast for 12–15 minutes, until the salmon just flakes in the middle.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "Also good cold. To eat hot: microwave until steaming hot all the way through. Reheat only once."
     ]
   },
   {
-    "id": "rec-air-fryer-greek-chicken",
-    "name": "Air-fryer Greek chicken and vegetables",
+    "id": "rec-tray-hake-tomato-olive",
+    "name": "Baked hake with tomatoes, olives and capers",
     "mealTypes": [
       "main"
     ],
     "minutes": 25,
-    "servings": 2,
-    "kcal": 190,
-    "protein": 20,
-    "allergens": [],
-    "batch": false,
+    "servings": 4,
+    "kcal": 240,
+    "protein": 28,
+    "allergens": [
+      "fish",
+      "soy",
+      "gluten",
+      "dairy"
+    ],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-garlic-chive"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
     "ingredients": [
       {
-        "name": "chicken breast fillet",
-        "qty": 1,
+        "name": "olive oil",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "hake fillets (or other white fish, about 140 g each)",
+        "qty": 4,
         "unit": "",
         "area": "fridge"
       },
       {
-        "name": "courgette",
-        "qty": 0.5,
+        "name": "onion",
+        "qty": 1,
         "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "chicken or vegetable stock",
+        "qty": 120,
+        "unit": "ml",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 240,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "olives",
+        "qty": 72,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "capers",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "spinach",
+        "qty": 2,
+        "unit": "handfuls",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "salt",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "black pepper",
+        "qty": 0.25,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 190°C (170°C fan).",
+      "Pour the oil into one roasting tin and turn the fish in it so both sides are coated.",
+      "Dice the onion. Scatter the onion, tomatoes, olives, capers and spinach over the fish, pour in the stock and season with the salt and pepper.",
+      "Cover with foil and bake for 15–20 minutes, until the fish is white and flakes all the way through.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-chicken-cacciatore",
+    "name": "Chicken cacciatore",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 60,
+    "servings": 4,
+    "kcal": 434,
+    "protein": 58,
+    "allergens": [
+      "soy",
+      "gluten",
+      "dairy"
+    ],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-garlic-chive"
+    ],
+    "topping": "Toasted sunflower seeds",
+    "ingredients": [
+      {
+        "name": "chicken thigh fillets, skinless (or part breast)",
+        "qty": 1000,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "onion, large",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 800,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mushrooms",
+        "qty": 300,
+        "unit": "g",
         "area": "fruit-veg"
       },
       {
         "name": "red pepper",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "carrot",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "tomato purée",
+        "qty": 20,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "stock powder or 1 stock cube",
+        "qty": 10,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "sunflower oil",
+        "qty": 4,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Cut the chicken into large chunks and salt them. Chop the onion, mushrooms, pepper and carrot.",
+      "Warm the oil in one large pot over medium-high heat. Brown the chicken for 1 minute on each side, then lift it onto a plate.",
+      "Add the mushrooms with a splash of water and cook until they shrink and brown, about 5 minutes. Add the other vegetables and cook 5 minutes more.",
+      "Stir in the tomato purée for 30 seconds. Add the stock powder, 200 ml water and the crushed tomatoes and bring to a simmer.",
+      "Put the chicken back, cover and simmer for 25 minutes, until it is cooked through with no pink inside.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-beef-cabbage-soup",
+    "name": "Chunky beef and cabbage soup",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 60,
+    "servings": 3,
+    "kcal": 366,
+    "protein": 44,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-lemon-herb-yoghurt"
+    ],
+    "topping": "Toasted sunflower seeds",
+    "ingredients": [
+      {
+        "name": "lean beef mince",
+        "qty": 500,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt",
+        "qty": 0.75,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "onion",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "celery sticks",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "carrots",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 1590,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "cabbage",
         "qty": 0.5,
         "unit": "",
         "area": "fruit-veg"
       },
       {
+        "name": "beef stock",
+        "qty": 960,
+        "unit": "ml",
+        "area": "tins-dry"
+      },
+      {
+        "name": "bay leaves",
+        "qty": 2,
+        "unit": "",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the onion, celery, carrots and cabbage.",
+      "Brown the beef in one large pot over medium heat for 5–7 minutes, breaking it up. Add the salt.",
+      "Add the carrots, celery and onion and cook for 5 minutes.",
+      "Pour in the stock and tomatoes, add the cabbage and bay leaves, cover and simmer for 30–40 minutes, until the vegetables are soft.",
+      "Take out the bay leaves.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-beef-pumpkin-chilli",
+    "name": "Beef, pumpkin and vegetable chilli",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 40,
+    "servings": 4,
+    "kcal": 293,
+    "protein": 33,
+    "allergens": [
+      "dairy"
+    ],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-tomato-jam",
+      "sauce-peri-peri"
+    ],
+    "topping": "Toasted pumpkin seeds",
+    "ingredients": [
+      {
+        "name": "lean beef mince",
+        "qty": 500,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "pumpkin",
+        "qty": 500,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "courgettes (baby marrows)",
+        "qty": 150,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
         "name": "onion",
-        "qty": 0.25,
+        "qty": 1,
         "unit": "",
         "area": "fruit-veg"
       },
       {
-        "name": "oil (coconut or olive)",
+        "name": "mushrooms",
+        "qty": 125,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "broccoli",
+        "qty": 150,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "frozen peas",
+        "qty": 50,
+        "unit": "g",
+        "area": "freezer"
+      },
+      {
+        "name": "sweetcorn (tinned or frozen)",
+        "qty": 50,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tinned chopped tomatoes with onion",
+        "qty": 300,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic powder, paprika, salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the onion, mushrooms, courgettes and broccoli. Cut the pumpkin into 2 cm cubes.",
+      "Brown the mince, onion and mushrooms in one large pot with a little oil spray. Season with garlic powder, paprika, salt and pepper.",
+      "Add the pumpkin, tinned tomatoes and 100 ml water. Cover and simmer for 15 minutes.",
+      "Add the broccoli, courgettes, peas and sweetcorn. Simmer for 8–10 minutes more, until the pumpkin is soft and the mince is cooked through.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-chicken-tomato-curry",
+    "name": "Chicken and tomato curry",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 25,
+    "servings": 4,
+    "kcal": 288,
+    "protein": 30,
+    "allergens": [
+      "shellfish",
+      "fish",
+      "soy",
+      "gluten",
+      "dairy"
+    ],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-peanut-lime"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
+    "ingredients": [
+      {
+        "name": "ghee",
         "qty": 1,
         "unit": "tbsp",
+        "area": "fridge"
+      },
+      {
+        "name": "fish sauce",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mild curry powder",
+        "qty": 1.5,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tomatoes, diced",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "chicken mince",
+        "qty": 680,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Dice the tomatoes.",
+      "Melt the ghee in one pot over medium heat. Add the chicken mince and fry, breaking it up, until browned.",
+      "Stir in the fish sauce, curry powder and some pepper and cook for 2 minutes.",
+      "Add the tomatoes and a splash of water and simmer for 10 minutes, until the chicken is cooked through and the tomatoes have softened.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-honey-garlic-chicken-rice",
+    "name": "Honey garlic chicken with rice and peas",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 35,
+    "servings": 2,
+    "kcal": 455,
+    "protein": 40,
+    "allergens": [
+      "soy",
+      "gluten"
+    ],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": true,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-soy-garlic",
+      "sauce-peanut-lime"
+    ],
+    "topping": "Toasted sunflower seeds",
+    "ingredients": [
+      {
+        "name": "brown rice (dry)",
+        "qty": 92,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "frozen peas",
+        "qty": 135,
+        "unit": "g",
+        "area": "freezer"
+      },
+      {
+        "name": "salt",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "chicken breast fillets",
+        "qty": 2,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "honey",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "soy sauce (low-sodium)",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic, crushed",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "paprika and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "olive oil",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Put the rice and 250 ml water in one pot, add a pinch of salt and bring to the boil. Cover and simmer gently for 25 minutes. Stir in the frozen peas for the last 3 minutes.",
+      "Rice: spread it out to cool quickly, then pack single portions into freezer bags or boxes and freeze them today (within 1 hour). Never keep cooked rice in the fridge for days.",
+      "Dice the chicken and toss it with the paprika, pepper and oil.",
+      "Wipe out the pot, heat it and cook the chicken for 6 minutes. Add the honey, soy sauce and garlic and cook 1–2 minutes more, until the chicken is cooked through with no pink inside.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days.",
+      "The night before, move one rice portion to the fridge. Heat the chicken and rice until steaming hot all the way through. Reheat rice only once."
+    ]
+  },
+  {
+    "id": "rec-pot-lamb-lentil-ragu",
+    "name": "Lamb and lentil ragù",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 35,
+    "servings": 4,
+    "kcal": 401,
+    "protein": 31,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-tahini-lemon",
+      "sauce-lemon-herb-yoghurt",
+      "sauce-salsa-verde"
+    ],
+    "topping": "Pomegranate seeds",
+    "ingredients": [
+      {
+        "name": "olive oil",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "onion",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 4,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lean lamb mince (or lean beef mince)",
+        "qty": 450,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 395,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "chicken stock",
+        "qty": 240,
+        "unit": "ml",
+        "area": "tins-dry"
+      },
+      {
+        "name": "green or brown lentils (dry)",
+        "qty": 96,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
+        "qty": 1,
+        "unit": "tsp",
         "area": "tins-dry"
       },
       {
@@ -2431,237 +1521,100 @@
         "area": "tins-dry"
       },
       {
-        "name": "garlic powder",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "dried thyme",
-        "qty": 0.25,
+        "name": "ground cumin",
+        "qty": 1,
         "unit": "tsp",
         "area": "tins-dry"
       }
     ],
     "method": [
-      "Cut the chicken into 2–3 cm cubes. In a large bowl, toss the chicken, courgette, pepper and onion with the oil, oregano, garlic powder and thyme.",
-      "Tip into the air fryer basket and cook at 190°C for 15 minutes, shaking the basket halfway, until the chicken is cooked through."
+      "Chop the onion and garlic.",
+      "Heat the oil in one large pot over high heat. Fry the onion for 3 minutes, then the garlic for 1 minute.",
+      "Add the mince and cook, breaking it up, until browned, 3–4 minutes.",
+      "Stir in the lentils, tomatoes, stock, salt, cumin, oregano and some pepper. Simmer for 20–25 minutes, until the lentils are soft. Add a splash of water if it gets dry.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
     ]
   },
   {
-    "id": "rec-hake-and-chips",
-    "name": "Hake and chips",
+    "id": "rec-pot-coconut-fish-stew",
+    "name": "Coconut fish stew",
     "mealTypes": [
       "main"
     ],
     "minutes": 25,
-    "servings": 1,
-    "kcal": 339,
-    "protein": 31,
+    "servings": 4,
+    "kcal": 425,
+    "protein": 34,
     "allergens": [
-      "fish",
-      "soy",
-      "gluten",
-      "dairy"
+      "fish"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-peanut-lime",
+      "sauce-salsa-verde"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
     "ingredients": [
       {
-        "name": "hake fillet (or other white fish)",
-        "qty": 150,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "plain flour",
-        "qty": 10,
-        "unit": "g",
+        "name": "oil (coconut or sunflower)",
+        "qty": 2,
+        "unit": "tbsp",
         "area": "tins-dry"
       },
       {
-        "name": "garlic powder",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "paprika",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "salt and pepper",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "potato",
-        "qty": 200,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "potato seasoning (or mixed dried herbs)",
-        "qty": 0.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "cooking spray",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "lemon",
-        "qty": 0.25,
+        "name": "onion",
+        "qty": 1,
         "unit": "",
         "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Heat the oven or air fryer to 200°C.",
-      "Cut the potato into chips. Spray with cooking spray, add salt and the potato seasoning and toss.",
-      "Cook the chips for 15 minutes, shaking halfway.",
-      "Mix the flour, garlic powder, paprika, salt and pepper in a shallow dish.",
-      "Pat the fish dry with kitchen paper and press it into the flour to coat both sides.",
-      "Spray a non-stick pan with a little cooking spray and heat over medium heat.",
-      "Cook the fish for 3–4 minutes each side, until golden outside and flaking inside.",
-      "Serve with the chips and a lemon wedge."
-    ]
-  },
-  {
-    "id": "rec-paprika-beef-lettuce-cups",
-    "name": "Paprika beef lettuce cups",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 20,
-    "servings": 2,
-    "kcal": 331,
-    "protein": 30,
-    "allergens": [],
-    "batch": false,
-    "ingredients": [
+      },
       {
-        "name": "lean beef mince",
-        "qty": 250,
+        "name": "garlic cloves",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "courgettes",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "firm white fish fillets, such as hake",
+        "qty": 680,
         "unit": "g",
         "area": "fridge"
       },
       {
-        "name": "paprika",
+        "name": "lemongrass stalk (or the zest of 1 lemon)",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "coconut milk (canned)",
+        "qty": 385,
+        "unit": "ml",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
         "qty": 1,
         "unit": "tsp",
         "area": "tins-dry"
       },
       {
         "name": "spring onions",
-        "qty": 2,
+        "qty": 4,
         "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "avocado",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "lemon juice",
-        "qty": 1,
-        "unit": "tsp",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "tomatoes",
-        "qty": 125,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "pepper (any colour)",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fresh parsley",
-        "qty": 1,
-        "unit": "handful",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "cos lettuce leaves",
-        "qty": 8,
-        "unit": "",
-        "area": "fruit-veg"
-      }
-    ],
-    "method": [
-      "Brown the mince in a non-stick pan with no oil until cooked through. Season with the paprika, salt and pepper, stir in the spring onions and set aside.",
-      "Mix the tomatoes, pepper, avocado, parsley and lemon juice in a bowl and season lightly.",
-      "Spoon the beef and the avocado mix into the lettuce leaves."
-    ]
-  },
-  {
-    "id": "rec-chicken-asparagus-stir-fry",
-    "name": "Chicken and asparagus stir-fry",
-    "mealTypes": [
-      "main"
-    ],
-    "minutes": 25,
-    "servings": 3,
-    "kcal": 357,
-    "protein": 55,
-    "allergens": [
-      "soy",
-      "gluten"
-    ],
-    "batch": false,
-    "ingredients": [
-      {
-        "name": "chicken breast fillets",
-        "qty": 680,
-        "unit": "g",
-        "area": "fridge"
-      },
-      {
-        "name": "chicken stock",
-        "qty": 120,
-        "unit": "ml",
-        "area": "tins-dry"
-      },
-      {
-        "name": "soy sauce",
-        "qty": 2,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "cooking oil",
-        "qty": 1,
-        "unit": "tbsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "asparagus",
-        "qty": 250,
-        "unit": "g",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 6,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "fresh ginger",
-        "qty": 1,
-        "unit": "tbsp",
         "area": "fruit-veg"
       },
       {
@@ -2672,37 +1625,377 @@
       }
     ],
     "method": [
-      "Cut the chicken into strips and season with salt. Mix the soy sauce and stock in a small bowl.",
-      "Fry the asparagus in the oil in a non-stick pan over medium heat for 3–5 minutes, until tender. Lift out.",
-      "Cook the chicken in the same pan until cooked through with no pink left. Lift out.",
-      "Pour the soy mix, lemon juice, garlic and ginger into the pan and bring to the boil. Put the chicken and asparagus back and toss to coat."
+      "Slice the onion, garlic and courgettes thinly. Cut the fish into 3 cm cubes.",
+      "Warm the oil in one large pot over medium heat. Cook the courgettes, onion and garlic for 5 minutes, stirring.",
+      "Add the fish and lemongrass, pour in the coconut milk and season with the salt and a little pepper. Add water just to cover the fish.",
+      "Bring to the boil, then simmer gently for 5–6 minutes, until the fish is white all the way through.",
+      "Take out the lemongrass. Stir in the spring onions and lemon juice.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
     ]
   },
   {
-    "id": "rec-beef-avocado-burrito",
-    "name": "Beef and avocado burrito",
+    "id": "rec-pot-chicken-artichoke-olive",
+    "name": "Chicken with artichokes and olives",
     "mealTypes": [
       "main"
     ],
-    "minutes": 20,
+    "minutes": 40,
+    "servings": 4,
+    "kcal": 293,
+    "protein": 43,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-lemon-herb-yoghurt"
+    ],
+    "topping": "Toasted sunflower seeds",
+    "ingredients": [
+      {
+        "name": "chicken breast fillets",
+        "qty": 4,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "tinned artichoke hearts, drained",
+        "qty": 1,
+        "unit": "tin",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 800,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "pitted black olives",
+        "qty": 0.5,
+        "unit": "jar",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "dried oregano, salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the garlic and cut the artichokes in half.",
+      "Put the tomatoes, artichokes, olives, garlic, oregano, salt and pepper in one large pot and bring to a simmer.",
+      "Add the chicken breasts so they sit in the sauce. Cover and simmer gently for 25–30 minutes, turning once, until the chicken is cooked through with no pink inside.",
+      "Lift out the chicken, slice it and stir it back into the sauce.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-chicken-onion-olive",
+    "name": "Chicken with onions, olives and sun-dried tomatoes",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 45,
+    "servings": 6,
+    "kcal": 278,
+    "protein": 44,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-garlic-chive",
+      "sauce-tahini-lemon"
+    ],
+    "topping": "Toasted pumpkin seeds",
+    "ingredients": [
+      {
+        "name": "onion",
+        "qty": 320,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "pitted black olives",
+        "qty": 75,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "sun-dried tomatoes",
+        "qty": 27,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lemon juice",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 3,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "mixed dried herbs",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "black pepper",
+        "qty": 0.25,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "chicken breast fillets",
+        "qty": 1100,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "chicken stock",
+        "qty": 60,
+        "unit": "ml",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the onion and garlic.",
+      "Brown the chicken on both sides in one large pot with a little oil, about 2 minutes a side.",
+      "Add the onion, olives, sun-dried tomatoes, lemon juice, garlic, herbs, pepper and stock, plus 150 ml water.",
+      "Cover and simmer gently for 25–30 minutes, turning the chicken once, until it is cooked through with no pink inside. Slice it in the pot.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-five-spice-chicken",
+    "name": "Five-spice ginger chicken",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 50,
+    "servings": 6,
+    "kcal": 247,
+    "protein": 38,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-soy-garlic",
+      "sauce-garlic-chive",
+      "sauce-peanut-lime"
+    ],
+    "topping": "Quick slaw: shredded cabbage and carrot with a squeeze of lemon",
+    "ingredients": [
+      {
+        "name": "chicken thigh fillets, skinless",
+        "qty": 1100,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "onion",
+        "qty": 160,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "celery sticks",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh ginger",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "salt",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "lemon zest",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "chinese five-spice powder",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "chicken stock",
+        "qty": 240,
+        "unit": "ml",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the onion, celery, garlic and ginger. Trim any fat off the chicken.",
+      "Put the chicken in one large pot. Add the onion, celery, garlic, ginger, lemon zest, salt and five-spice, then pour in the stock.",
+      "Bring to the boil, cover and simmer gently for 35–40 minutes, until the chicken is cooked through and pulls apart with a fork.",
+      "Shred the chicken in the pot with two forks.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-coconut-tomato-chicken-soup",
+    "name": "Coconut, tomato and chicken soup",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 40,
+    "servings": 4,
+    "kcal": 435,
+    "protein": 43,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-peri-peri"
+    ],
+    "topping": "Toasted sunflower seeds",
+    "ingredients": [
+      {
+        "name": "chicken breast fillets (fresh, not frozen)",
+        "qty": 4,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "mixed dried herbs",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "dried basil",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "coconut milk",
+        "qty": 1,
+        "unit": "tin (400 ml)",
+        "area": "tins-dry"
+      },
+      {
+        "name": "tinned chopped tomatoes",
+        "qty": 1,
+        "unit": "tin (400 g)",
+        "area": "tins-dry"
+      },
+      {
+        "name": "chicken stock",
+        "qty": 240,
+        "unit": "ml",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Chop the garlic.",
+      "Put everything in one large pot and bring to a simmer.",
+      "Cover and simmer gently for 25–30 minutes, until the chicken is cooked through with no pink inside.",
+      "Lift out the chicken, shred it with two forks and stir it back in.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-pot-beef-bean-chilli",
+    "name": "Beef and bean chilli",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 25,
     "servings": 1,
-    "kcal": 475,
-    "protein": 39,
+    "kcal": 560,
+    "protein": 51,
     "allergens": [
-      "egg",
       "soy",
-      "sesame",
       "gluten",
       "dairy"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Microwave-safe box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Heat until steaming hot all the way through.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-tomato-jam"
+    ],
+    "topping": "Quick pickled red onion",
     "ingredients": [
-      {
-        "name": "tortilla wrap (medium)",
-        "qty": 1,
-        "unit": "",
-        "area": "tins-dry"
-      },
       {
         "name": "lean beef mince",
         "qty": 150,
@@ -2711,34 +2004,149 @@
       },
       {
         "name": "tinned chopped tomatoes with onion",
-        "qty": 100,
+        "qty": 150,
         "unit": "g",
         "area": "tins-dry"
       },
       {
-        "name": "avocado",
-        "qty": 40,
+        "name": "canned butter beans",
+        "qty": 75,
         "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "canned red kidney beans",
+        "qty": 75,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "frozen mixed vegetables",
+        "qty": 100,
+        "unit": "g",
+        "area": "freezer"
+      },
+      {
+        "name": "cheddar, grated",
+        "qty": 15,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "taco seasoning (mild)",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Brown the mince in one pot with a little oil spray, breaking it up. Season with the taco seasoning and garlic powder.",
+      "When the mince is nearly cooked, add the tinned tomatoes.",
+      "Add the drained beans and the frozen vegetables. Simmer for 8–10 minutes, until the mince is cooked through and the vegetables are hot.",
+      "Grate the cheddar and keep it in a small bag to sprinkle on after heating.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "To eat hot: microwave until steaming hot all the way through, stirring halfway. Reheat only once."
+    ]
+  },
+  {
+    "id": "rec-cold-chicken-fajita-strips",
+    "name": "Chicken fajita strips with peppers",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 30,
+    "servings": 2,
+    "kcal": 330,
+    "protein": 33,
+    "allergens": [],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "2-part box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Good cold.",
+    "sauces": [
+      "sauce-peri-peri",
+      "sauce-lemon-herb-yoghurt",
+      "sauce-tomato-jam"
+    ],
+    "topping": "Thin-sliced raw pepper",
+    "ingredients": [
+      {
+        "name": "chicken breast fillets",
+        "qty": 285,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "oil (coconut or sunflower)",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "mild chilli powder (or more paprika)",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground cumin",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "paprika",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "onion",
+        "qty": 0.25,
+        "unit": "",
         "area": "fruit-veg"
       },
       {
-        "name": "shredded lettuce",
-        "qty": 1,
-        "unit": "handful",
+        "name": "green pepper",
+        "qty": 0.5,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "red pepper",
+        "qty": 0.5,
+        "unit": "",
         "area": "fruit-veg"
       }
     ],
     "method": [
-      "Spray a non-stick pan with cooking spray and heat it.",
-      "Add the mince, season well and brown for 8–10 minutes, until cooked through.",
-      "Stir in the tomato and onion mix, cook for 5 minutes more, then take off the heat.",
-      "Mash the avocado with a fork and season.",
-      "Warm the wrap and spread the avocado over it. Add the lettuce, then the mince, and roll up tightly."
+      "Heat the oven to 220°C (200°C fan).",
+      "Slice the chicken into thin strips and the onion and peppers into strips.",
+      "On one large tray, toss the chicken with the oil, chilli powder, cumin, paprika and garlic powder. Spread it out.",
+      "Roast for 8 minutes. Add the onion and peppers, stir and roast 8–10 minutes more, until the chicken is cooked through with no pink inside.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days, or freeze for up to 3 months.",
+      "Good cold with salad leaves. To eat hot: microwave until steaming hot all the way through."
     ]
   },
   {
-    "id": "rec-salmon-quinoa-salad",
-    "name": "Warm salmon and quinoa salad",
+    "id": "rec-cold-salmon-quinoa",
+    "name": "Salmon, pepper and quinoa salad",
     "mealTypes": [
       "main"
     ],
@@ -2749,7 +2157,19 @@
     "allergens": [
       "fish"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "2-part box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Good cold.",
+    "sauces": [
+      "sauce-garlic-chive",
+      "sauce-tahini-lemon"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
     "ingredients": [
       {
         "name": "red pepper",
@@ -2782,7 +2202,7 @@
         "area": "fruit-veg"
       },
       {
-        "name": "cooked quinoa",
+        "name": "cooked quinoa (ready to eat)",
         "qty": 250,
         "unit": "g",
         "area": "tins-dry"
@@ -2801,83 +2221,83 @@
       }
     ],
     "method": [
-      "Heat the oven to 200°C.",
-      "Slice the pepper into strips and stir-fry in the oil in a pan over medium heat for 5 minutes.",
-      "Put the salmon on a tray lined with baking paper, sprinkle with the spice and roast for 10 minutes.",
-      "Put the sugar snaps in a colander and pour a full kettle of boiling water over them. Add them and the quinoa to the peppers and warm through for 4 minutes.",
-      "Chop the parsley and chives, stir them into the quinoa and serve with the salmon."
+      "Heat the oven to 200°C (180°C fan).",
+      "Slice the pepper into strips. Toss it with the oil on one tray and roast for 5 minutes.",
+      "Add the salmon to the tray and sprinkle it with the spice. Roast for 10 minutes, adding the sugar snaps for the last 3 minutes, until the salmon flakes in the middle.",
+      "Chop the parsley and chives and mix them through the quinoa. Share the quinoa between 4 boxes and top with the peppers, sugar snaps and salmon.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first."
     ]
   },
   {
-    "id": "rec-red-pepper-chicken-pasta",
-    "name": "Creamy red pepper chicken pasta",
+    "id": "rec-cold-chicken-couscous-feta",
+    "name": "Chicken, couscous and feta salad",
     "mealTypes": [
       "main"
     ],
     "minutes": 25,
-    "servings": 2,
-    "kcal": 428,
-    "protein": 43,
+    "servings": 1,
+    "kcal": 362,
+    "protein": 36,
     "allergens": [
       "egg",
       "soy",
       "gluten",
       "dairy"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "2-part box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Good cold.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-peri-peri"
+    ],
+    "topping": "Chopped cucumber and radish",
     "ingredients": [
       {
-        "name": "wholewheat pasta (dry)",
-        "qty": 85,
-        "unit": "g",
-        "area": "tins-dry"
-      },
-      {
-        "name": "red pepper",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "onion",
-        "qty": 1,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "garlic cloves",
-        "qty": 3,
-        "unit": "",
-        "area": "fruit-veg"
-      },
-      {
-        "name": "mozzarella, grated (reduced-fat)",
-        "qty": 25,
+        "name": "chicken breast fillet",
+        "qty": 110,
         "unit": "g",
         "area": "fridge"
       },
       {
-        "name": "chicken breast fillets",
-        "qty": 2,
-        "unit": "",
+        "name": "couscous (dry)",
+        "qty": 40,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "cucumber",
+        "qty": 100,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cherry tomatoes",
+        "qty": 100,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "red onion",
+        "qty": 30,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "feta (reduced-fat)",
+        "qty": 20,
+        "unit": "g",
         "area": "fridge"
       },
       {
-        "name": "olive oil",
-        "qty": 1.5,
-        "unit": "tsp",
-        "area": "tins-dry"
-      },
-      {
-        "name": "paprika",
-        "qty": 0,
-        "unit": "to taste",
-        "area": "tins-dry"
-      },
-      {
-        "name": "garlic powder",
-        "qty": 0,
-        "unit": "to taste",
+        "name": "lemon and herb peri-peri sauce (mild, bought)",
+        "qty": 30,
+        "unit": "g",
         "area": "tins-dry"
       },
       {
@@ -2885,17 +2305,219 @@
         "qty": 0,
         "unit": "to taste",
         "area": "tins-dry"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "paprika",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
       }
     ],
     "method": [
-      "Cook the pasta in a pot of salted boiling water for 7 minutes. Keep 60 ml of the cooking water, then drain.",
-      "Heat a little oil in a pan and soften the pepper, onion and garlic for 3–4 minutes. Blend them with the cheese and the saved pasta water until smooth.",
-      "Rub the chicken with the rest of the oil, the paprika, garlic powder, salt and pepper. Cook covered in a hot pan for about 6 minutes each side, until cooked through, then dice.",
-      "Put the pasta back in the pot with the sauce and chicken and toss together."
+      "Heat the oven to 200°C (180°C fan).",
+      "Put the chicken on one small tray, season with the garlic powder, paprika, salt and pepper and roast for 18–20 minutes, until cooked through with no pink inside.",
+      "Meanwhile put the couscous and a pinch of salt in your lunch box, pour on 100 ml boiling water, cover and leave for 5 minutes. Fluff it with a fork.",
+      "Dice the cucumber, tomatoes and red onion and add them to the box. Slice the chicken and add it with the crumbled feta.",
+      "Keep the peri-peri sauce in a separate small pot and pour it over just before eating.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days."
     ]
   },
   {
-    "id": "rec-hake-potato-salad",
+    "id": "rec-cold-honey-soy-chicken-slaw",
+    "name": "Honey-soy chicken with crunchy slaw",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 25,
+    "servings": 1,
+    "kcal": 322,
+    "protein": 31,
+    "allergens": [
+      "soy",
+      "sesame",
+      "gluten",
+      "dairy"
+    ],
+    "batch": true,
+    "format": "tray",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "2-part box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Good cold.",
+    "sauces": [
+      "sauce-peanut-lime",
+      "sauce-soy-garlic"
+    ],
+    "topping": "Toasted sunflower seeds",
+    "ingredients": [
+      {
+        "name": "chicken thigh fillets, skinless",
+        "qty": 120,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "paprika",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "cabbage, shredded",
+        "qty": 60,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "broccoli",
+        "qty": 30,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "avocado",
+        "qty": 40,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cucumber",
+        "qty": 80,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh chives",
+        "qty": 2,
+        "unit": "sprigs",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "honey, soy and ginger stir-fry sauce (bought)",
+        "qty": 40,
+        "unit": "g",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 200°C (180°C fan).",
+      "Season the chicken with the paprika, garlic powder, salt and pepper. Roast on one small tray for 20–25 minutes, until cooked through with no pink inside. Let it cool and slice it.",
+      "Chop the broccoli small and slice the cucumber and chives. Put them in your lunch box with the cabbage.",
+      "Put the chicken on top. Keep the honey-soy sauce in a separate pot and pour it over just before eating.",
+      "Cut the avocado on the morning you eat it, so it stays green.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days."
+    ]
+  },
+  {
+    "id": "rec-cold-paprika-beef-lettuce-cups",
+    "name": "Paprika beef lettuce cups",
+    "mealTypes": [
+      "main"
+    ],
+    "minutes": 20,
+    "servings": 2,
+    "kcal": 331,
+    "protein": 30,
+    "allergens": [],
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "2-part box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Good cold.",
+    "sauces": [
+      "sauce-lemon-herb-yoghurt",
+      "sauce-salsa-verde"
+    ],
+    "topping": "Quick pickled red onion",
+    "ingredients": [
+      {
+        "name": "lean beef mince",
+        "qty": 250,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "paprika",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "spring onions",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "avocado",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lemon juice",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cherry tomatoes",
+        "qty": 125,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "pepper (any colour)",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh parsley",
+        "qty": 1,
+        "unit": "handful",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cos lettuce leaves",
+        "qty": 8,
+        "unit": "",
+        "area": "fruit-veg"
+      }
+    ],
+    "method": [
+      "Brown the mince in one pot with no oil, breaking it up, until cooked through. Season with the paprika, salt and pepper and stir in the chopped spring onions. Let it cool.",
+      "Dice the pepper and halve the tomatoes. Pack them with the parsley and lemon juice in the second part of the box.",
+      "Pack the lettuce leaves whole, wrapped in a paper towel.",
+      "Cut the avocado on the morning you eat it. Spoon the beef and the salad into the leaves to eat.",
+      "Cool, then put into boxes within 2 hours. Keep in the fridge for up to 3 days."
+    ]
+  },
+  {
+    "id": "rec-cold-hake-potato-salad",
     "name": "Hake with potato salad",
     "mealTypes": [
       "main"
@@ -2911,7 +2533,19 @@
       "gluten",
       "dairy"
     ],
-    "batch": false,
+    "batch": true,
+    "format": "pot",
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "2-part box + sauce pot. Fridge at work, or eat within 2 hours with an ice pack. Good cold.",
+    "sauces": [
+      "sauce-salsa-verde",
+      "sauce-garlic-chive"
+    ],
+    "topping": "Sliced spring onion and fresh herbs",
     "ingredients": [
       {
         "name": "hake fillet (or other white fish)",
@@ -2957,12 +2591,1007 @@
       }
     ],
     "method": [
-      "Peel the potato and boil or steam it until soft all the way through.",
-      "Cut it into cubes and mix with the gherkins and spring onions. Season, stir in the mayonnaise and set aside.",
-      "Spray a non-stick pan with cooking spray and heat it.",
-      "Put the fish in skin side down and season with the fish spice.",
-      "Turn it over and cook until the fish is white and flakes all the way through.",
-      "Serve the fish with a squeeze of lemon and the potato salad."
+      "Peel the potato and cut it into 2 cm cubes. Boil in one pot of salted water for 10–12 minutes, until soft all the way through. Drain, holding the lid on, and tip into your box.",
+      "Chop the gherkins and spring onions and mix them into the potato with the mayonnaise. Season.",
+      "Wipe the pot dry and heat it with a little oil spray. Put in the fish, sprinkle it with fish spice and cook 3–4 minutes a side, until white and flaking all the way through.",
+      "Pack the fish next to the potato salad with a wedge of lemon.",
+      "Cool, then put into boxes within 2 hours. Cooked fish keeps 2 days in the fridge, so eat it first."
+    ]
+  },
+  {
+    "id": "rec-egg-white-bites",
+    "name": "Italian egg white bites",
+    "mealTypes": [
+      "breakfast"
+    ],
+    "minutes": 25,
+    "servings": 1,
+    "kcal": 262,
+    "protein": 40,
+    "allergens": [
+      "egg",
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 4,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Small box. Warm for 30–60 seconds until hot through, or eat cold.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "egg whites",
+        "qty": 300,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "tomatoes",
+        "qty": 50,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "baby spinach",
+        "qty": 25,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "mozzarella, grated",
+        "qty": 25,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 2,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "onion powder",
+        "qty": 2,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "dried oregano",
+        "qty": 1,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 180°C (160°C fan). Oil 6 holes of a muffin tray, or use paper cases.",
+      "Chop the tomato and spinach very small.",
+      "Mix everything in a jug and pour it into the 6 holes.",
+      "Bake for 15–18 minutes, until set in the middle.",
+      "Cool, then keep in a box in the fridge for up to 3 days, or freeze."
+    ]
+  },
+  {
+    "id": "rec-turkey-blueberry-patties",
+    "name": "Turkey and blueberry breakfast patties",
+    "mealTypes": [
+      "breakfast"
+    ],
+    "minutes": 25,
+    "servings": 4,
+    "kcal": 324,
+    "protein": 34,
+    "allergens": [
+      "soy",
+      "gluten",
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Small box. Warm until hot all the way through.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "olive oil, for brushing",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "turkey mince (or chicken mince)",
+        "qty": 680,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "black pepper",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground nutmeg",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "fresh sage, chopped (or 1 tsp dried)",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "spring onions",
+        "qty": 2,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "dried blueberries or cranberries",
+        "qty": 70,
+        "unit": "g",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 200°C (180°C fan) and brush one tray with oil.",
+      "Mix the mince, dried berries, sliced spring onions, sage, nutmeg, salt and pepper with your hands, right on the tray.",
+      "Shape into 12 small patties and spread them out on the tray.",
+      "Bake for 12–15 minutes, until firm and cooked through with no pink inside.",
+      "Cool, then keep in the fridge for up to 3 days, or freeze."
+    ]
+  },
+  {
+    "id": "rec-mango-cottage-cheese-pot",
+    "name": "Mango, cottage cheese and yoghurt pot",
+    "mealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "minutes": 5,
+    "servings": 1,
+    "kcal": 309,
+    "protein": 31,
+    "allergens": [
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 2,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Jar with a lid. Fridge, or an ice pack.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "cottage cheese",
+        "qty": 225,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "plain Greek yoghurt (fat-free)",
+        "qty": 80,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "mango, diced (fresh or frozen)",
+        "qty": 40,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "honey",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "vanilla extract",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Stir the yoghurt and cottage cheese together in a jar.",
+      "Put the mango on top and drizzle with the honey and a drop of vanilla.",
+      "Make up to 2 days ahead and keep in the fridge."
+    ]
+  },
+  {
+    "id": "rec-berry-walnut-yoghurt-pot",
+    "name": "Berry and walnut yoghurt pot",
+    "mealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "minutes": 5,
+    "servings": 1,
+    "kcal": 366,
+    "protein": 34,
+    "allergens": [
+      "nuts",
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 2,
+    "fridgeDays": 1,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Jar with a lid, walnuts in a small bag. Fridge, or an ice pack.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "plain Greek yoghurt (fat-free) or skyr",
+        "qty": 300,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "blueberries",
+        "qty": 50,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "strawberries",
+        "qty": 100,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "honey",
+        "qty": 10,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "walnuts",
+        "qty": 15,
+        "unit": "g",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Cut the strawberries into small pieces.",
+      "Put the yoghurt in a jar and stir in the berries and honey.",
+      "Break up the walnuts and keep them in a small bag, so they stay crunchy.",
+      "Make the night before and keep in the fridge."
+    ]
+  },
+  {
+    "id": "rec-salmon-frittata",
+    "name": "Smoked salmon and vegetable frittata",
+    "mealTypes": [
+      "breakfast"
+    ],
+    "minutes": 35,
+    "servings": 1,
+    "kcal": 314,
+    "protein": 28,
+    "allergens": [
+      "egg",
+      "fish"
+    ],
+    "batch": false,
+    "washUp": 3,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Small box. Good cold. Fridge, or an ice pack.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "eggs",
+        "qty": 2,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "smoked salmon",
+        "qty": 60,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "onion",
+        "qty": 0.5,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "yellow pepper",
+        "qty": 0.5,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "tomato",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "tenderstem broccoli",
+        "qty": 60,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "oil",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 190°C (170°C fan).",
+      "Cut the onion, pepper, tomato and broccoli into chunks. Toss them with the oil in one small round tin and roast for 10 minutes.",
+      "Beat the eggs with a fork in a mug with a little salt and pepper.",
+      "Scatter the smoked salmon over the vegetables and pour the egg on top. Bake for 15–20 minutes, until set in the middle.",
+      "Cool, slice and keep in the fridge for up to 2 days."
+    ]
+  },
+  {
+    "id": "rec-breakfast-fried-rice",
+    "name": "Breakfast fried rice",
+    "mealTypes": [
+      "breakfast"
+    ],
+    "minutes": 40,
+    "servings": 2,
+    "kcal": 427,
+    "protein": 30,
+    "allergens": [
+      "egg",
+      "soy",
+      "gluten"
+    ],
+    "batch": false,
+    "washUp": 3,
+    "fridgeDays": 1,
+    "freezer": true,
+    "carbsFrozen": true,
+    "carry": "hot",
+    "pack": "Microwave-safe box. Heat until steaming hot all the way through.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "brown rice (dry)",
+        "qty": 92,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "bacon (turkey or back bacon)",
+        "qty": 2,
+        "unit": "slices",
+        "area": "fridge"
+      },
+      {
+        "name": "eggs",
+        "qty": 2,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "egg whites",
+        "qty": 245,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "onion",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "frozen stir-fry vegetables",
+        "qty": 145,
+        "unit": "g",
+        "area": "freezer"
+      },
+      {
+        "name": "soy sauce (low-sodium)",
+        "qty": 2.5,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "garlic, crushed",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "olive oil",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Put the rice and 250 ml water in one pot with a pinch of salt. Bring to the boil, cover and simmer for 25 minutes. Tip it onto a plate to cool.",
+      "Heat the oil in the same pot and fry the bacon for 2 minutes a side, until crisp. Lift it out and chop it.",
+      "Beat the eggs and egg whites with the chopped onion and garlic. Pour into the pot, cover and cook 2–3 minutes, then break into small pieces.",
+      "Add the bacon, rice, soy sauce and frozen vegetables and stir until the vegetables are hot.",
+      "Rice: cool quickly and freeze in single portions today (within 1 hour). The night before, move one to the fridge and eat it within a day. Reheat once, until steaming hot."
+    ]
+  },
+  {
+    "id": "rec-beef-egg-stacks",
+    "name": "Beef patty and egg stacks",
+    "mealTypes": [
+      "breakfast"
+    ],
+    "minutes": 25,
+    "servings": 6,
+    "kcal": 384,
+    "protein": 31,
+    "allergens": [
+      "egg"
+    ],
+    "batch": false,
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "hot",
+    "pack": "Small box. Warm until hot all the way through.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "eggs",
+        "qty": 12,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "back bacon",
+        "qty": 6,
+        "unit": "slices",
+        "area": "fridge"
+      },
+      {
+        "name": "lean beef mince",
+        "qty": 450,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "fennel seeds",
+        "qty": 2,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground nutmeg",
+        "qty": 0.25,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "ground allspice",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "black pepper",
+        "qty": 0.5,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "oil",
+        "qty": 1,
+        "unit": "tbsp",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Mix the mince with the fennel seeds, nutmeg, allspice and pepper on a board and shape into 6 patties.",
+      "Warm the oil in one large frying pan over medium-low heat. Fry the bacon until crisp and lift it out.",
+      "Beat the eggs and pour them into the pan in loose rounds. Turn each to cook the second side, then lift out.",
+      "Fry the patties in the same pan for 4–5 minutes a side, until cooked through with no pink inside.",
+      "Stack each patty and some bacon between 2 egg rounds. Cool, then keep in the fridge for up to 3 days, or freeze."
+    ]
+  },
+  {
+    "id": "rec-tuna-egg-muffins",
+    "name": "Tuna, cheese and egg muffins",
+    "mealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "minutes": 30,
+    "servings": 4,
+    "kcal": 222,
+    "protein": 22,
+    "allergens": [
+      "egg",
+      "fish",
+      "soy",
+      "gluten",
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 3,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Small box. Good cold, or warm for 30 seconds.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "eggs",
+        "qty": 8,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "spring onions",
+        "qty": 50,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "broccoli",
+        "qty": 100,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "red pepper",
+        "qty": 70,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "Parmesan, grated",
+        "qty": 30,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "tinned tuna in brine",
+        "qty": 145,
+        "unit": "g",
+        "area": "tins-dry"
+      },
+      {
+        "name": "cooking spray",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "cheddar (reduced-fat), grated",
+        "qty": 10,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 180°C (160°C fan). Spray 8 holes of a muffin tray.",
+      "Crack the eggs into a large jug, season and whisk.",
+      "Dice the red pepper, broccoli and spring onions very small and stir them into the eggs with the Parmesan. Flake in the tuna.",
+      "Share between the 8 holes and scatter the cheddar on top. Bake for 18–20 minutes, until set all the way through.",
+      "Cool, then keep in the fridge for up to 3 days, or freeze. 2 muffins = 1 serving."
+    ]
+  },
+  {
+    "id": "rec-veg-egg-white-cups",
+    "name": "Cheesy vegetable egg white cups",
+    "mealTypes": [
+      "snack"
+    ],
+    "minutes": 25,
+    "servings": 4,
+    "kcal": 126,
+    "protein": 14,
+    "allergens": [
+      "egg",
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 4,
+    "fridgeDays": 3,
+    "freezer": true,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Small box. Good cold.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "egg whites",
+        "qty": 360,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "mushrooms",
+        "qty": 100,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "onion",
+        "qty": 50,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "tomatoes",
+        "qty": 100,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "green peppers",
+        "qty": 0.5,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cheddar, grated",
+        "qty": 60,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "garlic powder",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "paprika",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 180°C (160°C fan). Oil a 12-hole muffin tray.",
+      "Chop the onion, tomato, pepper and mushrooms very small.",
+      "Whisk the egg whites in a jug with the vegetables, cheese, garlic powder, paprika, salt and pepper.",
+      "Pour into the 12 holes and bake for 18–20 minutes, until set.",
+      "Cool, then keep in the fridge for up to 3 days. Eat 3 at a time (1 serving)."
+    ]
+  },
+  {
+    "id": "rec-tzatziki-veg-sticks",
+    "name": "Tzatziki dip",
+    "mealTypes": [
+      "snack"
+    ],
+    "minutes": 5,
+    "servings": 1,
+    "kcal": 103,
+    "protein": 11,
+    "allergens": [
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 2,
+    "fridgeDays": 3,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Small pot. Fridge, or an ice pack.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "plain Greek yoghurt (fat-free)",
+        "qty": 100,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "lemon",
+        "qty": 0.25,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "fresh dill",
+        "qty": 5,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "garlic cloves",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "olive oil",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "salt and pepper",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Grate the garlic into a small pot.",
+      "Chop the dill and add it with the yoghurt, oil, a squeeze of lemon, salt and pepper.",
+      "Stir until smooth. Eat with cucumber or carrot sticks. Keeps 3 days in the fridge."
+    ]
+  },
+  {
+    "id": "rec-prosciutto-asparagus",
+    "name": "Prosciutto-wrapped asparagus",
+    "mealTypes": [
+      "snack"
+    ],
+    "minutes": 20,
+    "servings": 4,
+    "kcal": 133,
+    "protein": 18,
+    "allergens": [],
+    "batch": false,
+    "washUp": 1,
+    "fridgeDays": 2,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Small box. Good cold.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "asparagus, trimmed",
+        "qty": 450,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "prosciutto (or thin ham)",
+        "qty": 225,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "salt",
+        "qty": 0,
+        "unit": "to taste",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Heat the oven to 200°C (180°C fan).",
+      "Wrap each asparagus spear in a strip of prosciutto and lay them on one tray.",
+      "Roast for 10–12 minutes, until the asparagus is just tender.",
+      "Eat warm or cold. Keeps 2 days in the fridge."
+    ]
+  },
+  {
+    "id": "rec-trout-mango-wraps",
+    "name": "Smoked trout and mango lettuce wraps",
+    "mealTypes": [
+      "snack"
+    ],
+    "minutes": 10,
+    "servings": 2,
+    "kcal": 144,
+    "protein": 14,
+    "allergens": [
+      "fish"
+    ],
+    "batch": false,
+    "washUp": 2,
+    "fridgeDays": 1,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Small box. Fridge, or an ice pack. Eat the same day.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "large lettuce leaves",
+        "qty": 4,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "smoked trout",
+        "qty": 115,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "mango",
+        "qty": 165,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "spring onion",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lemon juice (about 1 lemon)",
+        "qty": 2,
+        "unit": "tbsp",
+        "area": "fruit-veg"
+      }
+    ],
+    "method": [
+      "Lay the lettuce leaves flat and share the trout and mango between them.",
+      "Scatter over the sliced spring onion and spoon over the lemon juice.",
+      "Roll each leaf up and pack them seam side down. Keep in the fridge and eat the same day."
+    ]
+  },
+  {
+    "id": "rec-cottage-cheese-fruit-pot",
+    "name": "Cottage cheese and fruit pot",
+    "mealTypes": [
+      "snack",
+      "breakfast"
+    ],
+    "minutes": 10,
+    "servings": 2,
+    "kcal": 340,
+    "protein": 26,
+    "allergens": [
+      "dairy"
+    ],
+    "batch": false,
+    "washUp": 2,
+    "fridgeDays": 1,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Jar with a lid. Fridge, or an ice pack.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "mango, diced",
+        "qty": 170,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "blueberries",
+        "qty": 150,
+        "unit": "g",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "lime",
+        "qty": 0.5,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "cottage cheese",
+        "qty": 400,
+        "unit": "g",
+        "area": "fridge"
+      },
+      {
+        "name": "dried cranberries or goji berries",
+        "qty": 28,
+        "unit": "g",
+        "area": "tins-dry"
+      }
+    ],
+    "method": [
+      "Dice the mango and toss it with the blueberries and a squeeze of lime.",
+      "Share the cottage cheese between 2 jars and spoon the fruit on top. Add the dried berries.",
+      "Keep in the fridge and eat the same day or the next morning."
+    ]
+  },
+  {
+    "id": "rec-bacon-egg-lettuce-wraps",
+    "name": "Bacon, egg and tomato lettuce wraps",
+    "mealTypes": [
+      "snack",
+      "main"
+    ],
+    "minutes": 20,
+    "servings": 1,
+    "kcal": 329,
+    "protein": 35,
+    "allergens": [
+      "egg"
+    ],
+    "batch": false,
+    "washUp": 3,
+    "fridgeDays": 1,
+    "freezer": false,
+    "carbsFrozen": false,
+    "carry": "cold",
+    "pack": "Box with an ice pack. Fill the leaves when you eat.",
+    "sauces": [],
+    "ingredients": [
+      {
+        "name": "eggs",
+        "qty": 2,
+        "unit": "",
+        "area": "fridge"
+      },
+      {
+        "name": "lean back bacon",
+        "qty": 4,
+        "unit": "slices",
+        "area": "fridge"
+      },
+      {
+        "name": "tomatoes",
+        "qty": 1,
+        "unit": "",
+        "area": "fruit-veg"
+      },
+      {
+        "name": "mayonnaise",
+        "qty": 1,
+        "unit": "tsp",
+        "area": "tins-dry"
+      },
+      {
+        "name": "large lettuce leaves",
+        "qty": 4,
+        "unit": "",
+        "area": "fruit-veg"
+      }
+    ],
+    "method": [
+      "Boil the eggs in one pot for 10 minutes, then cool them in cold water.",
+      "Tip out the water and fry the bacon in the same dry pot until crisp. Let it cool.",
+      "Peel and chop the eggs and chop the bacon. Stir the diced tomato into the mayonnaise with salt and pepper.",
+      "Pack the leaves separately and fill them when you eat. Boiled eggs and bacon keep 3 days in the fridge."
     ]
   }
 ]
