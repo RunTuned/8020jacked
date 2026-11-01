@@ -57,3 +57,11 @@ The build decided each item below and wrote it down here. Jennifer can change an
 33. **Repeat taps.** A repeat within 1 s of the last *accepted* tap of the same action is ignored.
 34. **"Download my data"** is one JSON file without photos. Photos stay in IndexedDB on the phone.
 35. **Walk ticks.** At most 3 a week, home days only.
+
+## Progress and check-in (Builder 4, 1 Nov 2026)
+36. **C1 "Edit a number"** opens a sheet that sends her to Today › This week to fix the log; the counts are always read from her logs, so there is no separate override number to drift.
+37. **C4 "Not this week, keep things the same"** shows only when there is a change to decline. For "Same plan" results, Sounds good is the only button.
+38. **Wins (P5)** have no dates for milestones such as "First full push-up · 12 Oct", because the store doesn't record when a ladder step was reached. Wins show the current skill level, the next skill, stronger moves (first → best) and "Clothes looser". "2 workouts away" isn't known, so it isn't shown.
+39. **Words-only weight** (numbers off): under 0.5 kg reads "About the same as when you started", a loss reads "Going down, slowly" and a gain reads "A little higher than when you started". With numbers off, the chart has no dots.
+40. **C6 "Decide later"** leaves the plan as it is. No store action yet puts "Keep steady" in place without starting a new 12 weeks. Today (T8/C6 on open) owns that.
+41. **P3 copy** says "on this phone only", not "on this account only", because v0.1 has no accounts.
