@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Banner, Button, Card, Hero, Option, OptionGroup, Screen, Stack, TextField, TopRow } from "@/components/ui";
-import { copyText, inAppBrowser, isStandalone, platform, type Platform } from "@/lib/device";
+import { copyText, inAppBrowser, installFirst, isStandalone, platform, type Platform } from "@/lib/device";
 import { PRICE_PREVIEW } from "@/lib/services";
-import { appState, exportFileName, selectResumeRoute, selectSetupDone, selectToday, useAppStore } from "@/lib/store";
+import { appState, selectResumeRoute, selectSetupDone, useAppStore } from "@/lib/store";
 import type { ReminderSlot } from "@/lib/types";
-import { REMINDERS_NEXT, REMINDER_LABEL, TEST_DOWNLOAD, TEST_NOTICE } from "./copy";
+import { INSTALL_FIRST, REMINDERS_NEXT, REMINDER_LABEL, TEST_NOTICE, inAppCopy } from "./copy";
 import { Bottom, ImportButton, StepHeader } from "./Parts";
 
 const noop = () => () => {};
@@ -21,6 +21,20 @@ function useDevice() {
 }
 
 const SKIP_IN_APP = "8020jacked:in-app-ok";
+const SAFARI_OK = "8020jacked:safari-ok";
+
+function readFlag(key: string): boolean {
+  try {
+    return sessionStorage.getItem(key) === "1";
+  } catch {
+    return false;
+  }
+}
+function setFlag(key: string) {
+  try {
+    sessionStorage.setItem(key, "1");
+  } catch {}
+}
 
 /* ---------------- / ---------------- */
 export function RootRedirect() {
@@ -38,16 +52,24 @@ export function RootRedirect() {
 export function StartScreen() {
   const router = useRouter();
   const done = useAppStore((s) => selectSetupDone(s));
+  const device = useDevice();
+  const safariOk = useSyncExternalStore(noop, () => readFlag(SAFARI_OK), () => false);
+  const [inSafari, setInSafari] = useState(false);
   useEffect(() => {
     if (done) router.replace(selectResumeRoute(appState()));
-    else if (inAppBrowser()) {
-      let ok = false;
-      try {
-        ok = sessionStorage.getItem(SKIP_IN_APP) === "1";
-      } catch {}
-      if (!ok) router.replace("/start/browser");
-    }
+    else if (inAppBrowser() && !readFlag(SKIP_IN_APP)) router.replace("/start/browser");
   }, [done, router]);
+
+  if (!done && !safariOk && !inSafari && installFirst(device)) {
+    return (
+      <InstallFirst
+        onSafari={() => {
+          setFlag(SAFARI_OK);
+          setInSafari(true);
+        }}
+      />
+    );
+  }
 
   return (
     <Screen>
@@ -74,36 +96,45 @@ export function StartScreen() {
   );
 }
 
-/* ---------------- A14w In-app browser ---------------- */
-function InAppSteps({ plat }: { plat: Platform | null }) {
+/* ---------------- A1 on iPhone Safari: add to the Home Screen first ---------------- */
+function InstallFirst({ onSafari }: { onSafari: () => void }) {
   return (
-    <Card tone="blue" icon="share" title="Tap ⋯ (or the share icon), then:">
-      <p className="m-0 text-body font-semibold">
-        {plat === "ios"
-          ? "Open in Safari."
-          : plat === "android"
-            ? "Open in browser."
-            : "Open in Safari, or Open in browser."}
-      </p>
-    </Card>
+    <Screen>
+      <div className="flex min-h-36 items-center justify-center rounded-card bg-pink p-5">
+        <Image src="/icons/icon-192.png" alt="The 8020jacked icon" width={88} height={88} className="rounded-[22px]" />
+      </div>
+      <Hero title={INSTALL_FIRST.title} subline={INSTALL_FIRST.subline} />
+      <Card tone="blue" icon="share" title="In Safari">
+        <ol className="m-0 flex list-decimal flex-col gap-1 pl-6">
+          {INSTALL_FIRST.steps.map((x) => (
+            <li key={x}>{x}</li>
+          ))}
+        </ol>
+      </Card>
+      <Bottom>
+        <Button variant="text" onClick={onSafari}>
+          {INSTALL_FIRST.safari}
+        </Button>
+      </Bottom>
+    </Screen>
   );
 }
 
+/* ---------------- A14w In-app browser ---------------- */
 export function BrowserScreen() {
   const router = useRouter();
   const { plat } = useDevice();
   const [copied, setCopied] = useState(false);
+  const c = inAppCopy(plat);
   return (
     <Screen>
       <Hero title="Open this in your phone's browser" subline="WhatsApp, Facebook and Instagram can't add apps to your home screen." />
-      <InAppSteps plat={plat} />
-      <p className="m-0 text-body font-semibold">
-        {plat === "ios"
-          ? "iPhone: open it in Safari."
-          : plat === "android"
-            ? "Android: open it in Chrome."
-            : "iPhone: open it in Safari. Android: open it in Chrome."}
-      </p>
+      <Card tone="blue" icon="share" title={c.steps} />
+      {c.lines.map((x) => (
+        <p key={x} className="m-0 text-body font-semibold">
+          {x}
+        </p>
+      ))}
       <div className="flex flex-col gap-1">
         <Button
           variant="secondary"
@@ -120,13 +151,11 @@ export function BrowserScreen() {
         <Button
           block
           onClick={() => {
-            try {
-              sessionStorage.setItem(SKIP_IN_APP, "1");
-            } catch {}
+            setFlag(SKIP_IN_APP);
             router.push("/start");
           }}
         >
-          I&apos;m in Safari / my browser now
+          {c.done}
         </Button>
       </Bottom>
     </Screen>
@@ -196,15 +225,16 @@ export function SaveScreen() {
       />
       <Banner icon="you">{TEST_NOTICE}</Banner>
       <TextField label="First name" autoComplete="given-name" value={first} onChange={(e) => setFirst(e.target.value)} />
-      <p className="m-0 text-label text-ink-muted">{TEST_DOWNLOAD}</p>
       <Bottom>
         <Button
           block
           onClick={() => {
             saveFirstName(first);
-            const next = isStandalone() ? "shared-phone" : "install";
+            // iPhone in Safari chose "Use it in Safari instead" on A1: no install step (the home-screen app
+            // would start empty). Android keeps the install step; it shares storage.
+            const next = isStandalone() || platform() === "ios" ? "shared-phone" : "install";
             saveSetupStep(next);
-            router.push(`/start/${next}`);
+            router.push(next === "shared-phone" ? "/start/shared-phone?from=save" : "/start/install");
           }}
         >
           Next
@@ -215,29 +245,6 @@ export function SaveScreen() {
 }
 
 /* ---------------- A14 / A14b Install ---------------- */
-function DownloadProgress() {
-  const exportData = useAppStore((s) => s.exportData);
-  const [saved, setSaved] = useState(false);
-  return (
-    <div className="flex flex-col gap-1">
-      <Button
-        variant="secondary"
-        block
-        onClick={() => {
-          const s = appState();
-          downloadFile(exportData(), exportFileName(selectToday(s)));
-          setSaved(true);
-        }}
-      >
-        Download my progress
-      </Button>
-      <p role="status" className="m-0 min-h-6 text-center text-label text-ink-muted">
-        {saved ? "Saved to your phone" : ""}
-      </p>
-    </div>
-  );
-}
-
 export function downloadFile(text: string, name: string) {
   const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
   const a = document.createElement("a");
@@ -270,12 +277,7 @@ export function InstallScreen() {
         <p className="m-0 text-body font-semibold">Open the app from your home screen.</p>
         <p className="m-0 text-body">You can close this page.</p>
         {plat !== "android" ? (
-          <Card tone="butter" title="On iPhone, the home-screen app starts empty.">
-            <p className="m-0 text-label">
-              Download your progress first. In the app, tap I&apos;ve used it before and pick the file.
-            </p>
-            <DownloadProgress />
-          </Card>
+          <p className="m-0 text-body">On iPhone, the home-screen app starts fresh. Set it up there.</p>
         ) : null}
         <Bottom>
           <Button block href="/start/shared-phone">
@@ -345,7 +347,9 @@ export function SharedPhoneScreen() {
   const [value, setValue] = useState<boolean>(shared);
   useEffect(() => saveSetupStep("shared-phone"), [saveSetupStep]);
   // Back goes to the screen before: A14 after "Not now", A14b after "Done, it's added", A10 in the home-screen app.
-  const back = params.get("from") === "install" ? "/start/install" : isStandaloneSafe() ? "/start/save" : "/start/install?step=open";
+  const from = params.get("from");
+  const back =
+    from === "install" ? "/start/install" : from === "save" || isStandaloneSafe() ? "/start/save" : "/start/install?step=open";
   return (
     <Screen>
       <StepHeader back={{ href: back }} />

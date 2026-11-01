@@ -33,6 +33,36 @@ export function ftInFromCm(cm: number): { ft: number; in: number } {
   return { ft: Math.floor(total / 12), in: total % 12 };
 }
 
+/**
+ * Typed weight → kg, keeping the stored kg exactly when the box still shows it in her unit.
+ * Switching kg ↔ lb only changes what's shown; 75 kg never comes back as 74.8 kg.
+ */
+export function resolveWeightKg(text: string, unit: "kg" | "lb", storedKg: number | null): number | null {
+  const n = parseNumber(text);
+  if (n === null) return null;
+  if (storedKg !== null && n === weightIn(storedKg, unit)) return storedKg;
+  return kgFrom(n, unit);
+}
+
+/** Typed height → cm, keeping the stored cm exactly when the boxes still show it in her unit. */
+export function resolveHeightCm(
+  h: { unit: "cm" | "ftin"; cm: string; ft: string; inch: string },
+  storedCm: number | null,
+): number | null {
+  if (h.unit === "cm") {
+    const cm = parseNumber(h.cm);
+    return cm;
+  }
+  const ft = parseNumber(h.ft);
+  const inch = h.inch.trim() ? parseNumber(h.inch) : 0;
+  if (ft === null || inch === null) return null;
+  if (storedCm !== null) {
+    const shown = ftInFromCm(storedCm);
+    if (shown.ft === ft && shown.in === inch) return storedCm;
+  }
+  return cmFromFtIn(ft, inch);
+}
+
 /** Units the phone's region expects: the US uses lb and feet, everyone else kg and cm. */
 export function unitsForLocale(locale: string | undefined): { weight: "kg" | "lb"; height: "cm" | "ftin" } {
   const region = (locale ?? "").split(/[-_]/)[1]?.toUpperCase();

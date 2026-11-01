@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Button, Hero, Screen, Subline, TextField, TopRow } from "@/components/ui";
-import { useAppStore, weightInputToKg } from "@/lib/store";
+import { WEIGH_IN_ADVICE, useAppStore, weightInputToKg } from "@/lib/store";
 import { safeBack, useHydrated } from "./hooks";
 import { BentoSkeleton } from "./Skeleton";
 
@@ -51,7 +51,7 @@ export function WeighInScreen() {
         hint={`Shown in ${unit}. Change this in You.`}
         error={tried && kg === null ? "Type your weight as a number, like 72.5." : undefined}
       />
-      <Subline size="label">Morning is best. 3 a week is plenty. Only one weigh-in a day counts.</Subline>
+      <Subline size="label">{`${WEIGH_IN_ADVICE} Only one a day counts.`}</Subline>
       <div className="mt-auto flex flex-col gap-3">
         <Button
           block

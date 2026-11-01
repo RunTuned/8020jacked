@@ -1,4 +1,4 @@
-export { isIOS, isAndroid, inAppBrowser, isStandalone, platform, type InAppBrowser, type Platform } from "./ua";
+export { isIOS, isAndroid, inAppBrowser, installFirst, isStandalone, platform, type InAppBrowser, type Platform } from "./ua";
 export { canShare, shareOrCopy, copyText, shareText, type ShareData, type ShareResult } from "./share";
 export { keepScreenOn, wakeLockSupported, type WakeLockHandle } from "./wakeLock";
 export { createWorkoutAudio, type WorkoutAudio, type BeepOptions, type AudioEnv } from "./audio";

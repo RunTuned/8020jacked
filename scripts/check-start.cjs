@@ -122,6 +122,10 @@ const link = (page, name) => page.getByRole("link", { name, exact: true }).first
   const { ctx, page } = await newPage(browser, UA.ios);
   await page.goto(BASE + "/");
   await page.waitForURL("**/start");
+  // iPhone Safari, not installed: A1 asks to add it to the Home Screen first.
+  await page.getByRole("heading", { name: "Add 8020jacked to your Home Screen first" }).waitFor();
+  await check(page, "A1-install-first-ios");
+  await click(page, "Use it in Safari instead");
   await check(page, "A1-start");
   await link(page, "New here");
   await page.waitForURL("**/start/setup?step=about");
@@ -166,7 +170,9 @@ const link = (page, name) => page.getByRole("link", { name, exact: true }).first
   await check(page, "A10-save");
   await page.getByLabel("First name").fill("Sam");
   await click(page, "Next");
-  await page.waitForURL("**/start/install");
+  // In Safari by choice: no install step on iPhone (the home-screen app would start empty).
+  await page.waitForURL("**/start/shared-phone?from=save");
+  await page.goto(BASE + "/start/install");
   await check(page, "A14-install-ios");
   await click(page, "Done, it's added");
   await page.waitForURL("**step=open");
@@ -269,7 +275,7 @@ const link = (page, name) => page.getByRole("link", { name, exact: true }).first
     await page.goto(BASE + "/start");
     await page.waitForURL("**/start/browser");
     await check(page, "A14w-whatsapp-ios");
-    await click(page, "I'm in Safari / my browser now");
+    await click(page, "I'm in Safari now");
     await page.waitForURL("**/start");
     await ctx.close();
   }

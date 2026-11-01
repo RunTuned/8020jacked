@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon, Segmented, Switch, TextField, cx } from "@/components/ui";
-import { checkAge, cmFromFtIn, ftInFromCm, heightOk, kgFrom, parseNumber, weightIn, weightOk } from "@/lib/store";
+import { checkAge, ftInFromCm, heightOk, parseNumber, resolveHeightCm, resolveWeightKg, weightIn, weightOk } from "@/lib/store";
 import type { Profile, Units } from "@/lib/types";
 
 /** What she has typed, in her units. Converted to metric only through the store helpers. */
@@ -14,6 +14,9 @@ export interface BodyDraft {
   weight: string;
   noWeigh: boolean;
   units: Units;
+  /** The stored numbers (metric). Kept exactly while the boxes still show them, whatever the unit. */
+  storedKg: number | null;
+  storedCm: number | null;
 }
 
 export function bodyDraft(p: Profile, units: Units): BodyDraft {
@@ -27,6 +30,8 @@ export function bodyDraft(p: Profile, units: Units): BodyDraft {
     weight: p.setupWeightKg ? String(weightIn(p.setupWeightKg, units.weight)) : "",
     noWeigh: p.noWeigh,
     units,
+    storedKg: p.setupWeightKg ?? null,
+    storedCm: p.heightCm ?? null,
   };
 }
 
@@ -35,17 +40,10 @@ export type BodyErrors = Partial<Record<"age" | "height" | "weight", string>>;
 export function readBody(d: BodyDraft) {
   const age = parseNumber(d.age);
   const ageCheck = checkAge(age);
-  let heightCm: number | null = null;
-  if (!d.notSure) {
-    if (d.units.height === "cm") heightCm = parseNumber(d.cm);
-    else {
-      const ft = parseNumber(d.ft);
-      const inch = d.inch.trim() ? parseNumber(d.inch) : 0;
-      heightCm = ft !== null && inch !== null ? cmFromFtIn(ft, inch) : null;
-    }
-  }
-  const w = parseNumber(d.weight);
-  const kg = w === null ? null : kgFrom(w, d.units.weight);
+  const heightCm = d.notSure
+    ? null
+    : resolveHeightCm({ unit: d.units.height, cm: d.cm, ft: d.ft, inch: d.inch }, d.storedCm);
+  const kg = resolveWeightKg(d.weight, d.units.weight, d.storedKg);
   const errors: BodyErrors = {};
   if (ageCheck === "invalid") errors.age = "Type your age in years.";
   if (!d.notSure && !heightOk(heightCm)) errors.height = "Type your height, or tap Not sure.";
@@ -56,7 +54,8 @@ export function readBody(d: BodyDraft) {
 /** Switch kg/lb or cm/ft without losing what she typed. */
 function withUnits(d: BodyDraft, units: Units): BodyDraft {
   const r = readBody(d);
-  const next = { ...d, units };
+  // What she has typed so far becomes the number to keep, so switching back shows it unchanged.
+  const next = { ...d, units, storedKg: r.kg ?? d.storedKg, storedCm: r.heightCm ?? d.storedCm };
   if (units.weight !== d.units.weight && r.kg !== null) next.weight = String(weightIn(r.kg, units.weight));
   if (units.height !== d.units.height && r.heightCm !== null) {
     const fi = ftInFromCm(r.heightCm);
@@ -86,13 +85,10 @@ export function BodyFields({
   draft,
   onChange,
   errors,
-  showUnitSwitches = false,
 }: {
   draft: BodyDraft;
   onChange: (d: BodyDraft) => void;
   errors: BodyErrors;
-  /** S3 shows the height unit switch too. */
-  showUnitSwitches?: boolean;
 }) {
   const set = (p: Partial<BodyDraft>) => onChange({ ...draft, ...p });
   return (
@@ -111,18 +107,17 @@ export function BodyFields({
           <label htmlFor="body-height" className="text-label font-semibold">
             Height
           </label>
-          {showUnitSwitches ? (
-            <Segmented
-              label="Height in"
-              outlined
-              options={[
-                { value: "cm", label: "cm" },
-                { value: "ftin", label: "ft and in" },
-              ]}
-              value={draft.units.height}
-              onChange={(h) => onChange(withUnits(draft, { ...draft.units, height: h }))}
-            />
-          ) : null}
+          {/* A2 and S3: cm or ft and in, starting from the phone's region, like the weight switch. */}
+          <Segmented
+            label="Height in"
+            outlined
+            options={[
+              { value: "cm", label: "cm" },
+              { value: "ftin", label: "ft and in" },
+            ]}
+            value={draft.units.height}
+            onChange={(h) => onChange(withUnits(draft, { ...draft.units, height: h }))}
+          />
         </div>
         <div className="flex flex-wrap items-stretch gap-2">
           {draft.units.height === "cm" ? (
