@@ -110,8 +110,11 @@ describe("3.4 sessions", () => {
 
   it("starts on the beginner rung of each ladder, by pattern", () => {
     const s = buildSession(sessionIn({ minutes: 10 }));
-    expect(s.moves.map((m) => m.exerciseId)).toEqual(["SQ1", "PU1", "RW1"]); // squat, push, pull
-    expect(s.moves[0].sets[0].target).toBe(8); // rep_min
+    // squat, push, pull. A floor user starts on the bodyweight squat, not the chair (QA A).
+    expect(s.moves.map((m) => m.exerciseId)).toEqual(["SQ2", "PU1", "RW1"]);
+    expect(s.moves[0].sets[0].target).toBe(10); // rep_min
+    // With no floor, sit-to-stand (a chair) is the beginner squat.
+    expect(buildSession(sessionIn({ equipment: ["noFloor"], minutes: 10 })).moves[0].exerciseId).toBe("SQ1");
   });
 
   it("session B leads with hips and pull", () => {
@@ -226,23 +229,25 @@ describe("3.4 Hurts", () => {
   });
 
   it("a set-aside move is swapped using its swaps", () => {
-    const s = buildSession(sessionIn({ setAside: ["SQ1"], minutes: 10 }));
+    const s = buildSession(sessionIn({ equipment: ["noFloor"], setAside: ["SQ1"], minutes: 10 }));
     expect(s.moves[0].exerciseId).toBe("WS1");
     expect(s.moves.map((m) => m.exerciseId)).not.toContain("SQ1");
   });
 
   it("bring it back: no longer set aside → back in the workout", () => {
-    expect(buildSession(sessionIn({ setAside: [], minutes: 10 })).moves[0].exerciseId).toBe("SQ1");
+    expect(buildSession(sessionIn({ equipment: ["noFloor"], setAside: [], minutes: 10 })).moves[0].exerciseId).toBe("SQ1");
   });
 
-  it("W5 options: a different body part, never one already in today's workout", () => {
+  it("W5 options: the same body area only, never one already in today's workout", () => {
     const ctx = { exercises: EXERCISES, equipment: ["floor" as const], ladderSteps: {}, setAside: [] };
-    const opts = hurtSwapOptions(byId("SQ1"), ["SQ1", "PU1", "RW1"], ctx);
-    expect(opts).toHaveLength(2);
+    const opts = hurtSwapOptions(byId("SQ2"), ["SQ2", "PU1", "RW1"], ctx);
+    expect(opts.map((o) => o.id)).toEqual(["SQ1", "WS1"]); // an easier rung, then the other squat ladder
     for (const o of opts) {
-      expect(o.primaryMuscle).not.toBe("quads");
-      expect(["SQ1", "PU1", "RW1"]).not.toContain(o.id);
+      expect(["squat", "lunge", "hinge"]).toContain(o.pattern);
+      expect(["SQ2", "PU1", "RW1"]).not.toContain(o.id);
     }
+    // A pull move gets a pull move, never legs or push.
+    for (const o of hurtSwapOptions(byId("RW1"), ["SQ2", "PU1", "RW1"], ctx)) expect(o.pattern).toMatch(/_pull$/);
   });
 });
 

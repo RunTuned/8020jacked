@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("idb-keyval", () => ({ get: async () => undefined, set: async () => {}, del: async () => {} }));
 
 import { CONTENT } from "../../engine/__tests__/fixtures";
+import { patternArea } from "../../engine";
 import {
   appState,
   initialState,
@@ -12,6 +13,7 @@ import {
   selectOtherWorkouts,
   selectTrainHome,
   selectWorkoutSummary,
+  selectSession,
   sessionKits,
   setClock,
   setContent,
@@ -133,19 +135,51 @@ describe("selectActiveWorkout", () => {
 });
 
 describe("hurts in a workout", () => {
-  it("offers a different body part, never a move already in the workout", () => {
+  it("offers the same body area only, never a move already in the workout", () => {
     onboard();
     A().startWorkout();
     const a = selectActiveWorkout(appState())!;
-    const hurt = a.moves[0].exerciseId;
-    A().tapHurts(hurt);
-    const opts = selectActiveHurtOptions(appState(), hurt);
-    expect(opts.length).toBeGreaterThan(0);
     const ids = a.moves.map((m) => m.exerciseId);
-    for (const o of opts) {
-      expect(ids).not.toContain(o.id);
-      expect(o.primaryMuscle).not.toBe(CONTENT.exercises.find((e) => e.id === hurt)!.primaryMuscle);
+    for (const m of a.moves) {
+      const area = patternArea(m.pattern);
+      for (const o of selectActiveHurtOptions(appState(), m.exerciseId)) {
+        expect(ids).not.toContain(o.id);
+        expect(patternArea(o.pattern)).toBe(area);
+      }
     }
+    expect(selectActiveHurtOptions(appState(), a.moves[0].exerciseId).length).toBeGreaterThan(0);
+  });
+
+  it("Cancel changes nothing: the hurt and any set-aside are taken back", () => {
+    onboard();
+    A().startWorkout();
+    const id = selectActiveWorkout(appState())!.cursor!.move.exerciseId;
+    A().tapHurts(id);
+    A().cancelHurt(id);
+    expect(appState().hurts).toEqual([]);
+    expect(appState().setAside).toEqual([]);
+    // twice, cancelled the second time: still one hurt, not set aside, the move stays
+    A().tapHurts(id);
+    tick(10_000); // past the 5-second Undo
+    expect(A().tapHurts(id).setAside).toBe(true);
+    A().cancelHurt(id);
+    expect(appState().hurts).toHaveLength(1);
+    expect(appState().setAside).toEqual([]);
+    expect(selectActiveWorkout(appState())!.cursor!.move.exerciseId).toBe(id);
+  });
+
+  it("a hurt counts on the move she tapped, after a swap; twice means the same move twice", () => {
+    onboard();
+    A().startWorkout();
+    const first = selectActiveWorkout(appState())!.moves[0];
+    A().tapHurts(first.exerciseId);
+    const opt = selectActiveHurtOptions(appState(), first.exerciseId)[0];
+    A().swapToday(first.originId, opt.id);
+    const c = selectActiveWorkout(appState())!.cursor!;
+    expect(c.move.exerciseId).toBe(opt.id);
+    expect(A().tapHurts(c.move.exerciseId).setAside).toBe(false); // a different move: not "twice"
+    expect(appState().hurts.map((h) => h.exerciseId)).toEqual([first.exerciseId, opt.id]);
+    expect(appState().setAside).toEqual([]);
   });
 
   it("second hurt sets it aside; the swap still lands in the same slot", () => {
@@ -159,6 +193,36 @@ describe("hurts in a workout", () => {
     const opt = selectActiveHurtOptions(appState(), "SQ1")[0];
     A().swapToday(slot.originId, opt.id);
     expect(selectActiveWorkout(appState())!.moves[0].exerciseId).toBe(opt.id);
+  });
+});
+
+describe("time left matches the session length (QA 19)", () => {
+  it("20 min → about 20 min left at the start, 0 at the end", () => {
+    onboard(20);
+    A().startWorkout();
+    const a = selectActiveWorkout(appState())!;
+    expect(a.session.minutes).toBe(20);
+    expect(a.minutesLeft).toBe(20);
+    doAll();
+    expect(selectActiveWorkout(appState())!.minutesLeft).toBe(0);
+  });
+
+  it("10 min → about 10 min left at the start", () => {
+    onboard(10);
+    A().startWorkout();
+    expect(selectActiveWorkout(appState())!.minutesLeft).toBe(10);
+  });
+
+  it("an easy week shows its real length and set count", () => {
+    onboard(20);
+    A().startEasyWeek();
+    A().startWorkout();
+    const a = selectActiveWorkout(appState())!;
+    expect(a.session.easy).toBe(true);
+    expect(a.totalSets).toBe(10); // 5 moves × 2 sets
+    expect(a.session.estMinutes).toBe(14); // 10 of the usual 15 sets
+    expect(a.minutesLeft).toBe(14);
+    expect(selectTrainHome(appState()).minutes).toBe(14);
   });
 });
 
@@ -189,9 +253,12 @@ describe("W7, W1", () => {
     expect(selectTrainHome(appState()).doneToday).toBe(true);
   });
 
-  it("kits beyond chair and wall", () => {
+  it("kits beyond wall and no kit: a chair is named, never 'no kit needed'", () => {
     onboard();
     A().startWorkout();
     expect(sessionKits(selectActiveWorkout(appState())!.session)).toEqual([]);
+    A().discardWorkout();
+    A().saveEquipment(["noFloor"]);
+    expect(sessionKits(selectSession(appState()))).toEqual(["chair"]); // sit-to-stand
   });
 });

@@ -303,6 +303,8 @@ export interface PlannedSession {
   minutes: SessionMinutes;
   moves: PlannedMove[];
   totalSets: number;
+  /** Real length in minutes for these sets (an easy week is shorter). */
+  estMinutes: number;
   easy: boolean;
 }
 

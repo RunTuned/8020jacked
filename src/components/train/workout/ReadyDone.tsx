@@ -7,7 +7,7 @@ import { sessionKits, selectWorkoutSummary, useAppStore } from "@/lib/store";
 import type { Effort, ExerciseKit, PlannedSession } from "@/lib/types";
 import { EFFORT_OPTIONS, amount, sideWords } from "../common";
 
-const KIT_WORDS: Partial<Record<ExerciseKit, string>> = { band: "a band", dumbbell: "dumbbells", bar: "a bar" };
+const KIT_WORDS: Partial<Record<ExerciseKit, string>> = { band: "a band", dumbbell: "dumbbells", bar: "a bar", chair: "a chair" };
 
 /* ------------------------------------------------------------------ W2 Before you start */
 
@@ -36,7 +36,7 @@ export function Ready({
     <Screen>
       <TopRow back={{ href: backHref }} label="Before you start" />
       <Hero title={session.name} />
-      <Card tone="blue" icon="train" title={`${shape} · ${session.minutes} min · ${kitLine}`} label="This workout">
+      <Card tone="blue" icon="train" title={`${shape} · ${session.estMinutes} min${session.easy ? " · easy week" : ""} · ${kitLine}`} label="This workout">
         <ul className="m-0 flex list-none flex-col gap-2 p-0">
           {session.moves.map((m) => (
             <li key={m.exerciseId}>

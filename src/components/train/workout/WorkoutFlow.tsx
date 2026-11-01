@@ -66,7 +66,8 @@ function Flow() {
     const step = params.get("step");
     if (!a) return "ready";
     if (step === "done" || !a.cursor) return "done";
-    if (step === "rest" && restStore.read(a.workout.id)) return "rest";
+    // A reload while paused in a rest goes back to the (paused) rest, not the next set.
+    if ((step === "rest" || step === "pause") && restStore.read(a.workout.id)) return "rest";
     if (step === "how" && params.get("move")) return "how";
     return "set";
   });
@@ -75,7 +76,8 @@ function Flow() {
     const step = params.get("step");
     if (!a?.cursor) return null;
     if (step === "pause") return { kind: "pause" };
-    if (step === "hurts") return { kind: "hurts", hurtId: a.cursor.move.exerciseId, slot: a.cursor.moveIndex, setAside: false };
+    if (step === "hurts")
+      return { kind: "hurts", hurtId: params.get("hurt") ?? a.cursor.move.exerciseId, slot: a.cursor.moveIndex, setAside: false };
     return null;
   });
   const [how, setHow] = useState<How | null>(() => {
@@ -107,9 +109,10 @@ function Flow() {
     if (next) q.set("next", next);
     q.set("step", step);
     if (shown === "how" && how) q.set("move", how.exerciseId);
+    if (overlay?.kind === "hurts") q.set("hurt", overlay.hurtId);
     const url = `${window.location.pathname}?${q.toString()}`;
     if (url !== `${window.location.pathname}${window.location.search}`) window.history.replaceState(null, "", url);
-  }, [step, shown, how, taster, letter, minutes, from, next, leaving]);
+  }, [step, shown, how, overlay, taster, letter, minutes, from, next, leaving]);
 
   if (leaving) {
     return (
@@ -269,6 +272,10 @@ function Flow() {
           setAside={overlay.setAside}
           onUndo={() => {
             act().undo();
+            setOverlay(null);
+          }}
+          onCancel={() => {
+            act().cancelHurt(overlay.hurtId);
             setOverlay(null);
           }}
           onClose={() => setOverlay(null)}

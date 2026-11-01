@@ -103,7 +103,33 @@ function byId(exercises: Exercise[]): Map<string, Exercise> {
   return new Map(exercises.map((e) => [e.id, e]));
 }
 
-/** Rank ladders for a pattern: longest usable ladder first (the skills), then name. */
+/**
+ * How much she'd want a kit for a main move: her dumbbells first, then her band, then no kit
+ * (wall counts as no kit). A chair is last for a floor user: it's only used when nothing else
+ * fits a beginner (QA A). With no floor, a chair is as good as no kit.
+ */
+export function kitRank(kit: ExerciseKit, equipment: Equipment[]): number {
+  if (kit === "dumbbell") return 0;
+  if (kit === "band") return 1;
+  if (kit === "chair" && floorAllowed(equipment)) return 3;
+  return 2;
+}
+
+const LEVEL_RANK: Record<Exercise["level"], number> = { beginner: 0, intermediate: 1, advanced: 2 };
+
+/**
+ * Where she starts on a ladder (no step saved yet): the beginner rung. A floor user starts on the
+ * first beginner rung that needs no chair, if there is one (bodyweight squat, not sit-to-stand).
+ */
+export function startRung(steps: Exercise[], equipment: Equipment[]): Exercise {
+  if (floorAllowed(equipment)) {
+    const noChair = steps.find((e) => e.kit !== "chair" && e.level === "beginner");
+    if (noChair) return noChair;
+  }
+  return steps[0];
+}
+
+/** Usable moves of each ladder for a pattern, rungs in order. */
 function laddersFor(pattern: string, ctx: PickContext): Map<string, Exercise[]> {
   const out = new Map<string, Exercise[]>();
   for (const ex of ctx.exercises) {
@@ -113,16 +139,37 @@ function laddersFor(pattern: string, ctx: PickContext): Map<string, Exercise[]> 
     out.set(ex.ladder, l);
   }
   for (const l of out.values()) l.sort((a, b) => a.ladderStep - b.ladderStep || a.id.localeCompare(b.id));
-  return new Map(
-    [...out.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0])),
-  );
+  return out;
 }
 
 /** The move on her current step of a ladder (beginner rung to start), among usable moves. */
-export function exerciseOnLadder(steps: Exercise[], current: number | undefined): Exercise {
-  if (current === undefined) return steps[0];
+export function exerciseOnLadder(steps: Exercise[], current: number | undefined, equipment: Equipment[] = []): Exercise {
+  if (current === undefined) return startRung(steps, equipment);
   const atOrBelow = steps.filter((e) => e.ladderStep <= current);
   return atOrBelow[atOrBelow.length - 1] ?? steps[0];
+}
+
+/**
+ * Ladders for a pattern with the move she'd do on each, best first, judged by the ladder's start
+ * rung so progress never makes her lose a ladder: her kit (dumbbells, band, no kit, chair last for
+ * floor users), then a beginner start, then the longest ladder (the skills), then the lowest id.
+ */
+export function rankedLadders(pattern: string, ctx: PickContext): { ladder: string; steps: Exercise[]; move: Exercise }[] {
+  return [...laddersFor(pattern, ctx).entries()]
+    .map(([ladder, steps]) => ({
+      ladder,
+      steps,
+      start: startRung(steps, ctx.equipment),
+      move: exerciseOnLadder(steps, ctx.ladderSteps[ladder], ctx.equipment),
+    }))
+    .sort(
+      (a, b) =>
+        kitRank(a.start.kit, ctx.equipment) - kitRank(b.start.kit, ctx.equipment) ||
+        LEVEL_RANK[a.start.level] - LEVEL_RANK[b.start.level] ||
+        b.steps.length - a.steps.length ||
+        a.start.id.localeCompare(b.start.id),
+    )
+    .map(({ ladder, steps, move }) => ({ ladder, steps, move }));
 }
 
 /** A set-aside move is replaced using its `swaps`, else nothing. */
@@ -141,9 +188,9 @@ export function pickForPattern(
   usedIds: Set<string>,
   usedLadders: Set<string>,
 ): Exercise | null {
-  for (const [ladder, steps] of laddersFor(pattern, ctx)) {
+  for (const { ladder, move } of rankedLadders(pattern, ctx)) {
     if (usedLadders.has(ladder)) continue;
-    let ex = exerciseOnLadder(steps, ctx.ladderSteps[ladder]);
+    let ex = move;
     if (ctx.setAside.includes(ex.id)) {
       const r = replacement(ex, ctx, usedIds);
       if (!r) continue;
@@ -207,12 +254,14 @@ export function buildSession(i: SessionInput): PlannedSession {
       perSide: ex.perSide === true,
     };
   });
+  const totalSets = moves.reduce((a, m) => a + m.sets.length, 0);
   return {
     letter: i.letter,
     name: SESSION_NAMES[i.letter],
     minutes: i.minutes,
     moves,
-    totalSets: moves.reduce((a, m) => a + m.sets.length, 0),
+    totalSets,
+    estMinutes: sessionMinutes(i.minutes, totalSets),
     easy: i.easy,
   };
 }
@@ -419,7 +468,19 @@ export function shouldSetAside(hurts: HurtLog[], exerciseId: string, setAside: S
   );
 }
 
-/** W5 options: a different body part, never one already in today's workout, max 2. */
+const PATTERNS_BY_AREA: Record<TrainingArea, string[]> = {
+  legs: ["squat", "lunge", "hinge"],
+  push: ["horizontal_push", "vertical_push"],
+  pull: ["horizontal_pull", "vertical_pull"],
+  core: ["core"],
+};
+
+/**
+ * W5 options: the same body area only, never a cross-area swap (QA). Order: the move's own swaps,
+ * then the same pattern (an easier rung of its ladder, the move on her other ladders), then the
+ * other patterns of the area. Never a harder rung of the same ladder, a move already in today's
+ * workout, a set-aside move, or a body part that hurt earlier today. Max 2.
+ */
 export function hurtSwapOptions(
   hurtEx: Exercise,
   todayIds: string[],
@@ -427,22 +488,32 @@ export function hurtSwapOptions(
   hurtBodyParts: string[] = [],
   max = 2,
 ): Exercise[] {
-  const avoid = new Set([hurtEx.primaryMuscle, ...hurtBodyParts]);
-  return ctx.exercises
-    .filter(
-      (e) =>
-        isAllowed(e, ctx.equipment) &&
-        !avoid.has(e.primaryMuscle) &&
-        !todayIds.includes(e.id) &&
-        !ctx.setAside.includes(e.id),
-    )
-    .sort(
-      (a, b) =>
-        Number(b.pattern === hurtEx.pattern) - Number(a.pattern === hurtEx.pattern) ||
-        a.ladderStep - b.ladderStep ||
-        a.id.localeCompare(b.id),
-    )
-    .slice(0, max);
+  const area = patternArea(hurtEx.pattern);
+  const avoid = new Set(hurtBodyParts.filter((p) => p !== hurtEx.primaryMuscle));
+  const map = byId(ctx.exercises);
+  const ok = (e: Exercise | undefined): e is Exercise =>
+    !!e &&
+    e.id !== hurtEx.id &&
+    patternArea(e.pattern) === area &&
+    isAllowed(e, ctx.equipment) &&
+    !avoid.has(e.primaryMuscle) &&
+    !todayIds.includes(e.id) &&
+    !ctx.setAside.includes(e.id) &&
+    !(e.ladder === hurtEx.ladder && e.ladderStep >= hurtEx.ladderStep);
+  const candidates: (Exercise | undefined)[] = hurtEx.swaps.map((id) => map.get(id));
+  const patterns = [hurtEx.pattern, ...PATTERNS_BY_AREA[area].filter((p) => p !== hurtEx.pattern)];
+  for (const pattern of patterns) {
+    for (const { ladder, steps, move } of rankedLadders(pattern, ctx)) {
+      if (ladder === hurtEx.ladder) candidates.push(...steps.filter((e) => e.ladderStep < hurtEx.ladderStep).reverse());
+      else candidates.push(move);
+    }
+  }
+  const out: Exercise[] = [];
+  for (const e of candidates) {
+    if (out.length >= max) break;
+    if (ok(e) && !out.some((x) => x.id === e.id)) out.push(e);
+  }
+  return out;
 }
 
 /** Sets in a session for one move. */
@@ -450,7 +521,18 @@ export function setsFor(session: WorkoutSession, exerciseId: string): SetLog[] {
   return session.sets.filter((s) => s.exerciseId === exerciseId);
 }
 
-/** W4/W3: minutes left, roughly — sets left × (45 s work + 45 s rest). */
-export function minutesLeft(totalSets: number, doneSets: number): number {
-  return Math.max(0, Math.ceil(((totalSets - doneSets) * (REST_SECONDS + 45)) / 60));
+/** Time one set takes in a session of this length: its usual sets fill its minutes. */
+function minutesPerSet(minutes: SessionMinutes): number {
+  const shape = LENGTH_SHAPE[minutes];
+  return minutes / (shape.moves * shape.sets);
+}
+
+/** Real length of a session with this many sets: 20 min × 15 sets = 20; an easy week's 10 sets = 14. */
+export function sessionMinutes(minutes: SessionMinutes, totalSets: number): number {
+  return Math.max(0, Math.ceil(totalSets * minutesPerSet(minutes) - 1e-9));
+}
+
+/** W4/W3: minutes left, by the session's own pace, so the start shows its length (QA 19). */
+export function minutesLeft(totalSets: number, doneSets: number, minutes: SessionMinutes): number {
+  return sessionMinutes(minutes, Math.max(0, totalSets - doneSets));
 }
