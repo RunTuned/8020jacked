@@ -24,6 +24,8 @@ export const WEIGHT_MAX_KG = 300;
 /** P3: one gentle line when she has added a photo in the last week. */
 export const PHOTO_NUDGE_DAYS = 7;
 export const PHOTO_NUDGE = "Photos change slowly. Once a month is plenty.";
+/** The one weigh-in message, everywhere it comes up (P1, T3, C2). */
+export const WEIGH_IN_ADVICE = "Weigh in on 3 different days a week for the best picture. Fewer is fine.";
 
 // ---------- words and numbers ----------
 
@@ -97,19 +99,22 @@ export const PROGRESS_VIEW_LABELS: Record<ProgressView, string> = {
   photos: "Photos",
 };
 
-/** P1 frame: heading, which views exist and which one opens first. */
-export function selectProgress(s: AppState) {
+/** P1 frame: heading, which views exist and which one opens first. The weight subline shows on Weight only. */
+export function selectProgress(s: AppState, view?: ProgressView) {
   const w = selectWeight(s);
   const weighs = !w.hidden;
   const views: ProgressView[] = weighs ? ["wins", "weight", "strength", "photos"] : ["wins", "strength", "photos"];
+  // Opens on Weight once she has a weigh-in, else Wins. Doesn't weigh: Wins, no Weight view.
+  const startView = (weighs && w.count > 0 ? "weight" : "wins") as ProgressView;
+  const shown = view && views.includes(view) ? view : startView;
   return {
     today: dateText(selectToday(s), "long"),
     weighs,
     views,
-    // Opens on Weight once she has a weigh-in, else Wins. Doesn't weigh: Wins, no Weight view.
-    startView: (weighs && w.count > 0 ? "weight" : "wins") as ProgressView,
+    startView,
+    view: shown,
     heading: weighs ? "Progress" : "Your wins and strength",
-    subline: weighs ? "Your average weight, and how far you've come since the start." : null,
+    subline: shown === "weight" ? "Your average weight, and how far you've come since the start." : null,
   };
 }
 
@@ -119,7 +124,7 @@ export function selectWeightCard(s: AppState) {
   const unit = s.settings.units.weight;
   const latest = w.list[0] ?? null;
   let title = "No weigh-ins yet";
-  let detail: string | null = "Weigh in when it suits you. Once a week is plenty.";
+  let detail: string | null = WEIGH_IN_ADVICE;
   if (w.count > 0) {
     if (w.showNumbers) {
       title = w.average !== null ? `${weightText(w.average, unit)} average weight` : `Last weigh-in ${weightText(latest!.kg, unit)}`;
@@ -227,22 +232,25 @@ export interface WinItem {
 /** P5: wins from workouts, skills and check-in answers. Never weight. */
 export function selectWinItems(s: AppState) {
   const w = selectWins(s);
-  const summary =
-    w.workoutsDone > 0
-      ? `${plural(w.workoutsDone, "workout")} done. ${plural(w.goodWeeksOfLast8, "good week")} of the last 8.`
-      : "Your wins show up here as you go.";
+  // Counts that are 0 are left out: day 1 never says "0 good weeks".
+  const counts = [
+    w.workoutsDone > 0 ? `${plural(w.workoutsDone, "workout")} done.` : null,
+    w.goodWeeksOfLast8 > 0 ? `${plural(w.goodWeeksOfLast8, "good week")} of the last 8.` : null,
+  ].filter(Boolean);
+  const summary = counts.length ? counts.join(" ") : "Your wins show up here as you go.";
   const items: WinItem[] = [];
-  if (w.workoutsDone > 0)
+  if (w.goodWeeksOfLast8 > 0)
     items.push({ key: "weeks", title: `${plural(w.goodWeeksOfLast8, "good week")} of the last 8`, detail: null, href: null, strong: true });
+  // Skills and strength rows aren't links: their screens are cut from v0.1.
   for (const k of w.skills) {
     if (k.level > 1 && k.current)
-      items.push({ key: `skill-${k.key}`, title: k.current, detail: `${k.title}: level ${k.level} of ${k.levels}`, href: "/train/skills", strong: true });
+      items.push({ key: `skill-${k.key}`, title: k.current, detail: `${k.title}: level ${k.level} of ${k.levels}`, href: null, strong: true });
   }
   for (const u of w.strengthUps.slice(0, 3)) {
-    items.push({ key: `up-${u.exerciseId}`, title: `Stronger: ${u.name} ${u.from} → ${u.to}`, detail: null, href: "/train/history", strong: false });
+    items.push({ key: `up-${u.exerciseId}`, title: `Stronger: ${u.name} ${u.from} → ${u.to}`, detail: null, href: null, strong: false });
   }
   const next = w.skills.find((k) => k.next);
-  if (next) items.push({ key: "next", title: `Next skill: ${next.next}`, detail: next.title, href: "/train/skills", strong: false });
+  if (next) items.push({ key: "next", title: `Next skill: ${next.next}`, detail: next.title, href: null, strong: false });
   if (w.clothesLooser > 0)
     items.push({ key: "clothes", title: `Clothes looser · ${plural(w.clothesLooser, "check-in")}`, detail: null, href: null, strong: false });
   return { summary, items };

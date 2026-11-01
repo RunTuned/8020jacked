@@ -57,7 +57,7 @@ export function WinsCard({ s, title = "Your wins", limit }: { s: AppState; title
   );
 }
 
-/** P1 Strength view: tap a move → W9 (Back → P1). */
+/** P1 Strength view. Rows aren't links: the move history and skills screens are cut from v0.1. */
 export function StrengthCard({ s }: { s: AppState }) {
   const st = selectStrength(s);
   return (
@@ -68,7 +68,7 @@ export function StrengthCard({ s }: { s: AppState }) {
         ) : (
           <div className="flex flex-col gap-1">
             {st.ups.map((u) => (
-              <Row key={u.key} title={u.title} detail={u.detail} href="/train/history" />
+              <Row key={u.key} title={u.title} detail={u.detail} />
             ))}
           </div>
         )}
@@ -76,7 +76,7 @@ export function StrengthCard({ s }: { s: AppState }) {
       <Card tone="neutral" icon="flag" title="Your skills" label="Your skills">
         <div className="flex flex-col gap-1">
           {st.skills.map((k) => (
-            <Row key={k.key} title={k.title} detail={`${k.detail}. ${k.next}`} href="/train/skills" />
+            <Row key={k.key} title={k.title} detail={`${k.detail}. ${k.next}`} />
           ))}
         </div>
       </Card>

@@ -102,6 +102,16 @@ export function selectGoalOptions(s: AppState) {
   return E.goalOptions(E.loseOffered(bmiOk, s.blocks, selectToday(s), s.profile.goal));
 }
 
+export const GOAL_NOTE_LOW_BMI =
+  "Lose some weight isn't offered at your current weight. Keep steady or get stronger instead.";
+
+/** A3: one plain line when "Lose some weight" is hidden because her BMI is under 20. */
+export function selectGoalNote(s: AppState): string | null {
+  const kg = currentKg(s);
+  if (!kg || selectGoalOptions(s).includes("lose")) return null;
+  return E.loseAllowedByBmi(E.bmi(kg, s.profile.heightCm)) ? null : GOAL_NOTE_LOW_BMI;
+}
+
 /** Picking "Lose some weight" with no weigh-ins asks a fresh rough weight first (C7, S2). */
 export function selectNeedsFreshWeight(s: AppState): boolean {
   return s.weighIns.length === 0 && s.profile.goal !== "lose";

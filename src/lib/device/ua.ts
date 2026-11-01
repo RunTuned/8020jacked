@@ -46,3 +46,12 @@ export function platform(ua = nav()?.userAgent ?? "", maxTouchPoints = nav()?.ma
   if (isAndroid(ua)) return "android";
   return "other";
 }
+
+/**
+ * iPhone Safari, not yet on the home screen: A1 asks her to add it first, so setup happens inside the
+ * home-screen app (on iPhone it has its own storage). Never in WhatsApp/Facebook/Instagram (A14w handles
+ * those), never once installed, never on Android, and not before the device is known.
+ */
+export function installFirst(d: { plat: Platform | null; standalone: boolean; inApp: InAppBrowser | null }): boolean {
+  return d.plat === "ios" && !d.standalone && d.inApp === null;
+}

@@ -25,9 +25,8 @@ export function ProgressScreen() {
     );
   }
 
-  const p = selectProgress(s);
-  const asked = params.get("view") as ProgressView | null;
-  const view: ProgressView = asked && p.views.includes(asked) ? asked : p.startView;
+  const p = selectProgress(s, (params.get("view") as ProgressView | null) ?? undefined);
+  const view: ProgressView = p.view;
   const pick = (v: ProgressView) => window.history.replaceState(null, "", `?view=${v}`);
 
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {

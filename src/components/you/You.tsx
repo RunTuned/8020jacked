@@ -17,6 +17,7 @@ import {
   parseNumber,
   selectAllergyNotice,
   selectBlock,
+  selectGoalNote,
   selectGoalOptions,
   selectNeedsFreshWeight,
   selectToday,
@@ -100,6 +101,7 @@ function GoalSection() {
   const block = useAppStore((s) => selectBlock(s));
   const options = useAppStore(useShallow(selectGoalOptions));
   const needsWeight = useAppStore((s) => selectNeedsFreshWeight(s));
+  const goalNote = useAppStore(selectGoalNote);
   const proposeGoal = useAppStore((s) => s.proposeGoal);
   const saveTraining = useAppStore((s) => s.saveTraining);
   const [g, setG] = useState<Goal | null>(goal);
@@ -149,6 +151,7 @@ function GoalSection() {
             </Option>
           ))}
         </OptionGroup>
+        {goalNote ? <p className="m-0 text-label text-ink-muted">{goalNote}</p> : null}
       </Field>
       {askWeight ? (
         <TextField
@@ -197,7 +200,7 @@ function BodySection() {
         router.push("/you");
       }}
     >
-      <BodyFields draft={draft} onChange={(d) => { setDraft(d); setErrors({}); }} errors={errors} showUnitSwitches />
+      <BodyFields draft={draft} onChange={(d) => { setDraft(d); setErrors({}); }} errors={errors} />
     </SectionPage>
   );
 }

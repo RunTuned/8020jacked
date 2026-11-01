@@ -23,6 +23,7 @@ import {
   selectCheckInWeek,
   selectNormalNow,
   useAppStore,
+  WEIGH_IN_ADVICE,
 } from "@/lib/store";
 import { ANSWER_LABELS } from "@/lib/engine";
 import type { CheckInAnswer, CheckInChangeKind, ClothesFeel } from "@/lib/types";
@@ -200,7 +201,7 @@ export function CheckInFlow() {
           <Card tone="aqua" icon="scale" title={week.weightLine} label="Weight this week">
             {week.needMoreWeighIns && s.profile.goal === "lose" ? (
               <Button variant="text" href="/today/weigh-in">
-                Weigh in on 3 different days for a food change
+                {WEIGH_IN_ADVICE}
               </Button>
             ) : null}
           </Card>

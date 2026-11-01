@@ -4,7 +4,7 @@ import { useShallow } from "zustand/react/shallow";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button, Hero, Option, OptionGroup, Screen, Segmented } from "@/components/ui";
-import { appState, selectGoalOptions, selectPlanSentence, unitsForLocale, useAppStore } from "@/lib/store";
+import { appState, selectGoalNote, selectGoalOptions, selectPlanSentence, unitsForLocale, useAppStore } from "@/lib/store";
 import type { Allergen, CookOrBuy, DaysPerWeek, Equipment, Goal, MealsPerDay, SessionMinutes, SetupStep } from "@/lib/types";
 import { BodyFields, bodyDraft, readBody, type BodyErrors } from "./BodyFields";
 import { COOK, DAYS, GOAL_LABEL, MEALS, MINUTES } from "./copy";
@@ -116,6 +116,7 @@ function GoalStep({ edit, go }: StepProps) {
   const current = useAppStore((s) => s.profile.goal);
   const terms = useAppStore((s) => s.profile.termsAcceptedOn);
   const options = useAppStore(useShallow(selectGoalOptions));
+  const note = useAppStore(selectGoalNote);
   const saveGoal = useAppStore((s) => s.saveGoal);
   const proposeGoal = useAppStore((s) => s.proposeGoal);
   const pending = useAppStore((s) => s.ui.pendingGoal);
@@ -146,6 +147,7 @@ function GoalStep({ edit, go }: StepProps) {
           </Option>
         ))}
       </OptionGroup>
+      {note ? <p className="m-0 text-label text-ink-muted">{note}</p> : null}
       <Bottom>
         {edit ? null : (
           <div className="flex flex-col">

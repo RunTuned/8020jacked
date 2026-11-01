@@ -59,3 +59,31 @@ export const REMINDER_LABEL: Record<ReminderSlot, string> = {
 export const TEST_NOTICE = "Test version: no account needed. Your progress stays on this phone.";
 export const TEST_DOWNLOAD = "Test version: your progress stays on this phone. Download it in You → My data.";
 export const REMINDERS_NEXT = "Reminders come in the next version.";
+
+/** A14w in-app browser: the steps and the button, worded for her phone. Each line says one thing once. */
+export function inAppCopy(plat: "ios" | "android" | "other" | null): { steps: string; lines: string[]; done: string } {
+  if (plat === "ios")
+    return {
+      steps: "Tap ⋯ or the share icon, then Open in Safari.",
+      lines: ["Then add it to your Home Screen from Safari."],
+      done: "I'm in Safari now",
+    };
+  if (plat === "android")
+    return {
+      steps: "Tap ⋮, then Open in Chrome.",
+      lines: ["Then install it from Chrome."],
+      done: "I'm in Chrome now",
+    };
+  return {
+    steps: "Tap ⋯ or the share icon, then open this page in your phone's browser.",
+    lines: ["iPhone: open it in Safari.", "Android: open it in Chrome."],
+    done: "I'm in my browser now",
+  };
+}
+
+export const INSTALL_FIRST = {
+  title: "Add 8020jacked to your Home Screen first",
+  subline: "Then set it up there, so everything stays in the app.",
+  steps: ["Tap Share.", "Tap Add to Home Screen, then Add.", "Open 8020jacked from your Home Screen."],
+  safari: "Use it in Safari instead",
+} as const;
