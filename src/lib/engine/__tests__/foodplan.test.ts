@@ -38,11 +38,11 @@ describe("3.5 week plan", () => {
     for (const d of buildWeekMeals(input({ meals: 4, fasting: true }))) expect(d.meals).toHaveLength(2);
   });
 
-  it("cooks: mains batch-cooked twice a week, 2–3 recipes per cook", () => {
+  it("cooks: mains batch-cooked twice a week (Sunday for Mon–Wed, Wednesday for Thu–Sat), 2–3 recipes per cook", () => {
     const w = buildWeekMeals(input());
     const mains = (days: DayPlan[]) => new Set(days.flatMap((d) => d.meals.filter((m) => m.mealType === "main").map((m) => m.recipeId)));
-    const a = mains(w.slice(0, 4));
-    const b = mains(w.slice(4));
+    const a = mains(w.slice(0, 3));
+    const b = mains(w.slice(3, 6));
     expect(a.size).toBeGreaterThanOrEqual(2);
     expect(a.size).toBeLessThanOrEqual(3);
     expect(b.size).toBeGreaterThanOrEqual(2);

@@ -7,6 +7,7 @@ import {
   type Ingredient,
   type MealType,
   type Recipe,
+  type Sauce,
 } from "../types";
 
 type Row = Record<string, unknown>;
@@ -85,6 +86,46 @@ export function parseRecipes(raw: unknown): Recipe[] {
         protein: num(r.protein),
         allergens: a,
         batch: r.batch === true,
+        ingredients: ingredients(r.ingredients),
+        method: strs(r.method),
+        ...(r.format === "tray" || r.format === "pot" ? { format: r.format } : {}),
+        ...(typeof r.washUp === "number" ? { washUp: r.washUp } : {}),
+        fridgeDays: fridgeDays(r.fridgeDays),
+        freezer: r.freezer === true,
+        carbsFrozen: r.carbsFrozen === true,
+        ...(r.carry === "hot" || r.carry === "cold" ? { carry: r.carry } : {}),
+        ...(str(r.pack) ? { pack: str(r.pack) } : {}),
+        sauces: strs(r.sauces),
+        ...(str(r.topping) ? { topping: str(r.topping) } : {}),
+      },
+    ];
+  });
+}
+
+/** Fridge days: 1 to 3 (the cautious end of USDA 3–4). Missing or bad = 1, never more than 3. */
+export const MAX_FRIDGE_DAYS = 3;
+function fridgeDays(x: unknown): number {
+  const n = Math.floor(num(x, 1));
+  return Math.min(MAX_FRIDGE_DAYS, Math.max(1, n));
+}
+
+export function parseSauces(raw: unknown): Sauce[] {
+  if (!Array.isArray(raw)) return [];
+  return raw.filter(isRow).flatMap((r) => {
+    const a = allergens(r.allergens);
+    const id = str(r.id);
+    if (!id || a === null) return [];
+    return [
+      {
+        id,
+        name: str(r.name, id),
+        minutes: num(r.minutes),
+        servings: Math.max(1, num(r.servings, 1)),
+        kcal: Math.max(0, num(r.kcal)),
+        protein: Math.max(0, num(r.protein)),
+        allergens: a,
+        fridgeDays: fridgeDays(r.fridgeDays),
+        freezer: r.freezer === true,
         ingredients: ingredients(r.ingredients),
         method: strs(r.method),
       },

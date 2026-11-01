@@ -4,6 +4,7 @@ import * as E from "../engine";
 import type { CheckInInput, DayFoodPrefs, WeekStats } from "../engine";
 import type {
   AppState,
+  Carry,
   CheckInAnswer,
   Content,
   DayPlan,
@@ -13,6 +14,7 @@ import type {
   ISODate,
   MealSlot,
   PlannedSession,
+  Sauce,
   SessionLetter,
 } from "../types";
 import { getContent } from "./content";
@@ -329,6 +331,7 @@ function mealsInput(s: AppState, ws: ISODate, prefs: (d: ISODate) => DayFoodPref
     allergies: s.food.allergies,
     recipes: C().recipes,
     bought: C().bought,
+    sauces: C().sauces ?? [],
     sideDelta: s.adjustments.sideDelta,
     swaps: s.mealSwaps,
     workouts: selectSchedule(s, ws),
@@ -355,6 +358,28 @@ export interface MealView {
   sides: Content["bought"];
   lines: string[]; // plain lines for the card (size lines, hand portions)
   checkLabel: boolean;
+  /** Prep and carry (cooks only; absent for bought meals). */
+  sauce?: Sauce;
+  sauceLine?: string; // "With: Salsa verde (in its own pot)"
+  topping?: string;
+  carry?: Carry;
+  pack?: string;
+  storageLine?: string; // "Cooked Sunday · keeps 3 days in the fridge · freezes"
+}
+
+const DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+/** One plain storage line from the engine's slot facts. */
+export function storageLine(slot: MealSlot): string | undefined {
+  if (slot.fridgeDays === undefined) return undefined;
+  const parts: string[] = [];
+  if (slot.fromFreezer) parts.push("From the freezer: move it to the fridge the night before");
+  else if (slot.cookedOn && slot.cookedOn !== slot.date) parts.push(`Cooked ${DAY_NAMES[E.weekday(slot.cookedOn)]}`);
+  parts.push(`keeps ${slot.fridgeDays} ${slot.fridgeDays === 1 ? "day" : "days"} in the fridge`);
+  if (slot.freezer) parts.push("freezes");
+  if (slot.carbsFrozen) parts.push("rice or pasta frozen in portions on cook day");
+  const line = parts.join(" · ");
+  return line.charAt(0).toUpperCase() + line.slice(1);
 }
 
 export function mealView(s: AppState, slot: MealSlot): MealView {
@@ -379,6 +404,7 @@ export function mealView(s: AppState, slot: MealSlot): MealView {
     for (const x of sides) lines.push(x.sizeLine);
   }
   if (slot.checkLabel) lines.push(E.CHECK_LABEL);
+  const sauce = slot.sauceId ? (C().sauces ?? []).find((x) => x.id === slot.sauceId) : undefined;
   return {
     slot,
     title,
@@ -388,6 +414,11 @@ export function mealView(s: AppState, slot: MealSlot): MealView {
     sides,
     lines,
     checkLabel: slot.checkLabel,
+    ...(sauce ? { sauce, sauceLine: `With: ${sauce.name} (in its own pot)` } : {}),
+    ...(slot.topping ? { topping: slot.topping } : {}),
+    ...(slot.carry ? { carry: slot.carry } : {}),
+    ...(slot.pack ? { pack: slot.pack } : {}),
+    ...(storageLine(slot) ? { storageLine: storageLine(slot) } : {}),
   };
 }
 
@@ -428,7 +459,14 @@ function listWeek(s: AppState, ws: ISODate): DayPlan[] {
 /** F4: this week's home days, by shop area, scaled by "Cooking for N". Hidden for buyers. */
 export const selectShoppingList = memo((s: AppState) => {
   const ws = E.weekStart(selectToday(s));
-  const sections = E.shoppingList(listWeek(s, ws), C().recipes, s.food.cookingFor, s.food.allergies, weekFlags(s, ws));
+  const sections = E.shoppingList(
+    listWeek(s, ws),
+    C().recipes,
+    s.food.cookingFor,
+    s.food.allergies,
+    weekFlags(s, ws),
+    C().sauces ?? [],
+  );
   const ticked = new Set(s.shoppingTicks.find((t) => t.weekStart === ws)?.ticked ?? []);
   return {
     weekStart: ws,
@@ -451,23 +489,28 @@ export const selectPickupList = memo((s: AppState) => {
   };
 });
 
-/** F5: cook day steps, for this week's batch recipes. */
+/** F5: cook day steps for the batch this cook day makes (Sunday: Mon–Wed; Wednesday: Thu–Sat), then its sauces. */
 export const selectCookDay = memo((s: AppState) => {
   const today = selectToday(s);
-  const ws = E.weekStart(today);
-  const block = E.cookBlock(E.weekday(today));
+  const { weekStart: ws, block, cookOn } = E.cookSessionFor(today);
   const week = listWeek(s, ws);
-  const ids = [
-    ...new Set(
-      week
-        .filter((_, i) => E.cookBlock(i) === block && !week[i].away)
-        .flatMap((d) => d.meals.filter((m) => m.mealType === "main" && m.recipeId).map((m) => m.recipeId!)),
-    ),
-  ];
+  const slots = week.flatMap((d) => (d.away ? [] : d.meals)).filter((m) => m.mealType === "main" && m.recipeId && m.cookedOn === cookOn);
+  const ids = [...new Set(slots.map((m) => m.recipeId!))];
+  const sauceIds = [...new Set(slots.flatMap((m) => (m.sauceId ? [m.sauceId] : [])))];
   const recipes = ids.map((id) => C().recipes.find((r) => r.id === id)!).filter(Boolean);
-  const steps = recipes.flatMap((r) => r.method.map((text, i) => ({ recipeId: r.id, recipe: r.name, index: i, text })));
+  const sauces = sauceIds.map((id) => (C().sauces ?? []).find((x) => x.id === id)!).filter(Boolean);
+  const steps = [...recipes, ...sauces].flatMap((r) => r.method.map((text, i) => ({ recipeId: r.id, recipe: r.name, index: i, text })));
   const prog = s.cookProgress.find((p) => p.weekStart === ws && p.cookDay === block);
-  return { weekStart: ws, cookDay: block, cookingFor: s.food.cookingFor, steps, step: prog?.step ?? 0, done: prog?.done ?? false };
+  return {
+    weekStart: ws,
+    cookDay: block,
+    cookOn,
+    cookingFor: s.food.cookingFor,
+    steps,
+    sauces: sauces.map((x) => ({ id: x.id, name: x.name })),
+    step: prog?.step ?? 0,
+    done: prog?.done ?? false,
+  };
 });
 
 /** The new-allergy line for today, if any. */

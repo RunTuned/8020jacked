@@ -514,9 +514,7 @@ export const useAppStore = create<Store>()(
         },
         saveCookStep: (step) => {
           const s = st();
-          const d = today(s);
-          const ws = E.weekStart(d);
-          const cookDay = E.cookBlock(E.weekday(d));
+          const { weekStart: ws, block: cookDay } = E.cookSessionFor(today(s));
           patch({
             cookProgress: [
               ...s.cookProgress.filter((p) => !(p.weekStart === ws && p.cookDay === cookDay)),
@@ -526,9 +524,7 @@ export const useAppStore = create<Store>()(
         },
         cookDayDone: () => {
           const s = st();
-          const d = today(s);
-          const ws = E.weekStart(d);
-          const cookDay = E.cookBlock(E.weekday(d));
+          const { weekStart: ws, block: cookDay } = E.cookSessionFor(today(s));
           const cur = s.cookProgress.find((p) => p.weekStart === ws && p.cookDay === cookDay);
           patch({
             cookProgress: [
@@ -663,7 +659,7 @@ export const useAppStore = create<Store>()(
             const before = S.selectWeekMeals(s, ws);
             const nextState = { ...s, ...p } as AppState;
             const after = S.selectWeekMeals(nextState, ws);
-            const c = E.allergyChange(before, after, d, s.mealLogs, getContent().recipes, getContent().bought, newAllergens);
+            const c = E.allergyChange(before, after, d, s.mealLogs, getContent().recipes, getContent().bought, newAllergens, getContent().sauces ?? []);
             p.allergyNotices = [...s.allergyNotices, { creatorId: CREATOR_ID, date: d, allergens: newAllergens, flagged: c.flagged }];
             // Swaps that now hold an allergen are dropped (they'd be ignored anyway).
             const { recipes, bought } = getContent();
