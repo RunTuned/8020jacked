@@ -40,7 +40,7 @@ const SETUPS: { name: string; equipment: Equipment[]; A: string[]; B: string[]; 
     name: "no equipment + floor",
     equipment: ["floor"],
     // bodyweight squat, wall push-up, prone Y-T raise, glute bridge
-    A: ["EX-002", "EX-031", "EX-051", "EX-010"],
+    A: ["EX-002", "EX-031", "EX-090", "EX-010"],
     // supported split squat, elevated pike push-up (the only beginner vertical push: needs a chair),
     // floor lat pull, wall hip hinge (the other hinge ladder)
     B: ["EX-021", "EX-044", "EX-069", "EX-091"],

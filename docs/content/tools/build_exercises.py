@@ -92,6 +92,12 @@ def main():
             "effort": r["effort_class"],
             "maxUserKg": int(r["max_user_kg"]) if r["max_user_kg"] else None,
         }
+        # 3 Nov 2026 (Jennifer): the Prone Y-T raise is a weak start for the pull slot, so the bodyweight row
+        # ladder starts at the door-frame row and the Y-T raise stands alone (still usable as a swap).
+        LADDER_FIX = {"EX-051": ("yt_raise", 1), "EX-090": ("row_bw", 1), "EX-052": ("row_bw", 2),
+                      "EX-053": ("row_bw", 3), "EX-054": ("row_bw", 4)}
+        if eid in LADDER_FIX:
+            ex["ladder"], ex["ladderStep"] = LADDER_FIX[eid]
         out.append(ex)
     OUT.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
     print(f"wrote {len(out)} exercises; excluded {len(excluded)}:")
