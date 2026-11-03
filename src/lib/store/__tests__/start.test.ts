@@ -76,7 +76,7 @@ describe("setup resume point", () => {
 describe("plan sentence (A8, A9)", () => {
   it("is built from days and meals", () => {
     expect(selectPlanSentence(appState())).toBe("3 short workouts a week and 3 easy meals a day.");
-    A().saveTime({ minutes: 20, daysPerWeek: 4 });
+    A().saveTime({ minutes: 15, daysPerWeek: 4 });
     A().saveFoodSetup({ mealsPerDay: 4, cookOrBuy: "cook", allergies: [] });
     expect(selectPlanSentence(appState())).toBe("4 short workouts a week and 4 easy meals a day.");
   });

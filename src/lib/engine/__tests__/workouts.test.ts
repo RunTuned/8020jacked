@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CREATOR_ID, type HurtLog, type SetLog, type WorkoutSession } from "../../types";
+import { CREATOR_ID, type HurtLog, type SessionMinutes, type SetLog, type WorkoutSession } from "../../types";
 import {
   buildSession,
   canStartWorkout,
@@ -9,8 +9,18 @@ import {
   nextWorkout,
   notToday,
   progress,
+  CORE_SETS_LONG,
+  DEFAULT_MINUTES,
+  lettersFor,
+  minutesLeft,
+  rawSessionMinutes,
   REST_SECONDS,
   SESSION_NAMES,
+  sessionMinutes,
+  SETS_BY_LENGTH,
+  stepDownMinutes,
+  stepUpMinutes,
+  toSessionMinutes,
   shouldSetAside,
   weekCount,
   weekSchedule,
@@ -26,8 +36,7 @@ const sessionIn = (p: Partial<SessionInput> = {}): SessionInput => ({
   ladderSteps: {},
   setAside: [],
   letter: "A",
-  minutes: 20,
-  extraSets: { legs: 0, push: 0, pull: 0, core: 0 },
+  minutes: 15,
   targets: {},
   easy: false,
   ...p,
@@ -39,7 +48,7 @@ const workout = (date: string, status: WorkoutSession["status"] = "done"): Worko
   id: date,
   date,
   letter: "A",
-  minutes: 20,
+  minutes: 15,
   status,
   sets: [],
   moveEffort: {},
@@ -67,13 +76,13 @@ describe("3.4 days: 2, 3 or 4 a week, never back to back where possible", () => 
     expect(chooseTrainingDays([3], 2)).toEqual([3]);
   });
 
-  it("weekSchedule: A/B for 3 days, C in 4-day plans, away days skipped", () => {
+  it("weekSchedule: A/B for 3 days, A/B alternating in 4-day plans (no C), away days skipped", () => {
     const s3 = weekSchedule({ weekStart: MON, planStart: MON, daysPerWeek: 3, awayDates: new Set(), moves: [] });
     expect(Object.values(s3).filter(Boolean)).toEqual(["A", "B", "A"]);
     const next = weekSchedule({ weekStart: "2026-11-09", planStart: MON, daysPerWeek: 3, awayDates: new Set(), moves: [] });
     expect(Object.values(next).filter(Boolean)).toEqual(["B", "A", "B"]);
     const s4 = weekSchedule({ weekStart: MON, planStart: MON, daysPerWeek: 4, awayDates: new Set(), moves: [] });
-    expect(Object.values(s4).filter(Boolean)).toEqual(["A", "B", "C", "A"]);
+    expect(Object.values(s4).filter(Boolean)).toEqual(["A", "B", "A", "B"]);
     const away = weekSchedule({ weekStart: MON, planStart: MON, daysPerWeek: 3, awayDates: new Set([MON]), moves: [] });
     expect(away[MON]).toBeNull();
     expect(Object.values(away).filter(Boolean)).toHaveLength(3);
@@ -87,51 +96,95 @@ describe("3.4 days: 2, 3 or 4 a week, never back to back where possible", () => 
 });
 
 describe("3.4 sessions", () => {
-  it("named by body area", () => {
-    expect(SESSION_NAMES).toEqual({ A: "Legs and push", B: "Hips and pull", C: "Legs and core" });
+  it("named Full body A and Full body B", () => {
+    expect(SESSION_NAMES).toEqual({ A: "Full body A", B: "Full body B" });
+    expect(buildSession(sessionIn()).name).toBe("Full body A");
+    expect(buildSession(sessionIn({ letter: "B" })).name).toBe("Full body B");
+    expect(lettersFor(2)).toEqual(["A", "B"]);
+    expect(lettersFor(4)).toEqual(["A", "B"]);
   });
 
-  it("10 min: 3 moves × 2 sets; 20 min: 5 × 3; 35 min: 7 × 3; rest 45 s", () => {
-    for (const [minutes, moves, setsN] of [
-      [10, 3, 2],
-      [20, 5, 3],
-      [35, 7, 3],
+  it("Short 1 set, Standard 2, Long 3 + one core move; the same 4 moves; rest 45 s", () => {
+    const ids = (m: SessionMinutes) => buildSession(sessionIn({ minutes: m })).moves.map((x) => x.exerciseId);
+    for (const [minutes, setsN] of [
+      [8, 1],
+      [15, 2],
+      [25, 3],
     ] as const) {
       const s = buildSession(sessionIn({ minutes }));
-      expect(s.moves).toHaveLength(moves);
-      for (const m of s.moves) {
+      const main = s.moves.slice(0, 4);
+      expect(main.map((m) => m.exerciseId)).toEqual(["SQ2", "PU1", "RW1", "HI1"]);
+      for (const m of main) {
         expect(m.sets).toHaveLength(setsN);
         expect(m.restSeconds).toBe(REST_SECONDS);
       }
-      expect(s.totalSets).toBe(moves * setsN);
     }
+    expect(ids(8)).toEqual(ids(15));
+    expect(ids(25).slice(0, 4)).toEqual(ids(15));
+    expect(buildSession(sessionIn({ minutes: 8 })).totalSets).toBe(4);
+    expect(buildSession(sessionIn({ minutes: 15 })).totalSets).toBe(8);
+    expect(buildSession(sessionIn({ minutes: 25 })).totalSets).toBe(14);
     expect(REST_SECONDS).toBe(45);
+    expect(SETS_BY_LENGTH).toEqual({ 8: 1, 15: 2, 25: 3 });
+    expect(DEFAULT_MINUTES).toBe(15);
+  });
+
+  it("the core move only on Long, at 2–3 sets: dead bug (floor), Pallof press (band), wall plank (no floor)", () => {
+    expect(buildSession(sessionIn({ minutes: 8 })).moves.some((m) => m.pattern === "core")).toBe(false);
+    expect(buildSession(sessionIn({ minutes: 15 })).moves.some((m) => m.pattern === "core")).toBe(false);
+    const long = buildSession(sessionIn({ minutes: 25 }));
+    expect(long.moves).toHaveLength(5);
+    expect(long.moves[4].exerciseId).toBe("CO1");
+    expect(long.moves[4].sets.length).toBe(CORE_SETS_LONG);
+    expect(CORE_SETS_LONG).toBeGreaterThanOrEqual(2);
+    expect(CORE_SETS_LONG).toBeLessThanOrEqual(3);
+    expect(buildSession(sessionIn({ equipment: ["noFloor"], minutes: 25 })).moves[4].exerciseId).toBe("CS1");
+  });
+
+  it("time estimates come from the engine: about 8, 15 and 25 min", () => {
+    expect(buildSession(sessionIn({ minutes: 8 })).estMinutes).toBe(8);
+    expect(buildSession(sessionIn({ minutes: 15 })).estMinutes).toBe(15);
+    expect(buildSession(sessionIn({ minutes: 25 })).estMinutes).toBe(25);
+    // the maths: 1 min to set up, then each set is about a minute of work plus the 45 s rest
+    expect(rawSessionMinutes(4)).toBe(8);
+    expect(rawSessionMinutes(8)).toBe(15);
+    expect(rawSessionMinutes(14)).toBe(25.5);
+    expect(sessionMinutes(14)).toBe(25);
+    expect(minutesLeft(8, 0)).toBe(15);
+    expect(minutesLeft(8, 8)).toBe(0);
   });
 
   it("starts on the beginner rung of each ladder, by pattern", () => {
-    const s = buildSession(sessionIn({ minutes: 10 }));
-    // squat, push, pull. A floor user starts on the bodyweight squat, not the chair (QA A).
-    expect(s.moves.map((m) => m.exerciseId)).toEqual(["SQ2", "PU1", "RW1"]);
+    const s = buildSession(sessionIn({ minutes: 8 }));
+    // squat, push, pull, hinge. A floor user starts on the bodyweight squat, not the chair (QA A).
+    expect(s.moves.map((m) => m.exerciseId)).toEqual(["SQ2", "PU1", "RW1", "HI1"]);
     expect(s.moves[0].sets[0].target).toBe(10); // rep_min
     // With no floor, sit-to-stand (a chair) is the beginner squat.
-    expect(buildSession(sessionIn({ equipment: ["noFloor"], minutes: 10 })).moves[0].exerciseId).toBe("SQ1");
+    expect(buildSession(sessionIn({ equipment: ["noFloor"], minutes: 8 })).moves[0].exerciseId).toBe("SQ1");
   });
 
-  it("session B leads with hips and pull", () => {
-    const s = buildSession(sessionIn({ letter: "B", minutes: 10 }));
-    expect(s.moves.map((m) => m.pattern)).toEqual(["hinge", "horizontal_pull", "horizontal_push"]);
+  it("session B: lunge, vertical push and pull where suitable, the other hinge ladder", () => {
+    const s = buildSession(sessionIn({ letter: "B" }));
+    // no band: no vertical push, so the same push; the floor lat pull; the wall hip hinge
+    expect(s.moves.map((m) => m.exerciseId)).toEqual(["LU1", "PU1", "LP1", "HS1"]);
+    const band = buildSession(sessionIn({ letter: "B", equipment: ["floor", "bands"] }));
+    expect(band.moves.map((m) => m.pattern)).toEqual(["lunge", "vertical_push", "vertical_pull", "hinge"]);
   });
 
   it("no moves twice, never the same ladder twice", () => {
-    const s = buildSession(sessionIn({ minutes: 35 }));
-    const ids = s.moves.map((m) => m.exerciseId);
-    expect(new Set(ids).size).toBe(ids.length);
+    for (const letter of ["A", "B"] as const) {
+      const s = buildSession(sessionIn({ minutes: 25, letter }));
+      const ids = s.moves.map((m) => m.exerciseId);
+      expect(new Set(ids).size).toBe(ids.length);
+    }
   });
 
   it("no floor = no floor-position moves", () => {
-    const s = buildSession(sessionIn({ equipment: ["noFloor"], minutes: 35 }));
-    for (const m of s.moves) expect(byId(m.exerciseId).position).not.toBe("floor");
-    expect(s.moves.map((m) => m.exerciseId)).toContain("RW2"); // standing row, not the floor Y-T raise
+    for (const letter of ["A", "B"] as const) {
+      const s = buildSession(sessionIn({ equipment: ["noFloor"], minutes: 25, letter }));
+      for (const m of s.moves) expect(byId(m.exerciseId).position).not.toBe("floor");
+      expect(s.moves.map((m) => m.exerciseId)).toContain("RW2"); // standing row, not the floor Y-T raise
+    }
   });
 
   it("filters by kit: bands and dumbbells only when she has them; never the bar", () => {
@@ -139,30 +192,55 @@ describe("3.4 sessions", () => {
     expect(isAllowed(byId("OP1"), ["floor", "bands"])).toBe(true);
     expect(isAllowed(byId("DB1"), ["dumbbells"])).toBe(true);
     expect(isAllowed(byId("PB1"), ["floor", "bands", "dumbbells"])).toBe(false);
-    const s = buildSession(sessionIn({ equipment: ["floor", "bands"], minutes: 35 }));
+    const s = buildSession(sessionIn({ equipment: ["floor", "bands"], letter: "B" }));
     expect(s.moves.map((m) => m.exerciseId)).toContain("OP1");
+    expect(buildSession(sessionIn({ equipment: ["floor", "dumbbells"] })).moves[3].exerciseId).toBe("DB1");
   });
 
   it("held moves use seconds", () => {
-    const s = buildSession(sessionIn({ equipment: ["noFloor"], minutes: 35, letter: "C" }));
+    const s = buildSession(sessionIn({ equipment: ["noFloor"], minutes: 25 }));
     const hold = s.moves.find((m) => m.exerciseId === "CS1")!;
     expect(hold.unit).toBe("seconds");
     expect(hold.sets[0].target).toBe(20);
   });
 
-  it("a check-in step up adds one set to the first move of that area", () => {
-    const s = buildSession(sessionIn({ extraSets: { legs: 1, push: 0, pull: 0, core: 0 } }));
-    expect(s.moves[0].sets).toHaveLength(4); // squat
-    expect(s.moves.find((m) => m.pattern === "lunge")!.sets).toHaveLength(3);
-  });
-
   it("easy week: one set fewer, at least one", () => {
-    expect(buildSession(sessionIn({ easy: true, minutes: 10 })).moves[0].sets).toHaveLength(1);
+    expect(buildSession(sessionIn({ easy: true, minutes: 8 })).moves[0].sets).toHaveLength(1);
+    expect(buildSession(sessionIn({ easy: true, minutes: 15 })).moves[0].sets).toHaveLength(1);
+    expect(buildSession(sessionIn({ easy: true, minutes: 25 })).moves[0].sets).toHaveLength(2);
   });
 
   it("current ladder steps are used", () => {
-    const s = buildSession(sessionIn({ ladderSteps: { squat_bw: 2 }, minutes: 10 }));
+    const s = buildSession(sessionIn({ ladderSteps: { squat_bw: 2 }, minutes: 8 }));
     expect(s.moves[0].exerciseId).toBe("SQ2");
+  });
+
+  it("a body part that hurt today is left out", () => {
+    const s = buildSession(sessionIn({ hurtBodyParts: ["chest"] }));
+    expect(s.moves.map((m) => m.pattern)).toEqual(["squat", "horizontal_pull", "hinge"]);
+  });
+});
+
+describe("3.4 session length: stored minutes and the check-in step", () => {
+  it("old lengths map to the new ones; ?minutes=10 means 8", () => {
+    expect(toSessionMinutes(10)).toBe(8);
+    expect(toSessionMinutes(20)).toBe(15);
+    expect(toSessionMinutes(35)).toBe(25);
+    expect(toSessionMinutes("10")).toBe(8);
+    expect(toSessionMinutes("8")).toBe(8);
+    expect(toSessionMinutes(15)).toBe(15);
+    expect(toSessionMinutes(25)).toBe(25);
+    expect(toSessionMinutes("12")).toBeUndefined();
+    expect(toSessionMinutes(undefined)).toBeUndefined();
+  });
+
+  it("step up: Short → Standard → Long, never above Long; step down the other way", () => {
+    expect(stepUpMinutes(8)).toBe(15);
+    expect(stepUpMinutes(15)).toBe(25);
+    expect(stepUpMinutes(25)).toBeNull();
+    expect(stepDownMinutes(25)).toBe(15);
+    expect(stepDownMinutes(15)).toBe(8);
+    expect(stepDownMinutes(8)).toBeNull();
   });
 });
 
@@ -229,13 +307,13 @@ describe("3.4 Hurts", () => {
   });
 
   it("a set-aside move is swapped using its swaps", () => {
-    const s = buildSession(sessionIn({ equipment: ["noFloor"], setAside: ["SQ1"], minutes: 10 }));
+    const s = buildSession(sessionIn({ equipment: ["noFloor"], setAside: ["SQ1"], minutes: 8 }));
     expect(s.moves[0].exerciseId).toBe("WS1");
     expect(s.moves.map((m) => m.exerciseId)).not.toContain("SQ1");
   });
 
   it("bring it back: no longer set aside → back in the workout", () => {
-    expect(buildSession(sessionIn({ equipment: ["noFloor"], setAside: [], minutes: 10 })).moves[0].exerciseId).toBe("SQ1");
+    expect(buildSession(sessionIn({ equipment: ["noFloor"], setAside: [], minutes: 8 })).moves[0].exerciseId).toBe("SQ1");
   });
 
   it("W5 options: the same body area only, never one already in today's workout", () => {

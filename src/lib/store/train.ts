@@ -50,7 +50,7 @@ export interface WorkoutCursor {
 export function selectActiveWorkout(s: AppState) {
   const w = selectWorkoutInProgress(s);
   if (!w) return null;
-  const session = w.taster ? sessionFor(s, "A", w.date, 10) : sessionFor(s, w.letter, w.date, w.minutes);
+  const session = w.taster ? sessionFor(s, "A", w.date, E.SHORT) : sessionFor(s, w.letter, w.date, w.minutes);
   const back = new Map(s.todaySwaps.filter((x) => x.date === w.date).map((x) => [x.toId, x.fromId]));
   const moves: ActiveMove[] = session.moves.map((m) => ({
     ...m,
@@ -81,7 +81,7 @@ export function selectActiveWorkout(s: AppState) {
     cursor,
     doneSets,
     totalSets: session.totalSets,
-    minutesLeft: E.minutesLeft(session.totalSets, doneSets, session.minutes),
+    minutesLeft: E.minutesLeft(session.totalSets, doneSets),
     minutesDone: Math.max(1, Math.round((now() - w.startedAt) / 60_000)),
   };
 }

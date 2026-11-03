@@ -36,7 +36,7 @@ const A = () => useAppStore.getState();
 function onboard(kg = 75, heightCm = 165) {
   A().saveAbout({ age: 40, heightCm, setupWeightKg: kg, noWeigh: false });
   A().saveGoal("steady", true);
-  A().saveTime({ minutes: 20, daysPerWeek: 3 });
+  A().saveTime({ minutes: 15, daysPerWeek: 3 });
   A().saveEquipment(["floor"]);
   A().saveFoodSetup({ mealsPerDay: 3, cookOrBuy: "cook", allergies: [] });
   A().createPlan();
@@ -117,7 +117,7 @@ describe("15: Progress on day 1", () => {
           creatorId: "8020jacked",
           date: "2026-11-02",
           letter: "A",
-          minutes: 20,
+          minutes: 15,
           status: "done",
           sets: [],
           moveEffort: {},

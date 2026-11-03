@@ -37,7 +37,7 @@ const A = () => useAppStore.getState();
 function onboard(cook: "cook" | "buy" = "cook") {
   A().saveAbout({ age: 40, heightCm: 165, setupWeightKg: 75, noWeigh: false });
   A().saveGoal("lose", true);
-  A().saveTime({ minutes: 20, daysPerWeek: 3 });
+  A().saveTime({ minutes: 15, daysPerWeek: 3 });
   A().saveEquipment(["floor"]);
   A().saveFoodSetup({ mealsPerDay: 3, cookOrBuy: cook, allergies: [] });
   A().createPlan();
@@ -66,7 +66,7 @@ describe("Today selectors", () => {
     expect(selectDoneToday(appState())).toBeNull();
     A().startWorkout();
     A().finishWorkout("done", "just_right");
-    expect(selectDoneToday(appState())).toEqual({ name: "Legs and push", minutes: 20 });
+    expect(selectDoneToday(appState())).toEqual({ name: "Full body A", minutes: 15 });
   });
 
   it("banner priority: allergy > speed brake > payment > check-in", () => {

@@ -27,10 +27,13 @@ export const EQUIPMENT: ReadonlyArray<{ value: Equipment; label: string }> = [
 ];
 
 export const MINUTES: ReadonlyArray<{ value: `${SessionMinutes}`; label: string }> = [
-  { value: "10", label: "10 min" },
-  { value: "20", label: "20 min" },
-  { value: "35", label: "35 min" },
+  { value: "8", label: "8 min" },
+  { value: "15", label: "15 min" },
+  { value: "25", label: "25 min" },
 ];
+
+/** A5 / S2: 15 min (Standard, 2 sets of 4 moves) is the suggestion and the default. */
+export const MINUTES_HINT = "15 min suits most people. The moves stay the same. Time only changes the sets.";
 
 export const DAYS: ReadonlyArray<{ value: `${DaysPerWeek}`; label: string }> = [
   { value: "2", label: "2" },

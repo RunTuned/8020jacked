@@ -26,17 +26,20 @@ export function Ready({
 }) {
   const kits = sessionKits(session).map((k) => KIT_WORDS[k] ?? k);
   const kitLine = kits.length ? `you need ${kits.join(" and ")}` : "no kit needed";
-  const setsEach = session.moves[0]?.sets.length ?? 0;
-  const same = session.moves.every((m) => m.sets.length === setsEach);
+  const main = session.moves.filter((m) => m.pattern !== "core");
+  const core = session.moves.filter((m) => m.pattern === "core");
+  const setsEach = main[0]?.sets.length ?? 0;
+  const same = main.every((m) => m.sets.length === setsEach);
+  const sets = (n: number) => `${n} ${n === 1 ? "set" : "sets"}`;
   const shape = same
-    ? `${session.moves.length} moves × ${setsEach} sets = ${session.totalSets} sets`
-    : `${session.moves.length} moves · ${session.totalSets} sets`;
+    ? `${main.length} moves × ${sets(setsEach)}${core.length ? ` + core × ${sets(core[0].sets.length)}` : ""}`
+    : `${session.moves.length} moves · ${sets(session.totalSets)}`;
 
   return (
     <Screen>
       <TopRow back={{ href: backHref }} label="Before you start" />
       <Hero title={session.name} />
-      <Card tone="blue" icon="train" title={`${shape} · ${session.estMinutes} min${session.easy ? " · easy week" : ""} · ${kitLine}`} label="This workout">
+      <Card tone="blue" icon="train" title={`${shape} · about ${session.estMinutes} min${session.easy ? " · easy week" : ""} · ${kitLine}`} label="This workout">
         <ul className="m-0 flex list-none flex-col gap-2 p-0">
           {session.moves.map((m) => (
             <li key={m.exerciseId}>

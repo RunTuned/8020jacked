@@ -7,7 +7,7 @@ import { Button, Hero, Option, OptionGroup, Screen, Segmented } from "@/componen
 import { appState, selectGoalNote, selectGoalOptions, selectPlanSentence, unitsForLocale, useAppStore } from "@/lib/store";
 import type { Allergen, CookOrBuy, DaysPerWeek, Equipment, Goal, MealsPerDay, SessionMinutes, SetupStep } from "@/lib/types";
 import { BodyFields, bodyDraft, readBody, type BodyErrors } from "./BodyFields";
-import { COOK, DAYS, GOAL_LABEL, MEALS, MINUTES } from "./copy";
+import { COOK, DAYS, GOAL_LABEL, MEALS, MINUTES, MINUTES_HINT } from "./copy";
 import { AllergyChoices, Bottom, EquipmentChoices, StepHeader, TermsLinks } from "./Parts";
 
 import { FLOW, type FlowStep } from "./flow";
@@ -207,6 +207,7 @@ function Time({ edit, go }: StepProps) {
       <div className="flex flex-col gap-2">
         <p className="m-0 text-label font-semibold">How long do you usually get?</p>
         <Segmented label="How long do you usually get?" outlined stretch options={MINUTES} value={minutes} onChange={setMinutes} />
+        <p className="m-0 text-label text-ink-muted">{MINUTES_HINT}</p>
       </div>
       <div className="flex flex-col gap-2">
         <p className="m-0 text-label font-semibold">Days a week</p>

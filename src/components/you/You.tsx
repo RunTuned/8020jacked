@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useSyncExternalStore, type ReactNode } from "react";
 import { Banner, Button, Card, Hero, Option, OptionGroup, Screen, Segmented, Sheet, Stack, Switch, TabBar, TextField, TopRow, cx } from "@/components/ui";
 import { BodyFields, bodyDraft, readBody, type BodyErrors } from "@/components/start/BodyFields";
-import { COOK, DAYS, GOAL_LABEL, MEALS, MINUTES, REMINDERS_NEXT, REMINDER_LABEL, TEST_DOWNLOAD } from "@/components/start/copy";
+import { COOK, DAYS, GOAL_LABEL, MEALS, MINUTES, MINUTES_HINT, REMINDERS_NEXT, REMINDER_LABEL, TEST_DOWNLOAD } from "@/components/start/copy";
 import { AllergyChoices, Bottom, EquipmentChoices, ImportButton, TermsLinks } from "@/components/start/Parts";
 import { downloadFile } from "@/components/start/Screens";
 import { isStandalone } from "@/lib/device";
@@ -169,6 +169,7 @@ function GoalSection() {
       </Field>
       <Field label="Usual time">
         <Segmented label="Usual time" outlined stretch options={MINUTES} value={mins} onChange={setMins} />
+        <p className="m-0 text-label text-ink-muted">{MINUTES_HINT}</p>
       </Field>
       <Button variant="text" href="/start/setup?step=about&edit=1">
         Redo my setup answers

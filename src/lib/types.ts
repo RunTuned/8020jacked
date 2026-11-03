@@ -140,7 +140,8 @@ export interface Content {
 // ---------- Profile and settings ----------
 
 export type Goal = "lose" | "steady" | "stronger";
-export type SessionMinutes = 10 | 20 | 35;
+/** Short, Standard (default) and Long: 1, 2 or 3 sets of the same 4 moves. */
+export type SessionMinutes = 8 | 15 | 25;
 export type DaysPerWeek = 2 | 3 | 4;
 export type MealsPerDay = 2 | 3 | 4;
 export type CookOrBuy = "cook" | "buy";
@@ -219,7 +220,8 @@ export interface Subscription {
 
 // ---------- Plan (engine output, not persisted) ----------
 
-export type SessionLetter = "A" | "B" | "C";
+/** Full body A and B. */
+export type SessionLetter = "A" | "B";
 
 export interface HandPortions {
   palm: number;
@@ -301,7 +303,7 @@ export interface PlannedMove {
 
 export interface PlannedSession {
   letter: SessionLetter;
-  name: string; // "Legs and push"
+  name: string; // "Full body A"
   minutes: SessionMinutes;
   moves: PlannedMove[];
   totalSets: number;
@@ -425,9 +427,7 @@ export interface CheckInChange {
   kcalDelta?: number;
   /** buyers: sides a day added (+) or removed (-). */
   sideDelta?: number;
-  /** training_up: which area gets one extra set. */
-  area?: TrainingArea;
-  /** training_easier / plan_around_it: new default minutes. */
+  /** training_up / training_easier / plan_around_it: new default minutes. */
   minutes?: SessionMinutes;
   /** plan_around_it: fasting mode on. */
   fasting?: boolean;
@@ -482,7 +482,6 @@ export interface Adjustments {
   creatorId: CreatorId;
   kcalDelta: number;
   sideDelta: number;
-  extraSets: Record<TrainingArea, number>;
   speedBrakeOn: ISODate | null;
   /** Earlier food values, so a plan change never rewrites days already gone. */
   history?: AdjustmentStep[];

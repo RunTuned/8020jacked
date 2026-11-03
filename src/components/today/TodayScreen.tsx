@@ -113,7 +113,7 @@ export function TodayScreen() {
     hero = st.profile.firstName ? `Hi, ${st.profile.firstName}.` : "Hi there.";
   } else if (tw.planned) {
     hero = "Training day.";
-    sub = `${tw.name} · ${tw.minutes} minutes`;
+    sub = `${tw.name} · about ${tw.minutes} minutes`;
   }
 
   const tickWalk = () => {
@@ -132,7 +132,7 @@ export function TodayScreen() {
     doNow = null;
   } else if (done) {
     doNow = (
-      <Card tone="blue" icon="check" title="Done for today." detail={`${done.name}, ${done.minutes} minutes. Well done.`} label="Workout">
+      <Card tone="blue" icon="check" title="Done for today." detail={`${done.name}, about ${done.minutes} minutes. Well done.`} label="Workout">
         {walkButton}
       </Card>
     );
@@ -144,9 +144,9 @@ export function TodayScreen() {
           Start
         </Button>
         <CardActions>
-          {tw.minutes !== 10 ? (
-            <Button variant="text" href="/train/workout?minutes=10&from=today">
-              10-minute version
+          {tw.minutes !== 8 ? (
+            <Button variant="text" href="/train/workout?minutes=8&from=today">
+              8-minute version
             </Button>
           ) : null}
           <Button

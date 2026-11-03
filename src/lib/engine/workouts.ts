@@ -25,35 +25,86 @@ export const HOLD_STEP_SECONDS = 5;
 export const HURTS_TO_SET_ASIDE = 2;
 
 export const SESSION_NAMES: Record<SessionLetter, string> = {
-  A: "Legs and push",
-  B: "Hips and pull",
-  C: "Legs and core",
+  A: "Full body A",
+  B: "Full body B",
 };
 
-/** Moves × sets by session length. */
-export const LENGTH_SHAPE: Record<SessionMinutes, { moves: number; sets: number }> = {
-  10: { moves: 3, sets: 2 },
-  20: { moves: 5, sets: 3 },
-  35: { moves: 7, sets: 3 },
+// ---------- Session length (minimum effective dose) ----------
+
+/** Short, Standard (the default) and Long. Length changes the sets only, never the moves. */
+export const SHORT: SessionMinutes = 8;
+export const STANDARD: SessionMinutes = 15;
+export const LONG: SessionMinutes = 25;
+export const SESSION_LENGTHS: readonly SessionMinutes[] = [SHORT, STANDARD, LONG];
+export const DEFAULT_MINUTES: SessionMinutes = STANDARD;
+
+export const LENGTH_NAMES: Record<SessionMinutes, string> = { 8: "Short", 15: "Standard", 25: "Long" };
+
+/** Sets of each main move by session length. */
+export const SETS_BY_LENGTH: Record<SessionMinutes, number> = { 8: 1, 15: 2, 25: 3 };
+
+/** Long only: one core move at this many sets. */
+export const CORE_SETS_LONG = 2;
+
+/** Time one set takes: the work (about a minute) plus the rest. */
+export const SET_WORK_SECONDS = 60;
+/** Getting set up before the first set. */
+export const SETUP_SECONDS = 60;
+
+/** Old stored lengths (before the minimum-dose change) to the new ones. */
+const OLD_MINUTES: Record<number, SessionMinutes> = { 10: SHORT, 20: STANDARD, 35: LONG };
+
+/** A stored or linked minutes value as a session length: 10/20/35 map to 8/15/25. Unknown = undefined. */
+export function toSessionMinutes(v: unknown): SessionMinutes | undefined {
+  const n = Number(v);
+  if ((SESSION_LENGTHS as readonly number[]).includes(n)) return n as SessionMinutes;
+  return OLD_MINUTES[n];
+}
+
+/** Weekly check-in "step up": Short → Standard → Long. Null at Long (never above). */
+export function stepUpMinutes(m: SessionMinutes): SessionMinutes | null {
+  const i = SESSION_LENGTHS.indexOf(m);
+  return i >= 0 && i < SESSION_LENGTHS.length - 1 ? SESSION_LENGTHS[i + 1] : null;
+}
+
+/** The easier option: Long → Standard → Short. Null at Short. */
+export function stepDownMinutes(m: SessionMinutes): SessionMinutes | null {
+  const i = SESSION_LENGTHS.indexOf(m);
+  return i > 0 ? SESSION_LENGTHS[i - 1] : null;
+}
+
+/**
+ * The 4 main moves, one per pattern family, in order. Each slot lists what to try:
+ * the version for this workout first, then the fallback when the content has nothing suitable.
+ * `alt` = a different ladder from the one workout A uses (the hinge variant).
+ * `beginner` = only if her start rung there is a beginner move.
+ */
+interface SlotTry {
+  pattern: string;
+  alt?: boolean;
+  beginner?: boolean;
+}
+export const SESSION_SLOTS: Record<SessionLetter, SlotTry[][]> = {
+  A: [[{ pattern: "squat" }], [{ pattern: "horizontal_push" }], [{ pattern: "horizontal_pull" }], [{ pattern: "hinge" }]],
+  B: [
+    [{ pattern: "lunge" }, { pattern: "squat" }],
+    [{ pattern: "vertical_push", beginner: true }, { pattern: "horizontal_push" }],
+    [{ pattern: "vertical_pull", beginner: true }, { pattern: "horizontal_pull" }],
+    [{ pattern: "hinge", alt: true, beginner: true }, { pattern: "hinge" }],
+  ],
 };
 
-/** Full-body sessions: pattern order per session; the first N are used. */
-export const SESSION_PATTERNS: Record<SessionLetter, string[]> = {
-  A: ["squat", "horizontal_push", "horizontal_pull", "lunge", "vertical_push", "core", "hinge"],
-  B: ["hinge", "horizontal_pull", "horizontal_push", "lunge", "vertical_pull", "core", "squat"],
-  C: ["squat", "core", "horizontal_push", "lunge", "hinge", "horizontal_pull", "core"],
-};
+/** Core ladders for Long, by kit and floor: Pallof press (band), dead bug (floor), wall plank. */
+export const CORE_LADDERS = ["band_pallof_press", "core_front", "core_standing"];
 
-const FALLBACK_PATTERNS = [
-  "squat",
-  "hinge",
-  "lunge",
-  "horizontal_push",
-  "horizontal_pull",
-  "vertical_push",
-  "vertical_pull",
-  "core",
-];
+/** Squat or lunge, hinge, push, pull (and core): what the weekly dose is counted in. */
+export function patternFamily(pattern: string): "squat_lunge" | "hinge" | "push" | "pull" | "core" {
+  if (pattern === "squat" || pattern === "lunge") return "squat_lunge";
+  if (pattern === "hinge") return "hinge";
+  if (pattern.endsWith("_push")) return "push";
+  if (pattern.endsWith("_pull")) return "pull";
+  return "core";
+}
 
 export function patternArea(pattern: string): TrainingArea {
   if (pattern === "squat" || pattern === "hinge" || pattern === "lunge") return "legs";
@@ -154,7 +205,10 @@ export function exerciseOnLadder(steps: Exercise[], current: number | undefined,
  * rung so progress never makes her lose a ladder: her kit (dumbbells, band, no kit, chair last for
  * floor users), then a beginner start, then the longest ladder (the skills), then the lowest id.
  */
-export function rankedLadders(pattern: string, ctx: PickContext): { ladder: string; steps: Exercise[]; move: Exercise }[] {
+export function rankedLadders(
+  pattern: string,
+  ctx: PickContext,
+): { ladder: string; steps: Exercise[]; start: Exercise; move: Exercise }[] {
   return [...laddersFor(pattern, ctx).entries()]
     .map(([ladder, steps]) => ({
       ladder,
@@ -168,8 +222,7 @@ export function rankedLadders(pattern: string, ctx: PickContext): { ladder: stri
         LEVEL_RANK[a.start.level] - LEVEL_RANK[b.start.level] ||
         b.steps.length - a.steps.length ||
         a.start.id.localeCompare(b.start.id),
-    )
-    .map(({ ladder, steps, move }) => ({ ladder, steps, move }));
+    );
 }
 
 /** A set-aside move is replaced using its `swaps`, else nothing. */
@@ -182,14 +235,23 @@ function replacement(ex: Exercise, ctx: PickContext, used: Set<string>): Exercis
   return null;
 }
 
+export interface PickOptions {
+  /** Ladders not to use (the hinge variant skips workout A's ladder). */
+  skipLadders?: Set<string>;
+  /** Only a ladder whose start rung is a beginner move ("a suitable beginner one"). */
+  beginner?: boolean;
+}
+
 export function pickForPattern(
   pattern: string,
   ctx: PickContext,
   usedIds: Set<string>,
   usedLadders: Set<string>,
+  opts: PickOptions = {},
 ): Exercise | null {
-  for (const { ladder, move } of rankedLadders(pattern, ctx)) {
-    if (usedLadders.has(ladder)) continue;
+  for (const { ladder, start, move } of rankedLadders(pattern, ctx)) {
+    if (usedLadders.has(ladder) || opts.skipLadders?.has(ladder)) continue;
+    if (opts.beginner && start.level !== "beginner") continue;
     let ex = move;
     if (ctx.setAside.includes(ex.id)) {
       const r = replacement(ex, ctx, usedIds);
@@ -202,10 +264,26 @@ export function pickForPattern(
   return null;
 }
 
+/** Long only: the core move by kit and floor (Pallof press, dead bug, wall plank), on her ladder step. */
+export function pickCore(ctx: PickContext, usedIds: Set<string>): Exercise | null {
+  const ladders = laddersFor("core", ctx);
+  for (const name of CORE_LADDERS) {
+    const steps = ladders.get(name);
+    if (!steps?.length) continue;
+    let ex = exerciseOnLadder(steps, ctx.ladderSteps[name], ctx.equipment);
+    if (ctx.setAside.includes(ex.id)) {
+      const r = replacement(ex, ctx, usedIds);
+      if (!r) continue;
+      ex = r;
+    }
+    if (!usedIds.has(ex.id)) return ex;
+  }
+  return null;
+}
+
 export interface SessionInput extends PickContext {
   letter: SessionLetter;
   minutes: SessionMinutes;
-  extraSets: Record<TrainingArea, number>;
   targets: Record<string, number>;
   easy: boolean;
   /** Swaps for today (W6, W5): fromId -> toId. */
@@ -214,34 +292,49 @@ export interface SessionInput extends PickContext {
   hurtBodyParts?: string[];
 }
 
+/**
+ * Every session: the same 4 main moves, one per pattern family (squat or lunge, push, pull, hinge).
+ * A and B alternate the version where the content allows. Length changes the sets only:
+ * Short 1, Standard 2, Long 3 plus one core move.
+ */
 export function buildSession(i: SessionInput): PlannedSession {
-  const shape = LENGTH_SHAPE[i.minutes];
   const usedIds = new Set<string>();
   const usedLadders = new Set<string>();
-  const picked: Exercise[] = [];
-  const queue = [...SESSION_PATTERNS[i.letter], ...FALLBACK_PATTERNS];
   const hurt = new Set(i.hurtBodyParts ?? []);
   const map = byId(i.exercises);
-  for (const pattern of queue) {
-    if (picked.length >= shape.moves) break;
-    let ex = pickForPattern(pattern, i, usedIds, usedLadders);
-    if (!ex) continue;
-    const swapTo = i.swaps?.[ex.id] ? map.get(i.swaps[ex.id]) : undefined;
-    if (swapTo) ex = swapTo;
-    if (hurt.has(ex.primaryMuscle) || usedIds.has(ex.id)) continue;
-    picked.push(ex);
-    usedIds.add(ex.id);
-    usedLadders.add(ex.ladder);
-  }
-  const areaFirst = new Set<TrainingArea>();
-  const moves: PlannedMove[] = picked.map((ex) => {
-    const area = patternArea(ex.pattern);
-    let sets = shape.sets;
-    if (!areaFirst.has(area)) {
-      areaFirst.add(area);
-      sets += i.extraSets[area] ?? 0;
+  const picked: Exercise[] = [];
+  /** Today's swap (W6, W5), then the hurt and duplicate checks. */
+  const take = (found: Exercise | null): Exercise | null => {
+    if (!found) return null;
+    const swapTo = i.swaps?.[found.id] ? map.get(i.swaps[found.id]) : undefined;
+    const ex = swapTo ?? found;
+    if (hurt.has(ex.primaryMuscle) || usedIds.has(ex.id)) return null;
+    return ex;
+  };
+  for (const slot of SESSION_SLOTS[i.letter]) {
+    for (const t of slot) {
+      let skipLadders: Set<string> | undefined;
+      if (t.alt) {
+        const aMove = pickForPattern(t.pattern, i, new Set(), new Set());
+        if (!aMove) continue;
+        skipLadders = new Set([aMove.ladder]);
+      }
+      const ex = take(pickForPattern(t.pattern, i, usedIds, usedLadders, { skipLadders, beginner: t.beginner }));
+      if (!ex) continue;
+      picked.push(ex);
+      usedIds.add(ex.id);
+      usedLadders.add(ex.ladder);
+      break;
     }
-    if (i.easy) sets = Math.max(1, sets - 1);
+  }
+  const mainSets = SETS_BY_LENGTH[i.minutes];
+  const sized = picked.map((ex) => ({ ex, sets: mainSets }));
+  if (i.minutes === LONG) {
+    const core = take(pickCore(i, usedIds));
+    if (core) sized.push({ ex: core, sets: CORE_SETS_LONG });
+  }
+  const moves: PlannedMove[] = sized.map(({ ex, sets: n }) => {
+    const sets = i.easy ? Math.max(1, n - 1) : n;
     const target = i.targets[ex.id] ?? ex.repMin;
     return {
       exerciseId: ex.id,
@@ -261,9 +354,16 @@ export function buildSession(i: SessionInput): PlannedSession {
     minutes: i.minutes,
     moves,
     totalSets,
-    estMinutes: sessionMinutes(i.minutes, totalSets),
+    estMinutes: sessionMinutes(totalSets),
     easy: i.easy,
   };
+}
+
+/** Sets per pattern family across sessions (the weekly dose). */
+export function setsPerFamily(sessions: PlannedSession[]): Record<ReturnType<typeof patternFamily>, number> {
+  const out = { squat_lunge: 0, hinge: 0, push: 0, pull: 0, core: 0 };
+  for (const s of sessions) for (const m of s.moves) out[patternFamily(m.pattern)] += m.sets.length;
+  return out;
 }
 
 // ---------- Weekly schedule ----------
@@ -302,8 +402,10 @@ export function chooseTrainingDays(free: number[], n: number): number[] {
   return best;
 }
 
+/** Full body A and B, alternating (4-day plans too: there is no C). */
 export function lettersFor(days: DaysPerWeek): SessionLetter[] {
-  return days === 4 ? ["A", "B", "C"] : ["A", "B"];
+  void days;
+  return ["A", "B"];
 }
 
 export interface ScheduleInput {
@@ -521,18 +623,30 @@ export function setsFor(session: WorkoutSession, exerciseId: string): SetLog[] {
   return session.sets.filter((s) => s.exerciseId === exerciseId);
 }
 
-/** Time one set takes in a session of this length: its usual sets fill its minutes. */
-function minutesPerSet(minutes: SessionMinutes): number {
-  const shape = LENGTH_SHAPE[minutes];
-  return minutes / (shape.moves * shape.sets);
+/** Raw minutes for this many sets: setting up, then each set's work and rest. */
+export function rawSessionMinutes(totalSets: number): number {
+  if (totalSets <= 0) return 0;
+  return (SETUP_SECONDS + totalSets * (SET_WORK_SECONDS + REST_SECONDS)) / 60;
 }
 
-/** Real length of a session with this many sets: 20 min × 15 sets = 20; an easy week's 10 sets = 14. */
-export function sessionMinutes(minutes: SessionMinutes, totalSets: number): number {
-  return Math.max(0, Math.ceil(totalSets * minutesPerSet(minutes) - 1e-9));
+/** "About" minutes: whole minutes up to 10, then the nearest 5. */
+export function aboutMinutes(raw: number): number {
+  if (raw <= 0) return 0;
+  if (raw <= 10) return Math.max(1, Math.round(raw));
+  return Math.round(raw / 5) * 5;
 }
 
-/** W4/W3: minutes left, by the session's own pace, so the start shows its length (QA 19). */
-export function minutesLeft(totalSets: number, doneSets: number, minutes: SessionMinutes): number {
-  return sessionMinutes(minutes, Math.max(0, totalSets - doneSets));
+/**
+ * Real length of a session with this many sets, from the engine's own maths:
+ * Short 4 sets = 8, Standard 8 sets = 15, Long 12 + 2 core sets = 25.5, about 25.
+ */
+export function sessionMinutes(totalSets: number): number {
+  return aboutMinutes(rawSessionMinutes(totalSets));
+}
+
+/** W4/W3: minutes left. At the start it is the session's own length (QA 19). */
+export function minutesLeft(totalSets: number, doneSets: number): number {
+  if (doneSets <= 0) return sessionMinutes(totalSets);
+  const left = Math.max(0, totalSets - doneSets);
+  return Math.max(0, Math.ceil((left * (SET_WORK_SECONDS + REST_SECONDS)) / 60 - 1e-9));
 }

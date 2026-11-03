@@ -85,14 +85,25 @@ More check-in rules:
 ### 3.4 Workouts
 - **Exercise data:** `src/content/exercises.json`, built from `docs/content/exercises.csv` (copied from Jennifer's library), with ladders, units (reps or seconds), kit, position and swaps.
 - **Equipment** maps to the kit field: floor, no floor (chair and wall moves only: position seated or standing, no floor moves), bands, dumbbells.
-- **Sessions are full body, named by body area:**
-  - A: "Legs and push"
-  - B: "Hips and pull"
-  - C (4-day plans): "Legs and core"
-- **Length** (10 / 20 / 35 min) sets the moves and sets:
-  - 10 min: 3 moves × 2 sets
-  - 20 min: 5 moves × 3 sets
-  - 35 min: 7 moves × 3 sets
+- **Minimum effective dose (owner decision, Nov 2026).** Every session has the same 4 main moves, one per
+  pattern: squat or lunge, hip hinge, push and pull. They are picked by equipment (dumbbells first, then bands,
+  then bodyweight; no-floor rules; the beginner rung; ladder progress kept).
+- **Full body A and Full body B** use the same 4 patterns and alternate the version where the content allows:
+  - A: squat, horizontal push, horizontal pull, hinge.
+  - B: lunge, a vertical push if there is a suitable beginner one (else the same push), a vertical pull if
+    suitable (else the same pull), and the other hinge ladder (e.g. a hip thrust vs a Romanian deadlift).
+  - 4-day plans alternate A and B. There is no C.
+- **Length changes the sets only, never the moves** (`SETS_BY_LENGTH`):
+  - Short: 1 set each, about 8 min.
+  - Standard (default and the suggestion): 2 sets each, about 15 min.
+  - Long: 3 sets each, plus one core move (Pallof press with a band, dead bug with a floor, else a wall plank)
+    at 2 sets, about 25 min.
+  - Estimates come from the engine: 1 min to set up, then about 1 min of work + 45 s rest per set, shown as
+    "about" (whole minutes up to 10, then the nearest 5). 3 Standard days = 6 sets a week per pattern.
+  - Stored minutes are 8 / 15 / 25. Old values migrate (schema v2): 10 → 8, 20 → 15, 35 → 25; an old
+    `?minutes=10` link means 8. Today's "8-minute version" is the Short version of today's workout.
+- **Weekly check-in:** the training step up is Short → Standard → Long (never above Long); the easier option
+  steps down Long → Standard → Short.
 - **Rest:** 45 s. Each held move uses seconds.
 - **Days:** 2, 3 or 4 a week, never back to back where possible.
 - **Starting level:** the beginner rung of each ladder.

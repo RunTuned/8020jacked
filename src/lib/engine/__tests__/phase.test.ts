@@ -32,7 +32,7 @@ describe("12-week block counter", () => {
   });
 
   it("a taster or an unfinished workout isn't activity", () => {
-    const w: WorkoutSession = { creatorId: CREATOR_ID, id: "t", date: MON, letter: "A", minutes: 10, status: "done", sets: [], moveEffort: {}, bigScreen: false, taster: true, startedAt: 0 };
+    const w: WorkoutSession = { creatorId: CREATOR_ID, id: "t", date: MON, letter: "A", minutes: 8, status: "done", sets: [], moveEffort: {}, bigScreen: false, taster: true, startedAt: 0 };
     expect(activeWeeks(block, addDays(MON, 8), { mealLogs: [], workouts: [w], weighIns: [], walks: [] }, false)).toBe(0);
   });
 
@@ -56,7 +56,7 @@ describe("12-week block counter", () => {
 describe("C6 summary", () => {
   it("counts workouts, good weeks, strength ups and new skills", () => {
     const w = (date: string, values: [string, number][]): WorkoutSession => ({
-      creatorId: CREATOR_ID, id: date, date, letter: "A", minutes: 20, status: "done", moveEffort: {}, bigScreen: false, taster: false, startedAt: 0,
+      creatorId: CREATOR_ID, id: date, date, letter: "A", minutes: 15, status: "done", moveEffort: {}, bigScreen: false, taster: false, startedAt: 0,
       sets: values.map(([exerciseId, value], setIndex) => ({ creatorId: CREATOR_ID, exerciseId, setIndex, value, unit: "reps", planned: false, at: 0 })),
     });
     const logs: ActivityLogs = {

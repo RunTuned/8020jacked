@@ -86,11 +86,11 @@ export function Gallery() {
             <Card tone="blue" icon="train" title="5 moves" label="Workout">
               <Button block>Start</Button>
               <CardActions>
-                <Button variant="text">10-minute version</Button>
+                <Button variant="text">8-minute version</Button>
                 <Button variant="text">Not today</Button>
               </CardActions>
             </Card>
-            <Card tone="aqua" icon="train" eyebrow="Next week" title="Legs get one extra set" detail="Meals stay the same.">
+            <Card tone="aqua" icon="train" eyebrow="Next week" title="One more set of each move" detail="Meals stay the same.">
               <Button block>Sounds good</Button>
               <CardActions spread={false}>
                 <Button variant="text">Not this week</Button>

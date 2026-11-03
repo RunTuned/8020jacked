@@ -113,7 +113,7 @@ export function Card({
   );
 }
 
-/** A row of text buttons spread across the card ("10-minute version · Not today"). */
+/** A row of text buttons spread across the card ("8-minute version · Not today"). */
 export function CardActions({ children, spread = true }: { children: ReactNode; spread?: boolean }) {
   return (
     <div className={cx("flex flex-wrap gap-x-4 gap-y-1", spread ? "justify-between" : "justify-start")}>

@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("idb-keyval", () => ({ get: async () => undefined, set: async () => {}, del: async () => {} }));
 
 import { CONTENT } from "../../engine/__tests__/fixtures";
+import type { SessionMinutes } from "../../types";
 import { patternArea } from "../../engine";
 import {
   appState,
@@ -30,7 +31,7 @@ const tick = (ms: number) => {
 };
 const A = () => useAppStore.getState();
 
-function onboard(minutes: 10 | 20 = 10) {
+function onboard(minutes: SessionMinutes = 15) {
   A().saveAbout({ age: 40, heightCm: 165, setupWeightKg: 75, noWeigh: false });
   A().saveGoal("steady", true);
   A().saveTime({ minutes, daysPerWeek: 3 });
@@ -67,7 +68,7 @@ describe("selectActiveWorkout", () => {
     onboard();
     A().startWorkout();
     let a = selectActiveWorkout(appState())!;
-    expect(a.totalSets).toBe(6);
+    expect(a.totalSets).toBe(8); // 4 moves × 2 sets
     expect(a.cursor).toMatchObject({ moveIndex: 0, setIndex: 0, lastOfWorkout: false });
     A().logSet(a.cursor!.move.exerciseId, 0, 8);
     a = selectActiveWorkout(appState())!;
@@ -80,7 +81,7 @@ describe("selectActiveWorkout", () => {
   it("flags the last set and ends with a null cursor", () => {
     onboard();
     A().startWorkout();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       const c = selectActiveWorkout(appState())!.cursor!;
       A().logSet(c.move.exerciseId, c.setIndex, c.target);
       tick(1100);
@@ -104,20 +105,24 @@ describe("selectActiveWorkout", () => {
     expect(selectActiveWorkout(appState())!.cursor!.lastTime).toBe(11);
   });
 
-  it("minutes picks the 10-minute version of today's workout", () => {
-    onboard(20);
-    expect(A().startWorkout({ minutes: 10 })).toBeTruthy();
+  it("minutes picks the 8-minute version (Short) of today's workout: the same moves, 1 set each", () => {
+    onboard(15);
+    const std = selectSession(appState()).moves.map((m) => m.exerciseId);
+    expect(A().startWorkout({ minutes: 8 })).toBeTruthy();
     const a = selectActiveWorkout(appState())!;
-    expect(a.workout.minutes).toBe(10);
-    expect(a.totalSets).toBe(6);
+    expect(a.workout.minutes).toBe(8);
+    expect(a.totalSets).toBe(4);
+    expect(a.moves.map((m) => m.exerciseId)).toEqual(std);
+    expect(a.minutesLeft).toBe(8);
   });
 
-  it("a taster is session A, 10 minutes", () => {
-    onboard(20);
+  it("a taster is session A, Short (8 minutes)", () => {
+    onboard(15);
     A().startWorkout({ taster: true });
     const a = selectActiveWorkout(appState())!;
     expect(a.session.letter).toBe("A");
-    expect(a.session.minutes).toBe(10);
+    expect(a.session.minutes).toBe(8);
+    expect(a.session.name).toBe("Full body A");
   });
 
   it("swapping the move in a slot uses originId, even twice", () => {
@@ -197,32 +202,38 @@ describe("hurts in a workout", () => {
 });
 
 describe("time left matches the session length (QA 19)", () => {
-  it("20 min → about 20 min left at the start, 0 at the end", () => {
-    onboard(20);
+  it("15 min → about 15 min left at the start, 0 at the end", () => {
+    onboard(15);
     A().startWorkout();
     const a = selectActiveWorkout(appState())!;
-    expect(a.session.minutes).toBe(20);
-    expect(a.minutesLeft).toBe(20);
+    expect(a.session.minutes).toBe(15);
+    expect(a.minutesLeft).toBe(15);
     doAll();
     expect(selectActiveWorkout(appState())!.minutesLeft).toBe(0);
   });
 
-  it("10 min → about 10 min left at the start", () => {
-    onboard(10);
+  it("8 min → about 8, 25 min → about 25 at the start", () => {
+    onboard(8);
     A().startWorkout();
-    expect(selectActiveWorkout(appState())!.minutesLeft).toBe(10);
+    expect(selectActiveWorkout(appState())!.minutesLeft).toBe(8);
+    A().discardWorkout();
+    A().saveTraining({ daysPerWeek: 3, minutes: 25 });
+    A().startWorkout();
+    const a = selectActiveWorkout(appState())!;
+    expect(a.minutesLeft).toBe(25);
+    expect(a.totalSets).toBe(14); // 4 moves × 3 sets + core × 2
   });
 
   it("an easy week shows its real length and set count", () => {
-    onboard(20);
+    onboard(15);
     A().startEasyWeek();
     A().startWorkout();
     const a = selectActiveWorkout(appState())!;
     expect(a.session.easy).toBe(true);
-    expect(a.totalSets).toBe(10); // 5 moves × 2 sets
-    expect(a.session.estMinutes).toBe(14); // 10 of the usual 15 sets
-    expect(a.minutesLeft).toBe(14);
-    expect(selectTrainHome(appState()).minutes).toBe(14);
+    expect(a.totalSets).toBe(4); // 4 moves × 1 set
+    expect(a.session.estMinutes).toBe(8);
+    expect(a.minutesLeft).toBe(8);
+    expect(selectTrainHome(appState()).minutes).toBe(8);
   });
 });
 
@@ -244,9 +255,9 @@ describe("W7, W1", () => {
 
   it("other workouts and home card", () => {
     onboard();
-    expect(selectOtherWorkouts(appState(), "A")).toEqual([{ letter: "B", name: "Hips and pull" }]);
+    expect(selectOtherWorkouts(appState(), "A")).toEqual([{ letter: "B", name: "Full body B" }]);
     const h = selectTrainHome(appState());
-    expect(h).toMatchObject({ doneToday: false, letter: "A", name: "Legs and push" });
+    expect(h).toMatchObject({ doneToday: false, letter: "A", name: "Full body A", minutes: 15 });
     A().startWorkout();
     doAll();
     A().finishWorkout("done");

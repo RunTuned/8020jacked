@@ -44,7 +44,7 @@ function Home() {
           {h.doneToday ? (
             <Card tone="blue" icon="check" title="Done for today" detail={h.doneName} label="Today" />
           ) : (
-            <Card tone="blue" icon="train" title={`Next: ${h.name} · ${h.minutes} min`} href="/train/workout" />
+            <Card tone="blue" icon="train" title={`Next: ${h.name} · about ${h.minutes} min`} href="/train/workout" />
           )}
           <Card tone="neutral" title={`This week: ${week.done} of ${week.planned} done.`} label="This week" />
           {!h.doneToday && !h.inProgress && others.length ? (
@@ -60,7 +60,7 @@ function Home() {
         <Sheet open onClose={() => setPick(false)} title="Pick another workout">
           {others.map((o) => (
             <Button key={o.letter} variant="secondary" block href={`/train/workout?letter=${o.letter}`}>
-              {o.name} · {h.minutes} min
+              {o.name} · about {h.minutes} min
             </Button>
           ))}
         </Sheet>

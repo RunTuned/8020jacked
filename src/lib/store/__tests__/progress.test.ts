@@ -41,7 +41,7 @@ const A = () => useAppStore.getState();
 function onboard(noWeigh = false) {
   A().saveAbout({ age: 40, heightCm: 165, setupWeightKg: 75, noWeigh });
   A().saveGoal("lose", true);
-  A().saveTime({ minutes: 20, daysPerWeek: 3 });
+  A().saveTime({ minutes: 15, daysPerWeek: 3 });
   A().saveEquipment(["floor"]);
   A().saveFoodSetup({ mealsPerDay: 3, cookOrBuy: "cook", allergies: [] });
   A().createPlan();

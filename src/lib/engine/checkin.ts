@@ -14,7 +14,6 @@ import type {
   Goal,
   ISODate,
   SessionMinutes,
-  TrainingArea,
   WeighIn,
   Weekday,
 } from "../types";
@@ -29,7 +28,7 @@ import {
   speedBrake,
   SPEED_BRAKE_KCAL,
 } from "./weighins";
-import { AREA_WORDS } from "./workouts";
+import { LONG, stepDownMinutes, stepUpMinutes } from "./workouts";
 
 export const FOOD_CHANGES_PER_BLOCK = 3;
 export const WEIGH_INS_FOR_FOOD_CHANGE = 3;
@@ -42,8 +41,6 @@ export const CHECK_IN_BANNER_DAYS = 3;
 export const FIRST_CHECK_IN_AFTER_DAYS = 7;
 export const AWAY_WEEK_DAYS = 4;
 export const TRAINING_UP_WEEKS = 2;
-export const MAX_EXTRA_SETS_PER_AREA = 1;
-export const TRAINING_AREA_ORDER: TrainingArea[] = ["legs", "push", "pull", "core"];
 
 export const COPY = {
   nothingLogged: "Nothing logged this week. Same plan, fresh start.",
@@ -56,9 +53,10 @@ export const COPY = {
   tighter: "Your plan stays the same. Clothes change for lots of reasons, and that's fine.",
   same: "Same plan. It's working, so keep going.",
   blockedByAnswer: (w: string) => `${w}, so your meals stay the same this week. That's fine.`,
-  trainingUp: (area: TrainingArea) => `Meals stay the same. ${AREA_WORDS[area]} get one extra set.`,
-  trainingEasier: (m: SessionMinutes) => `Workouts get shorter: ${m} minutes. Meals stay the same.`,
-  aroundShorter: (m: SessionMinutes) => `We'll plan around it. Workouts get shorter: ${m} minutes.`,
+  trainingUp: (m: SessionMinutes) =>
+    `Meals stay the same. Workouts get one more set of each move${m === LONG ? ", plus a core move" : ""}: about ${m} minutes.`,
+  trainingEasier: (m: SessionMinutes) => `Workouts get shorter: about ${m} minutes. Meals stay the same.`,
+  aroundShorter: (m: SessionMinutes) => `We'll plan around it. Workouts get shorter: about ${m} minutes.`,
   aroundFasting: "We'll plan around it. Fasting mode is on: the same food in 2 bigger meals.",
   aroundSame: "We'll plan around it. Your workouts are already short, so the plan stays the same.",
 };
@@ -195,9 +193,6 @@ function clothesBefore(history: ClothesAnswer[], date: ISODate, n: number): Clot
     .map((c) => c.feel);
 }
 
-function stepDown(m: SessionMinutes): SessionMinutes {
-  return m === 35 ? 20 : 10;
-}
 
 // ---------- The decision ----------
 
@@ -278,8 +273,8 @@ export function evaluateCheckIn(i: CheckInInput): CheckInResult {
         return done({ kind: "plan_around_it", fasting: true }, COPY.aroundFasting, "normal_now", [
           "You said fasting is your normal for now.",
         ]);
-    } else if (i.minutes > 10) {
-      const m = stepDown(i.minutes);
+    } else if (stepDownMinutes(i.minutes)) {
+      const m = stepDownMinutes(i.minutes)!;
       return done({ kind: "plan_around_it", minutes: m }, COPY.aroundShorter(m), "normal_now", [
         `You said "${ANSWER_LABELS[askNormalNow]}" is your normal for now.`,
       ]);
@@ -365,15 +360,17 @@ export function evaluateCheckIn(i: CheckInInput): CheckInResult {
   const allDone = (w: WeekStats | null) => !!w && w.workoutsPlanned > 0 && w.workoutsDone >= w.workoutsPlanned;
   const ratedOk = i.ratings.length > 0 && i.ratings.every((r) => r === "too_easy" || r === "just_right");
   if (allDone(i.week) && allDone(lw) && ratedOk && !i.answers.includes("sore")) {
-    const area = TRAINING_AREA_ORDER.find((a) => (i.adjustments.extraSets[a] ?? 0) < MAX_EXTRA_SETS_PER_AREA);
-    if (area) {
-      return done({ kind: "training_up", area }, COPY.trainingUp(area), "training_up", [
+    // Step up: Short → Standard → Long, never above Long.
+    const up = stepUpMinutes(i.minutes);
+    if (up) {
+      return done({ kind: "training_up", minutes: up }, COPY.trainingUp(up), "training_up", [
         "You did every workout for 2 weeks and rated them Just right or Too easy.",
       ]);
     }
   }
-  if (i.week.workoutsPlanned > 0 && i.week.workoutsDone < i.week.workoutsPlanned / 2 && i.minutes > 10) {
-    const m = stepDown(i.minutes);
+  const down = stepDownMinutes(i.minutes);
+  if (i.week.workoutsPlanned > 0 && i.week.workoutsDone < i.week.workoutsPlanned / 2 && down) {
+    const m = down;
     return done({ kind: "training_easier", minutes: m }, COPY.trainingEasier(m), "training_easier", [
       "Shorter workouts are easier to fit in. They still count.",
     ]);
@@ -406,10 +403,6 @@ export function applyChange(adj: Adjustments, change: CheckInChange, date: ISODa
         kcalDelta: adj.kcalDelta + (change.kcalDelta ?? 0),
         sideDelta: adj.sideDelta + (change.sideDelta ?? 0),
       };
-    case "training_up":
-      return change.area
-        ? { ...adj, extraSets: { ...adj.extraSets, [change.area]: (adj.extraSets[change.area] ?? 0) + 1 } }
-        : adj;
     default:
       return adj;
   }

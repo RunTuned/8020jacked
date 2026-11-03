@@ -15,7 +15,7 @@ export function TodayMock() {
           <TopRow label="Thursday 29 October" you={{ href: "/dev" }}>
             <Hero title="Training day." />
           </TopRow>
-          <Subline>Legs and core · 20 minutes</Subline>
+          <Subline>Full body A · about 15 minutes</Subline>
         </div>
         <Stack>
           <Card tone="blue" icon="train" title="5 moves" label="Workout">
@@ -24,7 +24,7 @@ export function TodayMock() {
             </Button>
             <CardActions>
               <Button variant="text" href="/dev">
-                10-minute version
+                8-minute version
               </Button>
               <Button variant="text" href="/dev">
                 Not today

@@ -28,7 +28,6 @@ const adj = (p: Partial<Adjustments> = {}): Adjustments => ({
   creatorId: CREATOR_ID,
   kcalDelta: 0,
   sideDelta: 0,
-  extraSets: { legs: 0, push: 0, pull: 0, core: 0 },
   speedBrakeOn: null,
   ...p,
 });
@@ -102,7 +101,7 @@ const base = (p: Partial<CheckInInput> = {}): CheckInInput => ({
   adjustments: adj(),
   maintenance: 1988.35,
   block: { creatorId: CREATOR_ID, id: "b1", goal: "lose", start: "2026-11-02" },
-  minutes: 20,
+  minutes: 15,
   fasting: false,
   ...p,
 });
@@ -288,15 +287,19 @@ describe("priority 2: food (Lose some weight only)", () => {
 describe("priority 3: training", () => {
   const allDone = { week: week({ workoutsDone: 3 }), lastWeek: week({ workoutsDone: 3 }) };
 
-  it("all workouts done 2 weeks and rated Just right / Too easy → one step up", () => {
+  it("all workouts done 2 weeks and rated Just right / Too easy → one step up: Standard → Long", () => {
     const r = evaluateCheckIn(base({ ...allDone, ratings: ["just_right", "too_easy"] }));
-    expect(r.change).toEqual({ kind: "training_up", area: "legs" });
-    expect(r.copy).toBe("Meals stay the same. Legs get one extra set.");
+    expect(r.change).toEqual({ kind: "training_up", minutes: 25 });
+    expect(r.copy).toBe("Meals stay the same. Workouts get one more set of each move, plus a core move: about 25 minutes.");
+    expect(evaluateCheckIn(base({ ...allDone, minutes: 8 })).copy).toBe(
+      "Meals stay the same. Workouts get one more set of each move: about 15 minutes.",
+    );
   });
 
-  it("the next step up goes to the next area", () => {
-    const r = evaluateCheckIn(base({ ...allDone, adjustments: adj({ extraSets: { legs: 1, push: 0, pull: 0, core: 0 } }) }));
-    expect(r.change.area).toBe("push");
+  it("the step up goes Short → Standard → Long, never above Long", () => {
+    expect(evaluateCheckIn(base({ ...allDone, minutes: 8 })).change).toEqual({ kind: "training_up", minutes: 15 });
+    expect(evaluateCheckIn(base({ ...allDone, minutes: 15 })).change).toEqual({ kind: "training_up", minutes: 25 });
+    expect(evaluateCheckIn(base({ ...allDone, minutes: 25 })).change.kind).toBe("same");
   });
 
   it("any Too hard → no step up", () => {
@@ -309,11 +312,12 @@ describe("priority 3: training", () => {
 
   it("under half done → easier (a shorter default), never harder", () => {
     const r = evaluateCheckIn(base({ goal: "steady", week: week({ workoutsDone: 1 }) }));
-    expect(r.change).toEqual({ kind: "training_easier", minutes: 10 });
-    const r35 = evaluateCheckIn(base({ goal: "steady", minutes: 35, week: week({ workoutsDone: 1 }) }));
-    expect(r35.change.minutes).toBe(20);
-    // already at 10 minutes → same plan
-    expect(evaluateCheckIn(base({ goal: "steady", minutes: 10, week: week({ workoutsDone: 0 }) })).change.kind).toBe("same");
+    expect(r.change).toEqual({ kind: "training_easier", minutes: 8 });
+    expect(r.copy).toBe("Workouts get shorter: about 8 minutes. Meals stay the same.");
+    const rLong = evaluateCheckIn(base({ goal: "steady", minutes: 25, week: week({ workoutsDone: 1 }) }));
+    expect(rLong.change.minutes).toBe(15);
+    // already Short → same plan
+    expect(evaluateCheckIn(base({ goal: "steady", minutes: 8, week: week({ workoutsDone: 0 }) })).change.kind).toBe("same");
   });
 
   it("food beats training in the priority order", () => {
@@ -334,7 +338,11 @@ describe("C8: same answer 3 weeks running", () => {
 
   it("Yes, plan around it → shorter workouts", () => {
     const r = evaluateCheckIn(base({ goal: "steady", answers: ["busy"], history, normalNow: true }));
-    expect(r.change).toEqual({ kind: "plan_around_it", minutes: 10 });
+    expect(r.change).toEqual({ kind: "plan_around_it", minutes: 8 });
+    const long = evaluateCheckIn(base({ goal: "steady", minutes: 25, answers: ["busy"], history, normalNow: true }));
+    expect(long.change).toEqual({ kind: "plan_around_it", minutes: 15 });
+    const short = evaluateCheckIn(base({ goal: "steady", minutes: 8, answers: ["busy"], history, normalNow: true }));
+    expect(short.change.kind).toBe("same");
   });
 
   it("No, it will pass → the usual rules", () => {
@@ -382,8 +390,8 @@ describe("applyChange", () => {
     a = applyChange(a, { kind: "speed_brake", kcalDelta: 150, sideDelta: 1 }, D);
     expect(a.kcalDelta).toBe(0);
     expect(a.speedBrakeOn).toBe(D);
-    a = applyChange(a, { kind: "training_up", area: "legs" }, D);
-    expect(a.extraSets.legs).toBe(1);
+    // a training step up changes the default minutes (the store sets them), not the adjustments
+    expect(applyChange(a, { kind: "training_up", minutes: 25 }, D)).toBe(a);
     expect(applyChange(a, { kind: "same" }, D)).toBe(a);
   });
 });

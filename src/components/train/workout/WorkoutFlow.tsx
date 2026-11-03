@@ -11,7 +11,8 @@ import {
   useAppStore,
   type ActiveWorkout,
 } from "@/lib/store";
-import type { Effort, SessionLetter, SessionMinutes } from "@/lib/types";
+import { toSessionMinutes } from "@/lib/engine";
+import type { Effort, SessionLetter } from "@/lib/types";
 import { MoveHowTo } from "../MoveHowTo";
 import { Skeleton, amount, useHydrated } from "../common";
 import { useWorkoutDevice } from "./parts";
@@ -24,8 +25,7 @@ type View = "ready" | "set" | "rest" | "done" | "how";
 type Overlay = null | { kind: "pause" } | { kind: "hurts"; hurtId: string; slot: number; setAside: boolean };
 type How = { exerciseId: string; originId: string; back: View };
 
-const LETTERS: SessionLetter[] = ["A", "B", "C"];
-const MINUTES: SessionMinutes[] = [10, 20, 35];
+const LETTERS: SessionLetter[] = ["A", "B"];
 
 /** Only same-site paths are followed ("/start/save?from=taster"), never another site. */
 function safeNext(v: string | null): string | null {
@@ -53,8 +53,8 @@ function Flow() {
   const taster = params.get("taster") === "1";
   const lp = params.get("letter") as SessionLetter | null;
   const letter = lp && LETTERS.includes(lp) ? lp : undefined;
-  const mp = Number(params.get("minutes"));
-  const minutes = MINUTES.find((m) => m === mp);
+  // ?minutes=8 / 15 / 25; an old link's 10 / 20 / 35 means 8 / 15 / 25.
+  const minutes = toSessionMinutes(params.get("minutes") ?? undefined);
   const from = params.get("from");
   const next = safeNext(params.get("next"));
   const backHref = from === "today" ? "/today" : "/train";

@@ -13,6 +13,7 @@ import type { Allergen, AppState } from "../../types";
 import {
   appState,
   initialState,
+  migrate,
   resetRepeatGuard,
   selectBanner,
   selectCheckIn,
@@ -49,7 +50,7 @@ function onboard(p: { cook?: "cook" | "buy"; allergies?: Allergen[]; goal?: "los
   A().saveAbout({ age: 40, heightCm: 165, setupWeightKg: 75, noWeigh: false });
   A().saveGoal(p.goal ?? "lose", true);
   A().markSafetySeen();
-  A().saveTime({ minutes: 20, daysPerWeek: 3 });
+  A().saveTime({ minutes: 15, daysPerWeek: 3 });
   A().saveEquipment(["floor"]);
   A().saveFoodSetup({ mealsPerDay: 3, cookOrBuy: p.cook ?? "cook", allergies: p.allergies ?? [] });
   A().createPlan();
@@ -68,7 +69,40 @@ describe("store basics", () => {
   it("persists under 8020jacked:v1 with a schema version", () => {
     expect(STORAGE_KEY).toBe("8020jacked:v1");
     expect(useAppStore.persist.getOptions().name).toBe("8020jacked:v1");
-    expect(useAppStore.persist.getOptions().version).toBe(1);
+    expect(useAppStore.persist.getOptions().version).toBe(2);
+  });
+
+  it("migrates v1 lengths 10/20/35 to 8/15/25 (profile, workouts, check-ins); C becomes B", () => {
+    for (const [old, now] of [
+      [10, 8],
+      [20, 15],
+      [35, 25],
+    ] as const) {
+      const v1 = {
+        ...initialState(),
+        schemaVersion: 1,
+        training: { ...initialState().training, minutes: old },
+        adjustments: { ...initialState().adjustments, extraSets: { legs: 1, push: 0, pull: 0, core: 0 } },
+        workouts: [
+          { creatorId: "8020jacked", id: "w1", date: "2026-10-01", letter: "C", minutes: old, status: "done", sets: [], moveEffort: {}, bigScreen: false, taster: false, startedAt: 0 },
+        ],
+        checkIns: [
+          { creatorId: "8020jacked", date: "2026-10-04", answers: [], accepted: true, at: 0, result: { date: "2026-10-04", change: { kind: "training_easier", minutes: old }, copy: "", bought: [] } },
+        ],
+      };
+      const m = migrate(v1, 1);
+      expect(m.schemaVersion).toBe(2);
+      expect(m.training.minutes).toBe(now);
+      expect(m.workouts[0].minutes).toBe(now);
+      expect(m.workouts[0].letter).toBe("B");
+      expect(m.checkIns[0].result.change.minutes).toBe(now);
+      expect("extraSets" in m.adjustments).toBe(false);
+      // running it again changes nothing
+      expect(migrate(m, 2)).toEqual(m);
+    }
+    // a fresh state starts on Standard
+    expect(initialState().training.minutes).toBe(15);
+    expect(migrate({}, 1).training.minutes).toBe(15);
   });
 
   it("setup creates a plan; the numbers come from the engine", () => {
@@ -329,8 +363,8 @@ describe("check-in", () => {
     at("2026-11-15");
     A().saveCheckInDraft({ answers: ["nothing"] });
     const r = A().submitCheckIn(true)!;
-    expect(r.change).toEqual({ kind: "training_easier", minutes: 10 });
-    expect(appState().training.minutes).toBe(10);
+    expect(r.change).toEqual({ kind: "training_easier", minutes: 8 });
+    expect(appState().training.minutes).toBe(8);
     expect(appState().checkIns[0].accepted).toBe(true);
   });
 
@@ -340,7 +374,7 @@ describe("check-in", () => {
     A().logMeal(0, "plan");
     at("2026-11-15");
     A().submitCheckIn(false);
-    expect(appState().training.minutes).toBe(20);
+    expect(appState().training.minutes).toBe(15);
   });
 });
 
